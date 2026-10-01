@@ -22,8 +22,9 @@ RUN chmod 755 /usr/local/bin/init-firewall.sh \
   && echo "vscode ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/vscode-firewall \
   && chmod 0440 /etc/sudoers.d/vscode-firewall
 
-RUN mkdir -p /commandhistory /home/vscode/.claude \
-  && chown vscode:vscode /commandhistory /home/vscode/.claude
+# Volume mount points live under $HOME so the devcontainer UID remap re-owns them.
+RUN mkdir -p /home/vscode/.claude /home/vscode/.history \
+  && chown vscode:vscode /home/vscode/.claude /home/vscode/.history
 
 USER vscode
 RUN curl -fsSL https://claude.ai/install.sh | bash

@@ -16,11 +16,11 @@
   "workspaceFolder": "${localWorkspaceFolder}",
   "mounts": [
     "source=brain-datasets-claude-config,target=/home/vscode/.claude,type=volume",
-    "source=brain-datasets-bashhistory,target=/commandhistory,type=volume"
+    "source=brain-datasets-history,target=/home/vscode/.history,type=volume"
   ],
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
-    "HISTFILE": "/commandhistory/.bash_history",
+    "HISTFILE": "/home/vscode/.history/bash_history",
     "PROMPT_COMMAND": "history -a"
   },
   // Don't hand the host's SSH agent to processes in the container.
