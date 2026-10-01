@@ -24,6 +24,6 @@ for f in json/intro.json json/sites.json results.html general/ADHD-200_Phenotypi
          general/allSubs_testSet_phenotypic_dx.csv general/ADHD-200_CompetitionScoring.pdf \
          fixes/ADHD-200.PhenotypicFix.csv fixes/DeobliqueFixAffectedSubs.txt; do
     dest=$OUT/source/nitrc/$f
-    [[ -s $dest ]] || curl -fsSL --create-dirs -o "$dest" "$NITRC/$f"
+    [[ -s $dest ]] || { curl -fsSL --create-dirs -o "$dest.part" "$NITRC/$f" && mv "$dest.part" "$dest"; }
 done
 write_manifest "$NAME"

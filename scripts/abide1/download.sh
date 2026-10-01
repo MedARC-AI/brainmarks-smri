@@ -26,6 +26,7 @@ aws s3 sync --no-sign-request --only-show-errors "$S3/RawDataBIDS/" "$OUT/source
 [[ -f "$OUT/source/Phenotypic_V1_0b.csv" ]] ||
     aws s3 cp --no-sign-request --only-show-errors "$S3/Phenotypic_V1_0b.csv" "$OUT/source/"
 [[ -f "$OUT/source/ABIDE_LEGEND_V1.02.pdf" ]] ||
-    curl -fsSL -o "$OUT/source/ABIDE_LEGEND_V1.02.pdf" \
-        https://fcon_1000.projects.nitrc.org/indi/abide/ABIDE_LEGEND_V1.02.pdf
+    { curl -fsSL -o "$OUT/source/ABIDE_LEGEND_V1.02.pdf.part" \
+        https://fcon_1000.projects.nitrc.org/indi/abide/ABIDE_LEGEND_V1.02.pdf &&
+      mv "$OUT/source/ABIDE_LEGEND_V1.02.pdf.part" "$OUT/source/ABIDE_LEGEND_V1.02.pdf"; }
 write_manifest "$NAME"
