@@ -10,7 +10,7 @@ OUT=$DATA_ROOT/$NAME
 URL=https://www.cancerimagingarchive.net/wp-content/uploads
 # Public download link for the NIfTI package, from the collection page.
 LINK='https://faspex.cancerimagingarchive.net/aspera/faspex/public/package?context=eyJyZXNvdXJjZSI6InBhY2thZ2VzIiwidHlwZSI6ImV4dGVybmFsX2Rvd25sb2FkX3BhY2thZ2UiLCJpZCI6IjYwNCIsInBhc3Njb2RlIjoiYzJiMjI2Mzg5ZjljYWE0NWNkYjc4MzM4NWE4Yzc2MjBjNGU1NDY1MiIsInBhY2thZ2VfaWQiOiI2MDQiLCJlbWFpbCI6ImhlbHBAY2FuY2VyaW1hZ2luZ2FyY2hpdmUubmV0In0='
-FASPEX=(uv run --with requests python "$REPO/scripts/tcia_faspex.py")
+FASPEX=(uv run --project "$REPO" python -m brain_datasets.tcia_faspex)
 NIFTI=UPENN-GBM/NIfTI-files
 KEEP=(images_structural images_structural_unstripped automated_segm images_segm)
 

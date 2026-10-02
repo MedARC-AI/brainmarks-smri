@@ -2,7 +2,7 @@
 
 Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI BraTS 2021 challenge, skull-stripped and co-registered as distributed. We use it for tumor segmentation (Task 1) and MGMT promoter methylation classification (Task 2).
 
-- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). The Task 1 NIfTI and the `.sums` file are fetched over FASP with `scripts/tcia_faspex.py` (public-link OAuth + Faspex v5 transfer spec + `ascp`; needs TCP/UDP 33001 to TCIA's transfer node `144.30.235.113`), using the page's "Challenge data both tasks" public link. The server has no HTTP gateway, and `ascli faspex5 packages receive` fails against it. `list_package.py` lists the package over HTTPS.
+- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). The Task 1 NIfTI and the `.sums` file are fetched over FASP with `brain_datasets.tcia_faspex` (`src/brain_datasets/tcia_faspex.py`) (public-link OAuth + Faspex v5 transfer spec + `ascp`; needs TCP/UDP 33001 to TCIA's transfer node `144.30.235.113`), using the page's "Challenge data both tasks" public link. The server has no HTTP gateway, and `ascli faspex5 packages receive` fails against it. `list_package.py` lists the package over HTTPS.
 - **Version:** Version 1 (updated 2023/08/25). The metadata files are not versioned on the server, so `manifest.sha256` is the pin.
 - **DOI:** [10.7937/jc8x-9874](https://doi.org/10.7937/jc8x-9874)
 - **License:** CC BY 4.0 for the challenge data and the crosswalk. The *original* DICOMs of TCGA-GBM/LGG, CPTAC-GBM, IvyGAP and ACRIN-FMISO-Brain (which the `.tcia` manifests point to) fall under the NIH Controlled Data Access Policy; we don't fetch them.
@@ -63,5 +63,5 @@ Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4
 
 ```sh
 bash scripts/brats2021/download.sh                                # 15.8 GB, ~17 min at ~150 Mbit/s; resumable (a complete re-run transfers nothing but still takes ~17 min); checks md5s
-uv run --with requests python scripts/brats2021/list_package.py   # list the Faspex package (HTTPS)
+uv run python scripts/brats2021/list_package.py                   # list the Faspex package (HTTPS)
 ```
