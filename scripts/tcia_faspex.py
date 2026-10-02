@@ -8,11 +8,15 @@ v5 API lists the package and issues a transfer spec (with a FASP token) for chos
 and `ascp` (installed by `ascli config ascp install`) downloads them over FASP (port 33001).
 
     uv run --with requests python scripts/tcia_faspex.py ls  <public-link> [<path>]
-    uv run --with requests python scripts/tcia_faspex.py get <public-link> <dest-dir> <path>...
+    uv run --with requests python scripts/tcia_faspex.py get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
 
 `ls` prints `type<TAB>path` for one directory of the package (default: the root).
-`get` downloads each package path (file or directory, recursively) into <dest-dir>/<basename>.
-It resumes partial files and skips complete ones (`ascp -k 2`), so re-running is cheap.
+`get` downloads each package path (file or directory, recursively) into <dest-dir>/<basename>,
+skipping files whose name matches an --exclude glob (`ascp -E`). Files already present with
+the right size are skipped (`ascp -k 1`; ascp writes `<file>.partial` until a file is complete).
+TCIA's server sometimes stalls or drops a session, so ascp is killed after STALL seconds
+without progress and restarted (it resumes), up to ATTEMPTS times. Progress is new bytes on
+disk or new lines in ascp's log (skipping complete files writes no data but logs each file).
 """
 
 import base64
@@ -20,6 +24,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.parse
 
@@ -29,6 +34,8 @@ BASE = "https://faspex.cancerimagingarchive.net/aspera/faspex"
 CLIENT_ID = "ff9aa63a-72e1-436f-82ef-5677eb1f7aee"  # public web-app client id, from /aspera/faspex/config.js
 REDIRECT = "/aspera/faspex/token"
 SDK = os.path.expanduser("~/.aspera/sdk")
+STALL = 120  # s without progress before ascp is restarted
+ATTEMPTS = 20
 
 
 def session(link):
@@ -60,30 +67,57 @@ def ls(s, pkg, path):
             return out
 
 
-def get(s, pkg, dest, paths):
-    # The body must be {"paths": [{"path": ...}]}; other shapes (incl. what ascli 4.27 sends) give a 500.
-    r = s.post(f"{BASE}/api/v5/packages/{pkg}/transfer_spec/download", timeout=60,
-               params={"transfer_type": "connect", "type": "received"},
-               json={"paths": [{"path": p} for p in paths]})
-    r.raise_for_status()
-    ts = r.json()
+def disk_bytes(dest):
+    total = 0
+    for d, _, fs in os.walk(dest):
+        for f in fs:
+            try:
+                total += os.path.getsize(os.path.join(d, f))
+            except FileNotFoundError:  # ascp's .partial/.aspera-ckpt files come and go
+                pass
+    return total
+
+
+def get(link, dest, paths, exclude=()):
     os.makedirs(dest, exist_ok=True)
-    env = dict(os.environ, ASPERA_SCP_TOKEN=ts["token"], ASPERA_SCP_COOKIE=ts.get("cookie", ""))
-    cmd = [f"{SDK}/ascp", "-i", f"{SDK}/aspera_bypass_rsa.pem", "--mode", "recv",
-           "--host", ts["remote_host"], "--user", ts["remote_user"],
-           "-P", str(ts["ssh_port"]), "-O", str(ts["fasp_port"]),
-           "-l", "1g", "-k", "2", *[p["source"] for p in ts["paths"]], dest]
-    return subprocess.call(cmd, env=env)
+    for attempt in range(1, ATTEMPTS + 1):
+        s, pkg = session(link)  # fresh token per attempt
+        # The body must be {"paths": [{"path": ...}]}; other shapes (incl. what ascli 4.27 sends) give a 500.
+        r = s.post(f"{BASE}/api/v5/packages/{pkg}/transfer_spec/download", timeout=60,
+                   params={"transfer_type": "connect", "type": "received"},
+                   json={"paths": [{"path": p} for p in paths]})
+        r.raise_for_status()
+        ts = r.json()
+        env = dict(os.environ, ASPERA_SCP_TOKEN=ts["token"], ASPERA_SCP_COOKIE=ts.get("cookie", ""))
+        cmd = [f"{SDK}/ascp", "-i", f"{SDK}/aspera_bypass_rsa.pem", "--mode", "recv",
+               "--host", ts["remote_host"], "--user", ts["remote_user"],
+               "-P", str(ts["ssh_port"]), "-O", str(ts["fasp_port"]), "-l", "1g", "-k", "1",
+               *[a for g in exclude for a in ("-E", g)], *[p["source"] for p in ts["paths"]], dest]
+        with tempfile.TemporaryDirectory() as log:
+            proc, last, idle = subprocess.Popen(cmd[:1] + ["-L", log] + cmd[1:], env=env), -1, 0
+            while proc.poll() is None:
+                time.sleep(10)
+                now = disk_bytes(dest) + disk_bytes(log)
+                idle, last = (idle + 10 if now == last else 0), now
+                if idle >= STALL:
+                    print(f"tcia_faspex: no progress for {STALL} s, restarting ascp", file=sys.stderr, flush=True)
+                    proc.kill()
+            if proc.wait() == 0:
+                return 0
+        print(f"tcia_faspex: attempt {attempt}/{ATTEMPTS} failed", file=sys.stderr, flush=True)
+    return 1
 
 
 def main():
     cmd, link, *args = sys.argv[1:]
-    s, pkg = session(link)
     if cmd == "ls":
+        s, pkg = session(link)
         for i in ls(s, pkg, args[0] if args else "/"):
             print(f"{i['type']}\t{i['path']}")
     elif cmd == "get":
-        sys.exit(get(s, pkg, args[0], args[1:]))
+        exclude = [a.removeprefix("--exclude=") for a in args if a.startswith("--exclude=")]
+        dest, *paths = [a for a in args if not a.startswith("--exclude=")]
+        sys.exit(get(link, dest, paths, exclude))
     else:
         sys.exit(__doc__)
 
