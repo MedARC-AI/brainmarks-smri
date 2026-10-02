@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 # Download BraTS 2021 (TCIA analysis result RSNA-ASNR-MICCAI-BraTS-2021, Version 1, 2023/08/25)
 # into datasets/brats2021/. See README.md.
-#
-# INCOMPLETE: this fetches only the metadata that TCIA serves over HTTPS. The imaging
-# (142 GB, Faspex package 636) is only downloadable via Aspera FASP, which the devcontainer
-# firewall blocks. See README.md "Status".
 set -euo pipefail
 source "$(dirname "$0")/../lib.sh"
 
@@ -39,4 +35,16 @@ for f in "${FILES[@]}"; do
     curl -fsSL --retry 5 --retry-all-errors -o "$dst.part" "$URL/$f" && mv "$dst.part" "$dst"
     sleep 1  # be polite to TCIA
 done
+
+# Imaging: Faspex package 636, only distributed over Aspera FASP. Public link = "Challenge data
+# both tasks" on the TCIA page. Fetch the Task 1 NIfTI (training + validation, 15.8 GB) and the
+# package's md5 list; skip the Task 2 `_dcm` folders (~127 GB). Paths keep the package tree.
+LINK='https://faspex.cancerimagingarchive.net/aspera/faspex/public/package?context=eyJyZXNvdXJjZSI6InBhY2thZ2VzIiwidHlwZSI6ImV4dGVybmFsX2Rvd25sb2FkX3BhY2thZ2UiLCJpZCI6IjYzNiIsInBhc3Njb2RlIjoiNDM5YTVhZjM3NGRhYjk3OGExYjExMzA4MTcyZDhlMDdkY2Q5OWMzMSIsInBhY2thZ2VfaWQiOiI2MzYiLCJlbWFpbCI6ImhlbHBAY2FuY2VyaW1hZ2luZ2FyY2hpdmUubmV0In0='
+PKG=RSNA-ASNR-MICCAI-BraTS-2021
+faspex() { uv run --with requests python "$REPO/scripts/tcia_faspex.py" get "$LINK" "$@"; }
+check_budget $((17 * 10**9))
+faspex "$OUT/source" "/$PKG.sums"
+faspex "$OUT/source/$PKG" "/$PKG/BraTS2021_TrainingSet" "/$PKG/BraTS2021_ValidationSet"
+# Verify the NIfTI against the package md5 list (paths in .sums are relative to source/).
+(cd "$OUT/source" && grep -E " $PKG/BraTS2021_(Training|Validation)Set/" "$PKG.sums" | md5sum -c --quiet)
 write_manifest "$NAME"

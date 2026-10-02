@@ -2,19 +2,17 @@
 
 Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI BraTS 2021 challenge, skull-stripped and co-registered as distributed. We use it for tumor segmentation (Task 1) and MGMT promoter methylation classification (Task 2).
 
-- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). `list_package.py` lists the package over HTTPS (public-link OAuth + Faspex v5 API).
+- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). The Task 1 NIfTI and the `.sums` file are fetched over FASP with `scripts/tcia_faspex.py` (public-link OAuth + Faspex v5 transfer spec + `ascp`; needs TCP/UDP 33001 to TCIA's transfer node `144.30.235.113`), using the page's "Challenge data both tasks" public link. The server has no HTTP gateway, and `ascli faspex5 packages receive` fails against it. `list_package.py` lists the package over HTTPS.
 - **Version:** Version 1 (updated 2023/08/25). The metadata files are not versioned on the server, so `manifest.sha256` is the pin.
 - **DOI:** [10.7937/jc8x-9874](https://doi.org/10.7937/jc8x-9874)
 - **License:** CC BY 4.0 for the challenge data and the crosswalk. The *original* DICOMs of TCGA-GBM/LGG, CPTAC-GBM, IvyGAP and ACRIN-FMISO-Brain (which the `.tcia` manifests point to) fall under the NIH Controlled Data Access Policy; we don't fetch them.
 - **Citation:** Baid, U., et al. (2023). RSNA-ASNR-MICCAI-BraTS-2021 Dataset. The Cancer Imaging Archive. https://doi.org/10.7937/jc8x-9874. Also: Baid, U., et al. (2021). The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor Segmentation and Radiogenomic Classification. arXiv:2107.02314; Menze et al. 2015 (*IEEE TMI*); Bakas et al. 2017 (*Scientific Data*); and the source collections (full list on the TCIA page). TCGA acknowledgement required.
 
-## Status
-
-**Partial: metadata only.** The imaging (142 GB) is only distributed as the Aspera Faspex package. It is not in NBIA, and the Faspex server has no HTTP gateway (`http_gateway_url: null`). The devcontainer firewall now allows FASP to TCIA's transfer node (TCP/UDP 33001 to `144.30.235.113`), so once the container is rebuilt, `download.sh` can be extended to fetch the Task 1 NIfTI with `ascli`.
-
 ## Contents
 
-`source/metadata/` (downloaded, 28 files, 2.1 MB):
+`source/`: 7,160 files, 15.8 GB.
+
+`source/metadata/` (28 files, 2.1 MB), from the TCIA page:
 
 - `BraTS2021_MappingToTCIA.xlsx`: the **ID crosswalk and label table**, 1,479 rows. Columns: source collection, site ID, TCIA PatientID, BraTS2021 ID, Task 1 cohort, Task 2 cohort, **MGMT value**.
   - Task 1: 1,251 Training, 219 Validation, plus 9 Task-2-only rows.
@@ -23,24 +21,36 @@ Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI
 - `BraTS2021_<source>_<Seg|Class>-Task-<Training|Validation>.tcia` (23 files), plus `RSNA-ASNR-MICCAI-BraTS-2021_UPENN-GBM_manifest.tcia` and its `...nbia-digest-1.xlsx`: NBIA manifests of the original DICOM series behind each split. The TCIA page calls the series-to-volume link a "best effort" reconstruction.
 - `GC_manifest_RSNA-ASNR-MICCAI-BRATS-2021_sources.csv`: CRDC DRS IDs (`dg.4DFC/...`) to SeriesInstanceUID for the original series.
 
-Faspex package 636 (not yet downloaded; listed with `list_package.py` on 2026-10-01):
+`source/RSNA-ASNR-MICCAI-BraTS-2021.sums` (50 MB): the package's md5 list (`md5 relpath`, 407,245 lines, paths relative to `source/`). `download.sh` checks every downloaded NIfTI against it.
 
-| Folder | Cases | Per case | Plan |
-|---|---|---|---|
-| `BraTS2021_TrainingSet/<source>/BraTS2021_NNNNN/` | 1,251 | `_t1`, `_t1ce`, `_t2`, `_flair`, **`_seg`** `.nii.gz` (240×240×155) | keep (~12 GB with validation) |
-| `BraTS2021_ValidationSet/<source>/...` | 219 | the 4 modalities, **no `_seg`** | keep |
-| `BraTS2021_TrainingSet_dcm/<source>/NNNNN/{FLAIR,T1w,T1wCE,T2w}/` | 585 | Task 2 DICOMs (Kaggle format; converted NIfTI→DCM, not strictly standard) | exclude (~128 GB with validation) |
-| `BraTS2021_ValidationSet_dcm/...` | 87 | the same | exclude |
+`source/RSNA-ASNR-MICCAI-BraTS-2021/` (7,131 `.nii.gz`, 15.8 GB), the Task 1 NIfTI from Faspex package 636, in the package's tree:
 
-Source folders: UPENN-GBM, UCSF-PDGM, TCGA-GBM, TCGA-LGG, CPTAC-GBM, IvyGAP, ACRIN-FMISO-Brain, new-not-previously-in-TCIA.
+| Folder | Cases | Files | Size | Per case |
+|---|---|---|---|---|
+| `BraTS2021_TrainingSet/<source>/BraTS2021_NNNNN/` | 1,251 | 6,255 | 13.4 GB | `_t1`, `_t1ce`, `_t2`, `_flair`, **`_seg`** `.nii.gz` (240×240×155) |
+| `BraTS2021_ValidationSet/<source>/BraTS2021_NNNNN/` | 219 | 876 | 2.4 GB | the 4 modalities, **no `_seg`** |
+
+Cases per source folder:
+
+| Source folder | Training | Validation |
+|---|---|---|
+| UPENN-GBM | 403 | 44 |
+| UCSF-PDGM | 263 | 36 |
+| new-not-previously-in-TCIA | 351 | 53 |
+| TCGA-GBM | 102 | 33 |
+| TCGA-LGG | 65 | 43 |
+| CPTAC-GBM | 33 | 6 |
+| IvyGAP | 30 | 4 |
+| ACRIN-FMISO-Brain | 4 | 0 |
+
+Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4 = enhancing tumor) for Task 1, and the MGMT column of `BraTS2021_MappingToTCIA.xlsx` for Task 2.
 
 ## Excluded
 
-- The Task 2 `_dcm` folders (~128 GB): re-encodings of the same kind of scans, only needed to reproduce the Kaggle Task 2 setup. MGMT can be predicted from the Task 1 NIfTI with the crosswalk labels.
+- The Task 2 `_dcm` folders, `BraTS2021_TrainingSet_dcm/` (585 cases) and `BraTS2021_ValidationSet_dcm/` (87 cases), ~127 GB, 400,114 files: the Task 2 scans converted NIfTI→DICOM (Kaggle format, not strictly standard DICOM), including the 9 Task-2-only cases. Only needed to reproduce the Kaggle Task 2 setup. MGMT can be predicted from the Task 1 NIfTI with the crosswalk labels.
 - The original DICOMs behind the `.tcia` manifests (controlled access, or duplicates of UPENN-GBM).
 - The challenge test set (sequestered on Synapse, syn25829067).
 - The UCSF-PDGM v1 excerpt for BraTS (Faspex package 679, 3 GB): covered by `ucsf_pdgm`.
-- For now, all images (see Status).
 
 ## Notes
 
@@ -52,6 +62,6 @@ Source folders: UPENN-GBM, UCSF-PDGM, TCGA-GBM, TCGA-LGG, CPTAC-GBM, IvyGAP, ACR
 ## Usage
 
 ```sh
-bash scripts/brats2021/download.sh                                # 2.1 MB (metadata only); resumable
+bash scripts/brats2021/download.sh                                # 15.8 GB, ~17 min at ~150 Mbit/s; resumable (a complete re-run transfers nothing but still takes ~17 min); checks md5s
 uv run --with requests python scripts/brats2021/list_package.py   # list the Faspex package (HTTPS)
 ```
