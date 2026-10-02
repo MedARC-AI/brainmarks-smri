@@ -13,7 +13,8 @@ See `brain_datasets.tables` for the table layout.
   older version of their images in an `old/` subfolder: desc `old` / `old_unstripped`.
 - Survival: Survival_from_surgery_days_UPDATED is the time to death for 'Deceased'; for 'Alive'
   and 'Lost to Follow-up' it is n/a and Survival_Censor holds the censoring time. These become
-  os_days + os_event. The 3 'Deceased - uncertain date of death' are n/a.
+  os_days + os_event. The 3 'Deceased - uncertain date of death' are censored at Survival_Censor
+  (a lower bound). Follow-up sessions measure survival from the follow-up scan.
   'Not Available' / 'Indeterminate' / 'NOS/NEC' labels are n/a.
 - No official split: 60/20/20 by patient, stratified by has corrected mask x OS known.
 - Complete: a baseline session with the 8 structural images and the automated mask, and OS.
@@ -73,7 +74,8 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
 
     status = meta.Survival_Status
     deceased = status == "Deceased"
-    censored = status.isin(["Alive", "Lost to Follow-up"])
+    # an uncertain date of death only gives a lower bound on survival: censored at Survival_Censor
+    censored = status.isin(["Alive", "Lost to Follow-up", "Deceased - uncertain date of death"])
     death_days = pd.to_numeric(meta.Survival_from_surgery_days_UPDATED)
     censor_days = pd.to_numeric(meta.Survival_Censor)
     assert death_days[deceased].notna().all() and censor_days[censored].notna().all()
@@ -89,11 +91,14 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
     columns = {
         "days_since_baseline": {"Description": "Days from the baseline pre-operative scan.", "Source": "Time_since_baseline_preop", "Units": "days"},
         "os_days": {
-            "Description": "Overall survival from surgery: time to death if os_event = 1, else censoring time (target).",
+            "Description": "Overall survival: time to death if os_event = 1, else censoring time (target). For baseline "
+                           "sessions it is from surgery; for follow-up sessions the source measures it from the "
+                           "follow-up scan (about the baseline value minus days_since_baseline). Use the baseline "
+                           "session for survival tasks.",
             "Source": "Survival_from_surgery_days_UPDATED, Survival_Censor",
             "Units": "days",
         },
-        "os_event": {"Description": "Death observed.", "Source": "Survival_Status", "Levels": {"1": "deceased", "0": "alive or lost to follow-up (censored)"}},
+        "os_event": {"Description": "Death observed.", "Source": "Survival_Status", "Levels": {"1": "deceased", "0": "censored: alive, lost to follow-up, or deceased with an uncertain date"}},
         "survival_status": {"Description": "Survival status as reported.", "Source": "Survival_Status"},
         "idh1": {"Description": "IDH1 mutation status (target).", "Source": "IDH1", "Levels": {"wildtype": "", "mutated": ""}},
         "mgmt": {"Description": "MGMT promoter methylation (target).", "Source": "MGMT", "Levels": {"methylated": "", "unmethylated": ""}},

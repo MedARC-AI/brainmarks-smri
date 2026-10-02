@@ -25,7 +25,7 @@
     "Units": "days"
   },
   "os_days": {
-    "Description": "Overall survival from surgery: time to death if os_event = 1, else censoring time (target).",
+    "Description": "Overall survival: time to death if os_event = 1, else censoring time (target). For baseline sessions it is from surgery; for follow-up sessions the source measures it from the follow-up scan (about the baseline value minus days_since_baseline). Use the baseline session for survival tasks.",
     "Source": "Survival_from_surgery_days_UPDATED, Survival_Censor",
     "Units": "days"
   },
@@ -34,7 +34,7 @@
     "Source": "Survival_Status",
     "Levels": {
       "1": "deceased",
-      "0": "alive or lost to follow-up (censored)"
+      "0": "censored: alive, lost to follow-up, or deceased with an uncertain date"
     }
   },
   "survival_status": {

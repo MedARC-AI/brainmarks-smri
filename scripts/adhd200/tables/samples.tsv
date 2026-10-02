@@ -128,66 +128,66 @@ sub-0010126	1	9.7	M	NYU	ADHD-Combined	True	n/a	n/a	79.0	77.0	85.0	n/a	n/a	0.91	W
 sub-0010127	1	8.14	M	NYU	ADHD-Combined	True	n/a	n/a	77.0	79.0	74.0	n/a	n/a	0.04	Wechsler Abbreviated Scale of Intelligence (WASI)	132.0	121.0	130.0	n/a	Pass
 sub-0010128	1	9.53	M	NYU	TDC	False	n/a	n/a	56.0	58.0	60.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	112.0	136.0	127.0	n/a	Pass
 sub-0010129	1	8.39	F	NYU	ADHD-Inattentive	True	n/a	n/a	67.0	71.0	47.0	n/a	n/a	0.38	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	n/a	n/a	Pass
-sub-0015001	1	9.94	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	140.0	n/a	0
-sub-0015002	1	7.17	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	136.0	n/a	1
-sub-0015003	1	9.18	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	126.0	n/a	1
-sub-0015004	1	7.46	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	96.0	n/a	1
-sub-0015005	1	21.13	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	111.0	n/a	1
-sub-0015006	1	21.81	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	1
-sub-0015007	1	21.22	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	122.0	n/a	1
-sub-0015008	1	8.64	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	141.0	n/a	1
-sub-0015010	1	7.63	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	99.0	n/a	1
-sub-0015011	1	7.26	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	124.0	n/a	1
-sub-0015012	1	8.96	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	1
-sub-0015013	1	7.67	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	117.0	n/a	1
-sub-0015014	1	7.09	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	1
-sub-0015015	1	8.1	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	1
-sub-0015016	1	8.3	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	96.0	n/a	n/a
-sub-0015017	1	8.02	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	98.0	n/a	1
-sub-0015018	1	8.05	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	112.0	n/a	1
-sub-0015020	1	8.41	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	139.0	n/a	1
-sub-0015021	1	7.52	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	86.0	n/a	1
-sub-0015022	1	9.17	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	118.0	n/a	1
-sub-0015023	1	7.77	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	119.0	n/a	1
-sub-0015024	1	7.25	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	136.0	n/a	1
-sub-0015025	1	7.75	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	114.0	n/a	1
-sub-0015026	1	10.11	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	113.0	n/a	1
-sub-0015027	1	14.89	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	123.0	n/a	1
-sub-0015028	1	9.23	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	1
-sub-0015029	1	11.24	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	101.0	n/a	1
-sub-0015030	1	14.45	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	114.0	n/a	1
-sub-0015031	1	12.35	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	120.0	n/a	1
-sub-0015032	1	10.9	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	1
-sub-0015033	1	11.96	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	134.0	n/a	1
-sub-0015034	1	10.28	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	133.0	n/a	1
-sub-0015035	1	11.17	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	1
-sub-0015036	1	12.77	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	1
-sub-0015037	1	14.43	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	1
-sub-0015038	1	12.38	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	1
-sub-0015039	1	14.25	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	86.0	n/a	1
-sub-0015040	1	15.0	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	123.0	n/a	1
-sub-0015041	1	14.73	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	115.0	n/a	1
-sub-0015042	1	13.66	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	1
-sub-0015043	1	14.56	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	125.0	n/a	1
-sub-0015044	1	10.35	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	97.0	n/a	1
-sub-0015045	1	13.18	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	1
-sub-0015046	1	9.63	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	104.0	n/a	0
-sub-0015047	1	13.07	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	126.0	n/a	1
-sub-0015048	1	11.62	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	106.0	n/a	1
-sub-0015049	1	9.98	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	139.0	n/a	1
-sub-0015050	1	11.43	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	103.0	n/a	1
-sub-0015051	1	8.16	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	89.0	n/a	0
-sub-0015052	1	21.83	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	127.0	n/a	1
-sub-0015053	1	15.29	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	101.0	n/a	1
-sub-0015054	1	13.47	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	117.0	n/a	1
-sub-0015055	1	9.2	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	129.0	n/a	1
-sub-0015056	1	10.97	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	118.0	n/a	0
-sub-0015057	1	21.24	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	122.0	n/a	1
-sub-0015058	1	14.08	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	115.0	n/a	1
-sub-0015059	1	9.05	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	103.0	n/a	1
-sub-0015060	1	9.76	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	137.0	n/a	1
-sub-0015061	1	12.04	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	98.0	n/a	1
-sub-0015062	1	12.88	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	108.0	n/a	1
+sub-0015001	4	9.94	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	140.0	n/a	Questionable
+sub-0015002	1	7.17	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	136.0	n/a	Pass
+sub-0015003	1	9.18	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	126.0	n/a	Pass
+sub-0015004	2	7.46	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	96.0	n/a	Pass
+sub-0015005	1	21.13	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	111.0	n/a	Pass
+sub-0015006	1	21.81	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	Pass
+sub-0015007	1	21.22	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	122.0	n/a	Pass
+sub-0015008	1	8.64	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	141.0	n/a	Pass
+sub-0015010	1	7.63	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	99.0	n/a	Pass
+sub-0015011	1	7.26	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	124.0	n/a	Pass
+sub-0015012	1	8.96	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	Pass
+sub-0015013	1	7.67	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	117.0	n/a	Pass
+sub-0015014	1	7.09	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	Pass
+sub-0015015	1	8.1	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	Pass
+sub-0015016	2	8.3	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	96.0	n/a	Pass
+sub-0015017	1	8.02	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	98.0	n/a	Pass
+sub-0015018	1	8.05	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	112.0	n/a	Pass
+sub-0015020	1	8.41	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	139.0	n/a	Pass
+sub-0015021	1	7.52	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	86.0	n/a	Pass
+sub-0015022	1	9.17	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	118.0	n/a	Pass
+sub-0015023	1	7.77	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	119.0	n/a	Pass
+sub-0015024	1	7.25	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	136.0	n/a	Pass
+sub-0015025	1	7.75	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	114.0	n/a	Pass
+sub-0015026	3	10.11	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	113.0	n/a	Pass
+sub-0015027	2	14.89	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	123.0	n/a	Pass
+sub-0015028	1	9.23	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	Pass
+sub-0015029	1	11.24	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	101.0	n/a	Pass
+sub-0015030	1	14.45	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	114.0	n/a	Pass
+sub-0015031	1	12.35	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	120.0	n/a	Pass
+sub-0015032	2	10.9	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	Pass
+sub-0015033	1	11.96	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	134.0	n/a	Pass
+sub-0015034	1	10.28	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	133.0	n/a	Pass
+sub-0015035	1	11.17	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	121.0	n/a	Pass
+sub-0015036	2	12.77	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	109.0	n/a	Pass
+sub-0015037	1	14.43	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	Pass
+sub-0015038	1	12.38	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	128.0	n/a	Pass
+sub-0015039	1	14.25	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	86.0	n/a	Pass
+sub-0015040	1	15.0	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	123.0	n/a	Pass
+sub-0015041	1	14.73	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	115.0	n/a	Pass
+sub-0015042	1	13.66	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	Pass
+sub-0015043	1	14.56	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	125.0	n/a	Pass
+sub-0015044	1	10.35	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	97.0	n/a	Pass
+sub-0015045	1	13.18	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	107.0	n/a	Pass
+sub-0015046	1	9.63	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	104.0	n/a	Questionable
+sub-0015047	1	13.07	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	126.0	n/a	Pass
+sub-0015048	1	11.62	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	106.0	n/a	Pass
+sub-0015049	1	9.98	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	139.0	n/a	Pass
+sub-0015050	1	11.43	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	103.0	n/a	Pass
+sub-0015051	1	8.16	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	89.0	n/a	Questionable
+sub-0015052	2	21.83	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	127.0	n/a	Pass
+sub-0015053	1	15.29	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	101.0	n/a	Pass
+sub-0015054	1	13.47	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	117.0	n/a	Pass
+sub-0015055	1	9.2	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	129.0	n/a	Pass
+sub-0015056	1	10.97	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	118.0	n/a	Questionable
+sub-0015057	2	21.24	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	122.0	n/a	Pass
+sub-0015058	1	14.08	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	115.0	n/a	Pass
+sub-0015059	1	9.05	F	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	103.0	n/a	Pass
+sub-0015060	1	9.76	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	137.0	n/a	Pass
+sub-0015061	1	12.04	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	98.0	n/a	Pass
+sub-0015062	1	12.88	M	WashU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WASI	n/a	n/a	108.0	n/a	Pass
 sub-0016001	1	10.11	M	Pittsburgh	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	88.0	131.0	106.0	108.0	Questionable
 sub-0016002	1	10.16	F	Pittsburgh	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	120.0	n/a	Pass
 sub-0016003	1	10.46	M	Pittsburgh	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	114.0	n/a	Questionable
@@ -414,11 +414,11 @@ sub-0027040	1	17.18	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Righ
 sub-0027042	1	16.72	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Two subtest WISC or WAIS - Block Design and Vocabulary	n/a	n/a	n/a	75.0	Pass
 sub-1000804	1	7.29	M	NYU	TDC	False	n/a	n/a	40.0	41.0	41.0	n/a	n/a	0.83	Wechsler Abbreviated Scale of Intelligence (WASI)	112.0	103.0	109.0	n/a	Pass
 sub-1017176	1	11.66	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-1018959	1	12.36	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	100.0	110.0	n/a	Pass
-sub-1019436	1	12.98	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	99.0	115.0	103.0	n/a	Pass
+sub-1018959	1	12.36	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	100.0	110.0	n/a	Pass
+sub-1019436	1	12.98	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	99.0	115.0	103.0	n/a	Pass
 sub-1023964	1	8.29	M	NYU	ADHD-Inattentive	True	n/a	n/a	60.0	56.0	48.0	n/a	n/a	0.57	Wechsler Abbreviated Scale of Intelligence (WASI)	115.0	125.0	123.0	n/a	Pass
 sub-1038415	1	14.92	M	Peking_1	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	52.0	34.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	103.0	107.0	n/a	Pass
-sub-1043241	1	9.12	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	124.0	108.0	122.0	n/a	Pass
+sub-1043241	1	9.12	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	124.0	108.0	122.0	n/a	Pass
 sub-1050345	1	12.67	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	24.0	12.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	127.0	128.0	n/a	Pass
 sub-1050975	1	13.58	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	28.0	17.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	135.0	133.0	n/a	Pass
 sub-1056121	1	13.92	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	30.0	15.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	136.0	135.0	n/a	Pass
@@ -449,7 +449,7 @@ sub-1240299	1	9.5	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-R
 sub-1245758	1	8.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0	20.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	88.0	106.0	n/a	Pass
 sub-1253411	1	8.08	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0	19.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	106.0	114.0	n/a	Pass
 sub-1258069	1	9.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	10.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	113.0	117.0	117.0	n/a	Pass
-sub-1266183	1	9.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	128.0	106.0	120.0	n/a	Pass
+sub-1266183	1	9.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	128.0	106.0	120.0	n/a	Pass
 sub-1282248	1	10.58	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	42.0	30.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	86.0	108.0	n/a	Pass
 sub-1283494	1	8.61	M	NYU	ADHD-Combined	True	n/a	n/a	64.0	69.0	65.0	n/a	n/a	0.67	Wechsler Abbreviated Scale of Intelligence (WASI)	106.0	106.0	107.0	n/a	Pass
 sub-1302449	1	8.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	11.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	108.0	120.0	n/a	Pass
@@ -481,55 +481,55 @@ sub-1502229	1	8.58	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler A
 sub-1511464	1	10.12	M	NYU	ADHD-Inattentive	True	n/a	n/a	71.0	74.0	62.0	n/a	n/a	0.83	Wechsler Abbreviated Scale of Intelligence (WASI)	110.0	104.0	108.0	n/a	Pass
 sub-1517058	1	9.75	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	36.0	20.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	141.0	138.0	144.0	n/a	Pass
 sub-1517240	1	10.06	M	NYU	ADHD-Combined	True	n/a	n/a	76.0	77.0	68.0	n/a	n/a	0.47	Wechsler Abbreviated Scale of Intelligence (WASI)	125.0	117.0	125.0	n/a	Pass
-sub-1535233	1	9.64	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	136.0	96.0	120.0	n/a	Pass
+sub-1535233	1	9.64	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	136.0	96.0	120.0	n/a	Pass
 sub-1536593	1	8.58	F	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	136.0	n/a	Pass
 sub-1538046	1	14.59	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-1541812	1	8.45	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	106.0	135.0	122.0	n/a	Pass
+sub-1541812	1	8.45	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	106.0	135.0	122.0	n/a	Pass
 sub-1548937	1	11.17	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	126.0	n/a	Pass
 sub-1552181	1	9.83	F	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	126.0	n/a	Pass
 sub-1561488	1	10.92	F	Peking_1	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	46.0	25.0	21.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	83.0	97.0	88.0	n/a	Pass
 sub-1562298	1	9.58	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	33.0	14.0	19.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	115.0	113.0	n/a	Pass
 sub-1567356	1	8.91	F	NYU	TDC	False	n/a	n/a	42.0	44.0	43.0	n/a	n/a	0.31	Wechsler Abbreviated Scale of Intelligence (WASI)	117.0	128.0	125.0	n/a	Pass
-sub-1577042	1	9.06	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	100.0	90.0	90.0	n/a	Pass
+sub-1577042	1	9.06	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	100.0	90.0	90.0	n/a	Pass
 sub-1581470	1	8.83	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	41.0	26.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	111.0	123.0	118.0	n/a	Pass
 sub-1585708	1	15.96	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-1588809	1	20.08	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-1594156	1	12.87	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	124.0	104.0	108.0	n/a	Pass
-sub-1623716	1	12.65	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	89.0	88.0	89.0	n/a	Pass
+sub-1594156	1	12.87	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	124.0	104.0	108.0	n/a	Pass
+sub-1623716	1	12.65	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	89.0	88.0	89.0	n/a	Pass
 sub-1628610	1	14.92	M	Peking_2	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	52.0	30.0	22.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	120.0	114.0	119.0	n/a	Pass
-sub-1638334	1	10.44	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	87.0	104.0	98.0	n/a	Pass
+sub-1638334	1	10.44	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	87.0	104.0	98.0	n/a	Pass
 sub-1643780	1	10.0	M	Peking_2	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	61.0	30.0	31.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	103.0	113.0	n/a	Pass
 sub-1647968	1	11.0	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	92.0	n/a	Pass
-sub-1652369	1	10.6	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	112.0	106.0	115.0	n/a	Pass
+sub-1652369	1	10.6	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	106.0	115.0	n/a	Pass
 sub-1662160	1	12.58	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	30.0	21.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	88.0	107.0	n/a	Pass
 sub-1664335	1	9.0	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	144.0	n/a	Pass
 sub-1679142	1	10.33	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	130.0	n/a	Pass
 sub-1686092	1	9.67	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	27.0	14.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	112.0	113.0	n/a	Pass
-sub-1686265	1	8.02	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	112.0	119.0	108.0	n/a	Pass
+sub-1686265	1	8.02	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	119.0	108.0	n/a	Pass
 sub-1689948	1	11.75	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	27.0	13.0	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	132.0	117.0	128.0	n/a	Pass
-sub-1692275	1	10.78	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	108.0	119.0	105.0	n/a	Pass
+sub-1692275	1	10.78	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	108.0	119.0	105.0	n/a	Pass
 sub-1696588	1	8.75	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	104.0	n/a	Pass
 sub-1700637	1	7.68	F	NYU	TDC	False	n/a	n/a	43.0	42.0	43.0	n/a	n/a	0.39	Wechsler Abbreviated Scale of Intelligence (WASI)	93.0	100.0	97.0	n/a	Pass
-sub-1735881	1	9.39	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Ambidextrous	n/a	1	114.0	102.0	116.0	n/a	Pass
+sub-1735881	1	9.39	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Ambidextrous	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	114.0	102.0	116.0	n/a	Pass
 sub-1737393	1	11.24	M	NYU	TDC	False	n/a	n/a	42.0	41.0	41.0	n/a	n/a	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	126.0	128.0	130.0	n/a	Pass
 sub-1740607	1	10.26	F	NYU	ADHD-Inattentive	True	n/a	n/a	84.0	80.0	67.0	n/a	n/a	0.65	Wechsler Abbreviated Scale of Intelligence (WASI)	108.0	128.0	119.0	n/a	Pass
 sub-1743472	1	8.75	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	100.0	n/a	Pass
 sub-1771270	1	14.42	M	Peking_3	ADHD-Inattentive	True	LD, Tics	ADHD Rating Scale IV (ADHD-RS)	36.0	23.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	84.0	100.0	91.0	n/a	Pass
-sub-1779922	1	10.84	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	116.0	137.0	124.0	n/a	Pass
+sub-1779922	1	10.84	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	116.0	137.0	124.0	n/a	Pass
 sub-1780174	1	11.18	M	NYU	ADHD-Combined	True	n/a	n/a	60.0	61.0	66.0	n/a	n/a	0.52	Wechsler Abbreviated Scale of Intelligence (WASI)	96.0	118.0	107.0	n/a	Pass
 sub-1784368	1	8.92	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	36.0	20.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	136.0	89.0	116.0	n/a	Pass
 sub-1791543	1	9.33	F	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	66.0	34.0	32.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	108.0	123.0	n/a	n/a
 sub-1794770	1	11.75	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	39.0	24.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	87.0	85.0	84.0	n/a	Pass
 sub-1805037	1	10.08	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	33.0	22.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	101.0	104.0	103.0	n/a	n/a
 sub-1809715	1	13.5	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	95.0	105.0	n/a	Pass
-sub-1842819	1	10.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	110.0	92.0	105.0	n/a	Pass
+sub-1842819	1	10.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	110.0	92.0	105.0	n/a	Pass
 sub-1843546	1	14.08	M	Peking_3	ADHD-Inattentive	True	ODD, LD	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	86.0	85.0	83.0	n/a	Pass
-sub-1846346	1	8.91	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	100.0	106.0	109.0	n/a	Pass
+sub-1846346	1	8.91	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	100.0	106.0	109.0	n/a	Pass
 sub-1849382	1	11.67	M	Peking_1	TDC	False	enuresis	ADHD Rating Scale IV (ADHD-RS)	35.0	17.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	140.0	114.0	131.0	n/a	Pass
 sub-1854691	1	8.83	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	34.0	23.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	108.0	114.0	n/a	Pass
 sub-1854959	1	12.99	F	NYU	TDC	False	n/a	n/a	54.0	54.0	59.0	n/a	n/a	0.5	Wechsler Abbreviated Scale of Intelligence (WASI)	112.0	96.0	105.0	n/a	Pass
 sub-1860323	1	8.75	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	34.0	14.0	20.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	129.0	127.0	131.0	n/a	Pass
-sub-1873761	1	10.36	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	138.0	108.0	126.0	n/a	Pass
+sub-1873761	1	10.36	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	138.0	108.0	126.0	n/a	Pass
 sub-1875013	1	9.83	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	32.0	16.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	120.0	135.0	130.0	n/a	Pass
 sub-1875084	1	7.17	F	NYU	TDC	False	n/a	n/a	45.0	44.0	43.0	n/a	n/a	0.71	Wechsler Abbreviated Scale of Intelligence (WASI)	85.0	94.0	90.0	n/a	Pass
 sub-1875711	1	9.75	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	33.0	16.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	106.0	109.0	n/a	Pass
@@ -542,16 +542,16 @@ sub-1918630	1	7.55	M	NYU	ADHD-Combined	True	n/a	n/a	69.0	64.0	65.0	n/a	n/a	0.29	
 sub-1934623	1	8.45	F	NYU	TDC	False	n/a	n/a	42.0	42.0	45.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	111.0	112.0	114.0	n/a	Pass
 sub-1947991	1	9.42	M	Peking_1	ADHD-Inattentive	True	tics	ADHD Rating Scale IV (ADHD-RS)	45.0	26.0	19.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	82.0	85.0	81.0	n/a	Pass
 sub-1951511	1	11.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	15.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	111.0	121.0	n/a	Pass
-sub-1962503	1	8.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	102.0	110.0	115.0	n/a	Pass
+sub-1962503	1	8.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	102.0	110.0	115.0	n/a	Pass
 sub-1985430	1	11.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0	19.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	146.0	124.0	140.0	n/a	Pass
-sub-1988015	1	11.17	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	100.0	108.0	99.0	n/a	Pass
+sub-1988015	1	11.17	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	100.0	108.0	99.0	n/a	Pass
 sub-1992284	1	7.26	M	NYU	ADHD-Combined	True	n/a	n/a	74.0	68.0	82.0	n/a	n/a	0.13	Wechsler Abbreviated Scale of Intelligence (WASI)	120.0	106.0	115.0	n/a	Pass
 sub-1995121	1	11.43	M	NYU	TDC	False	n/a	n/a	41.0	40.0	46.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	130.0	119.0	127.0	n/a	Pass
-sub-1996183	1	11.04	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	116.0	123.0	112.0	n/a	Pass
-sub-2014113	1	10.35	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	108.0	106.0	102.0	n/a	Pass
-sub-2018106	1	11.66	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	108.0	110.0	114.0	n/a	Pass
+sub-1996183	1	11.04	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	116.0	123.0	112.0	n/a	Pass
+sub-2014113	1	10.35	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	108.0	106.0	102.0	n/a	Pass
+sub-2018106	1	11.66	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	108.0	110.0	114.0	n/a	Pass
 sub-2024999	1	10.33	M	Peking_1	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	49.0	31.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	98.0	109.0	n/a	Pass
-sub-2026113	1	12.99	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	122.0	108.0	106.0	n/a	Pass
+sub-2026113	1	12.99	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	122.0	108.0	106.0	n/a	Pass
 sub-2029723	1	16.5	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-2030383	1	13.56	M	NYU	ADHD-Combined	True	n/a	n/a	55.0	51.0	63.0	n/a	n/a	0.31	Wechsler Abbreviated Scale of Intelligence (WASI)	141.0	114.0	131.0	n/a	Pass
 sub-2031422	1	10.92	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	41.0	28.0	13.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	136.0	109.0	126.0	n/a	Pass
@@ -562,17 +562,17 @@ sub-2054438	1	8.11	M	NYU	ADHD-Combined	True	n/a	n/a	63.0	61.0	59.0	n/a	n/a	0.27	
 sub-2054998	1	7.33	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	108.0	n/a	Pass
 sub-2071989	1	8.25	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	132.0	n/a	Questionable
 sub-2074737	1	14.09	M	NeuroIMAGE	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-2081148	1	9.43	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	81.0	98.0	88.0	n/a	Pass
+sub-2081148	1	9.43	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	81.0	98.0	88.0	n/a	Pass
 sub-2081754	1	12.17	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	91.0	113.0	n/a	Pass
 sub-2101067	1	15.17	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	28.0	19.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	98.0	109.0	n/a	Pass
-sub-2104012	1	9.62	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	116.0	123.0	115.0	n/a	Pass
+sub-2104012	1	9.62	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	116.0	123.0	115.0	n/a	Pass
 sub-2106109	1	9.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	34.0	17.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	129.0	115.0	125.0	n/a	Pass
 sub-2107404	1	13.08	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.0	17.0	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	91.0	109.0	n/a	n/a
 sub-2107638	1	10.41	M	NYU	ADHD-Combined	True	n/a	n/a	75.0	74.0	72.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	109.0	106.0	109.0	n/a	Pass
-sub-2123983	1	11.67	F	Peking_1	TDC	False	enuresis and encephalitis                               	ADHD Rating Scale IV (ADHD-RS)	33.0	17.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	108.0	115.0	n/a	Pass
+sub-2123983	1	11.67	F	Peking_1	TDC	False	enuresis and encephalitis	ADHD Rating Scale IV (ADHD-RS)	33.0	17.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	108.0	115.0	n/a	Pass
 sub-2124248	1	9.33	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	128.0	n/a	Questionable
 sub-2136051	1	9.23	M	NYU	TDC	False	n/a	n/a	42.0	44.0	48.0	n/a	n/a	0.55	Wechsler Abbreviated Scale of Intelligence (WASI)	127.0	106.0	118.0	n/a	Pass
-sub-2138826	1	8.46	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	124.0	106.0	119.0	n/a	Pass
+sub-2138826	1	8.46	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	124.0	106.0	119.0	n/a	Pass
 sub-2140063	1	9.42	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	22.0	13.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	141.0	124.0	137.0	n/a	Pass
 sub-2141250	1	12.83	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	39.0	25.0	14.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	133.0	119.0	129.0	n/a	Pass
 sub-2155356	1	9.33	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	124.0	n/a	Pass
@@ -595,15 +595,15 @@ sub-2288903	1	7.42	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	W
 sub-2292940	1	8.0	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	90.0	n/a	Pass
 sub-2296326	1	12.17	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	12.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	105.0	97.0	102.0	n/a	Pass
 sub-2297413	1	11.06	M	NYU	ADHD-Inattentive	True	n/a	n/a	77.0	80.0	70.0	n/a	n/a	0.86	Wechsler Abbreviated Scale of Intelligence (WASI)	114.0	94.0	105.0	n/a	Questionable
-sub-2299519	1	11.89	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	110.0	79.0	86.0	n/a	Pass
+sub-2299519	1	11.89	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	110.0	79.0	86.0	n/a	Pass
 sub-2306976	1	11.53	M	NYU	ADHD-Combined	True	n/a	n/a	65.0	64.0	68.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	115.0	104.0	111.0	n/a	n/a
-sub-2310449	1	10.33	M	Peking_2	TDC	False	cyst of left temporal pole                              	ADHD Rating Scale IV (ADHD-RS)	33.0	21.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	108.0	119.0	n/a	Pass
+sub-2310449	1	10.33	M	Peking_2	TDC	False	cyst of left temporal pole	ADHD Rating Scale IV (ADHD-RS)	33.0	21.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	108.0	119.0	n/a	Pass
 sub-2342030	1	10.17	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.0	18.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	111.0	120.0	117.0	n/a	Pass
-sub-2344857	1	8.92	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	119.0	108.0	119.0	n/a	Pass
+sub-2344857	1	8.92	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	108.0	119.0	n/a	Pass
 sub-2352986	1	20.47	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-2360428	1	8.56	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	119.0	102.0	113.0	n/a	Pass
+sub-2360428	1	8.56	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	102.0	113.0	n/a	Pass
 sub-2367157	1	12.08	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	67.0	34.0	33.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	92.0	89.0	90.0	n/a	n/a
-sub-2371032	1	10.73	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	119.0	122.0	n/a	Pass
+sub-2371032	1	10.73	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	119.0	122.0	n/a	Pass
 sub-2377207	1	13.83	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	28.0	17.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	84.0	106.0	94.0	n/a	Pass
 sub-2380326	1	9.58	F	Peking_1	ADHD-Inattentive	True	TS	ADHD Rating Scale IV (ADHD-RS)	39.5	25.5	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	103.0	100.0	102.0	n/a	Pass
 sub-2380967	1	10.0	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	47.0	31.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	115.0	113.0	n/a	Pass
@@ -629,45 +629,45 @@ sub-2529026	1	13.33	M	Peking_2	ADHD-Inattentive	True	Tics	ADHD Rating Scale IV (
 sub-2535087	1	13.33	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	27.0	14.0	13.0	Medication Naive	Left	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	115.0	118.0	118.0	n/a	Pass
 sub-2535204	1	8.42	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	116.0	n/a	Pass
 sub-2538839	1	8.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	29.0	16.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	100.0	111.0	n/a	Pass
-sub-2554127	1	9.02	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	138.0	121.0	120.0	n/a	Pass
-sub-2558999	1	8.87	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	130.0	108.0	120.0	n/a	Pass
+sub-2554127	1	9.02	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	138.0	121.0	120.0	n/a	Pass
+sub-2558999	1	8.87	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	130.0	108.0	120.0	n/a	Pass
 sub-2559537	1	11.17	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	30.0	13.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	123.0	130.0	n/a	Pass
 sub-2559559	1	7.92	M	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	98.0	n/a	Pass
 sub-2561174	1	8.67	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	98.0	n/a	Pass
 sub-2570769	1	13.49	M	NYU	ADHD-Combined	True	n/a	n/a	75.0	70.0	66.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	88.0	82.0	84.0	n/a	Pass
 sub-2571197	1	7.67	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	102.0	n/a	Pass
-sub-2572285	1	8.33	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	96.0	119.0	106.0	n/a	Pass
+sub-2572285	1	8.33	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	96.0	119.0	106.0	n/a	Pass
 sub-2574674	1	14.05	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-2578455	1	9.5	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	112.0	n/a	Questionable
 sub-2591713	1	10.0	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	40.0	21.0	19.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	134.0	115.0	128.0	n/a	Pass
 sub-2599965	1	14.0	M	Peking_1	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	55.0	26.0	29.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	101.0	94.0	98.0	n/a	Pass
 sub-2601519	1	13.83	M	Peking_2	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	39.0	24.0	15.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	92.0	109.0	n/a	Pass
-sub-2601925	1	9.58	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	100.0	106.0	99.0	n/a	Pass
-sub-2618929	1	10.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	104.0	100.0	96.0	n/a	Pass
+sub-2601925	1	9.58	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	100.0	106.0	99.0	n/a	Pass
+sub-2618929	1	10.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	104.0	100.0	96.0	n/a	Pass
 sub-2620872	1	8.92	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	90.0	n/a	Pass
-sub-2621228	1	8.98	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	110.0	116.0	n/a	Pass
+sub-2621228	1	8.98	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	110.0	116.0	n/a	Pass
 sub-2628237	1	13.0	F	Peking_1	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	57.0	33.0	24.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	90.0	106.0	97.0	n/a	Pass
-sub-2640795	1	12.47	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	136.0	108.0	119.0	n/a	Pass
-sub-2641332	1	10.38	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	114.0	92.0	95.0	n/a	Pass
+sub-2640795	1	12.47	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	136.0	108.0	119.0	n/a	Pass
+sub-2641332	1	10.38	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	114.0	92.0	95.0	n/a	Pass
 sub-2659769	1	14.25	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	132.0	111.0	124.0	n/a	Pass
 sub-2671604	1	17.46	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-2682736	1	10.78	M	NYU	ADHD-Combined	True	n/a	n/a	69.0	73.0	74.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	106.0	107.0	107.0	n/a	Pass
 sub-2697768	1	12.58	F	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	44.0	26.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	96.0	80.0	87.0	n/a	Pass
-sub-2703289	1	11.1	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	124.0	117.0	109.0	n/a	Pass
+sub-2703289	1	11.1	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	124.0	117.0	109.0	n/a	Pass
 sub-2703336	1	11.5	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	12.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	120.0	124.0	n/a	Pass
 sub-2714224	1	10.0	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	24.0	12.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	101.0	100.0	101.0	n/a	Pass
 sub-2730704	1	10.21	F	NYU	TDC	False	n/a	n/a	55.0	49.0	57.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	107.0	83.0	94.0	n/a	Pass
 sub-2735617	1	11.42	M	NYU	TDC	False	n/a	n/a	45.0	49.0	43.0	n/a	n/a	0.83	Wechsler Abbreviated Scale of Intelligence (WASI)	122.0	126.0	127.0	n/a	Pass
 sub-2737106	1	14.17	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	54.0	30.0	24.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	105.0	83.0	95.0	n/a	Pass
-sub-2740232	1	11.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	99.0	102.0	85.0	n/a	Pass
+sub-2740232	1	11.09	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	99.0	102.0	85.0	n/a	Pass
 sub-2741068	1	8.53	M	NYU	ADHD-Combined	True	n/a	n/a	76.0	78.0	72.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	118.0	107.0	114.0	n/a	Pass
 sub-2756846	1	19.27	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-2768273	1	9.24	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	140.0	112.0	122.0	n/a	Questionable
+sub-2768273	1	9.24	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	140.0	112.0	122.0	n/a	Questionable
 sub-2773205	1	8.38	F	NYU	ADHD-Inattentive	True	n/a	n/a	83.0	90.0	65.0	n/a	n/a	0.64	Wechsler Abbreviated Scale of Intelligence (WASI)	98.0	120.0	109.0	n/a	Pass
 sub-2780647	1	13.58	M	Peking_3	ADHD-Combined	True	LD, CD	ADHD Rating Scale IV (ADHD-RS)	47.0	29.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	95.0	111.0	102.0	n/a	Pass
 sub-2790141	1	9.0	F	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	112.0	n/a	Pass
 sub-2821683	1	10.69	M	NYU	ADHD-Inattentive	True	n/a	n/a	73.0	73.0	58.0	n/a	n/a	0.68	Wechsler Abbreviated Scale of Intelligence (WASI)	123.0	137.0	134.0	n/a	Pass
-sub-2822304	1	9.62	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	119.0	98.0	111.0	n/a	Pass
+sub-2822304	1	9.62	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	98.0	111.0	n/a	Pass
 sub-2833684	1	10.42	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	36.0	20.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	138.0	135.0	141.0	n/a	Pass
 sub-2845989	1	7.67	F	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	102.0	n/a	Pass
 sub-2854839	1	9.17	F	NYU	ADHD-Inattentive	True	n/a	n/a	71.0	76.0	50.0	n/a	n/a	0.45	Wechsler Abbreviated Scale of Intelligence (WASI)	116.0	126.0	124.0	n/a	Pass
@@ -675,15 +675,15 @@ sub-2872641	1	8.5	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.0	2
 sub-2876903	1	11.05	M	NeuroIMAGE	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Ambidextrous	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-2884672	1	12.83	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	41.0	26.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	100.0	110.0	n/a	Pass
 sub-2897046	1	9.17	F	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	113.0	83.0	99.0	n/a	Pass
-sub-2903997	1	11.91	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	121.0	126.0	n/a	Pass
+sub-2903997	1	11.91	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	121.0	126.0	n/a	Pass
 sub-2907383	1	12.24	F	NYU	TDC	False	n/a	n/a	47.0	47.0	43.0	n/a	n/a	0.54	Wechsler Abbreviated Scale of Intelligence (WASI)	111.0	105.0	109.0	n/a	Pass
 sub-2907951	1	16.0	M	Peking_3	ADHD-Inattentive	True	LD, SP1	ADHD Rating Scale IV (ADHD-RS)	37.0	20.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	107.0	98.0	103.0	n/a	Pass
 sub-2910270	1	13.83	M	Peking_1	ADHD-Inattentive	True	ODD,depression	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	120.0	128.0	n/a	Pass
-sub-2917777	1	12.66	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	95.0	104.0	100.0	n/a	Pass
+sub-2917777	1	12.66	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	95.0	104.0	100.0	n/a	Pass
 sub-2919220	1	13.58	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	45.0	28.0	17.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	114.0	106.0	111.0	n/a	Pass
 sub-2920716	1	7.5	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	120.0	n/a	Pass
 sub-2929195	1	9.58	M	OHSU	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	124.0	n/a	Pass
-sub-2930625	1	9.97	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	91.0	127.0	106.0	n/a	Pass
+sub-2930625	1	9.97	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	91.0	127.0	106.0	n/a	Pass
 sub-2940712	1	13.08	M	Peking_3	ADHD-Inattentive	True	LD	ADHD Rating Scale IV (ADHD-RS)	36.0	22.0	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	73.0	110.0	n/a	Pass
 sub-2947936	1	8.5	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	124.0	n/a	Pass
 sub-2950672	1	11.28	M	NYU	ADHD-Combined	True	n/a	n/a	58.0	65.0	56.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	99.0	95.0	97.0	n/a	Pass
@@ -703,18 +703,18 @@ sub-3051944	1	11.75	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler 
 sub-3052540	1	9.17	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	114.0	n/a	Pass
 sub-3082137	1	17.93	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3086074	1	11.5	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	36.0	20.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	124.0	125.0	n/a	Pass
-sub-3103809	1	9.3	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	104.0	92.0	102.0	n/a	Pass
+sub-3103809	1	9.3	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	104.0	92.0	102.0	n/a	Pass
 sub-3107623	1	11.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.0	15.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	114.0	120.0	n/a	Pass
 sub-3108222	1	13.33	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-3119327	1	10.15	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	119.0	125.0	119.0	n/a	Pass
+sub-3119327	1	10.15	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	125.0	119.0	n/a	Pass
 sub-3124419	1	8.75	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	46.0	24.0	22.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	128.0	85.0	109.0	n/a	Pass
-sub-3154996	1	11.65	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	93.0	98.0	88.0	n/a	Pass
+sub-3154996	1	11.65	M	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	93.0	98.0	88.0	n/a	Pass
 sub-3157406	1	14.0	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	27.0	16.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	101.0	103.0	102.0	n/a	Pass
-sub-3160561	1	11.95	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	93.0	108.0	99.0	n/a	Pass
+sub-3160561	1	11.95	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	93.0	108.0	99.0	n/a	Pass
 sub-3162671	1	8.5	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	136.0	n/a	Pass
 sub-3163200	1	11.91	M	NYU	TDC	False	n/a	n/a	49.0	50.0	46.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	120.0	117.0	121.0	n/a	Pass
 sub-3169448	1	11.0	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	44.0	23.0	21.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	104.0	111.0	108.0	n/a	Pass
-sub-3170319	1	9.52	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	125.0	122.0	n/a	Pass
+sub-3170319	1	9.52	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	125.0	122.0	n/a	Pass
 sub-3174224	1	8.49	M	NYU	ADHD-Combined	True	n/a	n/a	79.0	83.0	76.0	n/a	n/a	0.95	Wechsler Abbreviated Scale of Intelligence (WASI)	109.0	88.0	99.0	n/a	Pass
 sub-3190461	1	19.88	M	NeuroIMAGE	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3194757	1	12.92	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	58.0	31.0	27.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	97.0	92.0	95.0	n/a	Pass
@@ -738,7 +738,7 @@ sub-3302025	1	9.0	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Ab
 sub-3304956	1	15.78	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3306863	1	8.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	44.0	22.0	22.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	104.0	114.0	109.0	n/a	Pass
 sub-3308331	1	9.08	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	13.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	111.0	111.0	112.0	n/a	Pass
-sub-3310328	1	9.97	M	KKI	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	110.0	123.0	113.0	n/a	Pass
+sub-3310328	1	9.97	M	KKI	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	110.0	123.0	113.0	n/a	Pass
 sub-3313497	1	9.33	M	Peking_1	ADHD-Combined	True	TS	ADHD Rating Scale IV (ADHD-RS)	52.0	28.0	24.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	111.0	109.0	111.0	n/a	Questionable
 sub-3320367	1	10.67	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	32.0	18.0	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	109.0	120.0	n/a	Pass
 sub-3322144	1	17.5	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
@@ -751,7 +751,7 @@ sub-3385520	1	13.5	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	41.0	
 sub-3390312	1	10.33	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	54.0	29.0	25.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	54.0	83.0	n/a	Pass
 sub-3407871	1	13.33	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	38.0	24.0	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	100.0	98.0	99.0	n/a	Pass
 sub-3433846	1	10.36	M	NYU	ADHD-Combined	True	n/a	n/a	64.0	65.0	60.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	107.0	97.0	102.0	n/a	Pass
-sub-3434578	1	8.12	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	85.0	98.0	89.0	n/a	Pass
+sub-3434578	1	8.12	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	85.0	98.0	89.0	n/a	Pass
 sub-3441455	1	9.26	M	NYU	ADHD-Inattentive	True	n/a	n/a	63.0	61.0	54.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	135.0	116.0	128.0	n/a	Questionable
 sub-3446674	1	14.58	M	Peking_2	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	54.0	28.0	26.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	98.0	113.0	n/a	Pass
 sub-3449233	1	20.15	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
@@ -759,18 +759,18 @@ sub-3457975	1	7.86	F	NYU	ADHD-Combined	True	n/a	n/a	86.0	84.0	73.0	n/a	n/a	0.82	
 sub-3466651	1	8.08	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	108.0	n/a	Pass
 sub-3470141	1	8.5	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	104.0	n/a	Pass
 sub-3473830	1	12.67	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	26.0	14.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	128.0	121.0	128.0	n/a	Pass
-sub-3486975	1	11.73	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	108.0	121.0	117.0	n/a	Pass
+sub-3486975	1	11.73	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	108.0	121.0	117.0	n/a	Pass
 sub-3494778	1	9.17	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.0	14.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	158.0	135.0	153.0	n/a	Pass
 sub-3504058	1	13.17	M	Peking_1	ADHD-Inattentive	True	TS	ADHD Rating Scale IV (ADHD-RS)	47.0	30.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	115.0	100.0	109.0	n/a	Pass
 sub-3515506	1	18.8	M	NeuroIMAGE	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3518345	1	7.67	F	NYU	TDC	False	n/a	n/a	45.0	44.0	47.0	n/a	n/a	0.67	Wechsler Abbreviated Scale of Intelligence (WASI)	119.0	126.0	124.0	n/a	Pass
-sub-3519022	1	8.1	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	134.0	129.0	134.0	n/a	Pass
+sub-3519022	1	8.1	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	134.0	129.0	134.0	n/a	Pass
 sub-3520880	1	9.83	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	54.0	29.0	25.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	140.0	135.0	142.0	n/a	Pass
 sub-3542588	1	8.05	F	NYU	ADHD-Combined	True	n/a	n/a	74.0	80.0	63.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	98.0	94.0	107.0	n/a	Pass
 sub-3554582	1	10.75	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	34.0	19.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	132.0	131.0	n/a	Pass
 sub-3559087	1	12.58	M	Peking_1	ADHD-Hyperactive/Impulsive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	46.0	20.0	26.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	108.0	104.0	107.0	n/a	Pass
 sub-3560456	1	7.83	F	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	126.0	n/a	Pass
-sub-3561920	1	13.75	M	Peking_2	ADHD-Combined	True	ODD   	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	114.0	123.0	n/a	Pass
+sub-3561920	1	13.75	M	Peking_2	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	114.0	123.0	n/a	Pass
 sub-3562883	1	11.25	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	26.0	13.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	115.0	104.0	111.0	n/a	Pass
 sub-3566449	1	17.78	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3587000	1	9.92	F	Peking_1	TDC	False	SP	ADHD Rating Scale IV (ADHD-RS)	27.0	17.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	136.0	131.0	n/a	Pass
@@ -778,7 +778,7 @@ sub-3593327	1	10.0	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	
 sub-3601861	1	9.24	F	NYU	ADHD-Combined	True	n/a	n/a	82.0	79.0	90.0	n/a	n/a	0.39	Wechsler Abbreviated Scale of Intelligence (WASI)	99.0	82.0	88.0	n/a	Pass
 sub-3605062	1	8.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	40.0	17.0	23.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	100.0	118.0	n/a	Pass
 sub-3610134	1	10.83	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	37.0	14.0	23.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	85.0	102.0	n/a	Pass
-sub-3611827	1	9.08	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	1	95.0	106.0	89.0	n/a	Pass
+sub-3611827	1	9.08	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	95.0	106.0	89.0	n/a	Pass
 sub-3619797	1	7.49	M	NYU	ADHD-Combined	True	n/a	n/a	74.0	73.0	71.0	n/a	n/a	0.16	Wechsler Abbreviated Scale of Intelligence (WASI)	106.0	100.0	103.0	n/a	Pass
 sub-3624598	1	14.58	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	9.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	140.0	121.0	135.0	n/a	Pass
 sub-3650634	1	13.25	F	NYU	TDC	False	n/a	n/a	42.0	43.0	44.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	99.0	101.0	100.0	n/a	Pass
@@ -792,10 +792,10 @@ sub-3677724	1	8.75	M	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/
 sub-3679455	1	11.97	M	NYU	ADHD-Combined	True	n/a	n/a	73.0	68.0	81.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	114.0	89.0	102.0	n/a	Pass
 sub-3684229	1	8.83	F	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	120.0	n/a	Pass
 sub-3691107	1	9.67	M	Peking_2	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	62.0	35.0	27.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	149.0	88.0	123.0	n/a	Pass
-sub-3699991	1	12.77	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	104.0	102.0	98.0	n/a	Pass
+sub-3699991	1	12.77	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	104.0	102.0	98.0	n/a	Pass
 sub-3707771	1	10.42	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	27.0	18.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	92.0	82.0	86.0	n/a	Pass
 sub-3712305	1	11.0	M	Peking_3	ADHD-Inattentive	True	LD, CD, Tics	ADHD Rating Scale IV (ADHD-RS)	56.0	28.0	28.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	104.0	101.0	103.0	n/a	Pass
-sub-3713230	1	11.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	132.0	106.0	119.0	n/a	Pass
+sub-3713230	1	11.67	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	132.0	106.0	119.0	n/a	Pass
 sub-3732101	1	10.42	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	43.0	22.0	21.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	94.0	107.0	n/a	Pass
 sub-3739175	1	10.83	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	12.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	104.0	111.0	108.0	n/a	Pass
 sub-3767334	1	8.33	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	51.0	26.0	25.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	104.0	109.0	n/a	Pass
@@ -803,7 +803,7 @@ sub-3803759	1	13.17	M	Peking_3	ADHD-Inattentive	True	LD	ADHD Rating Scale IV (AD
 sub-3808273	1	14.25	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3809753	1	9.08	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	36.0	18.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	116.0	111.0	112.0	n/a	Pass
 sub-3812101	1	7.83	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	104.0	n/a	Pass
-sub-3813783	1	10.55	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	131.0	132.0	n/a	Pass
+sub-3813783	1	10.55	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	131.0	132.0	n/a	Pass
 sub-3827352	1	15.83	M	Peking_2	ADHD-Inattentive	True	ODD, Tics, Mood disorder	ADHD Rating Scale IV (ADHD-RS)	35.0	20.0	15.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	116.0	112.0	116.0	n/a	Pass
 sub-3834703	1	12.92	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	42.0	24.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	101.0	108.0	n/a	Pass
 sub-3845761	1	8.19	M	NYU	TDC	False	n/a	n/a	40.0	40.0	43.0	n/a	n/a	0.29	Wechsler Abbreviated Scale of Intelligence (WASI)	117.0	102.0	110.0	n/a	Pass
@@ -812,20 +812,20 @@ sub-3856956	1	13.75	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (A
 sub-3858891	1	18.32	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3869075	1	8.67	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	126.0	n/a	Pass
 sub-3870624	1	11.0	M	Peking_3	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	50.0	26.0	24.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	119.0	111.0	117.0	n/a	Pass
-sub-3884955	1	11.84	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	119.0	123.0	134.0	n/a	Pass
+sub-3884955	1	11.84	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	123.0	134.0	n/a	Pass
 sub-3888614	1	16.8	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3889095	1	11.92	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	28.5	16.5	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	108.0	120.0	n/a	Pass
 sub-3899622	1	8.25	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	112.0	n/a	Questionable
-sub-3902469	1	10.64	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	132.0	112.0	124.0	n/a	Pass
+sub-3902469	1	10.64	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	132.0	112.0	124.0	n/a	Pass
 sub-3910672	1	10.08	M	Peking_2	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	57.0	30.0	27.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	140.0	97.0	122.0	n/a	Pass
-sub-3912996	1	9.79	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	108.0	110.0	109.0	n/a	Pass
-sub-3917422	1	8.19	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	142.0	119.0	126.0	n/a	Pass
+sub-3912996	1	9.79	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	108.0	110.0	109.0	n/a	Pass
+sub-3917422	1	8.19	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	142.0	119.0	126.0	n/a	Pass
 sub-3930512	1	12.58	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	15.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	123.0	126.0	n/a	Questionable
 sub-3941358	1	18.2	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3959823	1	17.5	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3967265	1	13.42	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	20.0	9.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	116.0	118.0	119.0	n/a	Pass
-sub-3972472	1	9.12	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	94.0	109.0	n/a	Pass
-sub-3972956	1	10.12	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	134.0	127.0	131.0	n/a	Pass
+sub-3972472	1	9.12	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	94.0	109.0	n/a	Pass
+sub-3972956	1	10.12	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	134.0	127.0	131.0	n/a	Pass
 sub-3976121	1	11.0	M	Peking_1	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	43.0	24.0	19.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	94.0	110.0	n/a	Pass
 sub-3980079	1	19.15	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-3983607	1	9.67	M	Peking_1	ADHD-Combined	True	n/a	ADHD Rating Scale IV (ADHD-RS)	48.0	25.0	23.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	76.0	103.0	87.0	n/a	Pass
@@ -851,12 +851,12 @@ sub-4091983	1	12.17	F	Peking_1	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (A
 sub-4095229	1	9.32	M	NYU	ADHD-Combined	True	n/a	n/a	60.0	64.0	58.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	99.0	92.0	95.0	n/a	Pass
 sub-4095748	1	10.5	M	Peking_1	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	101.0	106.0	n/a	Pass
 sub-4103874	1	7.33	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	108.0	n/a	Pass
-sub-4104523	1	12.43	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	98.0	101.0	n/a	Pass
+sub-4104523	1	12.43	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	98.0	101.0	n/a	Pass
 sub-4116166	1	10.81	F	NYU	ADHD-Combined	True	n/a	n/a	72.0	60.0	86.0	n/a	n/a	0.46	Wechsler Abbreviated Scale of Intelligence (WASI)	122.0	93.0	108.0	n/a	Pass
 sub-4125514	1	9.17	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	30.0	15.0	15.0	Medication Naive	Left	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	136.0	100.0	121.0	n/a	Pass
 sub-4134561	1	15.55	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-4136226	1	11.25	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	112.0	118.0	117.0	n/a	Pass
-sub-4154182	1	9.75	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	106.0	123.0	111.0	n/a	Pass
+sub-4154182	1	9.75	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	106.0	123.0	111.0	n/a	Pass
 sub-4154672	1	9.23	M	NYU	ADHD-Combined	True	n/a	n/a	76.0	73.0	74.0	n/a	n/a	0.77	Wechsler Abbreviated Scale of Intelligence (WASI)	118.0	117.0	119.0	n/a	Pass
 sub-4164316	1	10.69	M	NYU	TDC	False	n/a	n/a	42.0	40.0	44.0	n/a	n/a	0.29	Wechsler Abbreviated Scale of Intelligence (WASI)	92.0	72.0	80.0	n/a	Pass
 sub-4187857	1	13.28	M	NYU	ADHD-Combined	True	n/a	n/a	62.0	55.0	54.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	105.0	111.0	109.0	n/a	Pass
@@ -867,15 +867,15 @@ sub-4239636	1	20.54	M	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Left
 sub-4241194	1	11.67	M	Peking_3	ADHD-Combined	True	ODD, LD	ADHD Rating Scale IV (ADHD-RS)	47.0	23.0	24.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	76.0	101.0	n/a	Pass
 sub-4256491	1	12.0	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	22.0	12.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	99.0	112.0	106.0	n/a	Pass
 sub-4265987	1	10.08	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	31.5	17.5	14.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	134.0	109.0	125.0	n/a	Pass
-sub-4275075	1	10.5	F	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	93.0	100.0	94.0	n/a	Pass
+sub-4275075	1	10.5	F	KKI	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	93.0	100.0	94.0	n/a	Pass
 sub-4285031	1	12.84	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-4334113	1	14.58	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	49.0	25.0	24.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	97.0	101.0	99.0	n/a	n/a
-sub-4362730	1	8.99	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	146.0	106.0	121.0	n/a	Pass
+sub-4362730	1	8.99	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	146.0	106.0	121.0	n/a	Pass
 sub-4383707	1	9.67	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	24.0	12.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	101.0	103.0	102.0	n/a	Pass
 sub-4475709	1	9.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	114.0	120.0	n/a	Pass
 sub-4529116	1	8.42	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	116.0	n/a	Questionable
 sub-4562206	1	7.91	F	NYU	TDC	False	n/a	n/a	42.0	42.0	47.0	n/a	n/a	0.4	Wechsler Abbreviated Scale of Intelligence (WASI)	112.0	104.0	109.0	n/a	Pass
-sub-4601682	1	11.02	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	121.0	108.0	115.0	n/a	Pass
+sub-4601682	1	11.02	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	121.0	108.0	115.0	n/a	Pass
 sub-4827048	1	13.22	F	NYU	TDC	False	n/a	n/a	44.0	45.0	56.0	n/a	n/a	0.69	Wechsler Abbreviated Scale of Intelligence (WASI)	108.0	99.0	104.0	n/a	Pass
 sub-4919979	1	12.02	F	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-4921428	1	9.58	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0	15.0	20.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	140.0	126.0	137.0	n/a	Pass
@@ -883,7 +883,7 @@ sub-5045355	1	19.66	F	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Righ
 sub-5150328	1	15.92	F	Peking_1	ADHD-Inattentive	True	ODD,CD	ADHD Rating Scale IV (ADHD-RS)	56.0	28.0	28.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	90.0	85.0	86.0	n/a	Pass
 sub-5164727	1	10.16	F	NYU	ADHD-Combined	True	n/a	n/a	90.0	90.0	90.0	n/a	n/a	0.16	Wechsler Abbreviated Scale of Intelligence (WASI)	117.0	109.0	115.0	n/a	Pass
 sub-5193577	1	9.0	F	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	40.0	27.0	13.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	86.0	80.0	81.0	n/a	Pass
-sub-5216908	1	10.82	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	124.0	79.0	98.0	n/a	Pass
+sub-5216908	1	10.82	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	124.0	79.0	98.0	n/a	Pass
 sub-5302451	1	11.33	M	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	114.0	n/a	Pass
 sub-5575344	1	13.75	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	30.0	17.0	13.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	116.0	103.0	111.0	n/a	Pass
 sub-5600820	1	11.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	14.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	121.0	120.0	123.0	n/a	Pass
@@ -893,9 +893,9 @@ sub-5993008	1	12.25	M	Peking_2	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (A
 sub-6115230	1	19.39	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-6187322	1	9.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0	17.0	18.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	107.0	124.0	117.0	n/a	Pass
 sub-6206397	1	11.56	F	NYU	TDC	False	n/a	n/a	50.0	53.0	46.0	n/a	n/a	0.76	Wechsler Abbreviated Scale of Intelligence (WASI)	85.0	79.0	80.0	n/a	Pass
-sub-6346605	1	10.69	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	110.0	104.0	n/a	Pass
+sub-6346605	1	10.69	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	110.0	104.0	n/a	Pass
 sub-6383713	1	11.75	M	Peking_3	ADHD-Combined	True	LD, Tics	ADHD Rating Scale IV (ADHD-RS)	61.0	29.0	32.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	115.0	91.0	104.0	n/a	Pass
-sub-6453038	1	8.72	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	106.0	106.0	108.0	n/a	Pass
+sub-6453038	1	8.72	F	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	106.0	106.0	108.0	n/a	Pass
 sub-6477085	1	13.0	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	25.0	13.0	12.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	115.0	112.0	115.0	n/a	Pass
 sub-6500128	1	11.33	M	Peking_2	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	63.0	32.0	31.0	Not Medication Naive	Left	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	91.0	101.0	95.0	n/a	Pass
 sub-6550938	1	11.5	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	34.0	17.0	17.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	146.0	112.0	134.0	n/a	Pass
@@ -904,37 +904,37 @@ sub-6592761	1	7.58	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler A
 sub-6953386	1	11.83	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	132.0	n/a	Pass
 sub-7011503	1	13.33	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	124.0	114.0	121.0	n/a	n/a
 sub-7093319	1	11.42	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	130.0	127.0	132.0	n/a	Pass
-sub-7129258	1	9.73	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	110.0	108.0	112.0	n/a	Pass
+sub-7129258	1	9.73	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	110.0	108.0	112.0	n/a	Pass
 sub-7135128	1	13.92	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	11.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	100.0	71.0	85.0	n/a	Pass
 sub-7253183	1	13.17	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	41.0	25.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	109.0	95.0	103.0	n/a	Pass
 sub-7333005	1	9.0	M	OHSU	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	108.0	n/a	Pass
 sub-7339173	1	21.74	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-7390867	1	17.33	M	Peking_1	ADHD-Inattentive	True	dysthymia	ADHD Rating Scale IV (ADHD-RS)	37.0	28.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	105.0	104.0	105.0	n/a	Pass
 sub-7407032	1	13.42	M	Peking_2	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	26.0	16.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	126.0	111.0	121.0	n/a	Pass
-sub-7415617	1	10.9	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	134.0	106.0	117.0	n/a	Pass
+sub-7415617	1	10.9	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	134.0	106.0	117.0	n/a	Pass
 sub-7446626	1	13.81	F	NeuroIMAGE	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-7504392	1	18.01	F	NeuroIMAGE	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-7591533	1	12.42	M	Peking_1	ADHD-Combined	True	ODD	ADHD Rating Scale IV (ADHD-RS)	56.0	34.0	22.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	97.0	76.0	86.0	n/a	Pass
 sub-7689953	1	13.5	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	42.0	26.0	16.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	90.0	92.0	90.0	n/a	Pass
-sub-7774305	1	11.22	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	104.0	92.0	108.0	n/a	Pass
+sub-7774305	1	11.22	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	104.0	92.0	108.0	n/a	Pass
 sub-7947495	1	9.17	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	113.0	111.0	113.0	n/a	Pass
 sub-7994085	1	14.92	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	38.0	23.0	15.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	89.0	86.0	86.0	n/a	Pass
 sub-8009688	1	11.33	F	NYU	ADHD-Inattentive	True	n/a	n/a	84.0	84.0	86.0	n/a	n/a	0.69	Wechsler Abbreviated Scale of Intelligence (WASI)	101.0	116.0	109.0	n/a	Pass
 sub-8064456	1	9.25	F	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	118.0	n/a	Pass
-sub-8083695	1	8.62	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	125.0	121.0	n/a	Pass
+sub-8083695	1	8.62	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	125.0	121.0	n/a	Pass
 sub-8191384	1	13.42	M	Peking_3	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	21.0	11.0	10.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	104.0	81.0	92.0	n/a	Pass
 sub-8218392	1	8.33	M	OHSU	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	104.0	n/a	Pass
-sub-8263351	1	8.34	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	114.0	106.0	107.0	n/a	Pass
+sub-8263351	1	8.34	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	114.0	106.0	107.0	n/a	Pass
 sub-8278680	1	13.25	M	Peking_2	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	57.0	32.0	25.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	129.0	96.0	114.0	n/a	Pass
 sub-8328877	1	13.75	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	88.0	77.0	81.0	n/a	Pass
-sub-8337695	1	8.8	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	93.0	112.0	94.0	n/a	Pass
+sub-8337695	1	8.8	M	KKI	ADHD-Combined	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	93.0	112.0	94.0	n/a	Pass
 sub-8387093	1	18.59	M	NeuroIMAGE	ADHD-Hyperactive/Impulsive	True	n/a	n/a	n/a	n/a	n/a	n/a	Left	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-8409791	1	17.59	M	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
 sub-8415034	1	11.79	F	NYU	TDC	False	n/a	n/a	47.0	47.0	46.0	n/a	n/a	0.52	Wechsler Abbreviated Scale of Intelligence (WASI)	108.0	95.0	102.0	n/a	Pass
-sub-8432725	1	11.51	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	126.0	102.0	116.0	n/a	Pass
+sub-8432725	1	11.51	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	126.0	102.0	116.0	n/a	Pass
 sub-8463326	1	12.67	F	Peking_1	ADHD-Inattentive	True	ODD	ADHD Rating Scale IV (ADHD-RS)	58.0	32.0	36.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	108.0	94.0	102.0	n/a	Pass
-sub-8628223	1	10.81	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	85.0	86.0	97.0	n/a	Pass
-sub-8658218	1	9.75	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	119.0	115.0	114.0	n/a	Pass
+sub-8628223	1	10.81	F	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	85.0	86.0	97.0	n/a	Pass
+sub-8658218	1	9.75	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	119.0	115.0	114.0	n/a	Pass
 sub-8692452	1	12.25	M	NYU	TDC	False	n/a	n/a	45.0	43.0	52.0	n/a	n/a	0.82	Wechsler Abbreviated Scale of Intelligence (WASI)	120.0	127.0	123.0	n/a	Pass
 sub-8697774	1	9.92	M	NYU	ADHD-Combined	True	n/a	n/a	67.0	67.0	79.0	n/a	n/a	0.91	Wechsler Abbreviated Scale of Intelligence (WASI)	97.0	106.0	101.0	n/a	Pass
 sub-8720244	1	10.33	F	OHSU	ADHD-Inattentive	True	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Abbreviated Scale of Intelligence (WASI)	n/a	n/a	82.0	n/a	Pass
@@ -942,7 +942,7 @@ sub-8834383	1	8.8	M	NYU	TDC	False	n/a	n/a	56.0	51.0	47.0	n/a	n/a	0.57	Wechsler A
 sub-8838009	1	14.25	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	19.0	10.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	91.0	111.0	100.0	n/a	Pass
 sub-8915162	1	10.7	M	NYU	ADHD-Combined	True	n/a	n/a	76.0	69.0	83.0	n/a	n/a	1.0	Wechsler Abbreviated Scale of Intelligence (WASI)	136.0	124.0	134.0	n/a	Pass
 sub-8991934	1	17.01	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass
-sub-9002207	1	11.17	M	Peking_2	ADHD-Combined	True	ODD, social phobia 	ADHD Rating Scale IV (ADHD-RS)	52.0	24.0	28.0	Medication Naive	Left	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	111.0	116.0	n/a	Pass
+sub-9002207	1	11.17	M	Peking_2	ADHD-Combined	True	ODD, social phobia	ADHD Rating Scale IV (ADHD-RS)	52.0	24.0	28.0	Medication Naive	Left	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	117.0	111.0	116.0	n/a	Pass
 sub-9093997	1	11.58	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	23.0	14.0	9.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	123.0	111.0	119.0	n/a	Pass
 sub-9190596	1	12.5	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	49.0	25.0	24.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	134.0	114.0	128.0	n/a	Pass
 sub-9210521	1	9.25	M	Peking_1	ADHD-Inattentive	True	n/a	ADHD Rating Scale IV (ADHD-RS)	49.0	30.0	19.0	Not Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	97.0	89.0	93.0	n/a	Pass
@@ -958,5 +958,5 @@ sub-9783279	1	12.75	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	35.0
 sub-9887336	1	11.33	M	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	24.0	13.0	11.0	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	128.0	135.0	135.0	n/a	Pass
 sub-9890726	1	9.25	F	Peking_1	TDC	False	n/a	ADHD Rating Scale IV (ADHD-RS)	n/a	n/a	n/a	Medication Naive	Right	n/a	Wechsler Intelligence Scale for Chinese Children-Revised (WISCC-R)	125.0	103.0	117.0	n/a	Pass
 sub-9907452	1	9.98	M	NYU	ADHD-Inattentive	True	n/a	n/a	62.0	64.0	46.0	n/a	n/a	0.74	Wechsler Abbreviated Scale of Intelligence (WASI)	130.0	127.0	132.0	n/a	Pass
-sub-9922944	1	10.3	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	1	112.0	110.0	109.0	n/a	Pass
+sub-9922944	1	10.3	M	KKI	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)	112.0	110.0	109.0	n/a	Pass
 sub-9956994	1	18.02	F	NeuroIMAGE	TDC	False	n/a	n/a	n/a	n/a	n/a	n/a	Right	n/a	n/a	n/a	n/a	n/a	n/a	Pass

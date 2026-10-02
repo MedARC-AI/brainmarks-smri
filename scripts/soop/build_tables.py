@@ -78,7 +78,7 @@ def samples(participant_ids: list[str]) -> tuple[pd.DataFrame, dict[str, dict]]:
         "race": {"Description": "Race from electronic health records.", "Source": "race", "Levels": {"Black": "Black or African American", "White": "White"}},
         "acute_ischemic_stroke": {"Description": "Acute ischemic stroke diagnosed at admission.", "Source": "acuteischaemicstroke", "Levels": {"1": "yes"}},
         "prior_stroke": {"Description": "Evidence of a prior (chronic) stroke.", "Source": "priorstroke", "Levels": {"0": "no", "1": "yes"}},
-        "bmi": {"Description": "Body mass index.", "Source": "bmi"},
+        "bmi": {"Description": "Body mass index, as in the source (a few implausible values, e.g. 115.6 and 12.2).", "Source": "bmi"},
         "nihss": {"Description": "NIH Stroke Scale at admission (target).", "Source": "nihss"},
         "mrs_discharge": {"Description": "Modified Rankin Scale at discharge, 0-6 (6 = death) (target).", "Source": "gs_rankin_6isdeath"},
         "mrs_poor": {"Description": "Poor outcome: discharge mRS 3-6 (binary target).", "Source": "gs_rankin_6isdeath"},

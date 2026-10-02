@@ -6,15 +6,11 @@
     "Description": "Scan session identifier within the participant."
   },
   "age": {
-    "Description": "Age at scan.",
+    "Description": "Not in the source (all n/a).",
     "Units": "years"
   },
   "sex": {
-    "Description": "Sex.",
-    "Levels": {
-      "M": "male",
-      "F": "female"
-    }
+    "Description": "Not in the source (all n/a)."
   },
   "site": {
     "Description": "Acquisition site, as coded by the source."
@@ -24,11 +20,11 @@
     "Source": "Data Collection (as on TCIA+additional)"
   },
   "tcia_patient_id": {
-    "Description": "PatientID in the source TCIA collection (for overlap with upenn_gbm / ucsf_pdgm).",
+    "Description": "PatientID in the source TCIA collection (for overlap with upenn_gbm / ucsf_pdgm). Formats differ by collection (UCSF-PDGM: bare number; UPENN-GBM: scan ID). UCSF-PDGM IDs 138, 175, 181, 278, 315 are pre-v3 IDs of follow-up exams, renamed in UCSF-PDGM v3.",
     "Source": "PatientID on TCIA Radiology Portal"
   },
   "study_date": {
-    "Description": "Study date as given in the crosswalk (m/d/yyyy; some cases).",
+    "Description": "Study date (some cases), as de-identified by TCIA (dates are shifted, so they are not real calendar dates). The crosswalk mixes Excel dates and m/d/yyyy text; written as YYYY-MM-DD.",
     "Source": "Study date (m/d/yyyy) per PatientID"
   },
   "mgmt": {

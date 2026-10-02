@@ -165,7 +165,9 @@ def write(name: str, images: pd.DataFrame, samples: pd.DataFrame, columns: dict[
     assert not samples.duplicated(["participant_id", "session_id"]).any(), "duplicate sessions"
     assert not splits.participant_id.duplicated().any(), "duplicate participants in splits"
     assert set(samples.participant_id) == set(splits.participant_id), "samples/splits mismatch"
-    assert set(images.participant_id) <= set(samples.participant_id), "images of unknown participants"
+    keys = ["participant_id", "session_id"]
+    unknown = set(images[keys].itertuples(index=False)) - set(samples[keys].itertuples(index=False))
+    assert not unknown, f"{len(unknown)} image sessions without a samples row, e.g. {sorted(unknown)[:3]}"
     assert splits.split.isin(list(FRACTIONS)).all(), "unknown split"
     assert splits.complete.dtype == bool, "complete must be boolean"
     assert list(columns) == list(samples.columns), \

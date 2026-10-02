@@ -57,8 +57,17 @@ def samples(img: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
     columns = {
         "site_folder": {"Description": "BIDS site folder under RawDataBIDS/ (some SITE_IDs are split into sub-sites, e.g. CMU_a/CMU_b)."},
         "diagnosis": {"Description": "Diagnostic group (target).", "Source": "DX_GROUP", "Levels": {"ASD": "autism spectrum disorder", "TDC": "typically developing control"}},
-        "dsm_iv_tr": {"Description": "DSM-IV-TR diagnostic subtype.", "Source": "DSM_IV_TR"},
-        "handedness": {"Description": "Handedness category.", "Source": "HANDEDNESS_CATEGORY"},
+        "dsm_iv_tr": {
+            "Description": "DSM-IV-TR diagnostic subtype. As in the source, 20 ASD participants are coded 'control' here; "
+                           "use `diagnosis` as the label.",
+            "Source": "DSM_IV_TR",
+            "Levels": {"control": "0", "autism": "1", "asperger": "2", "PDD-NOS": "3", "asperger or PDD-NOS": "4"},
+        },
+        "handedness": {
+            "Description": "Handedness category, as coded by each site.",
+            "Source": "HANDEDNESS_CATEGORY",
+            "Levels": {"R": "right", "L": "left", "Ambi": "ambidextrous", "Mixed": "mixed", "L->R": "left, converted to right"},
+        },
         "fiq": {"Description": "Full-scale IQ (test type varies by site: FIQ_TEST_TYPE).", "Source": "FIQ"},
         "viq": {"Description": "Verbal IQ.", "Source": "VIQ"},
         "piq": {"Description": "Performance IQ.", "Source": "PIQ"},

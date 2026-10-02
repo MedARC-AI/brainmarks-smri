@@ -4,13 +4,17 @@
 
 See `brain_datasets.tables` for the table layout.
 
-- Participants: the per-site RawDataBIDS/<site>/participants.tsv files (read as latin-1),
-  one session each (session_id '1', the BIDS ses-1). participant_id is the BIDS label: the
-  participants.tsv IDs are unpadded (`26001`), the folders 7-digit (`sub-0026001`).
+- Participants: the per-site RawDataBIDS/<site>/participants.tsv files (read as latin-1), one
+  session each: the BIDS session of the T1w ('1', except 9 WashU participants in ses-2/3/4).
+  participant_id is the BIDS label: the participants.tsv IDs are unpadded (`26001`), the folders
+  7-digit (`sub-0026001`).
 - Cleaning: NYU, Peking_1 and Pittsburgh list their test participants twice; after normalizing
   handedness ('L' -> 'Left') the duplicates are identical and dropped. -999 is missing.
   Handedness is categorical at most sites but a score (-1..1) at NYU: `handedness` and
-  `handedness_score`. 'Medication Na´ve' is a mis-encoded 'Medication Naive'.
+  `handedness_score`. 'Medication Na´ve' is a mis-encoded 'Medication Naive'. KKI's iq_measure and
+  WashU's QC are numeric codes, decoded with nitrc/general/ADHD-200_PhenotypicKey.pdf.
+- Site-specific phenotypes that are only in the per-site *_phenotypic.csv files (e.g. KKI/OHSU
+  ADHD scores) are not merged; they stay in source/.
 - Official split: the competition holdout (nitrc/general/allSubs_testSet_phenotypic_dx.csv,
   197 participants; 186 have images) is `test`. The training release is split 75/25 into train
   and val, stratified by diagnosis x site. `official_split` is train/test. The participants.tsv
@@ -30,6 +34,9 @@ BIDS = SOURCE / "RawDataBIDS"
 DX_CODES = {"0": "TDC", "1": "ADHD-Combined", "2": "ADHD-Hyperactive/Impulsive", "3": "ADHD-Inattentive"}
 DX_NAMES = {"Typically Developing Children": "TDC"}
 HANDEDNESS = {"L": "Left", "R": "Right"}
+# codes used by some sites instead of labels (ADHD-200_PhenotypicKey.pdf)
+IQ_MEASURE_CODES = {"1": "Wechsler Intelligence Scale for Children, Fourth Edition (WISC-IV)"}
+QC_CODES = {"1": "Pass", "0": "Questionable"}
 
 
 def participant_id(raw: str | int) -> str:
@@ -51,16 +58,17 @@ def read_participants() -> pd.DataFrame:
     return meta.reset_index(drop=True)
 
 
-def samples(meta: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
+def samples(meta: pd.DataFrame, session: pd.Series) -> tuple[pd.DataFrame, dict[str, dict]]:
+    """`session` maps participant_id to the BIDS session of its T1w (WashU uses ses-2..4)."""
     handedness_score = pd.to_numeric(meta.handedness, errors="coerce")
 
-    s = pd.DataFrame({"participant_id": meta.participant_id, "session_id": "1"})
+    s = pd.DataFrame({"participant_id": meta.participant_id, "session_id": meta.participant_id.map(session).fillna("1")})
     s["age"] = pd.to_numeric(meta.age)
     s["sex"] = meta.gender.map({"Male": "M", "Female": "F"})
     s["site"] = meta.site
     s["diagnosis"] = meta.dx.replace(DX_NAMES)
     s["adhd"] = s.diagnosis.map(lambda d: pd.NA if pd.isna(d) else d != "TDC")
-    s["secondary_diagnosis"] = meta.secondary_dx.fillna(meta.secondary_dx_)
+    s["secondary_diagnosis"] = meta.secondary_dx.fillna(meta.secondary_dx_).str.strip()
     s["adhd_measure"] = meta.adhd_measure
     s["adhd_index"] = pd.to_numeric(meta.adhd_index)
     s["inattentive"] = pd.to_numeric(meta.inattentive)
@@ -68,12 +76,12 @@ def samples(meta: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
     s["med_status"] = meta.med_status.str.replace("Na´ve", "Naive")
     s["handedness"] = meta.handedness.where(handedness_score.isna())
     s["handedness_score"] = handedness_score
-    s["iq_measure"] = meta.iq_measure
+    s["iq_measure"] = meta.iq_measure.replace(IQ_MEASURE_CODES)
     s["verbal_iq"] = pd.to_numeric(meta.verbal_iq)
     s["performance_iq"] = pd.to_numeric(meta.performance_iq)
     s["full4_iq"] = pd.to_numeric(meta.full4_iq)
     s["full2_iq"] = pd.to_numeric(meta.full2_iq)
-    s["qc_anatomical"] = meta.qc_anatomical_1.fillna(meta.qc_s1_anat)
+    s["qc_anatomical"] = meta.qc_anatomical_1.fillna(meta.qc_s1_anat).fillna(meta.qc_s2_anat).replace(QC_CODES)
 
     columns = {
         "diagnosis": {
@@ -95,7 +103,7 @@ def samples(meta: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
         "performance_iq": {"Description": "Performance IQ.", "Source": "performance_iq"},
         "full4_iq": {"Description": "Full-scale IQ, four subtests.", "Source": "full4_iq"},
         "full2_iq": {"Description": "Full-scale IQ, two subtests.", "Source": "full2_iq"},
-        "qc_anatomical": {"Description": "Quality control of the (first) anatomical scan.", "Source": "qc_anatomical_1 (WashU: qc_s1_anat)", "Levels": {"Pass": "", "Questionable": ""}},
+        "qc_anatomical": {"Description": "Quality control of the (first) anatomical scan. WashU codes (1/0) decoded with the phenotypic key.", "Source": "qc_anatomical_1 (WashU: qc_s1_anat, else qc_s2_anat)", "Levels": {"Pass": "", "Questionable": ""}},
     }
     return s, columns
 
@@ -110,7 +118,7 @@ def main() -> None:
     per_site = [tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir()) if folder.is_dir()]
     images = pd.concat(per_site, ignore_index=True)
     meta = read_participants()
-    smp, columns = samples(meta)
+    smp, columns = samples(meta, images.set_index("participant_id").session_id)
     assert images.participant_id.is_unique and (images.modality == "T1w").all() and len(images) == 961
     assert set(images.participant_id) <= set(smp.participant_id)
 

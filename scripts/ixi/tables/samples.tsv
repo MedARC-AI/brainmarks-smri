@@ -1,585 +1,585 @@
 participant_id	session_id	age	sex	site	study_date	height_cm	weight_kg	ethnicity	marital_status	occupation	qualification	demographics_conflict
-IXI002	1	35.800136892539356	F	Guys	2005-11-18	164	58	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI012	1	38.78165639972622	M	HH	2005-06-01	175	70	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI013	1	46.71047227926078	M	HH	2005-06-01	182	70	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI014	1	34.23682409308692	F	HH	2005-06-09	163	65	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI015	1	24.28473648186174	M	HH	2005-06-23	181	90	n/a	Single	Unemployed	University or Polytechnic degree	False
-IXI016	1	55.167693360711844	M	Guys	2005-06-24	172	63	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI017	1	29.09240246406571	F	Guys	2005-06-24	178	72	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI019	1	58.65845311430527	M	Guys	2005-06-30	180	88	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI020	1	39.46611909650924	M	Guys	2005-06-24	178	72	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI021	1	21.56605065023956	F	Guys	2005-06-30	165	64	White	Single	Study at college or university	A-levels	False
-IXI022	1	30.67214236824093	M	Guys	2005-06-24	180	89	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI023	1	33.07871321013005	F	Guys	2005-06-24	160	56	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI024	1	37.6974674880219	F	Guys	2005-06-30	168	61	Asian or Asian British	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI025	1	29.779603011635867	F	Guys	2006-01-20	165	60	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI026	1	34.47775496235455	F	Guys	2005-06-23	173	55	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI027	1	30.417522245037645	M	Guys	2005-07-08	180	65	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI028	1	74.02600958247776	M	Guys	2006-08-21	172	70	White	Married	Retired	A-levels	False
-IXI029	1	59.22245037645448	F	Guys	2005-11-18	155	79	Black or Black British	Widowed	Go out to full time employment	University or Polytechnic degree	False
-IXI030	1	31.460643394934976	M	Guys	2005-07-08	180	65	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI031	1	31.134839151266256	M	Guys	2005-10-19	167	57	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI033	1	24.763860369609855	M	HH	2005-06-23	174	62	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI034	1	24.34223134839151	F	HH	2005-06-23	163	55	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI035	1	37.14442162902122	F	IOP	2006-02-13	168	88	White	n/a	n/a	n/a	False
-IXI036	1	23.537303216974674	M	Guys	2005-08-02	186	75	White	Single	Study at college or university	A-levels	False
-IXI037	1	37.210130047912386	F	Guys	2005-06-30	164	100	White	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI038	1	21.38261464750171	M	Guys	2005-07-27	173	64	White	Single	Study at college or university	A-levels	False
-IXI039	1	23.34839151266256	M	HH	2005-06-23	210	95	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI040	1	44.09308692676249	F	Guys	2005-07-22	n/a	68	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI041	1	27.38945927446954	M	Guys	2005-07-08	178	71	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI042	1	27.822039698836413	F	Guys	2005-07-22	160	63	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI043	1	22.647501711156742	F	Guys	2005-07-13	160	58	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI044	1	44.851471594798085	F	Guys	2005-07-13	163	69	White	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI045	1	40.035592060232716	F	Guys	2005-07-13	168	57	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI046	1	37.73305954825462	F	Guys	2005-11-11	165	53	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI048	1	50.65023956194388	M	HH	2005-07-21	194	90	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI049	1	31.854893908281998	M	HH	2005-08-04	183	88	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI050	1	63.186858316221766	M	Guys	2005-07-13	180	79	White	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI051	1	25.741273100616016	F	HH	2005-07-21	168	58	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI052	1	33.76317590691308	F	HH	2005-07-28	160	68	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI053	1	53.30595482546201	M	Guys	2005-07-22	185	101	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI054	1	41.752224503764545	F	Guys	2005-07-08	151	59	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI055	1	49.40451745379877	F	Guys	2005-07-27	162	61	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI056	1	25.93839835728953	M	HH	2005-07-21	176	70	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI057	1	28.15879534565366	F	HH	2005-07-28	170	69	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI058	1	29.27857631759069	M	Guys	2005-07-22	180	86	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI059	1	34.13826146475017	M	HH	2005-07-04	188	90	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI060	1	30.699520876112253	M	Guys	2005-07-08	180	75	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI061	1	59.00342231348392	F	Guys	2005-07-13	165	89	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI062	1	36.21629021218344	M	Guys	2005-08-05	185	99	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI063	1	41.12251882272416	M	Guys	2005-08-05	178	102	White	Single	Go out to full time employment	A-levels	False
-IXI064	1	20.071184120465436	M	Guys	2005-08-05	183	89	White	Single	Go out to part time employment (<25hrs)	A-levels	False
-IXI065	1	23.71526351813826	F	Guys	2005-08-05	164	73	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI066	1	46.168377823408626	F	Guys	2005-07-27	153	71	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI067	1	24.689938398357288	M	HH	2005-08-04	180	76	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI068	1	24.569472963723477	F	Guys	2005-08-19	168	64	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI069	1	26.272416153319643	F	Guys	2005-08-26	161	51	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI070	1	20.698151950718685	F	Guys	2005-08-26	173	64	White	Single	Study at college or university	A-levels	False
-IXI071	1	37.002053388090346	F	Guys	2005-08-26	165	63	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI072	1	68.60232717316906	M	HH	2006-08-24	161	82	Other	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI073	1	46.365503080082135	F	Guys	2005-08-12	163	64	Asian or Asian British	Married	Go out to full time employment	A-levels	False
-IXI074	1	22.532511978097194	F	Guys	2005-08-26	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI075	1	35.9917864476386	F	Guys	2005-08-12	157	58	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI076	1	55.827515400410675	M	Guys	2005-08-12	n/a	n/a	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI077	1	36.479123887748116	F	Guys	2005-08-12	175	65	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI078	1	28.50650239561944	F	Guys	2005-08-12	168	67	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI079	1	52.53388090349076	F	HH	2005-08-11	158	57	Asian or Asian British	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI080	1	21.19917864476386	F	HH	2005-07-28	158	66	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	False
-IXI081	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI083	1	30.89390828199863	M	HH	2005-08-04	182	78	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI084	1	38.234086242299796	F	Guys	2005-08-05	163	68	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI085	1	31.849418206707735	F	Guys	2005-08-19	166	59	Other	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI086	1	30.069815195071868	M	Guys	2005-07-22	n/a	69	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI087	1	25.661875427789184	F	Guys	2005-08-26	168	57	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI088	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI089	1	49.40451745379877	F	Guys	2005-08-19	165	72	White	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI090	1	41.82067077344285	M	Guys	2005-10-21	178	90	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	False
-IXI091	1	28.61327857631759	M	Guys	2005-08-24	n/a	n/a	White	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI092	1	33.24024640657084	M	HH	2005-08-25	180	80	Black or Black British	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI093	1	26.87748117727584	M	HH	2005-08-04	180	70	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI094	1	24.854209445585216	M	HH	2005-08-04	176	90	Asian or Asian British	Married	Study at college or university	University or Polytechnic degree	False
-IXI095	1	24.895277207392198	F	HH	2005-08-11	170	64	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI096	1	26.924024640657084	M	HH	2005-08-11	169	70	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI097	1	35.02258726899384	F	HH	2005-10-27	173	64	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI098	1	29.730321697467488	M	Guys	2005-08-05	172	67	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI099	1	51.75359342915811	M	Guys	2005-08-10	152	76	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI100	1	41.51129363449692	F	Guys	2005-08-10	170	121	White	Married	Full-time housework	O-levels, GCSEs, or CSEs	False
-IXI101	1	45.7741273100616	M	Guys	2005-08-10	180	102	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI102	1	24.621492128678987	F	HH	2005-08-18	163	65	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI103	1	31.808350444900753	M	Guys	2005-08-10	170	55	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI104	1	26.98425735797399	M	HH	2005-09-01	173	67	Other	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI105	1	38.902121834360024	M	HH	2005-09-08	173	78	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI106	1	36.67077344284736	M	Guys	2005-08-24	178	73	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI107	1	31.89596167008898	F	Guys	2005-08-24	173	57	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI108	1	43.162217659137575	M	Guys	2006-02-10	183	76	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI109	1	36.46817248459959	F	Guys	2005-08-01	164	66	Chinese	Married	Unemployed	University or Polytechnic degree	False
-IXI110	1	37.765913757700204	M	Guys	2005-08-01	180	75	Chinese	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI111	1	25.1854893908282	M	Guys	2005-08-01	176	75	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	False
-IXI112	1	23.698836413415467	M	Guys	2005-08-01	165	65	Chinese	Single	Study at college or university	University or Polytechnic degree	False
-IXI113	1	32.36139630390144	F	Guys	2005-09-06	157	57	n/a	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI114	1	65.40999315537303	F	Guys	2005-08-02	160	61	Chinese	Married	Retired	University or Polytechnic degree	False
-IXI115	1	72.13141683778234	M	Guys	2005-08-02	174	74	Chinese	Married	Retired	University or Polytechnic degree	False
-IXI116	1	23.8466803559206	M	Guys	2005-08-02	173	65	Chinese	Single	Study at college or university	University or Polytechnic degree	False
-IXI117	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI118	1	25.927446954141	F	Guys	2005-08-25	165	50	Chinese	Single	Study at college or university	University or Polytechnic degree	False
-IXI119	1	32.16974674880219	F	Guys	2005-08-25	169	55	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI120	1	53.67008898015058	F	Guys	2005-08-25	163	83	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI121	1	35.07186858316222	M	Guys	2005-09-02	154	56	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI122	1	22.973305954825463	F	Guys	2005-09-02	168	70	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI123	1	46.57905544147844	F	Guys	2005-09-02	170	60	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI126	1	57.22108145106092	M	HH	2005-08-25	180	73	n/a	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI127	1	29.49760438056126	F	HH	2005-09-01	167	55	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI128	1	27.326488706365502	F	HH	2005-09-08	151	60	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI129	1	23.039014373716633	M	Guys	2005-09-02	183	74	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI130	1	38.77344284736482	M	HH	2005-09-22	180	83	Asian or Asian British	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI131	1	45.229295003422315	F	HH	2005-09-22	163	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI132	1	58.71594798083505	M	HH	2005-08-18	163	60	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI134	1	47.35386721423682	M	Guys	2005-09-09	183	78	White	Single	Unemployed	University or Polytechnic degree	False
-IXI135	1	29.00479123887748	M	Guys	2005-09-09	173	83	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI136	1	35.80561259411362	M	HH	2005-09-01	180	80	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI137	1	41.229295003422315	M	HH	2005-09-08	172	73	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI138	1	33.138945927446954	F	Guys	2005-08-05	159	49	Chinese	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI139	1	32.936344969199176	M	Guys	2005-11-04	173	72	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI140	1	27.835728952772072	F	Guys	2005-09-14	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI141	1	46.00684462696783	F	Guys	2005-10-14	163	57	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI142	1	48.25462012320329	F	Guys	2005-09-14	158	53	Chinese	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI143	1	31.956194387405887	F	Guys	2005-09-14	173	67	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI144	1	29.357973990417523	F	Guys	2005-09-14	168	53	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI145	1	49.385352498288846	M	Guys	2005-09-09	168	75	Asian or Asian British	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI146	1	33.59342915811088	M	HH	2005-08-11	174	72	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI148	1	40.55578370978782	F	HH	2005-09-01	163	73	White	Single	Study at college or university	A-levels	False
-IXI150	1	27.014373716632445	F	HH	2005-09-29	158	50	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI151	1	45.38809034907597	M	Guys	2005-10-14	170	69	Asian or Asian British	Married	Unemployed	University or Polytechnic degree	False
-IXI153	1	22.431211498973305	M	Guys	2005-09-12	178	75	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	False
-IXI154	1	24.34223134839151	F	Guys	2005-11-11	168	64	White	Single	Study at college or university	Further education e.g. City & Guilds / NVQs	False
-IXI156	1	59.38124572210815	F	Guys	2005-12-02	n/a	62	White	Divorced or Separated	Retired	No qualifications	False
-IXI157	1	54.42573579739904	F	Guys	2005-11-04	166	98	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI158	1	75.6331279945243	F	Guys	2005-09-12	173	68	White	Widowed	Retired	O-levels, GCSEs, or CSEs	False
-IXI159	1	24.142368240930868	F	HH	2005-09-29	165	63	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI160	1	39.397672826830934	F	HH	2005-11-03	158	54	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI161	1	65.11430527036276	F	HH	2006-10-12	160	76	White	Married	Go out to full time employment	No qualifications	False
-IXI162	1	50.5242984257358	M	HH	2005-09-29	178	79	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI163	1	48.05201916495551	M	HH	2005-10-27	170	70	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI164	1	64.46817248459959	M	Guys	2005-12-16	178	83	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI165	1	24.3750855578371	M	HH	2005-10-13	188	90	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI166	1	41.20191649555099	F	Guys	2006-01-13	163	68	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI167	1	67.53456536618754	F	HH	2005-10-06	178	70	White	Widowed	Retired	University or Polytechnic degree	False
-IXI168	1	43.82477754962355	M	HH	2005-10-20	179	60	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI169	1	58.76796714579056	F	Guys	2005-12-16	157	68	White	Divorced or Separated	Go out to full time employment	No qualifications	False
-IXI170	1	31.592060232717316	F	Guys	2005-12-16	162	70	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI172	1	74.98973305954826	M	Guys	2006-07-14	185	100	White	Married	Retired	University or Polytechnic degree	False
-IXI173	1	29.574264202600958	F	HH	2005-10-13	165	78	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI174	1	63.096509240246405	F	HH	2005-10-06	158	64	Asian or Asian British	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI175	1	72.26557152635182	M	HH	2005-10-06	168	63	Asian or Asian British	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI176	1	24.854209445585216	M	HH	2005-10-20	190	93	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI177	1	34.288843258042434	M	Guys	2005-11-25	175	75	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI178	1	25.4072553045859	M	Guys	2005-09-06	173	67	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI179	1	30.143737166324435	M	Guys	2005-09-06	185	91	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI180	1	42.15195071868583	F	HH	2005-10-20	163	56	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI181	1	45.6974674880219	M	Guys	2005-10-14	188	102	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI182	1	60.97467488021903	M	Guys	2005-10-14	173	76	White	Single	Go out to full time employment	No qualifications	False
-IXI183	1	30.17659137577002	M	Guys	2005-10-14	182	80	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI184	1	30.119096509240247	M	Guys	2005-10-19	184	86	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI185	1	83.45790554414785	M	Guys	2005-10-19	173	n/a	White	Married	Retired	University or Polytechnic degree	False
-IXI186	1	61.152635181382614	F	Guys	2005-10-19	165	65	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI188	1	44.02464065708419	F	Guys	2005-10-21	n/a	114	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI189	1	41.719370294318956	F	Guys	2005-10-21	164	63	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI191	1	44.205338809034906	M	Guys	2005-10-21	180	123	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI192	1	38.93771389459275	M	Guys	2006-02-17	175	75	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI193	1	55.238877481177276	F	Guys	2005-10-28	160	64	White	Widowed	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI194	1	48.33127994524298	F	Guys	2005-11-04	178	76	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI195	1	37.828884325804246	M	HH	2005-10-27	182	70	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI196	1	29.114305270362767	F	Guys	2005-10-24	176	68	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI197	1	60.46269678302532	F	Guys	2005-10-28	168	62	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI198	1	45.256673511293634	M	Guys	2005-10-24	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI199	1	63.663244353182755	M	Guys	2005-10-24	75	n/a	Asian or Asian British	Married	Retired	University or Polytechnic degree	False
-IXI200	1	49.9192334017796	F	Guys	2005-10-28	165	83	Black or Black British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI201	1	22.414784394250514	F	HH	2005-10-13	150	54	Black or Black British	Single	Study at college or university	No qualifications	False
-IXI202	1	20.16700889801506	M	HH	2005-09-22	178	91	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	False
-IXI204	1	74.63655030800821	F	HH	2005-11-07	175	96	White	Married	Retired	No qualifications	False
-IXI205	1	45.379876796714576	M	HH	2005-11-07	185	114	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI206	1	50.02327173169062	F	HH	2005-11-07	155	90	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI207	1	40.36139630390144	F	Guys	2005-10-28	177	60	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI208	1	33.9958932238193	M	Guys	2005-10-28	183	111	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI209	1	32.643394934976044	M	Guys	2005-10-24	195	98	Black or Black British	Married	Unemployed	Further education e.g. City & Guilds / NVQs	False
-IXI210	1	69.32511978097193	M	Guys	2006-01-27	187	90	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI211	1	55.11841204654346	M	HH	2005-10-06	186	94	n/a	Single	Go out to full time employment	A-levels	False
-IXI212	1	59.12936344969199	M	HH	2005-11-04	175	76	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI213	1	54.66392881587954	F	HH	2005-11-04	170	90	White	Married	Other	O-levels, GCSEs, or CSEs	False
-IXI214	1	24.31211498973306	F	HH	2005-11-03	160	60	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI216	1	73.01574264202601	M	HH	2005-11-03	166	64	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI217	1	57.210130047912386	F	HH	2005-11-03	168	68	White	Divorced or Separated	Other	O-levels, GCSEs, or CSEs	False
-IXI218	1	35.40588637919233	F	HH	2006-01-26	175	85	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI219	1	n/a	F	Guys	2006-03-10	170	104	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	True
-IXI221	1	48.54757015742642	M	HH	2005-10-20	170	84	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI222	1	36.06023271731691	F	Guys	2005-11-04	163	64	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI223	1	63.24709103353867	M	Guys	2005-11-18	183	86	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI224	1	36.91991786447639	F	Guys	2005-11-11	168	89	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI225	1	47.01437371663244	F	Guys	2005-11-25	157	52	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI226	1	41.90280629705681	F	HH	2005-10-27	175	75	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI227	1	67.05544147843942	F	Guys	2005-10-28	143	58	Chinese	Married	Retired	No qualifications	False
-IXI228	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI229	1	72.3504449007529	F	Guys	2006-07-10	168	73	White	Widowed	Retired	No qualifications	False
-IXI230	1	21.152635181382614	F	IOP	2006-02-06	178	64	White	Single	Go out to full time employment	A-levels	False
-IXI231	1	58.992470910335385	F	IOP	2006-02-07	171	92	White	n/a	n/a	n/a	False
-IXI232	1	28.810403832991103	F	IOP	2006-02-27	n/a	n/a	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI233	1	26.754277891854894	F	IOP	2006-02-13	170	70	Black or Black British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI234	1	33.13347022587269	M	IOP	2006-02-06	170	65	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI236	1	25.713894592744694	M	Guys	2005-11-04	170	70	Other	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI237	1	78.20396988364134	F	Guys	2006-08-25	167	n/a	White	Widowed	Retired	University or Polytechnic degree	False
-IXI238	1	27.72621492128679	F	IOP	2006-02-27	150	55	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI239	1	62.959616700889804	F	HH	2006-08-17	160	91	White	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI240	1	39.0362765229295	M	Guys	2005-11-25	173	73	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI241	1	30.00684462696783	M	Guys	2005-11-25	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI242	1	31.370294318959616	M	HH	2005-12-22	185	75	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI244	1	49.04312114989733	F	Guys	2005-12-09	168	70	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI246	1	42.220396988364136	F	Guys	2005-12-09	168	56	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI247	1	29.817932922655714	M	Guys	2005-12-09	185	90	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI248	1	44.876112251882276	F	HH	2006-03-16	170	56	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI249	1	68.26830937713895	M	Guys	2006-09-15	167	70	Asian or Asian British	Married	Retired	University or Polytechnic degree	False
-IXI250	1	72.88432580424367	F	Guys	2005-12-02	165	60	White	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI251	1	80.1697467488022	F	Guys	2006-08-29	167	74	White	Widowed	Retired	No qualifications	False
-IXI252	1	70.55989048596851	F	HH	2005-12-08	165	68	n/a	Widowed	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI253	1	24.00273785078713	F	HH	2005-12-08	168	57	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI254	1	25.582477754962355	F	HH	2005-12-15	164	64	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI255	1	57.70294318959617	F	HH	2006-02-16	158	45	Asian or Asian British	Divorced or Separated	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI256	1	27.38398357289528	M	HH	2005-12-22	190	82	n/a	Single	Study at college or university	University or Polytechnic degree	False
-IXI257	1	69.54688569472964	M	HH	2005-12-22	175	62	Asian or Asian British	Single	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI258	1	22.570841889117045	F	HH	2006-01-12	165	60	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI259	1	59.78370978781656	F	HH	2006-01-19	158	60	Asian or Asian British	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI260	1	60.90622861054072	M	HH	2006-01-19	174	86	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI261	1	34.20670773442848	M	HH	2005-12-15	177	85	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI262	1	20.928131416837783	F	HH	2006-02-09	156	47	Chinese	Single	Study at college or university	A-levels	False
-IXI263	1	25.21286789869952	F	HH	2005-12-01	173	61	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI264	1	44.88158795345654	F	Guys	2006-01-20	165	70	Black or Black British	Single	Unemployed	Further education e.g. City & Guilds / NVQs	False
-IXI265	1	27.381245722108144	F	Guys	2006-01-13	168	54	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI266	1	61.06502395619439	F	Guys	2006-01-20	165	102	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI267	1	35.44695414099932	M	HH	2006-01-12	182	70	Black or Black British	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI268	1	44.91991786447639	F	Guys	2006-02-03	170	79	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI269	1	26.579055441478438	F	Guys	2005-12-09	178	63	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI270	1	61.01574264202601	F	Guys	2006-01-13	170	70	White	Widowed	Retired	University or Polytechnic degree	False
-IXI274	1	73.53867214236824	F	HH	2006-08-17	163	75	Black or Black British	Widowed	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI275	1	24.175222450376456	M	HH	2006-01-19	190	95	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI276	1	20.908966461327857	M	HH	2006-02-02	170	68	Asian or Asian British	Single	Study at college or university	A-levels	False
-IXI277	1	61.33607118412046	F	HH	2006-01-12	158	73	Black or Black British	Single	Retired	University or Polytechnic degree	False
-IXI278	1	20.213552361396303	M	HH	2006-01-12	184	65	Chinese	Single	Study at college or university	A-levels	False
-IXI279	1	51.88227241615332	M	Guys	2006-01-27	178	81	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI280	1	42.507871321013006	F	HH	2006-02-09	160	60	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI282	1	40.0082135523614	M	HH	2006-03-30	183	72	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI284	1	63.044490075290895	F	HH	2006-08-31	158	67	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI285	1	40.813141683778234	M	Guys	2006-01-27	176	69	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI286	1	54.27789185489391	M	Guys	2006-02-03	180	97	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI287	1	44.99110198494182	F	Guys	2006-02-10	152	56	Asian or Asian British	Married	Go out to full time employment	A-levels	False
-IXI288	1	78.5845311430527	F	Guys	2006-02-17	163	65	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI289	1	60.84052019164955	M	Guys	2006-02-10	178	95	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI290	1	45.752224503764545	F	IOP	2006-02-13	170	68	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI291	1	30.688569472963724	F	IOP	2006-02-06	165	65	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI292	1	23.731690622861056	F	IOP	2006-02-13	155	60	n/a	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI293	1	26.521560574948666	F	IOP	2006-02-13	170	72	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI294	1	27.082819986310746	F	IOP	2006-02-06	164	65	Other	Single	Study at college or university	University or Polytechnic degree	False
-IXI295	1	50.902121834360024	F	HH	2006-01-26	163	83	Asian or Asian British	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI296	1	63.97262149212868	F	HH	2006-03-16	152	54	White	Widowed	Other	Further education e.g. City & Guilds / NVQs	False
-IXI297	1	51.290896646132786	M	Guys	2006-03-03	178	92	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI298	1	43.460643394934976	F	Guys	2006-02-10	168	55	White	Married	Go out to part time employment (<25hrs)	A-levels	False
-IXI299	1	53.4072553045859	F	Guys	2006-03-10	160	60	Other	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI300	1	38.27789185489391	M	Guys	2006-02-17	188	110	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI302	1	59.50992470910335	M	HH	2006-02-16	165	75	Asian or Asian British	Married	Work for pay at home	University or Polytechnic degree	False
-IXI303	1	25.464750171115675	M	IOP	2006-05-15	173	80	n/a	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI304	1	46.59000684462697	F	Guys	2006-02-10	165	52	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI305	1	62.50513347022587	F	IOP	2006-02-07	157	60	White	Single	Retired	O-levels, GCSEs, or CSEs	False
-IXI306	1	30.182067077344286	F	IOP	2006-02-07	156	57	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI307	1	33.00479123887748	M	IOP	2006-02-07	185	70	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI308	1	41.204654346338124	M	Guys	2006-03-03	n/a	76	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI309	1	33.921971252566735	M	IOP	2006-02-27	n/a	n/a	White	Single	Other	O-levels, GCSEs, or CSEs	False
-IXI310	1	62.01779603011636	F	IOP	2006-02-28	150	55	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI311	1	61.58795345653662	M	Guys	2006-03-03	175	64	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI312	1	59.148528405201915	F	Guys	2006-03-03	163	67	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI313	1	65.85352498288843	M	HH	2006-08-03	183	92	White	Cohabiting	Retired	University or Polytechnic degree	False
-IXI314	1	45.8590006844627	M	IOP	2006-02-28	178	54	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI315	1	25.451060917180012	F	IOP	2006-02-28	173	70	White	Cohabiting	Study at college or university	A-levels	False
-IXI316	1	56.93908281998631	M	HH	2006-02-09	175	85	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI317	1	67.79466119096509	M	Guys	2006-03-10	170	73	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI318	1	54.48596851471595	F	Guys	2006-03-10	185	93	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI319	1	59.4715947980835	M	Guys	2006-03-17	180	67	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI320	1	29.738535249828885	F	Guys	2006-03-17	160	62	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI321	1	54.743326488706366	F	Guys	2006-03-17	168	53	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI322	1	28.476386036960985	F	IOP	2006-03-06	165	60	White	n/a	n/a	n/a	False
-IXI324	1	60.07939767282683	M	Guys	2006-04-10	165	70	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI325	1	52.6652977412731	F	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI326	1	67.73990417522245	F	Guys	2006-03-20	170	67	White	Married	Full-time housework	No qualifications	False
-IXI327	1	73.56331279945243	M	HH	2006-03-23	170	73	White	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI328	1	n/a	n/a	HH	2006-08-17	155	70	White	Married	Retired	A-levels	True
-IXI329	1	55.65503080082136	M	HH	2006-02-23	168	94	Asian or Asian British	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI330	1	44.48186173853525	M	Guys	2006-02-17	172	72	Chinese	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI331	1	23.488021902806295	M	IOP	2006-03-06	170	59	Asian or Asian British	n/a	n/a	n/a	False
-IXI332	1	42.3709787816564	F	IOP	2006-09-28	160	58	White	Cohabiting	Go out to full time employment	A-levels	False
-IXI333	1	n/a	n/a	IOP	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI334	1	69.28952772073922	F	HH	2006-02-23	168	61	White	Married	Retired	University or Polytechnic degree	False
-IXI335	1	69.27583846680356	M	HH	2006-02-23	180	100	White	Married	Retired	University or Polytechnic degree	False
-IXI336	1	67.77275838466804	M	Guys	2006-03-20	183	89	White	Single	Retired	University or Polytechnic degree	False
-IXI337	1	n/a	n/a	IOP	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI338	1	61.48665297741273	F	HH	2006-03-16	164	67	Other	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI340	1	n/a	n/a	IOP	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI341	1	n/a	M	Guys	2006-03-20	163	82	White	Married	Retired	n/a	False
-IXI342	1	48.67898699520876	M	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI344	1	62.09445585215606	M	Guys	2006-03-20	160	76	White	Cohabiting	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI345	1	n/a	n/a	IOP	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI347	1	n/a	n/a	IOP	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI348	1	38.587268993839835	F	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI350	1	62.680355920602324	M	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI351	1	56.91991786447639	F	Guys	2006-04-07	166	74	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI353	1	52.68993839835729	F	HH	2006-03-23	172	90	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI354	1	45.61533196440794	M	HH	2006-03-30	170	70	White	Single	Other	No qualifications	False
-IXI356	1	64.10403832991102	F	HH	2006-04-06	173	73	White	Married	Retired	A-levels	False
-IXI357	1	63.540041067761805	F	HH	2006-04-20	155	58	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI358	1	62.06160164271047	F	Guys	2006-04-21	173	116	White	Married	Retired	No qualifications	False
-IXI359	1	62.06160164271047	F	Guys	2006-04-21	164	80	White	Divorced or Separated	Retired	No qualifications	False
-IXI360	1	54.19301848049281	F	Guys	2006-04-07	165	64	White	Cohabiting	Unemployed	Further education e.g. City & Guilds / NVQs	False
-IXI361	1	54.19301848049281	F	Guys	2006-04-07	165	60	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI362	1	41.09514031485284	F	HH	2006-04-06	160	66	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI363	1	60.91991786447639	F	HH	2006-04-06	163	63	Other	Widowed	Full-time housework	University or Polytechnic degree	False
-IXI364	1	67.16221765913758	F	Guys	2006-04-18	n/a	72	White	Single	Retired	No qualifications	False
-IXI365	1	66.52703627652294	F	Guys	2006-04-10	157	75	White	Divorced or Separated	Retired	No qualifications	False
-IXI367	1	54.21492128678987	F	Guys	2006-04-21	170	73	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI368	1	54.21492128678987	F	Guys	2006-04-21	163	710	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI369	1	60.596851471594796	F	Guys	2006-04-10	175	112	White	Married	Other	O-levels, GCSEs, or CSEs	False
-IXI370	1	60.596851471594796	F	Guys	2006-04-10	173	127	White	Single	Other	University or Polytechnic degree	False
-IXI371	1	26.39835728952772	F	IOP	2006-04-20	n/a	n/a	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI372	1	29.256673511293634	M	IOP	2006-05-08	190	82	White	Married	Go out to full time employment	A-levels	False
-IXI373	1	58.79260780287474	F	IOP	2006-05-03	165	69	Asian or Asian British	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI375	1	41.059548254620125	F	Guys	2006-04-25	187	96	n/a	n/a	n/a	n/a	False
-IXI376	1	72.59411362080766	F	Guys	2006-05-08	160	n/a	White	Married	Retired	University or Polytechnic degree	False
-IXI377	1	72.59411362080766	F	Guys	2006-05-08	168	66	White	Single	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI378	1	38.83915126625599	F	IOP	2006-05-09	161	76	n/a	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI379	1	66.90759753593429	F	Guys	2006-05-05	168	78	White	Married	Retired	A-levels	False
-IXI380	1	66.90759753593429	F	Guys	2006-05-05	157	56	White	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI381	1	59.671457905544145	F	Guys	2006-08-11	160	75	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI382	1	65.90828199863107	F	IOP	2006-09-13	n/a	76	White	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI383	1	74.01232032854209	F	HH	2006-04-27	158	70	White	Married	Retired	No qualifications	False
-IXI384	1	74.01232032854209	F	HH	2006-04-27	159	53	White	Widowed	Retired	No qualifications	False
-IXI385	1	64.64613278576317	F	HH	2006-04-20	170	73	White	Widowed	Retired	O-levels, GCSEs, or CSEs	False
-IXI386	1	52.30116358658453	F	HH	2006-04-20	173	60	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI387	1	46.431211498973305	F	HH	2006-04-27	110	60	White	Cohabiting	Other	O-levels, GCSEs, or CSEs	False
-IXI388	1	33.34976043805612	M	IOP	2006-05-22	185	88	Chinese	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI389	1	58.36824093086927	F	Guys	2006-04-28	168	73	White	Widowed	Go out to full time employment	No qualifications	False
-IXI390	1	41.889117043121146	F	Guys	2006-04-28	173	98	White	Single	Study at college or university	Further education e.g. City & Guilds / NVQs	False
-IXI391	1	52.53114305270363	M	Guys	2006-04-28	168	70	White	Single	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI392	1	62.455852156057496	F	Guys	2006-09-04	165	61	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI393	1	60.101300479123886	F	Guys	2006-05-05	175	90	White	Married	Work for pay at home	Further education e.g. City & Guilds / NVQs	False
-IXI394	1	53.74948665297741	M	Guys	2006-05-08	184	80	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI395	1	45.0321697467488	M	IOP	2006-06-06	192	92	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI396	1	53.56605065023956	F	HH	2006-05-04	158	72	White	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI397	1	51.657768651608485	F	Guys	2006-06-09	170	115	White	Married	Full-time housework	n/a	False
-IXI398	1	51.657768651608485	F	Guys	2006-06-09	168	123	White	Married	Go out to part time employment (<25hrs)	n/a	False
-IXI399	1	73.54414784394251	F	Guys	2006-06-12	165	70	White	Married	Retired	A-levels	False
-IXI400	1	55.58110882956879	F	Guys	2006-07-03	163	51	White	Married	Go out to part time employment (<25hrs)	No qualifications	False
-IXI401	1	55.58110882956879	F	Guys	2006-07-03	165	76	White	Married	Go out to full time employment	No qualifications	False
-IXI402	1	53.53593429158111	F	Guys	2006-06-12	158	64	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI403	1	53.53593429158111	F	Guys	2006-06-12	158	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI404	1	62.7378507871321	M	Guys	2006-06-08	173	70	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI405	1	58.56810403832991	F	Guys	2006-06-08	163	58	White	Cohabiting	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI406	1	58.28336755646817	F	Guys	2006-06-16	168	60	White	Married	Full-time housework	Further education e.g. City & Guilds / NVQs	False
-IXI407	1	58.280629705681044	F	Guys	2006-06-16	165	62	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI408	1	52.12867898699521	F	Guys	2006-06-16	170	73	White	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI409	1	70.9514031485284	F	Guys	2006-06-17	n/a	64	White	Single	Retired	No qualifications	False
-IXI410	1	53.412731006160165	F	Guys	2006-06-17	157	70	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI411	1	53.412731006160165	F	Guys	2006-06-17	163	64	White	Divorced or Separated	Go out to full time employment	A-levels	False
-IXI412	1	58.56810403832991	F	Guys	2006-06-08	157	55	White	Married	Full-time housework	Further education e.g. City & Guilds / NVQs	False
-IXI413	1	59.83572895277207	F	Guys	2006-06-17	158	56	White	Divorced or Separated	Go out to full time employment	A-levels	False
-IXI414	1	59.742642026009584	F	Guys	2006-06-17	165	60	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI415	1	72.32580424366871	F	Guys	2006-05-05	157	55	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI416	1	72.145106091718	F	Guys	2006-08-25	1520	51	White	Widowed	Retired	University or Polytechnic degree	False
-IXI417	1	59.88227241615332	M	Guys	2006-05-08	178	n/a	White	Single	Go out to full time employment	No qualifications	False
-IXI418	1	59.742642026009584	F	Guys	2006-06-17	165	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI419	1	73.18275154004107	F	Guys	2006-08-14	154	62	White	Married	Retired	University or Polytechnic degree	False
-IXI420	1	73.18275154004107	F	Guys	2006-08-14	154	58	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI422	1	37.097878165639976	M	Guys	2006-09-11	170	71	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI423	1	39.02258726899384	M	IOP	2006-05-23	183	60	White	Single	Other	University or Polytechnic degree	False
-IXI424	1	46.29705681040383	M	IOP	2006-07-06	168	70	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI425	1	19.980835044490075	F	IOP	2006-06-27	168	n/a	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI426	1	23.110198494182068	F	IOP	2006-06-14	183	70	White	Single	Study at college or university	University or Polytechnic degree	False
-IXI427	1	34.28336755646817	M	IOP	2006-06-22	188	88	White	Cohabiting	Work for pay at home	University or Polytechnic degree	False
-IXI428	1	55.540041067761805	F	Guys	2006-07-24	163	75	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI429	1	55.540041067761805	F	Guys	2006-07-24	155	61	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI430	1	72.00547570157427	F	IOP	2006-07-04	166	70	White	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI431	1	58.78165639972622	F	Guys	2006-07-17	163	58	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI432	1	57.738535249828885	M	Guys	2006-07-17	186	100	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI433	1	73.90006844626969	F	IOP	2006-06-29	168	66	White	Married	Retired	University or Polytechnic degree	False
-IXI434	1	67.24161533196441	F	IOP	2006-06-14	160	60	White	Single	Retired	University or Polytechnic degree	False
-IXI435	1	n/a	M	IOP	2006-07-10	165	70	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI436	1	28.347707049965777	M	HH	2006-05-25	190	73	White	Single	Go out to full time employment	No qualifications	False
-IXI437	1	55.59753593429158	F	HH	2006-05-25	178	84	White	Married	Go out to full time employment	No qualifications	False
-IXI438	1	63.676933607118414	M	HH	2006-05-25	180	72	Asian or Asian British	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI439	1	43.917864476386036	F	HH	2006-05-04	158	67	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI440	1	48.101300479123886	M	HH	2006-05-18	165	78	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI441	1	48.101300479123886	F	HH	2006-05-25	159	69	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI442	1	61.36618754277892	M	IOP	2006-07-13	185	84	White	Married	Retired	University or Polytechnic degree	False
-IXI443	1	69.13347022587268	M	HH	2006-07-27	173	88	White	Married	Other	Further education e.g. City & Guilds / NVQs	False
-IXI444	1	58.37645448323067	F	HH	2006-08-10	159	55	White	Married	Retired	University or Polytechnic degree	False
-IXI445	1	60.02737850787132	M	HH	2006-08-10	170	75	White	Married	Retired	University or Polytechnic degree	False
-IXI446	1	60.10951403148528	F	HH	2006-08-24	160	53	White	Divorced or Separated	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI447	1	72.8268309377139	F	Guys	2006-07-03	153	57	White	Widowed	Retired	University or Polytechnic degree	False
-IXI448	1	79.41409993155374	M	HH	2006-09-14	165	64	White	Divorced or Separated	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI449	1	46.89664613278576	M	Guys	2006-10-27	175	90	White	Married	Go out to full time employment	No qualifications	False
-IXI450	1	68.50924024640658	M	Guys	2006-11-10	170	64	Asian or Asian British	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI451	1	41.13073237508556	F	HH	2006-07-27	160	60	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI452	1	63.403148528405204	F	HH	2006-07-27	157	76	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI453	1	63.41683778234086	M	HH	2006-07-27	185	98	White	Married	Work for pay at home	O-levels, GCSEs, or CSEs	False
-IXI454	1	32.577686516084874	M	Guys	2006-10-30	180	100	White	Single	Work for pay at home	University or Polytechnic degree	False
-IXI455	1	68.48186173853524	F	Guys	2006-07-10	164	63	White	Married	Retired	University or Polytechnic degree	False
-IXI456	1	70.24777549623545	F	Guys	2006-08-11	165	86	White	Cohabiting	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI457	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI458	1	70.71047227926078	M	Guys	2006-07-21	189	n/a	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI459	1	62.42573579739904	F	Guys	2006-07-21	156	60	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI460	1	60.8952772073922	F	Guys	2006-07-24	168	70	Other	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI461	1	60.8952772073922	F	Guys	2006-07-24	160	68	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI462	1	75.07734428473648	F	IOP	2006-07-17	175	n/a	White	Widowed	Retired	A-levels	False
-IXI463	1	70.14373716632444	F	IOP	2006-07-20	165	76	White	Single	Retired	A-levels	False
-IXI464	1	86.3189596167009	F	IOP	2006-07-26	n/a	n/a	White	Widowed	Retired	University or Polytechnic degree	False
-IXI465	1	69.28131416837782	M	HH	2006-07-06	170	70	White	Widowed	Retired	O-levels, GCSEs, or CSEs	False
-IXI467	1	66.94866529774127	F	Guys	2006-07-14	172	70	White	Divorced or Separated	Retired	No qualifications	False
-IXI468	1	67.69883641341546	M	Guys	2006-07-17	180	70	White	Married	Retired	University or Polytechnic degree	False
-IXI469	1	32.837782340862425	M	IOP	2006-10-19	175	73	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI470	1	35.983572895277206	M	IOP	2006-07-31	187	90	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI473	1	68.13415468856947	M	IOP	2006-08-10	162	59	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI474	1	34.012320328542096	F	IOP	2006-08-15	152	60	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI475	1	32.70362765229295	F	IOP	2006-08-17	170	95	White	Cohabiting	Go out to full time employment	A-levels	False
-IXI476	1	78.35728952772074	F	IOP	2006-08-21	154	58	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI477	1	46.42573579739904	F	IOP	2006-08-23	157	62	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI478	1	49.01574264202601	M	IOP	2006-08-31	176	72	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI479	1	60.016427104722794	F	Guys	2006-08-18	152	58	White	Married	Go out to full time employment	No qualifications	False
-IXI480	1	60.016427104722794	F	Guys	2006-08-18	154	62	White	Divorced or Separated	Retired	No qualifications	False
-IXI481	1	65.3305954825462	M	HH	2006-07-06	173	104	Black or Black British	Married	Go out to part time employment (<25hrs)	No qualifications	False
-IXI482	1	72.09034907597535	F	HH	2006-07-13	168	84	White	Single	Retired	University or Polytechnic degree	False
-IXI483	1	63.39219712525667	F	HH	2006-07-13	168	75	White	Married	Retired	University or Polytechnic degree	False
-IXI484	1	66.37371663244353	M	HH	2006-07-13	170	72	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI485	1	68.85147159479808	F	HH	2006-07-13	165	88	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI486	1	63.83572895277207	F	Guys	2006-07-28	165	60	White	Married	Work for pay at home	University or Polytechnic degree	False
-IXI487	1	66.27515400410678	M	Guys	2006-08-21	186	72	White	Married	Retired	University or Polytechnic degree	False
-IXI488	1	69.06776180698152	F	Guys	2006-08-01	161	54	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI489	1	69.06776180698152	F	Guys	2006-08-01	155	50	White	Married	Retired	University or Polytechnic degree	False
-IXI490	1	70.1409993155373	F	Guys	2006-08-04	157	64	White	Cohabiting	Retired	No qualifications	False
-IXI491	1	75.97262149212868	F	Guys	2006-08-18	165	710	White	Widowed	Retired	University or Polytechnic degree	False
-IXI492	1	69.28952772073922	F	Guys	2006-08-11	157	61	White	Single	Retired	University or Polytechnic degree	False
-IXI493	1	67.76728268309377	M	Guys	2006-07-31	165	63	White	Married	Retired	No qualifications	False
-IXI494	1	66.33264887063655	M	Guys	2006-07-31	173	66	White	Divorced or Separated	Retired	A-levels	False
-IXI495	1	60.86789869952088	F	Guys	2006-07-31	163	80	White	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI496	1	62.80355920602327	F	Guys	2006-07-31	155	56	White	Single	Retired	A-levels	False
-IXI497	1	72.30663928815879	M	Guys	2006-07-28	175	90	White	Married	Retired	No qualifications	False
-IXI498	1	76.78028747433265	F	Guys	2006-08-25	152	70	White	Widowed	Retired	University or Polytechnic degree	False
-IXI499	1	82.18754277891856	M	Guys	2006-07-28	168	62	White	Widowed	Retired	University or Polytechnic degree	False
-IXI500	1	63.181382614647504	M	Guys	2006-08-04	186	83	White	Married	Retired	A-levels	False
-IXI501	1	67.1129363449692	F	Guys	2006-08-04	161	56	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI502	1	63.87679671457906	F	Guys	2006-08-07	165	65	White	Married	Retired	University or Polytechnic degree	False
-IXI503	1	65.09514031485284	M	Guys	2006-08-07	180	79	White	Married	Retired	University or Polytechnic degree	False
-IXI504	1	68.15058179329226	M	Guys	2006-08-11	172	n/a	White	Divorced or Separated	Retired	University or Polytechnic degree	False
-IXI505	1	62.24503764544832	F	Guys	2006-08-14	152	n/a	White	Divorced or Separated	Go out to part time employment (<25hrs)	No qualifications	False
-IXI506	1	69.6892539356605	F	Guys	2006-08-21	172	74	White	Married	Retired	O-levels, GCSEs, or CSEs	False
-IXI507	1	71.66324435318275	M	Guys	2006-08-21	180	87	White	Married	Retired	No qualifications	False
-IXI508	1	60.930869267624914	F	HH	2006-08-10	160	54	White	Widowed	Retired	O-levels, GCSEs, or CSEs	False
-IXI510	1	32.42436687200548	F	IOP	2006-09-14	n/a	62	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI511	1	64.57768651608487	F	HH	2006-08-03	158	52	Asian or Asian British	Single	Retired	O-levels, GCSEs, or CSEs	False
-IXI512	1	64.75017111567419	M	Guys	2006-08-29	177	76	White	Married	Retired	University or Polytechnic degree	False
-IXI515	1	62.08898015058179	F	HH	2006-09-07	160	73	White	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI516	1	60.41067761806981	F	HH	2006-08-17	170	86	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI517	1	36.16427104722793	M	IOP	2006-09-07	177	84	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI518	1	75.82751540041068	F	HH	2006-08-03	163	63	White	Married	Retired	No qualifications	False
-IXI519	1	57.50581793292265	M	HH	2006-08-03	180	72	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI521	1	70.83641341546885	F	HH	2006-08-31	163	73	White	Widowed	Retired	No qualifications	False
-IXI522	1	28.933607118412045	F	HH	2006-10-05	168	62	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI523	1	63.419575633128	F	Guys	2006-08-29	160	67	White	Married	Retired	University or Polytechnic degree	False
-IXI524	1	33.516769336071185	F	HH	2006-09-21	170	65	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI525	1	41.51950718685831	M	HH	2006-09-21	185	92	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI526	1	54.60917180013689	F	HH	2006-09-14	163	95	Black or Black British	Single	Go out to full time employment	No qualifications	False
-IXI527	1	53.327857631759066	M	HH	2006-09-07	183	103	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI528	1	40.5284052019165	M	Guys	2006-09-18	172	80	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI531	1	75.93702943189597	M	Guys	2006-08-29	177	90	White	Married	Retired	University or Polytechnic degree	False
-IXI532	1	36.55304585900068	M	IOP	2006-09-21	203	78	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI533	1	73.60438056125942	M	Guys	2006-09-04	175	80	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI534	1	69.60985626283367	M	Guys	2006-09-01	175	88	White	Married	Go out to part time employment (<25hrs)	No qualifications	False
-IXI535	1	65.25941136208077	F	Guys	2006-09-01	157	57	White	Divorced or Separated	Retired	O-levels, GCSEs, or CSEs	False
-IXI536	1	58.83093771389459	F	Guys	2006-08-31	167	63	White	Widowed	Go out to full time employment	University or Polytechnic degree	False
-IXI537	1	67.4551676933607	F	HH	2006-09-07	170	73	White	Married	Retired	University or Polytechnic degree	False
-IXI538	1	81.94113620807666	F	HH	2006-09-21	152	54	White	Single	Retired	University or Polytechnic degree	False
-IXI539	1	78.072553045859	M	Guys	2006-09-08	172	70	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI541	1	36.421629021218344	F	IOP	2006-09-25	165	58	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI542	1	44.38329911019849	F	IOP	2006-09-27	154	64	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI543	1	70.51882272416154	M	IOP	2006-09-04	175	78	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI544	1	58.04243668720055	F	HH	2006-09-14	170	60	White	Single	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI546	1	60.07392197125257	F	HH	2006-09-28	165	60	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI547	1	33.831622176591374	M	IOP	2006-10-04	170	70	n/a	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI548	1	66.32991101984942	F	IOP	2006-10-09	153	50	White	Married	Retired	University or Polytechnic degree	False
-IXI549	1	25.018480492813143	F	Guys	2006-08-24	162	54	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI550	1	59.90691307323751	F	Guys	2006-09-08	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI551	1	70.50239561943874	F	Guys	2006-09-04	160	60	White	Widowed	Retired	University or Polytechnic degree	False
-IXI552	1	64.66255989048597	F	Guys	2006-09-04	157	55	White	Widowed	Retired	No qualifications	False
-IXI553	1	28.243668720054757	M	IOP	2006-09-20	180	n/a	n/a	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI554	1	70.10540725530458	M	Guys	2006-09-08	170	87	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI555	1	65.66735112936345	F	Guys	2006-09-18	n/a	79	White	Single	Retired	No qualifications	False
-IXI556	1	55.63586584531143	M	HH	2006-10-05	186	88	White	Single	Unemployed	O-levels, GCSEs, or CSEs	False
-IXI558	1	66.85831622176592	F	Guys	2006-10-06	162	55	White	Widowed	Other	University or Polytechnic degree	False
-IXI559	1	67.81930184804928	F	HH	2006-09-14	150	54	Asian or Asian British	Single	Retired	University or Polytechnic degree	False
-IXI560	1	63.86858316221766	M	Guys	2006-09-11	1850	80	White	Single	Retired	A-levels	False
-IXI561	1	31.578370978781656	F	IOP	2006-10-17	157	59	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI562	1	42.789869952087614	F	Guys	2006-10-09	157	55	White	Divorced or Separated	Work for pay at home	University or Polytechnic degree	False
-IXI563	1	28.372347707049965	F	IOP	2006-10-24	164	60	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI565	1	63.81656399726215	M	HH	2006-10-12	195	101	White	Cohabiting	Retired	No qualifications	False
-IXI566	1	42.97056810403833	F	HH	2006-10-12	155	95	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI567	1	28.56125941136208	F	HH	2006-10-12	158	50	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI568	1	33.686516084873375	F	HH	2006-10-26	165	58	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI569	1	56.9637234770705	M	Guys	2006-11-20	177	82	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI571	1	38.88569472963724	F	IOP	2006-11-06	163	50	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI572	1	41.949349760438054	F	HH	2006-10-26	170	57	n/a	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	False
-IXI573	1	35.455167693360714	F	IOP	2006-11-09	162	47	White	Cohabiting	Full-time housework	University or Polytechnic degree	False
-IXI574	1	50.573579739904176	F	IOP	2006-10-30	157	95	White	Single	Unemployed	O-levels, GCSEs, or CSEs	False
-IXI575	1	57.75496235455168	F	HH	2006-11-02	165	72	Black or Black British	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI576	1	67.33196440793976	F	Guys	2006-10-02	162	58	White	Divorced or Separated	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI577	1	64.18617385352498	F	HH	2006-11-02	170	67	White	Married	Go out to full time employment	No qualifications	False
-IXI578	1	57.86447638603696	M	Guys	2006-10-06	177	100	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI579	1	41.215605749486656	M	Guys	2006-10-06	172	75	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI580	1	24.314852840520192	M	IOP	2006-11-02	184	64	White	Cohabiting	Study at college or university	University or Polytechnic degree	False
-IXI582	1	29.77138945927447	M	Guys	2006-10-09	190	80	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI584	1	41.327857631759066	M	Guys	2006-10-16	182	96	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI585	1	28.12046543463381	M	Guys	2006-10-16	183	78	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI586	1	34.365503080082135	M	HH	2006-10-05	175	78	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI587	1	33.59342915811088	M	Guys	2006-10-09	185	85	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI588	1	45.295003422313485	M	IOP	2006-11-14	177	70	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI589	1	n/a	n/a	Guys	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI591	1	59.893223819301845	F	Guys	2006-10-30	167	54	White	Married	Retired	A-levels	False
-IXI592	1	48.07939767282683	M	Guys	2006-10-30	181	65	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI593	1	55.219712525667354	F	Guys	2006-11-27	167	80	White	Single	Other	Further education e.g. City & Guilds / NVQs	False
-IXI594	1	61.9958932238193	M	Guys	2006-11-03	176	99	White	Single	Retired	University or Polytechnic degree	False
-IXI595	1	49.596167008898014	F	IOP	2006-11-16	172	66	White	Married	Work for pay at home	University or Polytechnic degree	False
-IXI596	1	29.66461327857632	M	IOP	2006-11-21	182	80	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI597	1	43.07734428473648	F	IOP	2006-12-04	149	52	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI598	1	52.8870636550308	M	HH	2006-10-26	170	105	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI599	1	39.383983572895275	M	HH	2006-11-02	183	90	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI600	1	38.959616700889804	M	HH	2006-11-02	175	76	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI601	1	35.51540041067762	M	HH	2006-11-09	173	79	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI603	1	66.01505817932923	F	HH	2006-11-09	163	60	White	Single	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	False
-IXI605	1	70.33264887063655	F	HH	2006-10-25	170	76	White	Divorced or Separated	Retired	O-levels, GCSEs, or CSEs	False
-IXI606	1	60.539356605065024	M	HH	2006-10-25	178	86	White	Single	Other	University or Polytechnic degree	False
-IXI607	1	83.81108829568788	M	Guys	2006-11-06	n/a	960	White	Widowed	Retired	No qualifications	False
-IXI608	1	52.498288843258045	M	HH	2006-10-25	183	86	n/a	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	False
-IXI609	1	28.996577686516083	M	HH	2006-10-25	184	58	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI610	1	56.67624914442163	M	HH	2006-11-01	180	75	White	Married	Retired	Further education e.g. City & Guilds / NVQs	False
-IXI611	1	28.870636550308006	M	HH	2006-11-01	175	76	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	False
-IXI612	1	33.91649555099247	M	HH	2006-11-08	180	80	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI613	1	25.585215605749486	M	HH	2006-11-16	177	84	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI614	1	26.92950034223135	F	HH	2006-11-16	163	62	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI616	1	55.08829568788501	M	Guys	2006-11-06	162	70	White	Married	Go out to full time employment	A-levels	False
-IXI617	1	39.175906913073234	M	Guys	2006-11-06	175	100	White	Married	Go out to full time employment	A-levels	False
-IXI618	1	37.949349760438054	M	Guys	2006-11-06	173	105	White	Cohabiting	Go out to full time employment	A-levels	False
-IXI619	1	24.876112251882272	M	Guys	2006-11-17	182	70	White	Cohabiting	Study at college or university	O-levels, GCSEs, or CSEs	False
-IXI621	1	31.616700889801507	M	Guys	2006-11-20	162	64	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI622	1	59.68514715947981	M	Guys	2006-11-20	172	85	White	Married	Work for pay at home	University or Polytechnic degree	False
-IXI623	1	n/a	M	Guys	2006-09-25	180	80	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI625	1	47.069130732375086	M	Guys	2006-11-17	167	75	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI626	1	64.26830937713895	M	Guys	2006-11-10	177	76	Black or Black British	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI627	1	68.48459958932239	M	Guys	2006-11-20	180	72	White	Single	Retired	No qualifications	False
-IXI629	1	59.26351813826147	M	Guys	2006-11-17	172	84	White	Widowed	Go out to full time employment	Further education e.g. City & Guilds / NVQs	False
-IXI630	1	54.68583162217659	M	Guys	2006-11-27	170	58	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI631	1	41.30047912388775	M	HH	2006-11-01	185	89	White	Cohabiting	Go out to full time employment	A-levels	False
-IXI632	1	56.43805612594114	M	HH	2006-11-01	174	95	Asian or Asian British	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	False
-IXI633	1	36.70636550308008	M	HH	2006-11-08	173	57	n/a	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI634	1	34.05612594113621	M	HH	2006-11-08	175	68	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI635	1	25.530458590006845	M	HH	2006-11-08	185	92	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI636	1	43.15674195756331	M	HH	2006-11-16	173	87	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI637	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI638	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI639	1	86.19849418206708	M	Guys	2006-11-03	162	75	White	Widowed	Retired	University or Polytechnic degree	False
-IXI640	1	80.8021902806297	M	Guys	2006-11-24	167	76	White	Married	Retired	No qualifications	False
-IXI641	1	68.12320328542094	M	Guys	2006-11-24	177	85	White	Widowed	Retired	University or Polytechnic degree	False
-IXI642	1	57.06776180698152	M	Guys	2006-11-24	190	106	White	Married	Go out to full time employment	University or Polytechnic degree	False
-IXI643	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI644	1	56.87337440109514	M	Guys	2006-12-04	182	110	White	Married	Unemployed	O-levels, GCSEs, or CSEs	False
-IXI646	1	71.2060232717317	F	HH	2006-11-01	165	60	Other	Widowed	Retired	A-levels	False
-IXI648	1	47.723477070499655	M	Guys	2006-11-27	193	120	White	Single	Unemployed	Further education e.g. City & Guilds / NVQs	False
-IXI651	1	50.39561943874059	M	Guys	2006-12-01	175	61	Asian or Asian British	Married	Other	O-levels, GCSEs, or CSEs	False
-IXI652	1	42.98973305954826	M	Guys	2006-12-01	163	80	White	Single	Go out to full time employment	University or Polytechnic degree	False
-IXI653	1	46.220396988364136	M	Guys	2006-12-04	172	100	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	False
-IXI657	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI659	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI661	1	n/a	n/a	HH	n/a	n/a	n/a	n/a	n/a	n/a	n/a	False
-IXI662	1	41.74127310061601	M	Guys	2006-12-04	182	98	White	Divorced or Separated	Go out to full time employment	A-levels	False
+IXI002	1	35.800137	F	Guys	2005-11-18	164	58	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI012	1	38.781656	M	HH	2005-06-01	175	70	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI013	1	46.710472	M	HH	2005-06-01	182	70	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI014	1	34.236824	F	HH	2005-06-09	163	65	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI015	1	24.284736	M	HH	2005-06-23	181	90	code 2 (undocumented)	Single	Unemployed	University or Polytechnic degree	n/a
+IXI016	1	55.167693	M	Guys	2005-06-24	172	63	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI017	1	29.092402	F	Guys	2005-06-24	178	72	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI019	1	58.658453	M	Guys	2005-06-30	180	88	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI020	1	39.466119	M	Guys	2005-06-24	178	72	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI021	1	21.566051	F	Guys	2005-06-30	165	64	White	Single	Study at college or university	A-levels	n/a
+IXI022	1	30.672142	M	Guys	2005-06-24	180	89	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI023	1	33.078713	F	Guys	2005-06-24	160	56	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI024	1	37.697467	F	Guys	2005-06-30	168	61	Asian or Asian British	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI025	1	29.779603	F	Guys	2006-01-20	165	60	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI026	1	34.477755	F	Guys	2005-06-23	173	55	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI027	1	30.417522	M	Guys	2005-07-08	180	65	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI028	1	74.02601	M	Guys	2006-08-21	172	70	White	Married	Retired	A-levels	n/a
+IXI029	1	59.22245	F	Guys	2005-11-18	155	79	Black or Black British	Widowed	Go out to full time employment	University or Polytechnic degree	n/a
+IXI030	1	31.460643	M	Guys	2005-07-08	180	65	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI031	1	31.134839	M	Guys	2005-10-19	167	57	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI033	1	24.76386	M	HH	2005-06-23	174	62	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI034	1	24.342231	F	HH	2005-06-23	163	55	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI035	1	37.144422	F	IOP	2006-02-13	168	88	White	n/a	n/a	n/a	n/a
+IXI036	1	23.537303	M	Guys	2005-08-02	186	75	White	Single	Study at college or university	A-levels	n/a
+IXI037	1	37.21013	F	Guys	2005-06-30	164	100	White	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI038	1	21.382615	M	Guys	2005-07-27	173	64	White	Single	Study at college or university	A-levels	n/a
+IXI039	1	23.348392	M	HH	2005-06-23	210	95	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI040	1	44.093087	F	Guys	2005-07-22	n/a	68	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI041	1	27.389459	M	Guys	2005-07-08	178	71	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI042	1	27.82204	F	Guys	2005-07-22	160	63	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI043	1	22.647502	F	Guys	2005-07-13	160	58	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI044	1	44.851472	F	Guys	2005-07-13	163	69	White	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI045	1	40.035592	F	Guys	2005-07-13	168	57	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI046	1	37.73306	F	Guys	2005-11-11	165	53	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI048	1	50.65024	M	HH	2005-07-21	194	90	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI049	1	31.854894	M	HH	2005-08-04	183	88	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI050	1	63.186858	M	Guys	2005-07-13	180	79	White	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI051	1	25.741273	F	HH	2005-07-21	168	58	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI052	1	33.763176	F	HH	2005-07-28	160	68	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI053	1	53.305955	M	Guys	2005-07-22	185	101	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI054	1	41.752225	F	Guys	2005-07-08	151	59	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI055	1	49.404517	F	Guys	2005-07-27	162	61	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI056	1	25.938398	M	HH	2005-07-21	176	70	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI057	1	28.158795	F	HH	2005-07-28	170	69	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI058	1	29.278576	M	Guys	2005-07-22	180	86	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI059	1	34.138261	M	HH	2005-07-04	188	90	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI060	1	30.699521	M	Guys	2005-07-08	180	75	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI061	1	59.003422	F	Guys	2005-07-13	165	89	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI062	1	36.21629	M	Guys	2005-08-05	185	99	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI063	1	41.122519	M	Guys	2005-08-05	178	102	White	Single	Go out to full time employment	A-levels	n/a
+IXI064	1	20.071184	M	Guys	2005-08-05	183	89	White	Single	Go out to part time employment (<25hrs)	A-levels	n/a
+IXI065	1	23.715264	F	Guys	2005-08-05	164	73	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI066	1	46.168378	F	Guys	2005-07-27	153	71	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI067	1	24.689938	M	HH	2005-08-04	180	76	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI068	1	24.569473	F	Guys	2005-08-19	168	64	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI069	1	26.272416	F	Guys	2005-08-26	161	51	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI070	1	20.698152	F	Guys	2005-08-26	173	64	White	Single	Study at college or university	A-levels	n/a
+IXI071	1	37.002053	F	Guys	2005-08-26	165	63	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI072	1	68.602327	M	HH	2006-08-24	161	82	Other	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI073	1	46.365503	F	Guys	2005-08-12	163	64	Asian or Asian British	Married	Go out to full time employment	A-levels	n/a
+IXI074	1	22.532512	F	Guys	2005-08-26	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI075	1	35.991786	F	Guys	2005-08-12	157	58	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI076	1	55.827515	M	Guys	2005-08-12	n/a	n/a	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI077	1	36.479124	F	Guys	2005-08-12	175	65	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI078	1	28.506502	F	Guys	2005-08-12	168	67	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI079	1	52.533881	F	HH	2005-08-11	158	57	Asian or Asian British	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI080	1	21.199179	F	HH	2005-07-28	158	66	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI081	1	n/a	n/a	Guys	2006-01-20	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI083	1	30.893908	M	HH	2005-08-04	182	78	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI084	1	38.234086	F	Guys	2005-08-05	163	68	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI085	1	31.849418	F	Guys	2005-08-19	166	59	Other	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI086	1	30.069815	M	Guys	2005-07-22	n/a	69	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI087	1	25.661875	F	Guys	2005-08-26	168	57	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI088	1	n/a	n/a	Guys	2005-08-19	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI089	1	49.404517	F	Guys	2005-08-19	165	72	White	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI090	1	41.820671	M	Guys	2005-10-21	178	90	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI091	1	28.613279	M	Guys	2005-08-24	n/a	n/a	White	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI092	1	33.240246	M	HH	2005-08-25	180	80	Black or Black British	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI093	1	26.877481	M	HH	2005-08-04	180	70	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI094	1	24.854209	M	HH	2005-08-04	176	90	Asian or Asian British	Married	Study at college or university	University or Polytechnic degree	n/a
+IXI095	1	24.895277	F	HH	2005-08-11	170	64	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI096	1	26.924025	M	HH	2005-08-11	169	70	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI097	1	35.022587	F	HH	2005-10-27	173	64	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI098	1	29.730322	M	Guys	2005-08-05	172	67	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI099	1	51.753593	M	Guys	2005-08-10	152	76	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI100	1	41.511294	F	Guys	2005-08-10	170	121	White	Married	Full-time housework	O-levels, GCSEs, or CSEs	n/a
+IXI101	1	45.774127	M	Guys	2005-08-10	180	102	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI102	1	24.621492	F	HH	2005-08-18	163	65	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI103	1	31.80835	M	Guys	2005-08-10	170	55	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI104	1	26.984257	M	HH	2005-09-01	173	67	Other	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI105	1	38.902122	M	HH	2005-09-08	173	78	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI106	1	36.670773	M	Guys	2005-08-24	178	73	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI107	1	31.895962	F	Guys	2005-08-24	173	57	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI108	1	43.162218	M	Guys	2006-02-10	183	76	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI109	1	36.468172	F	Guys	2005-08-01	164	66	Chinese	Married	Unemployed	University or Polytechnic degree	n/a
+IXI110	1	37.765914	M	Guys	2005-08-01	180	75	Chinese	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI111	1	25.185489	M	Guys	2005-08-01	176	75	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI112	1	23.698836	M	Guys	2005-08-01	165	65	Chinese	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI113	1	32.361396	F	Guys	2005-09-06	157	57	code 2 (undocumented)	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI114	1	65.409993	F	Guys	2005-08-02	160	61	Chinese	Married	Retired	University or Polytechnic degree	n/a
+IXI115	1	72.131417	M	Guys	2005-08-02	174	74	Chinese	Married	Retired	University or Polytechnic degree	n/a
+IXI116	1	23.84668	M	Guys	2005-08-02	173	65	Chinese	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI117	1	n/a	n/a	Guys	2005-08-25	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI118	1	25.927447	F	Guys	2005-08-25	165	50	Chinese	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI119	1	32.169747	F	Guys	2005-08-25	169	55	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI120	1	53.670089	F	Guys	2005-08-25	163	83	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI121	1	35.071869	M	Guys	2005-09-02	154	56	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI122	1	22.973306	F	Guys	2005-09-02	168	70	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI123	1	46.579055	F	Guys	2005-09-02	170	60	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI126	1	57.221081	M	HH	2005-08-25	180	73	code 2 (undocumented)	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI127	1	29.497604	F	HH	2005-09-01	167	55	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI128	1	27.326489	F	HH	2005-09-08	151	60	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI129	1	23.039014	M	Guys	2005-09-02	183	74	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI130	1	38.773443	M	HH	2005-09-22	180	83	Asian or Asian British	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI131	1	45.229295	F	HH	2005-09-22	163	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI132	1	58.715948	M	HH	2005-08-18	163	60	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI134	1	47.353867	M	Guys	2005-09-09	183	78	White	Single	Unemployed	University or Polytechnic degree	n/a
+IXI135	1	29.004791	M	Guys	2005-09-09	173	83	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI136	1	35.805613	M	HH	2005-09-01	180	80	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI137	1	41.229295	M	HH	2005-09-08	172	73	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI138	1	33.138946	F	Guys	2005-08-05	159	49	Chinese	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI139	1	32.936345	M	Guys	2005-11-04	173	72	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI140	1	27.835729	F	Guys	2005-09-14	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI141	1	46.006845	F	Guys	2005-10-14	163	57	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI142	1	48.25462	F	Guys	2005-09-14	158	53	Chinese	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI143	1	31.956194	F	Guys	2005-09-14	173	67	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI144	1	29.357974	F	Guys	2005-09-14	168	53	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI145	1	49.385352	M	Guys	2005-09-09	168	75	Asian or Asian British	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI146	1	33.593429	M	HH	2005-08-11	174	72	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI148	1	40.555784	F	HH	2005-09-01	163	73	White	Single	Study at college or university	A-levels	n/a
+IXI150	1	27.014374	F	HH	2005-09-29	158	50	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI151	1	45.38809	M	Guys	2005-10-14	170	69	Asian or Asian British	Married	Unemployed	University or Polytechnic degree	n/a
+IXI153	1	22.431211	M	Guys	2005-09-12	178	75	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI154	1	24.342231	F	Guys	2005-11-11	168	64	White	Single	Study at college or university	Further education e.g. City & Guilds / NVQs	n/a
+IXI156	1	59.381246	F	Guys	2005-12-02	n/a	62	White	Divorced or Separated	Retired	No qualifications	n/a
+IXI157	1	54.425736	F	Guys	2005-11-04	166	98	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI158	1	75.633128	F	Guys	2005-09-12	173	68	White	Widowed	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI159	1	24.142368	F	HH	2005-09-29	165	63	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI160	1	39.397673	F	HH	2005-11-03	158	54	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI161	1	65.114305	F	HH	2006-10-12	160	76	White	Married	Go out to full time employment	No qualifications	n/a
+IXI162	1	50.524298	M	HH	2005-09-29	178	79	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI163	1	48.052019	M	HH	2005-10-27	170	70	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI164	1	64.468172	M	Guys	2005-12-16	178	83	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI165	1	24.375086	M	HH	2005-10-13	188	90	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI166	1	41.201916	F	Guys	2006-01-13	163	68	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI167	1	67.534565	F	HH	2005-10-06	178	70	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI168	1	43.824778	M	HH	2005-10-20	179	60	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI169	1	58.767967	F	Guys	2005-12-16	157	68	White	Divorced or Separated	Go out to full time employment	No qualifications	n/a
+IXI170	1	31.59206	F	Guys	2005-12-16	162	70	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI172	1	74.989733	M	Guys	2006-07-14	185	100	White	Married	Retired	University or Polytechnic degree	n/a
+IXI173	1	29.574264	F	HH	2005-10-13	165	78	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI174	1	63.096509	F	HH	2005-10-06	158	64	Asian or Asian British	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI175	1	72.265572	M	HH	2005-10-06	168	63	Asian or Asian British	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI176	1	24.854209	M	HH	2005-10-20	190	93	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI177	1	34.288843	M	Guys	2005-11-25	175	75	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI178	1	25.407255	M	Guys	2005-09-06	173	67	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI179	1	30.143737	M	Guys	2005-09-06	185	91	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI180	1	42.151951	F	HH	2005-10-20	163	56	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI181	1	45.697467	M	Guys	2005-10-14	188	102	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI182	1	60.974675	M	Guys	2005-10-14	173	76	White	Single	Go out to full time employment	No qualifications	n/a
+IXI183	1	30.176591	M	Guys	2005-10-14	182	80	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI184	1	30.119097	M	Guys	2005-10-19	184	86	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI185	1	83.457906	M	Guys	2005-10-19	173	n/a	White	Married	Retired	University or Polytechnic degree	n/a
+IXI186	1	61.152635	F	Guys	2005-10-19	165	65	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI188	1	44.024641	F	Guys	2005-10-21	n/a	114	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI189	1	41.71937	F	Guys	2005-10-21	164	63	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI191	1	44.205339	M	Guys	2005-10-21	180	123	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI192	1	38.937714	M	Guys	2006-02-17	175	75	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI193	1	55.238877	F	Guys	2005-10-28	160	64	White	Widowed	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI194	1	48.33128	F	Guys	2005-11-04	178	76	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI195	1	37.828884	M	HH	2005-10-27	182	70	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI196	1	29.114305	F	Guys	2005-10-24	176	68	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI197	1	60.462697	F	Guys	2005-10-28	168	62	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI198	1	45.256674	M	Guys	2005-10-24	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI199	1	63.663244	M	Guys	2005-10-24	n/a	n/a	Asian or Asian British	Married	Retired	University or Polytechnic degree	n/a
+IXI200	1	49.919233	F	Guys	2005-10-28	165	83	Black or Black British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI201	1	22.414784	F	HH	2005-10-13	150	54	Black or Black British	Single	Study at college or university	No qualifications	n/a
+IXI202	1	20.167009	M	HH	2005-09-22	178	91	Asian or Asian British	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI204	1	74.63655	F	HH	2005-11-07	175	96	White	Married	Retired	No qualifications	n/a
+IXI205	1	45.379877	M	HH	2005-11-07	185	114	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI206	1	50.023272	F	HH	2005-11-07	155	90	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI207	1	40.361396	F	Guys	2005-10-28	177	60	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI208	1	33.995893	M	Guys	2005-10-28	183	111	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI209	1	32.643395	M	Guys	2005-10-24	195	98	Black or Black British	Married	Unemployed	Further education e.g. City & Guilds / NVQs	n/a
+IXI210	1	69.32512	M	Guys	2006-01-27	187	90	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI211	1	55.118412	M	HH	2005-10-06	186	94	code 2 (undocumented)	Single	Go out to full time employment	A-levels	n/a
+IXI212	1	59.129363	M	HH	2005-11-04	175	76	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI213	1	54.663929	F	HH	2005-11-04	170	90	White	Married	Other	O-levels, GCSEs, or CSEs	n/a
+IXI214	1	24.312115	F	HH	2005-11-03	160	60	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI216	1	73.015743	M	HH	2005-11-03	166	64	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI217	1	57.21013	F	HH	2005-11-03	168	68	White	Divorced or Separated	Other	O-levels, GCSEs, or CSEs	n/a
+IXI218	1	35.405886	F	HH	2006-01-26	175	85	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI219	1	n/a	F	Guys	2006-03-10	n/a	n/a	White	n/a	Go out to full time employment	n/a	HEIGHT,WEIGHT,MARITAL_ID,QUALIFICATION_ID,AGE
+IXI221	1	48.54757	M	HH	2005-10-20	170	84	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI222	1	36.060233	F	Guys	2005-11-04	163	64	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI223	1	63.247091	M	Guys	2005-11-18	183	86	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI224	1	36.919918	F	Guys	2005-11-11	168	89	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI225	1	47.014374	F	Guys	2005-11-25	157	52	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI226	1	41.902806	F	HH	2005-10-27	175	75	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI227	1	67.055441	F	Guys	2005-10-28	143	58	Chinese	Married	Retired	No qualifications	n/a
+IXI228	1	n/a	n/a	Guys	2005-11-11	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI229	1	72.350445	F	Guys	2006-07-10	168	73	White	Widowed	Retired	No qualifications	n/a
+IXI230	1	21.152635	F	IOP	2006-02-06	178	64	White	Single	Go out to full time employment	A-levels	n/a
+IXI231	1	58.992471	F	IOP	2006-02-07	171	92	White	n/a	n/a	n/a	n/a
+IXI232	1	28.810404	F	IOP	2006-02-27	n/a	n/a	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI233	1	26.754278	F	IOP	2006-02-13	170	70	Black or Black British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI234	1	33.13347	M	IOP	2006-02-06	170	65	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI236	1	25.713895	M	Guys	2005-11-04	170	70	Other	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI237	1	78.20397	F	Guys	2006-08-25	167	n/a	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI238	1	27.726215	F	IOP	2006-02-27	150	55	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI239	1	62.959617	F	HH	2006-08-17	160	91	White	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI240	1	39.036277	M	Guys	2005-11-25	173	73	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI241	1	30.006845	M	Guys	2005-11-25	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI242	1	31.370294	M	HH	2005-12-22	185	75	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI244	1	49.043121	F	Guys	2005-12-09	168	70	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI246	1	42.220397	F	Guys	2005-12-09	168	56	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI247	1	29.817933	M	Guys	2005-12-09	185	90	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI248	1	44.876112	F	HH	2006-03-16	170	56	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI249	1	68.268309	M	Guys	2006-09-15	167	70	Asian or Asian British	Married	Retired	University or Polytechnic degree	n/a
+IXI250	1	72.884326	F	Guys	2005-12-02	165	60	White	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI251	1	80.169747	F	Guys	2006-08-29	167	74	White	Widowed	Retired	No qualifications	n/a
+IXI252	1	70.55989	F	HH	2005-12-08	165	68	code 2 (undocumented)	Widowed	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI253	1	24.002738	F	HH	2005-12-08	168	57	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI254	1	25.582478	F	HH	2005-12-15	164	64	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI255	1	57.702943	F	HH	2006-02-16	158	45	Asian or Asian British	Divorced or Separated	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI256	1	27.383984	M	HH	2005-12-22	190	82	code 2 (undocumented)	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI257	1	69.546886	M	HH	2005-12-22	175	62	Asian or Asian British	Single	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI258	1	22.570842	F	HH	2006-01-12	165	60	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI259	1	59.78371	F	HH	2006-01-19	158	60	Asian or Asian British	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI260	1	60.906229	M	HH	2006-01-19	174	86	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI261	1	34.206708	M	HH	2005-12-15	177	85	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI262	1	20.928131	F	HH	2006-02-09	156	47	Chinese	Single	Study at college or university	A-levels	n/a
+IXI263	1	25.212868	F	HH	2005-12-01	173	61	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI264	1	44.881588	F	Guys	2006-01-20	165	70	Black or Black British	Single	Unemployed	Further education e.g. City & Guilds / NVQs	n/a
+IXI265	1	27.381246	F	Guys	2006-01-13	168	54	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI266	1	61.065024	F	Guys	2006-01-20	165	102	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI267	1	35.446954	M	HH	2006-01-12	182	70	Black or Black British	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI268	1	44.919918	F	Guys	2006-02-03	170	79	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI269	1	26.579055	F	Guys	2005-12-09	178	63	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI270	1	61.015743	F	Guys	2006-01-13	170	70	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI274	1	73.538672	F	HH	2006-08-17	163	75	Black or Black British	Widowed	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI275	1	24.175222	M	HH	2006-01-19	190	95	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI276	1	20.908966	M	HH	2006-02-02	170	68	Asian or Asian British	Single	Study at college or university	A-levels	n/a
+IXI277	1	61.336071	F	HH	2006-01-12	158	73	Black or Black British	Single	Retired	University or Polytechnic degree	n/a
+IXI278	1	20.213552	M	HH	2006-01-12	184	65	Chinese	Single	Study at college or university	A-levels	n/a
+IXI279	1	51.882272	M	Guys	2006-01-27	178	81	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI280	1	42.507871	F	HH	2006-02-09	160	60	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI282	1	40.008214	M	HH	2006-03-30	183	72	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI284	1	63.04449	F	HH	2006-08-31	158	67	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI285	1	40.813142	M	Guys	2006-01-27	176	69	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI286	1	54.277892	M	Guys	2006-02-03	180	97	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI287	1	44.991102	F	Guys	2006-02-10	152	56	Asian or Asian British	Married	Go out to full time employment	A-levels	n/a
+IXI288	1	78.584531	F	Guys	2006-02-17	163	65	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI289	1	60.84052	M	Guys	2006-02-10	178	95	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI290	1	45.752225	F	IOP	2006-02-13	170	68	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI291	1	30.688569	F	IOP	2006-02-06	165	65	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI292	1	23.731691	F	IOP	2006-02-13	155	60	code 2 (undocumented)	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI293	1	26.521561	F	IOP	2006-02-13	170	72	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI294	1	27.08282	F	IOP	2006-02-06	164	65	Other	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI295	1	50.902122	F	HH	2006-01-26	163	83	Asian or Asian British	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI296	1	63.972621	F	HH	2006-03-16	152	54	White	Widowed	Other	Further education e.g. City & Guilds / NVQs	n/a
+IXI297	1	51.290897	M	Guys	2006-03-03	178	92	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI298	1	43.460643	F	Guys	2006-02-10	168	55	White	Married	Go out to part time employment (<25hrs)	A-levels	n/a
+IXI299	1	53.407255	F	Guys	2006-03-10	160	60	Other	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI300	1	38.277892	M	Guys	2006-02-17	188	110	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI302	1	59.509925	M	HH	2006-02-16	165	75	Asian or Asian British	Married	Work for pay at home	University or Polytechnic degree	n/a
+IXI303	1	25.46475	M	IOP	2006-05-15	173	80	code 2 (undocumented)	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI304	1	46.590007	F	Guys	2006-02-10	165	52	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI305	1	62.505133	F	IOP	2006-02-07	157	60	White	Single	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI306	1	30.182067	F	IOP	2006-02-07	156	57	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI307	1	33.004791	M	IOP	2006-02-07	185	70	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI308	1	41.204654	M	Guys	2006-03-03	n/a	76	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI309	1	33.921971	M	IOP	2006-02-27	n/a	n/a	White	Single	Other	O-levels, GCSEs, or CSEs	n/a
+IXI310	1	62.017796	F	IOP	2006-02-28	150	55	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI311	1	61.587953	M	Guys	2006-03-03	175	64	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI312	1	59.148528	F	Guys	2006-03-03	163	67	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI313	1	65.853525	M	HH	2006-08-03	183	92	White	Cohabiting	Retired	University or Polytechnic degree	n/a
+IXI314	1	45.859001	M	IOP	2006-02-28	178	54	White	Cohabiting	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI315	1	25.451061	F	IOP	2006-02-28	173	70	White	Cohabiting	Study at college or university	A-levels	n/a
+IXI316	1	56.939083	M	HH	2006-02-09	175	85	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI317	1	67.794661	M	Guys	2006-03-10	170	73	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI318	1	54.485969	F	Guys	2006-03-10	185	93	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI319	1	59.471595	M	Guys	2006-03-17	180	67	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI320	1	29.738535	F	Guys	2006-03-17	160	62	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI321	1	54.743326	F	Guys	2006-03-17	168	53	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI322	1	28.476386	F	IOP	2006-03-06	165	60	White	n/a	n/a	n/a	n/a
+IXI324	1	60.079398	M	Guys	2006-04-10	165	70	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI325	1	52.665298	F	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI326	1	67.739904	F	Guys	2006-03-20	170	67	White	Married	Full-time housework	No qualifications	n/a
+IXI327	1	73.563313	M	HH	2006-03-23	170	73	White	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI328	1	n/a	n/a	HH	2006-08-17	155	70	White	Married	Retired	A-levels	SEX_ID,AGE
+IXI329	1	55.655031	M	HH	2006-02-23	168	94	Asian or Asian British	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI330	1	44.481862	M	Guys	2006-02-17	172	72	Chinese	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI331	1	23.488022	M	IOP	2006-03-06	170	59	Asian or Asian British	n/a	n/a	n/a	n/a
+IXI332	1	42.370979	F	IOP	2006-09-28	160	58	White	Cohabiting	Go out to full time employment	A-levels	n/a
+IXI333	1	n/a	n/a	IOP	2006-03-13	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI334	1	69.289528	F	HH	2006-02-23	168	61	White	Married	Retired	University or Polytechnic degree	n/a
+IXI335	1	69.275838	M	HH	2006-02-23	180	100	White	Married	Retired	University or Polytechnic degree	n/a
+IXI336	1	67.772758	M	Guys	2006-03-20	183	89	White	Single	Retired	University or Polytechnic degree	n/a
+IXI337	1	n/a	n/a	IOP	2006-03-13	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI338	1	61.486653	F	HH	2006-03-16	164	67	Other	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI340	1	n/a	n/a	IOP	2006-03-13	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI341	1	n/a	M	Guys	2006-03-20	163	82	White	Married	Retired	n/a	n/a
+IXI342	1	48.678987	M	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI344	1	62.094456	M	Guys	2006-03-20	160	76	White	Cohabiting	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI345	1	n/a	n/a	IOP	2006-03-30	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI347	1	n/a	n/a	IOP	2006-03-30	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI348	1	38.587269	F	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI350	1	62.680356	M	Guys	2006-04-03	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI351	1	56.919918	F	Guys	2006-04-07	166	74	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI353	1	52.689938	F	HH	2006-03-23	172	90	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI354	1	45.615332	M	HH	2006-03-30	170	70	White	Single	Other	No qualifications	n/a
+IXI356	1	64.104038	F	HH	2006-04-06	173	73	White	Married	Retired	A-levels	n/a
+IXI357	1	63.540041	F	HH	2006-04-20	155	58	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI358	1	62.061602	F	Guys	2006-04-21	173	116	White	Married	Retired	No qualifications	n/a
+IXI359	1	62.061602	F	Guys	2006-04-21	164	80	White	Divorced or Separated	Retired	No qualifications	n/a
+IXI360	1	54.193018	F	Guys	2006-04-07	165	64	White	Cohabiting	Unemployed	Further education e.g. City & Guilds / NVQs	n/a
+IXI361	1	54.193018	F	Guys	2006-04-07	165	60	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI362	1	41.09514	F	HH	2006-04-06	160	66	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI363	1	60.919918	F	HH	2006-04-06	163	63	Other	Widowed	Full-time housework	University or Polytechnic degree	n/a
+IXI364	1	67.162218	F	Guys	2006-04-18	n/a	72	White	Single	Retired	No qualifications	n/a
+IXI365	1	66.527036	F	Guys	2006-04-10	157	75	White	Divorced or Separated	Retired	No qualifications	n/a
+IXI367	1	54.214921	F	Guys	2006-04-21	170	73	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI368	1	54.214921	F	Guys	2006-04-21	163	n/a	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI369	1	60.596851	F	Guys	2006-04-10	175	112	White	Married	Other	O-levels, GCSEs, or CSEs	n/a
+IXI370	1	60.596851	F	Guys	2006-04-10	173	127	White	Single	Other	University or Polytechnic degree	n/a
+IXI371	1	26.398357	F	IOP	2006-04-20	n/a	n/a	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI372	1	29.256674	M	IOP	2006-05-08	190	82	White	Married	Go out to full time employment	A-levels	n/a
+IXI373	1	58.792608	F	IOP	2006-05-03	165	69	Asian or Asian British	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI375	1	41.059548	F	Guys	2006-04-25	187	96	code 2 (undocumented)	n/a	n/a	n/a	n/a
+IXI376	1	72.594114	F	Guys	2006-05-08	160	n/a	White	Married	Retired	University or Polytechnic degree	n/a
+IXI377	1	72.594114	F	Guys	2006-05-08	168	66	White	Single	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI378	1	38.839151	F	IOP	2006-05-09	161	76	code 2 (undocumented)	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI379	1	66.907598	F	Guys	2006-05-05	168	78	White	Married	Retired	A-levels	n/a
+IXI380	1	66.907598	F	Guys	2006-05-05	157	56	White	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI381	1	59.671458	F	Guys	2006-08-11	160	75	White	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI382	1	65.908282	F	IOP	2006-09-13	n/a	76	White	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI383	1	74.01232	F	HH	2006-04-27	158	70	White	Married	Retired	No qualifications	n/a
+IXI384	1	74.01232	F	HH	2006-04-27	159	53	White	Widowed	Retired	No qualifications	n/a
+IXI385	1	64.646133	F	HH	2006-04-20	170	73	White	Widowed	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI386	1	52.301164	F	HH	2006-04-20	173	60	White	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI387	1	46.431211	F	HH	2006-04-27	n/a	60	White	Cohabiting	Other	O-levels, GCSEs, or CSEs	n/a
+IXI388	1	33.34976	M	IOP	2006-05-22	185	88	Chinese	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI389	1	58.368241	F	Guys	2006-04-28	168	73	White	Widowed	Go out to full time employment	No qualifications	n/a
+IXI390	1	41.889117	F	Guys	2006-04-28	173	98	White	Single	Study at college or university	Further education e.g. City & Guilds / NVQs	n/a
+IXI391	1	52.531143	M	Guys	2006-04-28	168	70	White	Single	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI392	1	62.455852	F	Guys	2006-09-04	n/a	n/a	White	Married	Retired	Further education e.g. City & Guilds / NVQs	HEIGHT,WEIGHT
+IXI393	1	60.1013	F	Guys	2006-05-05	175	90	White	Married	Work for pay at home	Further education e.g. City & Guilds / NVQs	n/a
+IXI394	1	53.749487	M	Guys	2006-05-08	184	80	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI395	1	45.03217	M	IOP	2006-06-06	192	92	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI396	1	53.566051	F	HH	2006-05-04	158	72	White	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI397	1	51.657769	F	Guys	2006-06-09	170	115	White	Married	Full-time housework	n/a	n/a
+IXI398	1	51.657769	F	Guys	2006-06-09	168	123	White	Married	Go out to part time employment (<25hrs)	n/a	n/a
+IXI399	1	73.544148	F	Guys	2006-06-12	165	70	White	Married	Retired	A-levels	n/a
+IXI400	1	55.581109	F	Guys	2006-07-03	163	51	White	Married	Go out to part time employment (<25hrs)	No qualifications	n/a
+IXI401	1	55.581109	F	Guys	2006-07-03	165	76	White	Married	Go out to full time employment	No qualifications	n/a
+IXI402	1	53.535934	F	Guys	2006-06-12	158	64	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI403	1	53.535934	F	Guys	2006-06-12	158	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI404	1	62.737851	M	Guys	2006-06-08	173	70	Asian or Asian British	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI405	1	58.568104	F	Guys	2006-06-08	163	58	White	Cohabiting	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI406	1	58.283368	F	Guys	2006-06-16	168	60	White	Married	Full-time housework	Further education e.g. City & Guilds / NVQs	n/a
+IXI407	1	58.28063	F	Guys	2006-06-16	165	62	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI408	1	52.128679	F	Guys	2006-06-16	170	73	White	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI409	1	70.951403	F	Guys	2006-06-17	n/a	64	White	Single	Retired	No qualifications	n/a
+IXI410	1	53.412731	F	Guys	2006-06-17	157	70	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI411	1	53.412731	F	Guys	2006-06-17	163	64	White	Divorced or Separated	Go out to full time employment	A-levels	n/a
+IXI412	1	58.568104	F	Guys	2006-06-08	157	55	White	Married	Full-time housework	Further education e.g. City & Guilds / NVQs	n/a
+IXI413	1	59.835729	F	Guys	2006-06-17	158	56	White	Divorced or Separated	Go out to full time employment	A-levels	n/a
+IXI414	1	59.742642	F	Guys	2006-06-17	165	60	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI415	1	72.325804	F	Guys	2006-05-05	157	55	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI416	1	72.145106	F	Guys	2006-08-25	176	n/a	White	Widowed	Retired	University or Polytechnic degree	WEIGHT
+IXI417	1	59.882272	M	Guys	2006-05-08	178	n/a	White	Single	Go out to full time employment	No qualifications	n/a
+IXI418	1	59.742642	F	Guys	2006-06-17	165	64	White	Married	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI419	1	73.182752	F	Guys	2006-08-14	154	62	White	Married	Retired	University or Polytechnic degree	n/a
+IXI420	1	73.182752	F	Guys	2006-08-14	154	58	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI422	1	37.097878	M	Guys	2006-09-11	170	71	White	Single	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI423	1	39.022587	M	IOP	2006-05-23	183	60	White	Single	Other	University or Polytechnic degree	n/a
+IXI424	1	46.297057	M	IOP	2006-07-06	168	70	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI425	1	19.980835	F	IOP	2006-06-27	168	n/a	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI426	1	23.110198	F	IOP	2006-06-14	183	70	White	Single	Study at college or university	University or Polytechnic degree	n/a
+IXI427	1	34.283368	M	IOP	2006-06-22	188	88	White	Cohabiting	Work for pay at home	University or Polytechnic degree	n/a
+IXI428	1	55.540041	F	Guys	2006-07-24	163	75	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI429	1	55.540041	F	Guys	2006-07-24	155	61	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI430	1	72.005476	F	IOP	2006-07-04	166	70	White	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI431	1	58.781656	F	Guys	2006-07-17	163	58	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI432	1	57.738535	M	Guys	2006-07-17	186	100	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI433	1	73.900068	F	IOP	2006-06-29	168	66	White	Married	Retired	University or Polytechnic degree	n/a
+IXI434	1	67.241615	F	IOP	2006-06-14	160	60	White	Single	Retired	University or Polytechnic degree	n/a
+IXI435	1	n/a	M	IOP	2006-07-10	165	70	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI436	1	28.347707	M	HH	2006-05-25	190	73	White	Single	Go out to full time employment	No qualifications	n/a
+IXI437	1	55.597536	F	HH	2006-05-25	178	84	White	Married	Go out to full time employment	No qualifications	n/a
+IXI438	1	63.676934	M	HH	2006-05-25	180	72	Asian or Asian British	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI439	1	43.917864	F	HH	2006-05-04	158	67	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI440	1	48.1013	M	HH	2006-05-18	165	78	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI441	1	48.1013	F	HH	2006-05-25	159	69	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI442	1	61.366188	M	IOP	2006-07-13	185	84	White	Married	Retired	University or Polytechnic degree	n/a
+IXI443	1	69.13347	M	HH	2006-07-27	173	88	White	Married	Other	Further education e.g. City & Guilds / NVQs	n/a
+IXI444	1	58.376454	F	HH	2006-08-10	159	55	White	Married	Retired	University or Polytechnic degree	n/a
+IXI445	1	60.027379	M	HH	2006-08-10	170	75	White	Married	Retired	University or Polytechnic degree	n/a
+IXI446	1	60.109514	F	HH	2006-08-24	160	53	White	Divorced or Separated	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI447	1	72.826831	F	Guys	2006-07-03	153	57	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI448	1	79.4141	M	HH	2006-09-14	165	64	White	Divorced or Separated	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI449	1	46.896646	M	Guys	2006-10-27	175	90	White	Married	Go out to full time employment	No qualifications	n/a
+IXI450	1	68.50924	M	Guys	2006-11-10	170	64	Asian or Asian British	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI451	1	41.130732	F	HH	2006-07-27	160	60	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI452	1	63.403149	F	HH	2006-07-27	157	76	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI453	1	63.416838	M	HH	2006-07-27	185	98	White	Married	Work for pay at home	O-levels, GCSEs, or CSEs	n/a
+IXI454	1	32.577687	M	Guys	2006-10-30	180	100	White	Single	Work for pay at home	University or Polytechnic degree	n/a
+IXI455	1	68.481862	F	Guys	2006-07-10	164	63	White	Married	Retired	University or Polytechnic degree	n/a
+IXI456	1	70.247775	F	Guys	2006-08-11	165	86	White	Cohabiting	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI457	1	n/a	n/a	Guys	2006-07-17	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI458	1	70.710472	M	Guys	2006-07-21	189	n/a	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI459	1	62.425736	F	Guys	2006-07-21	156	60	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI460	1	60.895277	F	Guys	2006-07-24	168	70	Other	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI461	1	60.895277	F	Guys	2006-07-24	160	68	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI462	1	75.077344	F	IOP	2006-07-17	175	n/a	White	Widowed	Retired	A-levels	n/a
+IXI463	1	70.143737	F	IOP	2006-07-20	165	76	White	Single	Retired	A-levels	n/a
+IXI464	1	86.31896	F	IOP	2006-07-26	n/a	n/a	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI465	1	69.281314	M	HH	2006-07-06	170	70	White	Widowed	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI467	1	66.948665	F	Guys	2006-07-14	172	70	White	Divorced or Separated	Retired	No qualifications	n/a
+IXI468	1	67.698836	M	Guys	2006-07-17	180	70	White	Married	Retired	University or Polytechnic degree	n/a
+IXI469	1	32.837782	M	IOP	2006-10-19	175	73	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI470	1	35.983573	M	IOP	2006-07-31	187	90	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI473	1	68.134155	M	IOP	2006-08-10	162	59	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI474	1	34.01232	F	IOP	2006-08-15	152	60	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI475	1	32.703628	F	IOP	2006-08-17	170	95	White	Cohabiting	Go out to full time employment	A-levels	n/a
+IXI476	1	78.35729	F	IOP	2006-08-21	154	58	White	Widowed	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI477	1	46.425736	F	IOP	2006-08-23	157	62	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI478	1	49.015743	M	IOP	2006-08-31	176	72	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI479	1	60.016427	F	Guys	2006-08-18	152	58	White	Married	Go out to full time employment	No qualifications	n/a
+IXI480	1	60.016427	F	Guys	2006-08-18	154	62	White	Divorced or Separated	Retired	No qualifications	n/a
+IXI481	1	65.330595	M	HH	2006-07-06	173	104	Black or Black British	Married	Go out to part time employment (<25hrs)	No qualifications	n/a
+IXI482	1	72.090349	F	HH	2006-07-13	168	84	White	Single	Retired	University or Polytechnic degree	n/a
+IXI483	1	63.392197	F	HH	2006-07-13	168	75	White	Married	Retired	University or Polytechnic degree	n/a
+IXI484	1	66.373717	M	HH	2006-07-13	170	72	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI485	1	68.851472	F	HH	2006-07-13	165	88	White	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI486	1	63.835729	F	Guys	2006-07-28	165	60	White	Married	Work for pay at home	University or Polytechnic degree	n/a
+IXI487	1	66.275154	M	Guys	2006-08-21	186	72	White	Married	Retired	University or Polytechnic degree	n/a
+IXI488	1	69.067762	F	Guys	2006-08-01	161	54	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI489	1	69.067762	F	Guys	2006-08-01	155	50	White	Married	Retired	University or Polytechnic degree	n/a
+IXI490	1	70.140999	F	Guys	2006-08-04	157	64	White	Cohabiting	Retired	No qualifications	n/a
+IXI491	1	75.972621	F	Guys	2006-08-18	165	n/a	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI492	1	69.289528	F	Guys	2006-08-11	157	61	White	Single	Retired	University or Polytechnic degree	n/a
+IXI493	1	67.767283	M	Guys	2006-07-31	165	63	White	Married	Retired	No qualifications	n/a
+IXI494	1	66.332649	M	Guys	2006-07-31	173	66	White	Divorced or Separated	Retired	A-levels	n/a
+IXI495	1	60.867899	F	Guys	2006-07-31	163	80	White	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI496	1	62.803559	F	Guys	2006-07-31	155	56	White	Single	Retired	A-levels	n/a
+IXI497	1	72.306639	M	Guys	2006-07-28	175	90	White	Married	Retired	No qualifications	n/a
+IXI498	1	76.780287	F	Guys	2006-08-25	152	70	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI499	1	82.187543	M	Guys	2006-07-28	168	62	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI500	1	63.181383	M	Guys	2006-08-04	186	83	White	Married	Retired	A-levels	n/a
+IXI501	1	67.112936	F	Guys	2006-08-04	161	56	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI502	1	63.876797	F	Guys	2006-08-07	165	65	White	Married	Retired	University or Polytechnic degree	n/a
+IXI503	1	65.09514	M	Guys	2006-08-07	180	79	White	Married	Retired	University or Polytechnic degree	n/a
+IXI504	1	68.150582	M	Guys	2006-08-11	172	n/a	White	Divorced or Separated	Retired	University or Polytechnic degree	n/a
+IXI505	1	62.245038	F	Guys	2006-08-14	152	n/a	White	Divorced or Separated	Go out to part time employment (<25hrs)	No qualifications	n/a
+IXI506	1	69.689254	F	Guys	2006-08-21	172	74	White	Married	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI507	1	71.663244	M	Guys	2006-08-21	180	87	White	Married	Retired	No qualifications	n/a
+IXI508	1	60.930869	F	HH	2006-08-10	160	54	White	Widowed	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI510	1	32.424367	F	IOP	2006-09-14	n/a	62	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI511	1	64.577687	F	HH	2006-08-03	158	52	Asian or Asian British	Single	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI512	1	64.750171	M	Guys	2006-08-29	177	76	White	Married	Retired	University or Polytechnic degree	n/a
+IXI515	1	62.08898	F	HH	2006-09-07	160	73	White	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI516	1	60.410678	F	HH	2006-08-17	170	86	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI517	1	36.164271	M	IOP	2006-09-07	177	84	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI518	1	75.827515	F	HH	2006-08-03	163	63	White	Married	Retired	No qualifications	n/a
+IXI519	1	57.505818	M	HH	2006-08-03	180	72	White	Divorced or Separated	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI521	1	70.836413	F	HH	2006-08-31	163	73	White	Widowed	Retired	No qualifications	n/a
+IXI522	1	28.933607	F	HH	2006-10-05	168	62	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI523	1	63.419576	F	Guys	2006-08-29	160	67	White	Married	Retired	University or Polytechnic degree	n/a
+IXI524	1	33.516769	F	HH	2006-09-21	170	65	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI525	1	41.519507	M	HH	2006-09-21	185	92	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI526	1	54.609172	F	HH	2006-09-14	163	95	Black or Black British	Single	Go out to full time employment	No qualifications	n/a
+IXI527	1	53.327858	M	HH	2006-09-07	183	103	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI528	1	40.528405	M	Guys	2006-09-18	172	80	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI531	1	75.937029	M	Guys	2006-08-29	177	90	White	Married	Retired	University or Polytechnic degree	n/a
+IXI532	1	36.553046	M	IOP	2006-09-21	203	78	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI533	1	73.604381	M	Guys	2006-09-04	175	80	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI534	1	69.609856	M	Guys	2006-09-01	175	88	White	Married	Go out to part time employment (<25hrs)	No qualifications	n/a
+IXI535	1	65.259411	F	Guys	2006-09-01	157	57	White	Divorced or Separated	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI536	1	58.830938	F	Guys	2006-08-31	167	63	White	Widowed	Go out to full time employment	University or Polytechnic degree	n/a
+IXI537	1	67.455168	F	HH	2006-09-07	170	73	White	Married	Retired	University or Polytechnic degree	n/a
+IXI538	1	81.941136	F	HH	2006-09-21	152	54	White	Single	Retired	University or Polytechnic degree	n/a
+IXI539	1	78.072553	M	Guys	2006-09-08	172	70	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI541	1	36.421629	F	IOP	2006-09-25	165	58	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI542	1	44.383299	F	IOP	2006-09-27	154	64	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI543	1	70.518823	M	IOP	2006-09-04	175	78	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI544	1	58.042437	F	HH	2006-09-14	170	60	White	Single	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI546	1	60.073922	F	HH	2006-09-28	165	60	White	Married	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI547	1	33.831622	M	IOP	2006-10-04	170	70	code 2 (undocumented)	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI548	1	66.329911	F	IOP	2006-10-09	153	50	White	Married	Retired	University or Polytechnic degree	n/a
+IXI549	1	25.01848	F	Guys	2006-08-24	162	54	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI550	1	59.906913	F	Guys	2006-09-08	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI551	1	70.502396	F	Guys	2006-09-04	160	60	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI552	1	64.66256	F	Guys	2006-09-04	157	55	White	Widowed	Retired	No qualifications	n/a
+IXI553	1	28.243669	M	IOP	2006-09-20	180	n/a	code 2 (undocumented)	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI554	1	70.105407	M	Guys	2006-09-08	170	87	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI555	1	65.667351	F	Guys	2006-09-18	n/a	79	White	Single	Retired	No qualifications	n/a
+IXI556	1	55.635866	M	HH	2006-10-05	186	88	White	Single	Unemployed	O-levels, GCSEs, or CSEs	n/a
+IXI558	1	66.858316	F	Guys	2006-10-06	162	55	White	Widowed	Other	University or Polytechnic degree	n/a
+IXI559	1	67.819302	F	HH	2006-09-14	150	54	Asian or Asian British	Single	Retired	University or Polytechnic degree	n/a
+IXI560	1	63.868583	M	Guys	2006-09-11	n/a	80	White	Single	Retired	A-levels	n/a
+IXI561	1	31.578371	F	IOP	2006-10-17	157	59	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI562	1	42.78987	F	Guys	2006-10-09	157	55	White	Divorced or Separated	Work for pay at home	University or Polytechnic degree	n/a
+IXI563	1	28.372348	F	IOP	2006-10-24	164	60	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI565	1	63.816564	M	HH	2006-10-12	195	101	White	Cohabiting	Retired	No qualifications	n/a
+IXI566	1	42.970568	F	HH	2006-10-12	155	95	White	Married	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI567	1	28.561259	F	HH	2006-10-12	158	50	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI568	1	33.686516	F	HH	2006-10-26	165	58	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI569	1	56.963723	M	Guys	2006-11-20	177	82	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI571	1	38.885695	F	IOP	2006-11-06	163	50	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI572	1	41.94935	F	HH	2006-10-26	170	57	code 2 (undocumented)	Divorced or Separated	Go out to full time employment	University or Polytechnic degree	n/a
+IXI573	1	35.455168	F	IOP	2006-11-09	162	47	White	Cohabiting	Full-time housework	University or Polytechnic degree	n/a
+IXI574	1	50.57358	F	IOP	2006-10-30	157	95	White	Single	Unemployed	O-levels, GCSEs, or CSEs	n/a
+IXI575	1	57.754962	F	HH	2006-11-02	165	72	Black or Black British	Cohabiting	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI576	1	67.331964	F	Guys	2006-10-02	162	58	White	Divorced or Separated	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI577	1	64.186174	F	HH	2006-11-02	170	67	White	Married	Go out to full time employment	No qualifications	n/a
+IXI578	1	57.864476	M	Guys	2006-10-06	177	100	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI579	1	41.215606	M	Guys	2006-10-06	172	75	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI580	1	24.314853	M	IOP	2006-11-02	184	64	White	Cohabiting	Study at college or university	University or Polytechnic degree	n/a
+IXI582	1	29.771389	M	Guys	2006-10-09	190	80	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI584	1	41.327858	M	Guys	2006-10-16	182	96	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI585	1	28.120465	M	Guys	2006-10-16	183	78	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI586	1	34.365503	M	HH	2006-10-05	175	78	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI587	1	33.593429	M	Guys	2006-10-09	185	85	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI588	1	45.295003	M	IOP	2006-11-14	177	70	White	Single	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI589	1	n/a	n/a	Guys	2006-10-20	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI591	1	59.893224	F	Guys	2006-10-30	167	54	White	Married	Retired	A-levels	n/a
+IXI592	1	48.079398	M	Guys	2006-10-30	181	65	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI593	1	55.219713	F	Guys	2006-11-27	167	80	White	Single	Other	Further education e.g. City & Guilds / NVQs	n/a
+IXI594	1	61.995893	M	Guys	2006-11-03	176	99	White	Single	Retired	University or Polytechnic degree	n/a
+IXI595	1	49.596167	F	IOP	2006-11-16	172	66	White	Married	Work for pay at home	University or Polytechnic degree	n/a
+IXI596	1	29.664613	M	IOP	2006-11-21	182	80	Asian or Asian British	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI597	1	43.077344	F	IOP	2006-12-04	149	52	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI598	1	52.887064	M	HH	2006-10-26	170	105	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI599	1	39.383984	M	HH	2006-11-02	183	90	White	Divorced or Separated	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI600	1	38.959617	M	HH	2006-11-02	175	76	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI601	1	35.5154	M	HH	2006-11-09	173	79	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI603	1	66.015058	F	HH	2006-11-09	163	60	White	Single	Go out to part time employment (<25hrs)	O-levels, GCSEs, or CSEs	n/a
+IXI605	1	70.332649	F	HH	2006-10-25	170	76	White	Divorced or Separated	Retired	O-levels, GCSEs, or CSEs	n/a
+IXI606	1	60.539357	M	HH	2006-10-25	178	86	White	Single	Other	University or Polytechnic degree	n/a
+IXI607	1	83.811088	M	Guys	2006-11-06	n/a	n/a	White	Widowed	Retired	No qualifications	n/a
+IXI608	1	52.498289	M	HH	2006-10-25	183	86	code 2 (undocumented)	Divorced or Separated	Go out to part time employment (<25hrs)	University or Polytechnic degree	n/a
+IXI609	1	28.996578	M	HH	2006-10-25	184	58	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI610	1	56.676249	M	HH	2006-11-01	180	75	White	Married	Retired	Further education e.g. City & Guilds / NVQs	n/a
+IXI611	1	28.870637	M	HH	2006-11-01	175	76	White	Single	Go out to full time employment	O-levels, GCSEs, or CSEs	n/a
+IXI612	1	33.916496	M	HH	2006-11-08	180	80	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI613	1	25.585216	M	HH	2006-11-16	177	84	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI614	1	26.9295	F	HH	2006-11-16	163	62	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI616	1	55.088296	M	Guys	2006-11-06	162	70	White	Married	Go out to full time employment	A-levels	n/a
+IXI617	1	39.175907	M	Guys	2006-11-06	175	100	White	Married	Go out to full time employment	A-levels	n/a
+IXI618	1	37.94935	M	Guys	2006-11-06	173	105	White	Cohabiting	Go out to full time employment	A-levels	n/a
+IXI619	1	24.876112	M	Guys	2006-11-17	182	70	White	Cohabiting	Study at college or university	O-levels, GCSEs, or CSEs	n/a
+IXI621	1	31.616701	M	Guys	2006-11-20	162	64	Asian or Asian British	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI622	1	59.685147	M	Guys	2006-11-20	172	85	White	Married	Work for pay at home	University or Polytechnic degree	n/a
+IXI623	1	n/a	M	Guys	2006-09-25	180	80	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI625	1	47.069131	M	Guys	2006-11-17	167	75	White	Married	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI626	1	64.268309	M	Guys	2006-11-10	177	76	Black or Black British	Single	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI627	1	68.4846	M	Guys	2006-11-20	180	72	White	Single	Retired	No qualifications	n/a
+IXI629	1	59.263518	M	Guys	2006-11-17	172	84	White	Widowed	Go out to full time employment	Further education e.g. City & Guilds / NVQs	n/a
+IXI630	1	54.685832	M	Guys	2006-11-27	170	58	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI631	1	41.300479	M	HH	2006-11-01	185	89	White	Cohabiting	Go out to full time employment	A-levels	n/a
+IXI632	1	56.438056	M	HH	2006-11-01	174	95	Asian or Asian British	Married	Go out to part time employment (<25hrs)	Further education e.g. City & Guilds / NVQs	n/a
+IXI633	1	36.706366	M	HH	2006-11-08	173	57	code 2 (undocumented)	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI634	1	34.056126	M	HH	2006-11-08	175	68	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI635	1	25.530459	M	HH	2006-11-08	185	92	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI636	1	43.156742	M	HH	2006-11-16	173	87	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI637	1	n/a	n/a	HH	2006-11-23	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI638	1	n/a	n/a	HH	2006-11-23	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI639	1	86.198494	M	Guys	2006-11-03	162	75	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI640	1	80.80219	M	Guys	2006-11-24	167	76	White	Married	Retired	No qualifications	n/a
+IXI641	1	68.123203	M	Guys	2006-11-24	177	85	White	Widowed	Retired	University or Polytechnic degree	n/a
+IXI642	1	57.067762	M	Guys	2006-11-24	190	106	White	Married	Go out to full time employment	University or Polytechnic degree	n/a
+IXI643	1	n/a	n/a	HH	2006-11-23	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI644	1	56.873374	M	Guys	2006-12-04	182	110	White	Married	Unemployed	O-levels, GCSEs, or CSEs	n/a
+IXI646	1	71.206023	F	HH	2006-11-01	165	60	Other	Widowed	Retired	A-levels	n/a
+IXI648	1	47.723477	M	Guys	2006-11-27	193	120	White	Single	Unemployed	Further education e.g. City & Guilds / NVQs	n/a
+IXI651	1	50.395619	M	Guys	2006-12-01	175	61	Asian or Asian British	Married	Other	O-levels, GCSEs, or CSEs	n/a
+IXI652	1	42.989733	M	Guys	2006-12-01	163	80	White	Single	Go out to full time employment	University or Polytechnic degree	n/a
+IXI653	1	46.220397	M	Guys	2006-12-04	172	100	White	Cohabiting	Go out to full time employment	University or Polytechnic degree	n/a
+IXI657	1	n/a	n/a	HH	2006-11-30	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI659	1	n/a	n/a	HH	2006-11-30	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI661	1	n/a	n/a	HH	2006-11-23	n/a	n/a	n/a	n/a	n/a	n/a	n/a
+IXI662	1	41.741273	M	Guys	2006-12-04	182	98	White	Divorced or Separated	Go out to full time employment	A-levels	n/a

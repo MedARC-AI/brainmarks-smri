@@ -158,7 +158,7 @@ UPENN-GBM-00140	baseline	47.22	M	UPenn	0	664	1	Deceased	wildtype	unmethylated	n/
 UPENN-GBM-00140	followup	48.37	M	UPenn	420	234	1	Deceased	wildtype	unmethylated	n/a	n/a	5
 UPENN-GBM-00141	baseline	78.41	M	UPenn	0	528	1	Deceased	wildtype	unmethylated	n/a	False	n/a
 UPENN-GBM-00141	followup	78.95	M	UPenn	196	321	1	Deceased	wildtype	n/a	n/a	n/a	4
-UPENN-GBM-00142	baseline	67.68	M	UPenn	0	n/a	n/a	Deceased - uncertain date of death	wildtype	n/a	n/a	False	n/a
+UPENN-GBM-00142	baseline	67.68	M	UPenn	0	142	0	Deceased - uncertain date of death	wildtype	n/a	n/a	False	n/a
 UPENN-GBM-00143	baseline	40.04	M	UPenn	0	411	1	Deceased	wildtype	unmethylated	n/a	True	n/a
 UPENN-GBM-00144	baseline	53.07	F	UPenn	0	270	1	Deceased	wildtype	unmethylated	n/a	True	n/a
 UPENN-GBM-00145	baseline	65.81	F	UPenn	0	351	1	Deceased	wildtype	unmethylated	n/a	True	n/a
@@ -327,7 +327,7 @@ UPENN-GBM-00296	baseline	72.15	M	UPenn	0	326	1	Deceased	wildtype	n/a	n/a	False	n
 UPENN-GBM-00297	baseline	49.03	M	UPenn	0	466	1	Deceased	n/a	n/a	n/a	False	n/a
 UPENN-GBM-00298	baseline	71.07	M	UPenn	0	186	1	Deceased	n/a	n/a	n/a	False	n/a
 UPENN-GBM-00299	baseline	43.9	M	UPenn	0	148	1	Deceased	n/a	n/a	n/a	True	n/a
-UPENN-GBM-00300	baseline	82.88	F	UPenn	0	n/a	n/a	Deceased - uncertain date of death	wildtype	n/a	n/a	False	n/a
+UPENN-GBM-00300	baseline	82.88	F	UPenn	0	141	0	Deceased - uncertain date of death	wildtype	n/a	n/a	False	n/a
 UPENN-GBM-00301	baseline	58.18	M	UPenn	0	653	1	Deceased	wildtype	unmethylated	n/a	True	n/a
 UPENN-GBM-00301	followup	59.2	M	UPenn	370	282	1	Deceased	wildtype	n/a	n/a	n/a	6
 UPENN-GBM-00302	baseline	59.99	M	UPenn	0	1451	1	Deceased	wildtype	methylated	n/a	True	n/a
@@ -463,7 +463,7 @@ UPENN-GBM-00420	baseline	63.36	F	UPenn	0	1941	1	Deceased	wildtype	methylated	n/a
 UPENN-GBM-00421	baseline	60.7	M	UPenn	0	765	1	Deceased	wildtype	unmethylated	n/a	False	n/a
 UPENN-GBM-00422	baseline	67.7	M	UPenn	0	2792	0	Alive	wildtype	n/a	n/a	True	n/a
 UPENN-GBM-00423	baseline	77.45	F	UPenn	0	303	1	Deceased	wildtype	methylated	n/a	True	n/a
-UPENN-GBM-00424	baseline	80.46	M	UPenn	0	n/a	n/a	Deceased - uncertain date of death	wildtype	methylated	n/a	False	n/a
+UPENN-GBM-00424	baseline	80.46	M	UPenn	0	24	0	Deceased - uncertain date of death	wildtype	methylated	n/a	False	n/a
 UPENN-GBM-00425	baseline	74.89	M	UPenn	0	2930	0	Alive	wildtype	methylated	n/a	False	n/a
 UPENN-GBM-00426	baseline	55.17	M	UPenn	0	820	1	Deceased	wildtype	unmethylated	90	True	n/a
 UPENN-GBM-00427	baseline	73.15	F	UPenn	0	136	1	Deceased	wildtype	n/a	n/a	False	n/a

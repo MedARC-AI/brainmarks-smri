@@ -50,7 +50,7 @@
     }
   },
   "bmi": {
-    "Description": "Body mass index.",
+    "Description": "Body mass index, as in the source (a few implausible values, e.g. 115.6 and 12.2).",
     "Source": "bmi"
   },
   "nihss": {

@@ -95,8 +95,8 @@
     "Source": "full2_iq"
   },
   "qc_anatomical": {
-    "Description": "Quality control of the (first) anatomical scan.",
-    "Source": "qc_anatomical_1 (WashU: qc_s1_anat)",
+    "Description": "Quality control of the (first) anatomical scan. WashU codes (1/0) decoded with the phenotypic key.",
+    "Source": "qc_anatomical_1 (WashU: qc_s1_anat, else qc_s2_anat)",
     "Levels": {
       "Pass": "",
       "Questionable": ""

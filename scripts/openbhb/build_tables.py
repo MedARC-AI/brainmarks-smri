@@ -8,8 +8,9 @@ See `brain_datasets.tables` for the table layout.
   T1w each in {train,val}/rawdata/. participant_id gets the BIDS `sub-` prefix.
 - `site` and `study` are the dataset's integer codes (62 sites, 10 cohort studies).
 - QC metrics from qc.tsv are merged in.
-- Official split (participants.tsv `split`): train / internal_test / external_test (the
-  external test sites are absent from train; the private test set is not public). Both test
+- Official split (participants.tsv `split`): train / internal_test / external_test (the private
+  test set is not public). The external test is defined by site x acquisition setting: 5 of its
+  6 sites are absent from train, but site 36 is also in train with another acquisition setting. Both test
   sets are our `test` (`official_split` tells them apart). The official train set is split
   80/20 into train and val, stratified by site, as in Neuro-JEPA.
 - Complete: T1w and age.

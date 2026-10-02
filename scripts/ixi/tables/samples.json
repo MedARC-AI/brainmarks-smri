@@ -21,20 +21,20 @@
   },
   "study_date": {
     "Description": "Scan date.",
-    "Source": "STUDY_DATE"
+    "Source": "STUDY_DATE (Table), else the Study Date sheet"
   },
   "height_cm": {
-    "Description": "Height.",
+    "Description": "Height. Values outside 120-220 cm (entry errors) are n/a.",
     "Source": "HEIGHT",
     "Units": "cm"
   },
   "weight_kg": {
-    "Description": "Weight.",
+    "Description": "Weight. Values outside 30-250 kg (entry errors) are n/a.",
     "Source": "WEIGHT",
     "Units": "kg"
   },
   "ethnicity": {
-    "Description": "Ethnicity (decoded with the Ethnicity sheet).",
+    "Description": "Ethnicity (decoded with the Ethnicity sheet). Code 2 is used but not in the sheet: 'code 2 (undocumented)'.",
     "Source": "ETHNIC_ID"
   },
   "marital_status": {
@@ -50,6 +50,7 @@
     "Source": "QUALIFICATION_ID"
   },
   "demographics_conflict": {
-    "Description": "IXI.xls has two conflicting rows for this ID; the conflicting age/sex are set to n/a."
+    "Description": "IXI.xls has duplicate rows for this ID that disagree on these fields (comma-separated); they are set to n/a. n/a = no conflict.",
+    "Source": "IXI.xls Table"
   }
 }
