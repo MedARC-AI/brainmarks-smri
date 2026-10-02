@@ -1,0 +1,1480 @@
+participant_id	session_id	age	sex	site	collection	tcia_patient_id	study_date	mgmt	mgmt_cohort
+BraTS2021_00000	1	n/a	n/a	18	UCSF-PDGM	57	n/a	methylated	train
+BraTS2021_00001	1	n/a	n/a	18	UCSF-PDGM	96	n/a	unmethylated	val
+BraTS2021_00002	1	n/a	n/a	18	UCSF-PDGM	14	n/a	methylated	train
+BraTS2021_00003	1	n/a	n/a	18	UCSF-PDGM	17	n/a	unmethylated	train
+BraTS2021_00005	1	n/a	n/a	18	UCSF-PDGM	119	n/a	methylated	train
+BraTS2021_00006	1	n/a	n/a	18	UCSF-PDGM	116	n/a	methylated	train
+BraTS2021_00008	1	n/a	n/a	18	UCSF-PDGM	88	n/a	methylated	train
+BraTS2021_00009	1	n/a	n/a	18	UCSF-PDGM	92	n/a	unmethylated	train
+BraTS2021_00011	1	n/a	n/a	18	UCSF-PDGM	55	n/a	methylated	train
+BraTS2021_00012	1	n/a	n/a	18	UCSF-PDGM	61	n/a	methylated	train
+BraTS2021_00013	1	n/a	n/a	18	UCSF-PDGM	22	n/a	methylated	val
+BraTS2021_00014	1	n/a	n/a	18	UCSF-PDGM	106	n/a	methylated	train
+BraTS2021_00015	1	n/a	n/a	18	UCSF-PDGM	41	n/a	unmethylated	val
+BraTS2021_00016	1	n/a	n/a	18	UCSF-PDGM	27	n/a	unmethylated	n/a
+BraTS2021_00017	1	n/a	n/a	18	UCSF-PDGM	85	n/a	unmethylated	train
+BraTS2021_00018	1	n/a	n/a	18	UCSF-PDGM	53	n/a	unmethylated	train
+BraTS2021_00019	1	n/a	n/a	18	UCSF-PDGM	111	n/a	unmethylated	train
+BraTS2021_00020	1	n/a	n/a	18	UCSF-PDGM	93	n/a	methylated	train
+BraTS2021_00021	1	n/a	n/a	18	UCSF-PDGM	15	n/a	unmethylated	train
+BraTS2021_00022	1	n/a	n/a	18	UCSF-PDGM	97	n/a	unmethylated	train
+BraTS2021_00024	1	n/a	n/a	18	UCSF-PDGM	39	n/a	unmethylated	train
+BraTS2021_00025	1	n/a	n/a	18	UCSF-PDGM	36	n/a	methylated	train
+BraTS2021_00026	1	n/a	n/a	18	UCSF-PDGM	48	n/a	methylated	train
+BraTS2021_00027	1	n/a	n/a	18	UCSF-PDGM	19	n/a	methylated	val
+BraTS2021_00028	1	n/a	n/a	18	UCSF-PDGM	99	n/a	methylated	train
+BraTS2021_00030	1	n/a	n/a	18	UCSF-PDGM	46	n/a	unmethylated	train
+BraTS2021_00031	1	n/a	n/a	18	UCSF-PDGM	63	n/a	methylated	train
+BraTS2021_00032	1	n/a	n/a	18	UCSF-PDGM	20	n/a	unmethylated	train
+BraTS2021_00033	1	n/a	n/a	18	UCSF-PDGM	108	n/a	methylated	train
+BraTS2021_00035	1	n/a	n/a	18	UCSF-PDGM	23	n/a	methylated	train
+BraTS2021_00036	1	n/a	n/a	18	UCSF-PDGM	59	n/a	unmethylated	train
+BraTS2021_00037	1	n/a	n/a	18	UCSF-PDGM	69	n/a	methylated	val
+BraTS2021_00043	1	n/a	n/a	18	UCSF-PDGM	45	n/a	methylated	train
+BraTS2021_00044	1	n/a	n/a	18	UCSF-PDGM	42	n/a	unmethylated	train
+BraTS2021_00045	1	n/a	n/a	18	UCSF-PDGM	84	n/a	unmethylated	train
+BraTS2021_00046	1	n/a	n/a	18	UCSF-PDGM	95	n/a	methylated	train
+BraTS2021_00047	1	n/a	n/a	18	UCSF-PDGM	68	n/a	unmethylated	val
+BraTS2021_00048	1	n/a	n/a	18	UCSF-PDGM	50	n/a	methylated	train
+BraTS2021_00049	1	n/a	n/a	18	UCSF-PDGM	9	n/a	unmethylated	train
+BraTS2021_00051	1	n/a	n/a	18	UCSF-PDGM	6	n/a	methylated	n/a
+BraTS2021_00052	1	n/a	n/a	18	UCSF-PDGM	70	n/a	methylated	train
+BraTS2021_00053	1	n/a	n/a	18	UCSF-PDGM	104	n/a	unmethylated	train
+BraTS2021_00054	1	n/a	n/a	18	UCSF-PDGM	16	n/a	methylated	train
+BraTS2021_00056	1	n/a	n/a	18	UCSF-PDGM	13	n/a	methylated	train
+BraTS2021_00058	1	n/a	n/a	18	UCSF-PDGM	43	n/a	methylated	train
+BraTS2021_00059	1	n/a	n/a	18	UCSF-PDGM	44	n/a	methylated	train
+BraTS2021_00060	1	n/a	n/a	18	UCSF-PDGM	90	n/a	methylated	train
+BraTS2021_00061	1	n/a	n/a	18	UCSF-PDGM	75	n/a	unmethylated	train
+BraTS2021_00062	1	n/a	n/a	18	UCSF-PDGM	114	n/a	methylated	train
+BraTS2021_00063	1	n/a	n/a	18	UCSF-PDGM	109	n/a	methylated	train
+BraTS2021_00064	1	n/a	n/a	18	UCSF-PDGM	112	n/a	unmethylated	train
+BraTS2021_00066	1	n/a	n/a	18	UCSF-PDGM	80	n/a	methylated	train
+BraTS2021_00068	1	n/a	n/a	18	UCSF-PDGM	11	n/a	methylated	train
+BraTS2021_00070	1	n/a	n/a	18	UCSF-PDGM	33	n/a	methylated	train
+BraTS2021_00071	1	n/a	n/a	18	UCSF-PDGM	87	n/a	methylated	train
+BraTS2021_00072	1	n/a	n/a	18	UCSF-PDGM	24	n/a	unmethylated	train
+BraTS2021_00074	1	n/a	n/a	18	UCSF-PDGM	67	n/a	methylated	train
+BraTS2021_00077	1	n/a	n/a	18	UCSF-PDGM	77	n/a	methylated	train
+BraTS2021_00078	1	n/a	n/a	18	UCSF-PDGM	37	n/a	methylated	train
+BraTS2021_00079	1	n/a	n/a	18	UCSF-PDGM	73	n/a	methylated	val
+BraTS2021_00080	1	n/a	n/a	18	UCSF-PDGM	115	n/a	unmethylated	val
+BraTS2021_00081	1	n/a	n/a	18	UCSF-PDGM	79	n/a	unmethylated	train
+BraTS2021_00082	1	n/a	n/a	18	UCSF-PDGM	38	n/a	methylated	val
+BraTS2021_00084	1	n/a	n/a	18	UCSF-PDGM	74	n/a	unmethylated	train
+BraTS2021_00085	1	n/a	n/a	18	UCSF-PDGM	21	n/a	methylated	train
+BraTS2021_00087	1	n/a	n/a	18	UCSF-PDGM	10	n/a	methylated	train
+BraTS2021_00088	1	n/a	n/a	18	UCSF-PDGM	34	n/a	unmethylated	train
+BraTS2021_00089	1	n/a	n/a	18	UCSF-PDGM	86	n/a	methylated	train
+BraTS2021_00090	1	n/a	n/a	18	UCSF-PDGM	101	n/a	unmethylated	train
+BraTS2021_00091	1	n/a	n/a	18	UCSF-PDGM	94	n/a	methylated	val
+BraTS2021_00094	1	n/a	n/a	18	UCSF-PDGM	25	n/a	methylated	train
+BraTS2021_00095	1	n/a	n/a	18	UCSF-PDGM	65	n/a	unmethylated	train
+BraTS2021_00096	1	n/a	n/a	18	UCSF-PDGM	103	n/a	methylated	train
+BraTS2021_00097	1	n/a	n/a	18	UCSF-PDGM	4	n/a	unmethylated	train
+BraTS2021_00098	1	n/a	n/a	18	UCSF-PDGM	30	n/a	methylated	train
+BraTS2021_00099	1	n/a	n/a	18	UCSF-PDGM	118	n/a	unmethylated	train
+BraTS2021_00100	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0085	1999-01-30 00:00:00	methylated	train
+BraTS2021_00101	1	n/a	n/a	20	CPTAC-GBM	C3L-00016	11/15/1999	n/a	n/a
+BraTS2021_00102	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0102	1997-12-15 00:00:00	unmethylated	train
+BraTS2021_00103	1	n/a	n/a	18	UCSF-PDGM	7	n/a	n/a	n/a
+BraTS2021_00104	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1094	1999-11-15 00:00:00	unmethylated	train
+BraTS2021_00105	1	n/a	n/a	6	TCGA-GBM	TCGA-06-1802	2007-04-03 00:00:00	methylated	train
+BraTS2021_00106	1	n/a	n/a	10	TCGA-GBM	TCGA-19-2631	2003-03-02 00:00:00	methylated	train
+BraTS2021_00107	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6280	1998-07-21 00:00:00	methylated	train
+BraTS2021_00108	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6193	2001-06-02 00:00:00	unmethylated	train
+BraTS2021_00109	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0075	1999-09-24 00:00:00	methylated	train
+BraTS2021_00110	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1098	2000-07-23 00:00:00	unmethylated	train
+BraTS2021_00111	1	n/a	n/a	10	TCGA-GBM	TCGA-19-2624	2002-12-10 00:00:00	unmethylated	train
+BraTS2021_00112	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1601	2000-06-19 00:00:00	unmethylated	train
+BraTS2021_00113	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0006	1996-08-23 00:00:00	unmethylated	train
+BraTS2021_00114	1	n/a	n/a	10	TCGA-GBM	TCGA-19-1390	2001-03-20 00:00:00	methylated	val
+BraTS2021_00115	1	n/a	n/a	16	IvyGAP	W26	2000-07-12 00:00:00	n/a	n/a
+BraTS2021_00116	1	n/a	n/a	9	TCGA-GBM	TCGA-14-1825	2000-02-10 00:00:00	unmethylated	train
+BraTS2021_00117	1	n/a	n/a	10	TCGA-GBM	TCGA-19-1789	2002-08-10 00:00:00	methylated	train
+BraTS2021_00118	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_00119	1	n/a	n/a	9	TCGA-GBM	TCGA-14-1829	2001-06-14 00:00:00	unmethylated	val
+BraTS2021_00120	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0145	2000-11-06 00:00:00	methylated	train
+BraTS2021_00121	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0122	2004-09-14 00:00:00	unmethylated	train
+BraTS2021_00122	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6285	1998-12-19 00:00:00	unmethylated	train
+BraTS2021_00123	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0047	1998-12-15 00:00:00	unmethylated	train
+BraTS2021_00124	1	n/a	n/a	10	TCGA-GBM	TCGA-19-0963	2001-10-12 00:00:00	unmethylated	train
+BraTS2021_00125	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1602	2001-03-04 00:00:00	methylated	val
+BraTS2021_00126	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_00127	1	n/a	n/a	20	CPTAC-GBM	C3N-03755	06/27/2001	n/a	n/a
+BraTS2021_00128	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1598	1999-08-23 00:00:00	methylated	train
+BraTS2021_00129	1	n/a	n/a	8	TCGA-GBM	TCGA-12-1093	1999-09-20 00:00:00	unmethylated	val
+BraTS2021_00130	1	n/a	n/a	10	TCGA-GBM	TCGA-19-5958	2004-03-09 00:00:00	unmethylated	train
+BraTS2021_00131	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00011_11	2002-01-08 00:00:00	n/a	n/a
+BraTS2021_00132	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0142	2000-03-11 00:00:00	unmethylated	train
+BraTS2021_00133	1	n/a	n/a	6	TCGA-GBM	TCGA-06-5413	2008-06-17 00:00:00	unmethylated	train
+BraTS2021_00134	1	n/a	n/a	9	TCGA-GBM	TCGA-14-1456	1999-04-22 00:00:00	methylated	train
+BraTS2021_00135	1	n/a	n/a	6	TCGA-GBM	TCGA-06-5412	2008-06-03 00:00:00	methylated	val
+BraTS2021_00136	1	n/a	n/a	6	TCGA-GBM	TCGA-06-6389	2009-04-04 00:00:00	methylated	train
+BraTS2021_00137	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0137	2001-12-24 00:00:00	unmethylated	train
+BraTS2021_00138	1	n/a	n/a	10	TCGA-GBM	TCGA-19-5954	2003-12-30 00:00:00	methylated	train
+BraTS2021_00139	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0054	1999-05-16 00:00:00	methylated	train
+BraTS2021_00140	1	n/a	n/a	8	TCGA-GBM	TCGA-12-3650	2001-07-29 00:00:00	methylated	train
+BraTS2021_00141	1	n/a	n/a	28	TCGA-GBM	TCGA-27-1834	1987-11-03 00:00:00	methylated	n/a
+BraTS2021_00142	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0139	2004-06-10 00:00:00	unmethylated	train
+BraTS2021_00143	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0119	2003-12-26 00:00:00	methylated	train
+BraTS2021_00144	1	n/a	n/a	6	TCGA-GBM	TCGA-06-2570	2007-07-26 00:00:00	methylated	train
+BraTS2021_00145	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0003	1997-06-08 00:00:00	unmethylated	val
+BraTS2021_00146	1	n/a	n/a	6	TCGA-GBM	TCGA-06-5417	2008-09-03 00:00:00	methylated	train
+BraTS2021_00147	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0190	2004-12-10 00:00:00	unmethylated	train
+BraTS2021_00148	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6191	2000-10-20 00:00:00	unmethylated	train
+BraTS2021_00149	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0009	1997-06-14 00:00:00	unmethylated	train
+BraTS2021_00150	1	n/a	n/a	9	TCGA-GBM	TCGA-14-3477	2002-05-01 00:00:00	unmethylated	train
+BraTS2021_00151	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0086	1999-07-25 00:00:00	unmethylated	train
+BraTS2021_00152	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00073_11	2002-11-23 00:00:00	n/a	n/a
+BraTS2021_00153	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00604_11	2013-12-12 00:00:00	unmethylated	val
+BraTS2021_00154	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00122_11	2008-11-10 00:00:00	unmethylated	train
+BraTS2021_00155	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00395_11	2010-10-06 00:00:00	methylated	train
+BraTS2021_00156	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00530_11	2013-07-05 00:00:00	methylated	train
+BraTS2021_00157	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00599_11	2013-10-26 00:00:00	unmethylated	train
+BraTS2021_00158	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00267_11	2008-07-26 00:00:00	unmethylated	train
+BraTS2021_00159	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00360_11	2010-08-08 00:00:00	methylated	train
+BraTS2021_00160	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00344_11	2007-09-15 00:00:00	methylated	train
+BraTS2021_00161	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00524_11	2013-02-06 00:00:00	methylated	val
+BraTS2021_00162	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00458_11	2011-12-29 00:00:00	unmethylated	train
+BraTS2021_00163	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00444_11	2011-10-30 00:00:00	methylated	val
+BraTS2021_00165	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00535_11	2013-03-10 00:00:00	unmethylated	train
+BraTS2021_00166	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00579_11	2013-09-02 00:00:00	methylated	train
+BraTS2021_00167	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00456_11	2011-12-07 00:00:00	unmethylated	train
+BraTS2021_00169	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	unmethylated	train
+BraTS2021_00170	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00549_11	2012-12-15 00:00:00	unmethylated	train
+BraTS2021_00171	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00520_11	2011-12-02 00:00:00	methylated	train
+BraTS2021_00172	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00398_11	2010-11-19 00:00:00	unmethylated	train
+BraTS2021_00174	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00560_11	2012-12-28 00:00:00	unmethylated	val
+BraTS2021_00176	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00447_11	2011-11-27 00:00:00	unmethylated	train
+BraTS2021_00177	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00538_11	2013-03-14 00:00:00	methylated	train
+BraTS2021_00178	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00455_11	2011-10-15 00:00:00	methylated	train
+BraTS2021_00181	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00431_11	2011-03-09 00:00:00	unmethylated	val
+BraTS2021_00182	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00094_11	2009-10-06 00:00:00	unmethylated	val
+BraTS2021_00183	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00581_11	2013-08-16 00:00:00	unmethylated	train
+BraTS2021_00184	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00368_11	2010-06-07 00:00:00	unmethylated	train
+BraTS2021_00185	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00534_11	2012-11-07 00:00:00	methylated	train
+BraTS2021_00186	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00569_11	2013-04-14 00:00:00	methylated	train
+BraTS2021_00187	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00414_11	2011-05-13 00:00:00	methylated	train
+BraTS2021_00188	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00554_11	2012-11-30 00:00:00	methylated	train
+BraTS2021_00190	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00519_11	2012-01-03 00:00:00	unmethylated	val
+BraTS2021_00191	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00523_11	2013-05-23 00:00:00	unmethylated	train
+BraTS2021_00192	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00528_11	2013-04-22 00:00:00	unmethylated	train
+BraTS2021_00193	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00563_11	2013-06-06 00:00:00	unmethylated	train
+BraTS2021_00194	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00470_11	2012-05-07 00:00:00	unmethylated	train
+BraTS2021_00195	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00435_11	2011-04-24 00:00:00	unmethylated	train
+BraTS2021_00196	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00445_11	2012-06-07 00:00:00	methylated	train
+BraTS2021_00197	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	methylated	train
+BraTS2021_00199	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00399_11	2011-06-15 00:00:00	methylated	train
+BraTS2021_00200	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00419_11	2010-05-12 00:00:00	unmethylated	val
+BraTS2021_00201	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00460_11	2011-12-31 00:00:00	unmethylated	train
+BraTS2021_00203	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00546_11	2013-02-17 00:00:00	methylated	train
+BraTS2021_00204	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00498_11	2012-01-07 00:00:00	methylated	train
+BraTS2021_00206	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00452_11	2011-09-04 00:00:00	unmethylated	train
+BraTS2021_00207	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00602_11	2013-11-21 00:00:00	n/a	n/a
+BraTS2021_00208	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00363_11	2010-06-06 00:00:00	methylated	val
+BraTS2021_00209	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00312_11	2009-04-11 00:00:00	unmethylated	train
+BraTS2021_00210	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00406_11	2011-07-27 00:00:00	methylated	train
+BraTS2021_00211	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00421_11	2009-04-27 00:00:00	unmethylated	train
+BraTS2021_00212	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00516_11	2010-12-13 00:00:00	methylated	train
+BraTS2021_00213	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00505_11	2011-07-11 00:00:00	unmethylated	val
+BraTS2021_00214	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00570_11	2013-04-17 00:00:00	unmethylated	train
+BraTS2021_00216	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00500_11	2011-06-30 00:00:00	unmethylated	train
+BraTS2021_00217	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00480_11	2012-03-19 00:00:00	unmethylated	train
+BraTS2021_00218	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00387_11	2010-05-08 00:00:00	unmethylated	train
+BraTS2021_00219	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00508_11	2011-10-15 00:00:00	unmethylated	train
+BraTS2021_00220	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00418_11	2010-03-25 00:00:00	methylated	train
+BraTS2021_00221	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00432_11	2011-03-17 00:00:00	unmethylated	train
+BraTS2021_00222	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00425_11	2010-12-04 00:00:00	methylated	train
+BraTS2021_00227	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00140_11	2009-03-15 00:00:00	unmethylated	train
+BraTS2021_00228	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00562_11	2013-01-30 00:00:00	unmethylated	train
+BraTS2021_00229	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00439_11	2011-05-31 00:00:00	methylated	val
+BraTS2021_00230	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00124_11	2008-08-30 00:00:00	methylated	train
+BraTS2021_00231	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00246_11	2008-04-27 00:00:00	unmethylated	train
+BraTS2021_00233	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00409_11	2011-02-12 00:00:00	methylated	train
+BraTS2021_00234	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00403_11	2011-02-13 00:00:00	methylated	train
+BraTS2021_00235	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00469_11	2012-02-16 00:00:00	methylated	train
+BraTS2021_00236	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00471_11	2011-11-19 00:00:00	unmethylated	train
+BraTS2021_00237	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00426_11	2010-12-11 00:00:00	unmethylated	train
+BraTS2021_00238	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00502_11	2011-06-29 00:00:00	unmethylated	train
+BraTS2021_00239	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00552_11	2012-10-05 00:00:00	unmethylated	train
+BraTS2021_00240	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00197_11	2007-04-19 00:00:00	methylated	train
+BraTS2021_00241	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00428_11	2011-02-19 00:00:00	unmethylated	train
+BraTS2021_00242	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00574_11	2013-06-07 00:00:00	unmethylated	train
+BraTS2021_00243	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00609_11	2013-01-13 00:00:00	unmethylated	train
+BraTS2021_00245	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	methylated	train
+BraTS2021_00246	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00588_11	2013-08-12 00:00:00	methylated	train
+BraTS2021_00247	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00434_11	2011-03-31 00:00:00	unmethylated	train
+BraTS2021_00249	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00316_11	2009-09-09 00:00:00	unmethylated	train
+BraTS2021_00250	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00310_11	2009-03-22 00:00:00	methylated	train
+BraTS2021_00251	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00411_11	2011-03-06 00:00:00	unmethylated	train
+BraTS2021_00252	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00354_11	2009-04-23 00:00:00	unmethylated	val
+BraTS2021_00253	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00504_11	2012-01-18 00:00:00	methylated	train
+BraTS2021_00254	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00138_11	2009-03-06 00:00:00	methylated	train
+BraTS2021_00256	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00591_11	2013-09-07 00:00:00	unmethylated	val
+BraTS2021_00258	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00547_11	2013-03-02 00:00:00	unmethylated	train
+BraTS2021_00259	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00605_11	2013-12-20 00:00:00	unmethylated	train
+BraTS2021_00260	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00578_11	2013-08-09 00:00:00	methylated	train
+BraTS2021_00261	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00527_11	2013-07-26 00:00:00	unmethylated	train
+BraTS2021_00262	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00482_11	2012-01-09 00:00:00	unmethylated	train
+BraTS2021_00263	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00594_11	2013-10-11 00:00:00	methylated	train
+BraTS2021_00264	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00558_11	2012-12-27 00:00:00	unmethylated	val
+BraTS2021_00266	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00402_11	2011-01-06 00:00:00	unmethylated	train
+BraTS2021_00267	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00572_11	2013-05-04 00:00:00	unmethylated	train
+BraTS2021_00269	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00576_11	2013-07-06 00:00:00	unmethylated	train
+BraTS2021_00270	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00532_11	2012-10-25 00:00:00	methylated	train
+BraTS2021_00271	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00404_11	2011-03-07 00:00:00	methylated	train
+BraTS2021_00273	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00608_11	2013-11-17 00:00:00	methylated	train
+BraTS2021_00274	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00147_11	2009-06-19 00:00:00	unmethylated	train
+BraTS2021_00275	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00522_11	2013-06-28 00:00:00	unmethylated	train
+BraTS2021_00280	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00390_11	2010-09-11 00:00:00	unmethylated	train
+BraTS2021_00281	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00401_11	2011-05-18 00:00:00	methylated	train
+BraTS2021_00282	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00371_11	2010-08-01 00:00:00	methylated	train
+BraTS2021_00283	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00475_11	2012-07-13 00:00:00	unmethylated	train
+BraTS2021_00284	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00135_11	2009-01-04 00:00:00	methylated	train
+BraTS2021_00285	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00461_11	2012-04-23 00:00:00	methylated	train
+BraTS2021_00286	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00410_11	2011-02-26 00:00:00	unmethylated	train
+BraTS2021_00287	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00533_11	2012-11-15 00:00:00	unmethylated	val
+BraTS2021_00288	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00244_11	2008-03-15 00:00:00	unmethylated	train
+BraTS2021_00289	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00584_11	2013-08-06 00:00:00	unmethylated	train
+BraTS2021_00290	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00151_11	2009-07-11 00:00:00	unmethylated	train
+BraTS2021_00291	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00494_11	2011-04-13 00:00:00	methylated	train
+BraTS2021_00292	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00134_11	2008-12-11 00:00:00	n/a	n/a
+BraTS2021_00293	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00438_11	2011-05-19 00:00:00	methylated	train
+BraTS2021_00294	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00506_11	2011-07-14 00:00:00	methylated	train
+BraTS2021_00296	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00412_11	2011-03-12 00:00:00	methylated	train
+BraTS2021_00297	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00145_11	2008-09-10 00:00:00	unmethylated	train
+BraTS2021_00298	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00590_11	2013-08-17 00:00:00	unmethylated	train
+BraTS2021_00299	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00474_11	2011-12-25 00:00:00	methylated	train
+BraTS2021_00300	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00262_11	2010-02-17 00:00:00	unmethylated	train
+BraTS2021_00301	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00385_11	2009-11-16 00:00:00	unmethylated	train
+BraTS2021_00303	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00540_11	2013-05-15 00:00:00	methylated	train
+BraTS2021_00304	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00568_11	2013-05-25 00:00:00	methylated	train
+BraTS2021_00305	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00423_11	2010-10-24 00:00:00	methylated	train
+BraTS2021_00306	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00553_11	2013-02-27 00:00:00	methylated	train
+BraTS2021_00307	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00536_11	2012-12-16 00:00:00	methylated	val
+BraTS2021_00308	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	unmethylated	train
+BraTS2021_00309	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00490_11	2011-10-09 00:00:00	unmethylated	train
+BraTS2021_00310	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00136_11	2009-01-31 00:00:00	unmethylated	train
+BraTS2021_00311	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00556_11	2012-09-29 00:00:00	methylated	train
+BraTS2021_00312	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00479_11	2011-05-31 00:00:00	unmethylated	train
+BraTS2021_00313	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00356_11	2010-06-21 00:00:00	methylated	train
+BraTS2021_00314	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00525_11	2012-12-10 00:00:00	unmethylated	train
+BraTS2021_00316	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00587_11	2013-08-03 00:00:00	unmethylated	train
+BraTS2021_00317	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00481_11	2011-12-13 00:00:00	methylated	train
+BraTS2021_00318	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00121_11	2008-12-20 00:00:00	unmethylated	train
+BraTS2021_00320	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00261_11	2010-02-06 00:00:00	unmethylated	train
+BraTS2021_00321	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00380_11	2009-12-30 00:00:00	methylated	train
+BraTS2021_00322	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00606_11	2013-09-29 00:00:00	methylated	train
+BraTS2021_00323	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00459_11	2011-11-26 00:00:00	unmethylated	val
+BraTS2021_00324	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00141_11	2008-09-11 00:00:00	unmethylated	train
+BraTS2021_00325	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00483_11	2012-06-29 00:00:00	unmethylated	train
+BraTS2021_00327	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00416_11	2011-08-01 00:00:00	unmethylated	train
+BraTS2021_00328	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00351_11	2010-11-21 00:00:00	methylated	train
+BraTS2021_00329	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00264_11	2009-12-17 00:00:00	methylated	train
+BraTS2021_00331	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00388_11	2010-06-17 00:00:00	methylated	train
+BraTS2021_00332	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00592_11	2013-08-20 00:00:00	methylated	train
+BraTS2021_00333	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00391_11	2010-10-23 00:00:00	unmethylated	val
+BraTS2021_00334	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00352_11	2010-03-28 00:00:00	methylated	train
+BraTS2021_00335	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00575_11	2013-06-24 00:00:00	unmethylated	val
+BraTS2021_00336	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00376_11	2010-06-20 00:00:00	unmethylated	train
+BraTS2021_00337	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00430_11	2011-03-02 00:00:00	methylated	val
+BraTS2021_00338	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00488_11	2012-06-10 00:00:00	methylated	train
+BraTS2021_00339	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00457_11	2011-10-03 00:00:00	unmethylated	train
+BraTS2021_00340	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00551_11	2013-06-15 00:00:00	methylated	train
+BraTS2021_00341	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00408_11	2010-12-13 00:00:00	unmethylated	train
+BraTS2021_00343	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00476_11	2012-06-20 00:00:00	unmethylated	train
+BraTS2021_00344	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00446_11	2012-03-01 00:00:00	methylated	train
+BraTS2021_00346	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00379_11	2010-08-08 00:00:00	unmethylated	train
+BraTS2021_00347	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00367_11	2010-03-15 00:00:00	unmethylated	train
+BraTS2021_00348	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00146_11	2009-06-04 00:00:00	unmethylated	train
+BraTS2021_00349	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00486_11	2012-02-13 00:00:00	unmethylated	train
+BraTS2021_00350	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00598_11	2013-10-18 00:00:00	methylated	train
+BraTS2021_00351	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00537_11	2012-10-02 00:00:00	unmethylated	train
+BraTS2021_00352	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00260_11	2009-01-16 00:00:00	methylated	train
+BraTS2021_00353	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00529_11	2012-11-29 00:00:00	unmethylated	train
+BraTS2021_00355	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00420_11	2010-05-29 00:00:00	methylated	val
+BraTS2021_00356	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00034_11	2009-09-25 00:00:00	unmethylated	train
+BraTS2021_00359	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00392_11	2010-11-04 00:00:00	methylated	train
+BraTS2021_00360	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00514_11	2011-08-27 00:00:00	methylated	train
+BraTS2021_00364	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00559_11	2012-12-28 00:00:00	methylated	train
+BraTS2021_00366	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00557_11	2012-10-15 00:00:00	methylated	train
+BraTS2021_00367	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00095_11	2008-05-04 00:00:00	methylated	train
+BraTS2021_00369	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00555_11	2012-10-11 00:00:00	methylated	train
+BraTS2021_00370	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00128_11	2008-11-01 00:00:00	methylated	train
+BraTS2021_00371	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00521_11	2013-02-23 00:00:00	methylated	train
+BraTS2021_00372	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00526_11	2012-12-26 00:00:00	methylated	val
+BraTS2021_00373	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00290_11	2009-05-31 00:00:00	unmethylated	train
+BraTS2021_00375	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00148_11	2008-08-27 00:00:00	n/a	n/a
+BraTS2021_00376	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00499_11	2008-12-22 00:00:00	unmethylated	train
+BraTS2021_00377	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00517_11	2012-05-25 00:00:00	unmethylated	train
+BraTS2021_00378	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00449_11	2011-10-08 00:00:00	unmethylated	train
+BraTS2021_00379	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00436_11	2011-04-30 00:00:00	unmethylated	train
+BraTS2021_00380	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00462_11	2012-03-25 00:00:00	unmethylated	train
+BraTS2021_00381	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00424_11	2010-11-09 00:00:00	methylated	val
+BraTS2021_00382	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00132_11	2007-06-07 00:00:00	unmethylated	train
+BraTS2021_00383	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00512_11	2012-04-10 00:00:00	methylated	train
+BraTS2021_00384	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00131_11	2008-06-02 00:00:00	methylated	val
+BraTS2021_00386	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00302_11	2007-02-24 00:00:00	methylated	train
+BraTS2021_00387	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00473_11	2011-10-21 00:00:00	unmethylated	train
+BraTS2021_00388	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00487_11	2011-12-15 00:00:00	unmethylated	train
+BraTS2021_00389	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00393_11	2010-12-10 00:00:00	unmethylated	train
+BraTS2021_00390	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00133_11	2008-05-17 00:00:00	unmethylated	train
+BraTS2021_00391	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00143_11	2009-05-08 00:00:00	unmethylated	train
+BraTS2021_00392	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00596_11	2013-10-10 00:00:00	unmethylated	train
+BraTS2021_00393	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	unmethylated	val
+BraTS2021_00395	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00370_11	2010-07-17 00:00:00	unmethylated	train
+BraTS2021_00397	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00593_11	2013-09-05 00:00:00	unmethylated	train
+BraTS2021_00399	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00454_11	2012-03-08 00:00:00	unmethylated	train
+BraTS2021_00400	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00518_11	2012-09-28 00:00:00	methylated	train
+BraTS2021_00401	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00129_11	2008-07-24 00:00:00	unmethylated	train
+BraTS2021_00402	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00597_11	2013-10-16 00:00:00	unmethylated	train
+BraTS2021_00403	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00586_11	2013-08-12 00:00:00	methylated	train
+BraTS2021_00404	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00287_11	2009-08-29 00:00:00	methylated	train
+BraTS2021_00405	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00515_11	2011-09-25 00:00:00	unmethylated	train
+BraTS2021_00406	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00350_11	2009-08-06 00:00:00	methylated	train
+BraTS2021_00407	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00144_11	2009-05-27 00:00:00	unmethylated	train
+BraTS2021_00408	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	methylated	train
+BraTS2021_00409	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00453_11	2011-08-27 00:00:00	methylated	train
+BraTS2021_00410	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00282_11	2009-08-22 00:00:00	unmethylated	train
+BraTS2021_00412	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00369_11	2010-06-11 00:00:00	unmethylated	train
+BraTS2021_00413	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00359_11	2010-07-19 00:00:00	methylated	train
+BraTS2021_00414	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00583_11	2013-09-26 00:00:00	unmethylated	train
+BraTS2021_00416	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00378_11	2010-09-26 00:00:00	methylated	train
+BraTS2021_00417	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00117_11	2008-09-11 00:00:00	unmethylated	train
+BraTS2021_00418	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00531_11	2013-05-03 00:00:00	unmethylated	train
+BraTS2021_00419	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00373_11	2010-10-04 00:00:00	unmethylated	train
+BraTS2021_00421	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00463_11	2011-07-21 00:00:00	unmethylated	train
+BraTS2021_00422	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00022_11	2005-04-22 00:00:00	unmethylated	val
+BraTS2021_00423	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00091_11	2009-09-27 00:00:00	unmethylated	train
+BraTS2021_00425	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00595_11	2013-10-19 00:00:00	methylated	train
+BraTS2021_00426	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00607_11	2013-11-10 00:00:00	methylated	train
+BraTS2021_00428	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00489_11	2011-10-14 00:00:00	unmethylated	val
+BraTS2021_00429	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00544_11	2013-03-28 00:00:00	methylated	train
+BraTS2021_00430	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00448_11	2012-01-24 00:00:00	unmethylated	train
+BraTS2021_00431	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00381_11	2010-12-16 00:00:00	methylated	train
+BraTS2021_00432	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00585_11	2013-09-25 00:00:00	unmethylated	train
+BraTS2021_00433	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00413_11	2011-04-16 00:00:00	unmethylated	train
+BraTS2021_00434	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00384_11	2010-09-20 00:00:00	unmethylated	val
+BraTS2021_00436	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00580_11	2013-09-05 00:00:00	methylated	train
+BraTS2021_00438	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00098_11	2008-10-19 00:00:00	methylated	val
+BraTS2021_00440	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00304_11	2007-12-05 00:00:00	methylated	train
+BraTS2021_00441	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00484_11	2012-03-09 00:00:00	unmethylated	train
+BraTS2021_00442	1	n/a	n/a	20	CPTAC-GBM	C3L-02465	01/15/2001	methylated	train
+BraTS2021_00443	1	n/a	n/a	20	CPTAC-GBM	C3L-02708	10/25/2005	methylated	train
+BraTS2021_00444	1	n/a	n/a	20	CPTAC-GBM	C3N-01851	08/30/2000	unmethylated	train
+BraTS2021_00445	1	n/a	n/a	20	CPTAC-GBM	C3L-01043	08/14/2011	unmethylated	train
+BraTS2021_00446	1	n/a	n/a	20	CPTAC-GBM	C3L-01156	02/03/2012	unmethylated	train
+BraTS2021_00447	1	n/a	n/a	20	CPTAC-GBM	C3L-01040	07/24/2011	methylated	val
+BraTS2021_00448	1	n/a	n/a	20	CPTAC-GBM	C3L-02504	03/29/2001	methylated	n/a
+BraTS2021_00449	1	n/a	n/a	20	CPTAC-GBM	C3N-00663	02/22/2000	methylated	train
+BraTS2021_00450	1	n/a	n/a	20	CPTAC-GBM	C3N-01192	05/02/2000	methylated	val
+BraTS2021_00451	1	n/a	n/a	20	CPTAC-GBM	C3L-00677	05/23/2000	methylated	train
+BraTS2021_00452	1	n/a	n/a	20	CPTAC-GBM	C3L-01155	02/04/2012	unmethylated	train
+BraTS2021_00453	1	n/a	n/a	20	CPTAC-GBM	C3L-03727	09/12/2001	methylated	n/a
+BraTS2021_00454	1	n/a	n/a	20	CPTAC-GBM	C3L-01045	09/19/2011	unmethylated	train
+BraTS2021_00455	1	n/a	n/a	20	CPTAC-GBM	C3L-01142	03/04/2012	unmethylated	train
+BraTS2021_00456	1	n/a	n/a	20	CPTAC-GBM	C3N-00665	04/21/2000	methylated	train
+BraTS2021_00457	1	n/a	n/a	20	CPTAC-GBM	C3L-01327	07/27/2000	methylated	train
+BraTS2021_00458	1	n/a	n/a	20	CPTAC-GBM	C3L-03266	06/26/2001	unmethylated	val
+BraTS2021_00459	1	n/a	n/a	20	CPTAC-GBM	C3L-02041	10/11/2000	unmethylated	train
+BraTS2021_00460	1	n/a	n/a	20	CPTAC-GBM	C3N-01852	09/27/2000	unmethylated	val
+BraTS2021_00462	1	n/a	n/a	18	UCSF-PDGM	160	n/a	methylated	val
+BraTS2021_00463	1	n/a	n/a	18	UCSF-PDGM	145	n/a	unmethylated	val
+BraTS2021_00464	1	n/a	n/a	18	UCSF-PDGM	149	n/a	unmethylated	train
+BraTS2021_00466	1	n/a	n/a	18	UCSF-PDGM	139	n/a	methylated	train
+BraTS2021_00467	1	n/a	n/a	18	UCSF-PDGM	204	n/a	unmethylated	val
+BraTS2021_00468	1	n/a	n/a	18	UCSF-PDGM	227	n/a	methylated	train
+BraTS2021_00469	1	n/a	n/a	18	UCSF-PDGM	163	n/a	unmethylated	train
+BraTS2021_00470	1	n/a	n/a	18	UCSF-PDGM	167	n/a	methylated	train
+BraTS2021_00472	1	n/a	n/a	18	UCSF-PDGM	179	n/a	methylated	train
+BraTS2021_00474	1	n/a	n/a	18	UCSF-PDGM	205	n/a	methylated	val
+BraTS2021_00477	1	n/a	n/a	18	UCSF-PDGM	225	n/a	unmethylated	train
+BraTS2021_00478	1	n/a	n/a	18	UCSF-PDGM	191	n/a	methylated	train
+BraTS2021_00479	1	n/a	n/a	18	UCSF-PDGM	200	n/a	methylated	train
+BraTS2021_00480	1	n/a	n/a	18	UCSF-PDGM	275	n/a	methylated	train
+BraTS2021_00481	1	n/a	n/a	18	UCSF-PDGM	133	n/a	unmethylated	train
+BraTS2021_00483	1	n/a	n/a	18	UCSF-PDGM	159	n/a	methylated	train
+BraTS2021_00485	1	n/a	n/a	18	UCSF-PDGM	194	n/a	methylated	train
+BraTS2021_00488	1	n/a	n/a	18	UCSF-PDGM	223	n/a	methylated	train
+BraTS2021_00489	1	n/a	n/a	18	UCSF-PDGM	276	n/a	unmethylated	val
+BraTS2021_00491	1	n/a	n/a	18	UCSF-PDGM	137	n/a	methylated	train
+BraTS2021_00492	1	n/a	n/a	18	UCSF-PDGM	207	n/a	unmethylated	val
+BraTS2021_00493	1	n/a	n/a	18	UCSF-PDGM	148	n/a	methylated	train
+BraTS2021_00494	1	n/a	n/a	18	UCSF-PDGM	213	n/a	methylated	train
+BraTS2021_00495	1	n/a	n/a	18	UCSF-PDGM	209	n/a	unmethylated	train
+BraTS2021_00496	1	n/a	n/a	18	UCSF-PDGM	196	n/a	unmethylated	train
+BraTS2021_00498	1	n/a	n/a	18	UCSF-PDGM	146	n/a	unmethylated	train
+BraTS2021_00499	1	n/a	n/a	18	UCSF-PDGM	278	n/a	methylated	train
+BraTS2021_00500	1	n/a	n/a	18	UCSF-PDGM	193	n/a	methylated	train
+BraTS2021_00501	1	n/a	n/a	18	UCSF-PDGM	187	n/a	methylated	train
+BraTS2021_00502	1	n/a	n/a	18	UCSF-PDGM	134	n/a	methylated	train
+BraTS2021_00503	1	n/a	n/a	18	UCSF-PDGM	176	n/a	methylated	val
+BraTS2021_00504	1	n/a	n/a	18	UCSF-PDGM	156	n/a	methylated	train
+BraTS2021_00505	1	n/a	n/a	18	UCSF-PDGM	157	n/a	methylated	train
+BraTS2021_00506	1	n/a	n/a	18	UCSF-PDGM	150	n/a	methylated	train
+BraTS2021_00507	1	n/a	n/a	18	UCSF-PDGM	151	n/a	unmethylated	train
+BraTS2021_00510	1	n/a	n/a	18	UCSF-PDGM	195	n/a	unmethylated	train
+BraTS2021_00511	1	n/a	n/a	18	UCSF-PDGM	128	n/a	methylated	train
+BraTS2021_00512	1	n/a	n/a	18	UCSF-PDGM	178	n/a	unmethylated	train
+BraTS2021_00513	1	n/a	n/a	18	UCSF-PDGM	188	n/a	methylated	train
+BraTS2021_00514	1	n/a	n/a	18	UCSF-PDGM	212	n/a	unmethylated	train
+BraTS2021_00516	1	n/a	n/a	18	UCSF-PDGM	158	n/a	methylated	train
+BraTS2021_00517	1	n/a	n/a	18	UCSF-PDGM	126	n/a	methylated	train
+BraTS2021_00518	1	n/a	n/a	18	UCSF-PDGM	164	n/a	unmethylated	train
+BraTS2021_00519	1	n/a	n/a	18	UCSF-PDGM	202	n/a	unmethylated	train
+BraTS2021_00520	1	n/a	n/a	18	UCSF-PDGM	184	n/a	methylated	train
+BraTS2021_00521	1	n/a	n/a	18	UCSF-PDGM	206	n/a	methylated	val
+BraTS2021_00523	1	n/a	n/a	18	UCSF-PDGM	190	n/a	methylated	train
+BraTS2021_00524	1	n/a	n/a	18	UCSF-PDGM	183	n/a	methylated	train
+BraTS2021_00525	1	n/a	n/a	18	UCSF-PDGM	132	n/a	methylated	train
+BraTS2021_00526	1	n/a	n/a	18	UCSF-PDGM	185	n/a	methylated	train
+BraTS2021_00528	1	n/a	n/a	18	UCSF-PDGM	174	n/a	methylated	train
+BraTS2021_00529	1	n/a	n/a	18	UCSF-PDGM	130	n/a	methylated	train
+BraTS2021_00530	1	n/a	n/a	18	UCSF-PDGM	124	n/a	unmethylated	train
+BraTS2021_00532	1	n/a	n/a	18	UCSF-PDGM	147	n/a	methylated	train
+BraTS2021_00533	1	n/a	n/a	18	UCSF-PDGM	168	n/a	unmethylated	train
+BraTS2021_00535	1	n/a	n/a	18	UCSF-PDGM	122	n/a	methylated	val
+BraTS2021_00537	1	n/a	n/a	18	UCSF-PDGM	170	n/a	methylated	train
+BraTS2021_00538	1	n/a	n/a	18	UCSF-PDGM	175	n/a	unmethylated	train
+BraTS2021_00539	1	n/a	n/a	18	UCSF-PDGM	181	n/a	methylated	train
+BraTS2021_00540	1	n/a	n/a	18	UCSF-PDGM	203	n/a	unmethylated	train
+BraTS2021_00542	1	n/a	n/a	18	UCSF-PDGM	198	n/a	methylated	train
+BraTS2021_00543	1	n/a	n/a	18	UCSF-PDGM	162	n/a	methylated	train
+BraTS2021_00544	1	n/a	n/a	18	UCSF-PDGM	273	n/a	methylated	train
+BraTS2021_00545	1	n/a	n/a	18	UCSF-PDGM	180	n/a	unmethylated	train
+BraTS2021_00547	1	n/a	n/a	18	UCSF-PDGM	131	n/a	unmethylated	train
+BraTS2021_00548	1	n/a	n/a	18	UCSF-PDGM	127	n/a	methylated	train
+BraTS2021_00549	1	n/a	n/a	18	UCSF-PDGM	135	n/a	methylated	train
+BraTS2021_00550	1	n/a	n/a	18	UCSF-PDGM	189	n/a	methylated	train
+BraTS2021_00551	1	n/a	n/a	18	UCSF-PDGM	173	n/a	methylated	train
+BraTS2021_00552	1	n/a	n/a	18	UCSF-PDGM	143	n/a	methylated	train
+BraTS2021_00553	1	n/a	n/a	18	UCSF-PDGM	142	n/a	unmethylated	val
+BraTS2021_00554	1	n/a	n/a	18	UCSF-PDGM	140	n/a	methylated	train
+BraTS2021_00555	1	n/a	n/a	18	UCSF-PDGM	228	n/a	unmethylated	train
+BraTS2021_00556	1	n/a	n/a	18	UCSF-PDGM	169	n/a	methylated	train
+BraTS2021_00557	1	n/a	n/a	18	UCSF-PDGM	138	n/a	methylated	train
+BraTS2021_00558	1	n/a	n/a	18	UCSF-PDGM	186	n/a	methylated	train
+BraTS2021_00559	1	n/a	n/a	18	UCSF-PDGM	144	n/a	methylated	train
+BraTS2021_00560	1	n/a	n/a	18	UCSF-PDGM	210	n/a	methylated	val
+BraTS2021_00561	1	n/a	n/a	4	Collection 5	n/a	n/a	methylated	train
+BraTS2021_00563	1	n/a	n/a	4	Collection 5	n/a	n/a	unmethylated	train
+BraTS2021_00564	1	n/a	n/a	4	Collection 5	n/a	n/a	methylated	train
+BraTS2021_00565	1	n/a	n/a	4	Collection 5	n/a	n/a	unmethylated	train
+BraTS2021_00567	1	n/a	n/a	16	IvyGAP	W40	1998-10-10 00:00:00	unmethylated	train
+BraTS2021_00568	1	n/a	n/a	16	IvyGAP	W9	1997-04-10 00:00:00	unmethylated	train
+BraTS2021_00569	1	n/a	n/a	16	IvyGAP	W5	1996-12-11 00:00:00	unmethylated	train
+BraTS2021_00570	1	n/a	n/a	16	IvyGAP	W42	1999-03-30 00:00:00	methylated	train
+BraTS2021_00571	1	n/a	n/a	16	IvyGAP	W6	1996-11-28 00:00:00	unmethylated	train
+BraTS2021_00572	1	n/a	n/a	16	IvyGAP	W8	1997-03-24 00:00:00	unmethylated	train
+BraTS2021_00573	1	n/a	n/a	16	IvyGAP	W36	1998-07-14 00:00:00	unmethylated	val
+BraTS2021_00574	1	n/a	n/a	16	IvyGAP	W34	1998-07-13 00:00:00	unmethylated	train
+BraTS2021_00575	1	n/a	n/a	16	IvyGAP	W54	2000-09-02 00:00:00	unmethylated	train
+BraTS2021_00576	1	n/a	n/a	16	IvyGAP	W22	1998-01-02 00:00:00	methylated	train
+BraTS2021_00577	1	n/a	n/a	16	IvyGAP	W11	1997-05-11 00:00:00	methylated	train
+BraTS2021_00578	1	n/a	n/a	16	IvyGAP	W19	1997-11-14 00:00:00	unmethylated	train
+BraTS2021_00579	1	n/a	n/a	16	IvyGAP	W33	1998-07-04 00:00:00	methylated	train
+BraTS2021_00580	1	n/a	n/a	16	IvyGAP	W20	1997-05-16 00:00:00	unmethylated	n/a
+BraTS2021_00581	1	n/a	n/a	16	IvyGAP	W12	1997-06-20 00:00:00	unmethylated	train
+BraTS2021_00582	1	n/a	n/a	16	IvyGAP	W35	1998-07-11 00:00:00	methylated	train
+BraTS2021_00583	1	n/a	n/a	16	IvyGAP	W53	2000-06-01 00:00:00	methylated	train
+BraTS2021_00584	1	n/a	n/a	16	IvyGAP	W32	1998-07-01 00:00:00	methylated	train
+BraTS2021_00585	1	n/a	n/a	16	IvyGAP	W39	1998-09-19 00:00:00	methylated	val
+BraTS2021_00586	1	n/a	n/a	16	IvyGAP	W10	1997-04-29 00:00:00	methylated	train
+BraTS2021_00587	1	n/a	n/a	16	IvyGAP	W1	1996-10-25 00:00:00	unmethylated	train
+BraTS2021_00588	1	n/a	n/a	16	IvyGAP	W48	1999-10-21 00:00:00	unmethylated	train
+BraTS2021_00589	1	n/a	n/a	16	IvyGAP	W4	1996-12-01 00:00:00	unmethylated	train
+BraTS2021_00590	1	n/a	n/a	16	IvyGAP	W38	1998-09-10 00:00:00	methylated	train
+BraTS2021_00591	1	n/a	n/a	16	IvyGAP	W13	1997-08-22 00:00:00	unmethylated	train
+BraTS2021_00592	1	n/a	n/a	16	IvyGAP	W43	1999-04-09 00:00:00	unmethylated	val
+BraTS2021_00593	1	n/a	n/a	16	IvyGAP	W30	1998-06-08 00:00:00	methylated	train
+BraTS2021_00594	1	n/a	n/a	16	IvyGAP	W18	1997-11-10 00:00:00	methylated	train
+BraTS2021_00595	1	n/a	n/a	16	IvyGAP	W7	1996-12-18 00:00:00	methylated	val
+BraTS2021_00596	1	n/a	n/a	16	IvyGAP	W29	1998-05-21 00:00:00	unmethylated	train
+BraTS2021_00597	1	n/a	n/a	16	IvyGAP	W50	1999-12-15 00:00:00	methylated	train
+BraTS2021_00598	1	n/a	n/a	16	IvyGAP	W55	2000-10-31 00:00:00	methylated	train
+BraTS2021_00599	1	n/a	n/a	16	IvyGAP	W2	1996-11-01 00:00:00	methylated	train
+BraTS2021_00601	1	n/a	n/a	18	UCSF-PDGM	526	n/a	unmethylated	train
+BraTS2021_00602	1	n/a	n/a	18	UCSF-PDGM	464	n/a	methylated	train
+BraTS2021_00603	1	n/a	n/a	18	UCSF-PDGM	497	n/a	unmethylated	val
+BraTS2021_00604	1	n/a	n/a	18	UCSF-PDGM	529	n/a	methylated	train
+BraTS2021_00605	1	n/a	n/a	18	UCSF-PDGM	492	n/a	unmethylated	train
+BraTS2021_00606	1	n/a	n/a	18	UCSF-PDGM	453	n/a	methylated	train
+BraTS2021_00607	1	n/a	n/a	18	UCSF-PDGM	467	n/a	methylated	train
+BraTS2021_00608	1	n/a	n/a	18	UCSF-PDGM	426	n/a	methylated	train
+BraTS2021_00610	1	n/a	n/a	18	UCSF-PDGM	418	n/a	methylated	train
+BraTS2021_00611	1	n/a	n/a	18	UCSF-PDGM	496	n/a	methylated	train
+BraTS2021_00612	1	n/a	n/a	18	UCSF-PDGM	531	n/a	methylated	train
+BraTS2021_00613	1	n/a	n/a	18	UCSF-PDGM	472	n/a	methylated	train
+BraTS2021_00615	1	n/a	n/a	18	UCSF-PDGM	421	n/a	methylated	train
+BraTS2021_00616	1	n/a	n/a	18	UCSF-PDGM	481	n/a	unmethylated	train
+BraTS2021_00618	1	n/a	n/a	18	UCSF-PDGM	462	n/a	methylated	train
+BraTS2021_00619	1	n/a	n/a	18	UCSF-PDGM	479	n/a	unmethylated	train
+BraTS2021_00620	1	n/a	n/a	18	UCSF-PDGM	503	n/a	unmethylated	train
+BraTS2021_00621	1	n/a	n/a	18	UCSF-PDGM	534	n/a	methylated	train
+BraTS2021_00622	1	n/a	n/a	18	UCSF-PDGM	516	n/a	methylated	train
+BraTS2021_00623	1	n/a	n/a	18	UCSF-PDGM	514	n/a	unmethylated	train
+BraTS2021_00624	1	n/a	n/a	18	UCSF-PDGM	434	n/a	unmethylated	train
+BraTS2021_00625	1	n/a	n/a	18	UCSF-PDGM	417	n/a	methylated	train
+BraTS2021_00626	1	n/a	n/a	18	UCSF-PDGM	433	n/a	methylated	train
+BraTS2021_00628	1	n/a	n/a	18	UCSF-PDGM	524	n/a	methylated	train
+BraTS2021_00630	1	n/a	n/a	18	UCSF-PDGM	525	n/a	unmethylated	train
+BraTS2021_00631	1	n/a	n/a	18	UCSF-PDGM	522	n/a	methylated	train
+BraTS2021_00636	1	n/a	n/a	18	UCSF-PDGM	428	n/a	unmethylated	train
+BraTS2021_00638	1	n/a	n/a	18	UCSF-PDGM	447	n/a	methylated	train
+BraTS2021_00639	1	n/a	n/a	18	UCSF-PDGM	429	n/a	methylated	train
+BraTS2021_00640	1	n/a	n/a	18	UCSF-PDGM	527	n/a	methylated	train
+BraTS2021_00641	1	n/a	n/a	18	UCSF-PDGM	459	n/a	unmethylated	train
+BraTS2021_00642	1	n/a	n/a	18	UCSF-PDGM	430	n/a	unmethylated	train
+BraTS2021_00644	1	n/a	n/a	18	UCSF-PDGM	494	n/a	methylated	val
+BraTS2021_00645	1	n/a	n/a	18	UCSF-PDGM	507	n/a	unmethylated	train
+BraTS2021_00646	1	n/a	n/a	18	UCSF-PDGM	488	n/a	methylated	train
+BraTS2021_00647	1	n/a	n/a	18	UCSF-PDGM	532	n/a	unmethylated	val
+BraTS2021_00649	1	n/a	n/a	18	UCSF-PDGM	512	n/a	unmethylated	train
+BraTS2021_00650	1	n/a	n/a	18	UCSF-PDGM	470	n/a	methylated	train
+BraTS2021_00651	1	n/a	n/a	18	UCSF-PDGM	424	n/a	unmethylated	train
+BraTS2021_00652	1	n/a	n/a	18	UCSF-PDGM	533	n/a	methylated	train
+BraTS2021_00654	1	n/a	n/a	18	UCSF-PDGM	515	n/a	unmethylated	train
+BraTS2021_00655	1	n/a	n/a	18	UCSF-PDGM	520	n/a	methylated	train
+BraTS2021_00656	1	n/a	n/a	18	UCSF-PDGM	427	n/a	methylated	train
+BraTS2021_00657	1	n/a	n/a	18	UCSF-PDGM	518	n/a	unmethylated	train
+BraTS2021_00658	1	n/a	n/a	18	UCSF-PDGM	425	n/a	methylated	train
+BraTS2021_00659	1	n/a	n/a	18	UCSF-PDGM	509	n/a	methylated	train
+BraTS2021_00661	1	n/a	n/a	18	UCSF-PDGM	523	n/a	methylated	train
+BraTS2021_00662	1	n/a	n/a	18	UCSF-PDGM	508	n/a	unmethylated	val
+BraTS2021_00663	1	n/a	n/a	18	UCSF-PDGM	493	n/a	unmethylated	train
+BraTS2021_00667	1	n/a	n/a	18	UCSF-PDGM	451	n/a	unmethylated	train
+BraTS2021_00668	1	n/a	n/a	18	UCSF-PDGM	466	n/a	unmethylated	train
+BraTS2021_00671	1	n/a	n/a	18	UCSF-PDGM	517	n/a	methylated	val
+BraTS2021_00674	1	n/a	n/a	18	UCSF-PDGM	454	n/a	methylated	train
+BraTS2021_00675	1	n/a	n/a	18	UCSF-PDGM	419	n/a	methylated	train
+BraTS2021_00676	1	n/a	n/a	18	UCSF-PDGM	423	n/a	methylated	train
+BraTS2021_00677	1	n/a	n/a	18	UCSF-PDGM	510	n/a	methylated	train
+BraTS2021_00679	1	n/a	n/a	18	UCSF-PDGM	480	n/a	methylated	train
+BraTS2021_00680	1	n/a	n/a	18	UCSF-PDGM	324	n/a	methylated	train
+BraTS2021_00681	1	n/a	n/a	18	UCSF-PDGM	341	n/a	methylated	val
+BraTS2021_00682	1	n/a	n/a	18	UCSF-PDGM	316	n/a	unmethylated	train
+BraTS2021_00683	1	n/a	n/a	18	UCSF-PDGM	404	n/a	unmethylated	train
+BraTS2021_00684	1	n/a	n/a	18	UCSF-PDGM	374	n/a	unmethylated	train
+BraTS2021_00685	1	n/a	n/a	18	UCSF-PDGM	393	n/a	unmethylated	train
+BraTS2021_00686	1	n/a	n/a	18	UCSF-PDGM	338	n/a	unmethylated	train
+BraTS2021_00687	1	n/a	n/a	18	UCSF-PDGM	362	n/a	unmethylated	train
+BraTS2021_00688	1	n/a	n/a	18	UCSF-PDGM	361	n/a	unmethylated	train
+BraTS2021_00689	1	n/a	n/a	18	UCSF-PDGM	360	n/a	methylated	n/a
+BraTS2021_00690	1	n/a	n/a	18	UCSF-PDGM	397	n/a	methylated	train
+BraTS2021_00691	1	n/a	n/a	18	UCSF-PDGM	321	n/a	methylated	train
+BraTS2021_00692	1	n/a	n/a	18	UCSF-PDGM	296	n/a	methylated	train
+BraTS2021_00693	1	n/a	n/a	18	UCSF-PDGM	347	n/a	methylated	train
+BraTS2021_00694	1	n/a	n/a	18	UCSF-PDGM	287	n/a	methylated	train
+BraTS2021_00697	1	n/a	n/a	18	UCSF-PDGM	319	n/a	methylated	train
+BraTS2021_00698	1	n/a	n/a	18	UCSF-PDGM	323	n/a	methylated	train
+BraTS2021_00699	1	n/a	n/a	18	UCSF-PDGM	385	n/a	methylated	val
+BraTS2021_00702	1	n/a	n/a	18	UCSF-PDGM	325	n/a	methylated	val
+BraTS2021_00703	1	n/a	n/a	18	UCSF-PDGM	309	n/a	unmethylated	train
+BraTS2021_00704	1	n/a	n/a	18	UCSF-PDGM	343	n/a	methylated	train
+BraTS2021_00705	1	n/a	n/a	18	UCSF-PDGM	415	n/a	methylated	train
+BraTS2021_00706	1	n/a	n/a	18	UCSF-PDGM	311	n/a	unmethylated	train
+BraTS2021_00707	1	n/a	n/a	18	UCSF-PDGM	413	n/a	methylated	train
+BraTS2021_00708	1	n/a	n/a	18	UCSF-PDGM	340	n/a	methylated	train
+BraTS2021_00709	1	n/a	n/a	18	UCSF-PDGM	359	n/a	unmethylated	train
+BraTS2021_00712	1	n/a	n/a	18	UCSF-PDGM	358	n/a	methylated	val
+BraTS2021_00714	1	n/a	n/a	18	UCSF-PDGM	377	n/a	methylated	train
+BraTS2021_00715	1	n/a	n/a	18	UCSF-PDGM	350	n/a	methylated	train
+BraTS2021_00716	1	n/a	n/a	18	UCSF-PDGM	391	n/a	methylated	train
+BraTS2021_00718	1	n/a	n/a	18	UCSF-PDGM	405	n/a	methylated	train
+BraTS2021_00719	1	n/a	n/a	18	UCSF-PDGM	333	n/a	methylated	val
+BraTS2021_00721	1	n/a	n/a	18	UCSF-PDGM	386	n/a	unmethylated	val
+BraTS2021_00723	1	n/a	n/a	18	UCSF-PDGM	328	n/a	unmethylated	train
+BraTS2021_00724	1	n/a	n/a	18	UCSF-PDGM	363	n/a	unmethylated	train
+BraTS2021_00725	1	n/a	n/a	18	UCSF-PDGM	291	n/a	methylated	train
+BraTS2021_00727	1	n/a	n/a	18	UCSF-PDGM	390	n/a	unmethylated	train
+BraTS2021_00728	1	n/a	n/a	18	UCSF-PDGM	317	n/a	unmethylated	train
+BraTS2021_00729	1	n/a	n/a	18	UCSF-PDGM	368	n/a	unmethylated	train
+BraTS2021_00730	1	n/a	n/a	18	UCSF-PDGM	382	n/a	unmethylated	train
+BraTS2021_00731	1	n/a	n/a	18	UCSF-PDGM	345	n/a	methylated	train
+BraTS2021_00732	1	n/a	n/a	18	UCSF-PDGM	342	n/a	methylated	train
+BraTS2021_00733	1	n/a	n/a	18	UCSF-PDGM	364	n/a	unmethylated	train
+BraTS2021_00734	1	n/a	n/a	18	UCSF-PDGM	280	n/a	unmethylated	train
+BraTS2021_00735	1	n/a	n/a	18	UCSF-PDGM	371	n/a	unmethylated	train
+BraTS2021_00736	1	n/a	n/a	18	UCSF-PDGM	370	n/a	methylated	train
+BraTS2021_00737	1	n/a	n/a	18	UCSF-PDGM	387	n/a	methylated	train
+BraTS2021_00739	1	n/a	n/a	18	UCSF-PDGM	411	n/a	methylated	train
+BraTS2021_00740	1	n/a	n/a	18	UCSF-PDGM	394	n/a	methylated	train
+BraTS2021_00742	1	n/a	n/a	18	UCSF-PDGM	376	n/a	unmethylated	train
+BraTS2021_00744	1	n/a	n/a	18	UCSF-PDGM	380	n/a	unmethylated	train
+BraTS2021_00746	1	n/a	n/a	18	UCSF-PDGM	353	n/a	methylated	train
+BraTS2021_00747	1	n/a	n/a	18	UCSF-PDGM	400	n/a	unmethylated	train
+BraTS2021_00749	1	n/a	n/a	18	UCSF-PDGM	410	n/a	methylated	val
+BraTS2021_00750	1	n/a	n/a	18	UCSF-PDGM	384	n/a	methylated	train
+BraTS2021_00751	1	n/a	n/a	18	UCSF-PDGM	379	n/a	unmethylated	train
+BraTS2021_00753	1	n/a	n/a	18	UCSF-PDGM	378	n/a	unmethylated	train
+BraTS2021_00756	1	n/a	n/a	18	UCSF-PDGM	355	n/a	unmethylated	train
+BraTS2021_00757	1	n/a	n/a	18	UCSF-PDGM	313	n/a	methylated	train
+BraTS2021_00758	1	n/a	n/a	18	UCSF-PDGM	315	n/a	methylated	train
+BraTS2021_00759	1	n/a	n/a	18	UCSF-PDGM	369	n/a	unmethylated	train
+BraTS2021_00760	1	n/a	n/a	18	UCSF-PDGM	406	n/a	methylated	train
+BraTS2021_00762	1	n/a	n/a	18	UCSF-PDGM	392	n/a	unmethylated	val
+BraTS2021_00764	1	n/a	n/a	18	UCSF-PDGM	412	n/a	unmethylated	train
+BraTS2021_00765	1	n/a	n/a	18	UCSF-PDGM	310	n/a	methylated	train
+BraTS2021_00767	1	n/a	n/a	18	UCSF-PDGM	414	n/a	unmethylated	train
+BraTS2021_00768	1	n/a	n/a	18	UCSF-PDGM	290	n/a	methylated	train
+BraTS2021_00769	1	n/a	n/a	18	UCSF-PDGM	348	n/a	methylated	val
+BraTS2021_00772	1	n/a	n/a	18	UCSF-PDGM	320	n/a	methylated	train
+BraTS2021_00773	1	n/a	n/a	18	UCSF-PDGM	354	n/a	methylated	train
+BraTS2021_00774	1	n/a	n/a	18	UCSF-PDGM	372	n/a	unmethylated	train
+BraTS2021_00775	1	n/a	n/a	18	UCSF-PDGM	375	n/a	methylated	train
+BraTS2021_00777	1	n/a	n/a	18	UCSF-PDGM	366	n/a	methylated	train
+BraTS2021_00778	1	n/a	n/a	18	UCSF-PDGM	334	n/a	unmethylated	train
+BraTS2021_00779	1	n/a	n/a	18	UCSF-PDGM	381	n/a	methylated	val
+BraTS2021_00780	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00781	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00782	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00784	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00787	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00788	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00789	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00791	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00792	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00793	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00794	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00795	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00796	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00797	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00799	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00800	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00801	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00802	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00803	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00804	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00805	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00806	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00807	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00808	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00809	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00810	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00811	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00814	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00816	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00818	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00819	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00820	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00821	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	val
+BraTS2021_00822	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	val
+BraTS2021_00823	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00824	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00825	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	val
+BraTS2021_00826	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	val
+BraTS2021_00828	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	train
+BraTS2021_00829	1	n/a	n/a	21	Collection1	n/a	n/a	methylated	val
+BraTS2021_00830	1	n/a	n/a	21	Collection1	n/a	n/a	unmethylated	train
+BraTS2021_00831	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0130	2001-09-11 00:00:00	n/a	n/a
+BraTS2021_00833	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00093_11	2009-10-02 00:00:00	unmethylated	val
+BraTS2021_00834	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00492_11	2008-03-17 00:00:00	unmethylated	train
+BraTS2021_00836	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00495_11	2011-10-22 00:00:00	unmethylated	train
+BraTS2021_00837	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00150_11	2009-07-04 00:00:00	unmethylated	train
+BraTS2021_00838	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00539_11	2013-01-13 00:00:00	methylated	train
+BraTS2021_00839	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00464_11	2011-10-31 00:00:00	unmethylated	train
+BraTS2021_00840	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00564_11	2013-03-09 00:00:00	methylated	train
+BraTS2021_00997	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0133	2005-05-10 00:00:00	unmethylated	val
+BraTS2021_00998	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	methylated	train
+BraTS2021_00999	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0069	2000-05-28 00:00:00	methylated	train
+BraTS2021_01000	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00566_11	2013-03-12 00:00:00	methylated	train
+BraTS2021_01001	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00567_11	2013-03-20 00:00:00	methylated	train
+BraTS2021_01002	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0116	1997-03-22 00:00:00	methylated	train
+BraTS2021_01003	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0011	1998-02-01 00:00:00	methylated	train
+BraTS2021_01004	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00336_11	2008-07-27 00:00:00	unmethylated	train
+BraTS2021_01005	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0033	1997-05-26 00:00:00	methylated	train
+BraTS2021_01006	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0060	2000-02-28 00:00:00	methylated	val
+BraTS2021_01007	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0064	1999-08-08 00:00:00	methylated	train
+BraTS2021_01008	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00565_11	2013-03-29 00:00:00	methylated	train
+BraTS2021_01009	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0027	1999-03-28 00:00:00	unmethylated	train
+BraTS2021_01010	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00263_11	2010-01-06 00:00:00	unmethylated	train
+BraTS2021_01011	1	n/a	n/a	20	CPTAC-GBM	C3L-00019	11/20/1999	n/a	n/a
+BraTS2021_01012	1	n/a	n/a	20	CPTAC-GBM	C3L-00265	12/05/1999	n/a	n/a
+BraTS2021_01013	1	n/a	n/a	20	CPTAC-GBM	C3L-00278	12/19/1999	n/a	n/a
+BraTS2021_01014	1	n/a	n/a	20	CPTAC-GBM	C3L-00349	01/05/2000	n/a	n/a
+BraTS2021_01015	1	n/a	n/a	20	CPTAC-GBM	C3L-00424	02/02/2000	n/a	n/a
+BraTS2021_01016	1	n/a	n/a	20	CPTAC-GBM	C3L-00429	02/18/2000	n/a	n/a
+BraTS2021_01017	1	n/a	n/a	20	CPTAC-GBM	C3L-00528	04/16/2000	n/a	n/a
+BraTS2021_01018	1	n/a	n/a	20	CPTAC-GBM	C3L-00591	04/15/2000	n/a	n/a
+BraTS2021_01019	1	n/a	n/a	20	CPTAC-GBM	C3L-00671	05/14/2000	n/a	n/a
+BraTS2021_01020	1	n/a	n/a	20	CPTAC-GBM	C3L-01046	09/23/2011	n/a	n/a
+BraTS2021_01021	1	n/a	n/a	20	CPTAC-GBM	C3L-01146	04/15/2012	n/a	n/a
+BraTS2021_01022	1	n/a	n/a	20	CPTAC-GBM	C3N-00662	02/09/2000	n/a	n/a
+BraTS2021_01023	1	n/a	n/a	20	CPTAC-GBM	C3N-01505	05/03/2010	n/a	n/a
+BraTS2021_01024	1	n/a	n/a	20	CPTAC-GBM	C3N-01849	07/07/2000	n/a	n/a
+BraTS2021_01025	1	n/a	n/a	20	CPTAC-GBM	C3N-03001	05/26/2001	n/a	n/a
+BraTS2021_01026	1	n/a	n/a	20	CPTAC-GBM	C3N-04686	11/22/2001	n/a	n/a
+BraTS2021_01027	1	n/a	n/a	18	UCSF-PDGM	29	n/a	n/a	n/a
+BraTS2021_01028	1	n/a	n/a	18	UCSF-PDGM	32	n/a	n/a	n/a
+BraTS2021_01029	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01030	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01031	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01032	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01033	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01034	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00001_11	2002-02-06 00:00:00	n/a	n/a
+BraTS2021_01035	1	n/a	n/a	18	UCSF-PDGM	66	n/a	n/a	n/a
+BraTS2021_01036	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00115_11	2008-09-03 00:00:00	n/a	n/a
+BraTS2021_01037	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00012_11	2002-10-17 00:00:00	n/a	n/a
+BraTS2021_01038	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00045_11	2005-11-30 00:00:00	n/a	n/a
+BraTS2021_01039	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00047_11	2006-03-02 00:00:00	n/a	n/a
+BraTS2021_01040	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00057_11	2004-10-09 00:00:00	n/a	n/a
+BraTS2021_01041	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00058_11	2004-08-04 00:00:00	n/a	n/a
+BraTS2021_01042	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00063_11	2002-07-26 00:00:00	n/a	n/a
+BraTS2021_01043	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00064_11	2004-01-19 00:00:00	n/a	n/a
+BraTS2021_01044	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00065_11	2005-12-04 00:00:00	n/a	n/a
+BraTS2021_01045	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00068_11	2007-11-07 00:00:00	n/a	n/a
+BraTS2021_01046	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00072_11	2007-07-16 00:00:00	n/a	n/a
+BraTS2021_01047	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00077_11	2005-05-20 00:00:00	n/a	n/a
+BraTS2021_01048	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00078_11	2007-11-24 00:00:00	n/a	n/a
+BraTS2021_01049	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00081_11	2006-04-15 00:00:00	n/a	n/a
+BraTS2021_01050	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00087_11	2004-07-04 00:00:00	n/a	n/a
+BraTS2021_01051	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00125_11	2008-09-15 00:00:00	n/a	n/a
+BraTS2021_01052	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00126_11	2008-01-05 00:00:00	n/a	n/a
+BraTS2021_01053	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00152_11	2001-08-04 00:00:00	n/a	n/a
+BraTS2021_01054	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00161_11	2006-03-09 00:00:00	n/a	n/a
+BraTS2021_01055	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00162_11	2004-07-02 00:00:00	n/a	n/a
+BraTS2021_01056	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00167_11	2004-06-24 00:00:00	n/a	n/a
+BraTS2021_01057	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00169_11	2006-06-10 00:00:00	n/a	n/a
+BraTS2021_01058	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00171_11	2006-01-04 00:00:00	n/a	n/a
+BraTS2021_01059	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00175_11	2006-05-11 00:00:00	n/a	n/a
+BraTS2021_01060	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00177_11	2006-06-23 00:00:00	n/a	n/a
+BraTS2021_01061	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00183_11	2005-08-07 00:00:00	n/a	n/a
+BraTS2021_01062	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00185_11	2007-03-02 00:00:00	n/a	n/a
+BraTS2021_01063	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00187_11	2005-03-01 00:00:00	n/a	n/a
+BraTS2021_01064	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00190_11	2006-04-29 00:00:00	n/a	n/a
+BraTS2021_01065	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00191_11	2006-04-08 00:00:00	n/a	n/a
+BraTS2021_01066	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00194_11	2006-06-02 00:00:00	n/a	n/a
+BraTS2021_01067	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00195_11	2005-04-03 00:00:00	n/a	n/a
+BraTS2021_01068	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00198_11	2005-05-28 00:00:00	n/a	n/a
+BraTS2021_01069	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00199_11	2001-10-28 00:00:00	n/a	n/a
+BraTS2021_01070	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00203_11	2004-02-25 00:00:00	n/a	n/a
+BraTS2021_01071	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00204_11	2004-08-18 00:00:00	n/a	n/a
+BraTS2021_01072	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00207_11	2005-02-16 00:00:00	n/a	n/a
+BraTS2021_01073	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00210_11	2007-02-11 00:00:00	n/a	n/a
+BraTS2021_01074	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00213_11	2004-10-08 00:00:00	n/a	n/a
+BraTS2021_01075	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00216_11	2005-08-24 00:00:00	n/a	n/a
+BraTS2021_01076	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00219_11	2006-08-18 00:00:00	n/a	n/a
+BraTS2021_01077	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00220_11	2004-05-22 00:00:00	n/a	n/a
+BraTS2021_01078	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00224_11	2005-07-01 00:00:00	n/a	n/a
+BraTS2021_01079	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00225_11	2004-07-02 00:00:00	n/a	n/a
+BraTS2021_01080	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00232_11	2007-07-13 00:00:00	n/a	n/a
+BraTS2021_01081	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00234_11	2007-11-05 00:00:00	n/a	n/a
+BraTS2021_01082	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00235_11	2008-03-16 00:00:00	n/a	n/a
+BraTS2021_01083	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00236_11	2007-04-06 00:00:00	n/a	n/a
+BraTS2021_01084	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00237_11	2007-04-23 00:00:00	n/a	n/a
+BraTS2021_01085	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00243_11	2008-01-20 00:00:00	n/a	n/a
+BraTS2021_01086	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00248_11	2002-01-30 00:00:00	n/a	n/a
+BraTS2021_01087	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00250_11	2002-02-24 00:00:00	n/a	n/a
+BraTS2021_01088	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00258_11	2002-07-14 00:00:00	n/a	n/a
+BraTS2021_01089	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00265_11	2010-02-11 00:00:00	n/a	n/a
+BraTS2021_01090	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00268_11	2009-03-16 00:00:00	n/a	n/a
+BraTS2021_01091	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00271_11	2004-05-16 00:00:00	n/a	n/a
+BraTS2021_01092	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00273_11	2003-03-19 00:00:00	n/a	n/a
+BraTS2021_01093	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00280_11	2006-09-15 00:00:00	n/a	n/a
+BraTS2021_01094	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00281_11	2007-07-30 00:00:00	n/a	n/a
+BraTS2021_01095	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00286_11	2007-07-06 00:00:00	n/a	n/a
+BraTS2021_01096	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00289_11	2008-07-31 00:00:00	n/a	n/a
+BraTS2021_01097	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00291_11	2006-11-25 00:00:00	n/a	n/a
+BraTS2021_01098	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00293_11	2006-03-26 00:00:00	n/a	n/a
+BraTS2021_01099	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00295_11	2009-08-05 00:00:00	n/a	n/a
+BraTS2021_01100	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00296_11	2007-05-30 00:00:00	n/a	n/a
+BraTS2021_01101	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00297_11	2005-11-07 00:00:00	n/a	n/a
+BraTS2021_01102	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00298_11	2005-03-28 00:00:00	n/a	n/a
+BraTS2021_01103	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00299_11	2004-11-15 00:00:00	n/a	n/a
+BraTS2021_01104	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00300_11	2008-01-30 00:00:00	n/a	n/a
+BraTS2021_01105	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00301_11	2007-11-10 00:00:00	n/a	n/a
+BraTS2021_01106	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00308_11	2008-07-19 00:00:00	n/a	n/a
+BraTS2021_01107	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00309_11	2002-03-25 00:00:00	n/a	n/a
+BraTS2021_01108	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00311_11	2007-11-04 00:00:00	n/a	n/a
+BraTS2021_01109	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00313_11	2005-04-01 00:00:00	n/a	n/a
+BraTS2021_01110	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00315_11	2004-06-20 00:00:00	n/a	n/a
+BraTS2021_01111	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00318_11	2005-06-26 00:00:00	n/a	n/a
+BraTS2021_01112	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00319_11	2007-06-14 00:00:00	n/a	n/a
+BraTS2021_01113	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00321_11	2008-01-05 00:00:00	n/a	n/a
+BraTS2021_01114	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00323_11	2008-07-30 00:00:00	n/a	n/a
+BraTS2021_01115	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00324_11	2007-01-11 00:00:00	n/a	n/a
+BraTS2021_01116	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00327_11	2007-07-04 00:00:00	n/a	n/a
+BraTS2021_01117	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00328_11	2007-10-27 00:00:00	n/a	n/a
+BraTS2021_01118	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00332_11	2008-02-07 00:00:00	n/a	n/a
+BraTS2021_01119	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00333_11	2003-11-28 00:00:00	n/a	n/a
+BraTS2021_01120	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00334_11	2008-05-26 00:00:00	n/a	n/a
+BraTS2021_01121	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00338_11	2008-02-02 00:00:00	n/a	n/a
+BraTS2021_01122	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00340_11	2007-10-07 00:00:00	n/a	n/a
+BraTS2021_01123	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00341_11	2006-12-15 00:00:00	n/a	n/a
+BraTS2021_01124	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00345_11	2004-10-22 00:00:00	n/a	n/a
+BraTS2021_01125	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00346_11	2007-10-20 00:00:00	n/a	n/a
+BraTS2021_01126	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00347_11	2006-09-10 00:00:00	n/a	n/a
+BraTS2021_01127	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00348_11	2007-11-01 00:00:00	n/a	n/a
+BraTS2021_01128	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00374_11	2010-03-05 00:00:00	n/a	n/a
+BraTS2021_01129	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00377_11	2010-04-05 00:00:00	methylated	n/a
+BraTS2021_01130	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00386_11	2010-01-29 00:00:00	n/a	n/a
+BraTS2021_01131	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00417_11	2008-07-17 00:00:00	n/a	n/a
+BraTS2021_01132	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00451_11	2012-07-19 00:00:00	n/a	n/a
+BraTS2021_01133	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00468_11	2011-11-21 00:00:00	n/a	n/a
+BraTS2021_01134	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00472_11	2011-09-01 00:00:00	n/a	n/a
+BraTS2021_01135	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00491_11	2008-09-20 00:00:00	n/a	n/a
+BraTS2021_01136	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00501_11	2011-01-18 00:00:00	n/a	n/a
+BraTS2021_01137	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00503_11	2012-01-30 00:00:00	n/a	n/a
+BraTS2021_01138	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00561_11	2012-12-31 00:00:00	n/a	n/a
+BraTS2021_01139	1	n/a	n/a	11	TCGA-GBM	TCGA-76-4934	2000-10-08 00:00:00	methylated	n/a
+BraTS2021_01140	1	n/a	n/a	11	TCGA-GBM	TCGA-76-4935	2001-01-22 00:00:00	methylated	n/a
+BraTS2021_01141	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6656	2001-06-02 00:00:00	methylated	n/a
+BraTS2021_01142	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6657	2001-06-11 00:00:00	methylated	n/a
+BraTS2021_01143	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6661	2001-12-08 00:00:00	methylated	n/a
+BraTS2021_01144	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6662	2001-12-13 00:00:00	unmethylated	n/a
+BraTS2021_01145	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6663	2001-12-27 00:00:00	unmethylated	n/a
+BraTS2021_01146	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6664	2002-01-10 00:00:00	methylated	n/a
+BraTS2021_01147	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01148	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01149	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01150	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01151	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01152	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01153	1	n/a	n/a	18	UCSF-PDGM	297	n/a	n/a	n/a
+BraTS2021_01154	1	n/a	n/a	18	UCSF-PDGM	312	n/a	n/a	n/a
+BraTS2021_01155	1	n/a	n/a	18	UCSF-PDGM	330	n/a	n/a	n/a
+BraTS2021_01156	1	n/a	n/a	18	UCSF-PDGM	336	n/a	n/a	n/a
+BraTS2021_01157	1	n/a	n/a	18	UCSF-PDGM	337	n/a	n/a	n/a
+BraTS2021_01158	1	n/a	n/a	18	UCSF-PDGM	373	n/a	n/a	n/a
+BraTS2021_01159	1	n/a	n/a	18	UCSF-PDGM	395	n/a	n/a	n/a
+BraTS2021_01160	1	n/a	n/a	18	UCSF-PDGM	458	n/a	n/a	n/a
+BraTS2021_01161	1	n/a	n/a	18	UCSF-PDGM	498	n/a	n/a	n/a
+BraTS2021_01162	1	n/a	n/a	24	Collection 9	n/a	n/a	unmethylated	n/a
+BraTS2021_01163	1	n/a	n/a	19	ACRIN-FMISO-Brain (ACRIN 6684)	ACRIN-FMISO-Brain-004	1960-01-01 00:00:00	n/a	n/a
+BraTS2021_01164	1	n/a	n/a	19	ACRIN-FMISO-Brain (ACRIN 6684)	ACRIN-FMISO-Brain-034	1959-12-31 00:00:00	n/a	n/a
+BraTS2021_01165	1	n/a	n/a	19	ACRIN-FMISO-Brain (ACRIN 6684)	ACRIN-FMISO-Brain-036	1960-01-05 00:00:00	unmethylated	n/a
+BraTS2021_01166	1	n/a	n/a	19	ACRIN-FMISO-Brain (ACRIN 6684)	ACRIN-FMISO-Brain-042	1960-01-09 00:00:00	n/a	n/a
+BraTS2021_01167	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01168	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01169	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01170	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01171	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01172	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01173	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01174	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01175	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01176	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01177	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01178	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01179	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01180	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01181	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01182	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01183	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01184	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01185	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01186	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01187	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01188	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01189	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01190	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01191	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01192	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01193	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01194	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01195	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01196	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01197	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01198	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01199	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01200	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01201	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01202	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00002_11	2001-11-13 00:00:00	n/a	n/a
+BraTS2021_01203	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00006_11	2002-03-31 00:00:00	n/a	n/a
+BraTS2021_01204	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00008_11	2001-09-30 00:00:00	n/a	n/a
+BraTS2021_01205	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00013_11	2002-11-27 00:00:00	n/a	n/a
+BraTS2021_01206	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00014_11	2003-02-12 00:00:00	n/a	n/a
+BraTS2021_01207	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00016_11	2003-06-18 00:00:00	n/a	n/a
+BraTS2021_01208	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00017_11	2001-06-15 00:00:00	n/a	n/a
+BraTS2021_01209	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00018_11	2003-09-21 00:00:00	n/a	n/a
+BraTS2021_01210	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00021_11	2003-06-22 00:00:00	n/a	n/a
+BraTS2021_01211	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01212	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00030_11	2005-08-10 00:00:00	n/a	n/a
+BraTS2021_01213	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00033_11	2002-09-22 00:00:00	n/a	n/a
+BraTS2021_01214	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00040_11	2002-03-14 00:00:00	n/a	n/a
+BraTS2021_01215	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00043_11	2002-06-02 00:00:00	n/a	n/a
+BraTS2021_01216	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00059_11	2001-09-23 00:00:00	n/a	n/a
+BraTS2021_01217	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00060_11	2001-12-26 00:00:00	n/a	n/a
+BraTS2021_01218	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00066_11	2002-06-30 00:00:00	n/a	n/a
+BraTS2021_01219	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00069_11	2001-08-04 00:00:00	n/a	n/a
+BraTS2021_01220	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00075_11	2007-08-17 00:00:00	n/a	n/a
+BraTS2021_01221	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00076_11	2002-03-11 00:00:00	n/a	n/a
+BraTS2021_01222	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00080_11	2001-11-17 00:00:00	n/a	n/a
+BraTS2021_01223	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00082_11	2008-02-28 00:00:00	n/a	n/a
+BraTS2021_01224	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00083_11	2008-02-11 00:00:00	n/a	n/a
+BraTS2021_01225	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00086_11	2007-09-29 00:00:00	n/a	n/a
+BraTS2021_01226	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00088_11	2009-09-12 00:00:00	n/a	n/a
+BraTS2021_01227	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00096_11	2009-11-27 00:00:00	n/a	n/a
+BraTS2021_01228	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00100_11	2002-06-12 00:00:00	n/a	n/a
+BraTS2021_01229	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00101_11	2002-03-01 00:00:00	n/a	n/a
+BraTS2021_01230	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00102_11	2002-12-06 00:00:00	n/a	n/a
+BraTS2021_01231	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00105_11	2003-09-07 00:00:00	n/a	n/a
+BraTS2021_01232	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00107_11	2002-09-22 00:00:00	n/a	n/a
+BraTS2021_01233	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00108_11	2003-09-14 00:00:00	n/a	n/a
+BraTS2021_01234	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00112_11	2003-09-03 00:00:00	n/a	n/a
+BraTS2021_01235	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00113_11	2003-06-14 00:00:00	n/a	n/a
+BraTS2021_01236	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00114_11	2003-07-06 00:00:00	n/a	n/a
+BraTS2021_01237	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01238	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00118_11	2009-05-23 00:00:00	n/a	n/a
+BraTS2021_01239	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00119_11	2009-04-04 00:00:00	n/a	n/a
+BraTS2021_01240	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00137_11	2009-03-06 00:00:00	n/a	n/a
+BraTS2021_01241	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00139_11	2009-03-14 00:00:00	n/a	n/a
+BraTS2021_01242	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00149_11	2009-06-21 00:00:00	n/a	n/a
+BraTS2021_01243	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00154_11	2001-08-31 00:00:00	n/a	n/a
+BraTS2021_01244	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00156_11	2001-10-10 00:00:00	n/a	n/a
+BraTS2021_01245	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00158_11	2002-01-04 00:00:00	n/a	n/a
+BraTS2021_01246	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01247	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00166_11	2003-11-18 00:00:00	n/a	n/a
+BraTS2021_01248	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00172_11	2004-02-01 00:00:00	n/a	n/a
+BraTS2021_01249	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00174_11	2001-09-23 00:00:00	n/a	n/a
+BraTS2021_01250	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00176_11	2004-06-07 00:00:00	n/a	n/a
+BraTS2021_01251	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00189_11	2002-11-08 00:00:00	n/a	n/a
+BraTS2021_01252	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00192_11	2002-05-29 00:00:00	n/a	n/a
+BraTS2021_01253	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00193_11	2002-02-13 00:00:00	n/a	n/a
+BraTS2021_01254	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00196_11	2006-05-20 00:00:00	n/a	n/a
+BraTS2021_01255	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00201_11	2006-09-20 00:00:00	n/a	n/a
+BraTS2021_01256	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00205_11	2005-09-21 00:00:00	n/a	n/a
+BraTS2021_01257	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00206_11	2001-09-15 00:00:00	n/a	n/a
+BraTS2021_01258	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00208_11	2001-12-28 00:00:00	n/a	n/a
+BraTS2021_01259	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00215_11	2005-12-28 00:00:00	n/a	n/a
+BraTS2021_01260	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00217_11	2002-06-09 00:00:00	n/a	n/a
+BraTS2021_01261	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00226_11	2002-04-21 00:00:00	n/a	n/a
+BraTS2021_01262	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00227_11	2002-01-18 00:00:00	n/a	n/a
+BraTS2021_01263	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00228_11	2001-12-14 00:00:00	n/a	n/a
+BraTS2021_01264	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00238_11	2007-07-01 00:00:00	n/a	n/a
+BraTS2021_01265	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00240_11	2007-08-04 00:00:00	n/a	n/a
+BraTS2021_01266	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00249_11	2002-02-10 00:00:00	n/a	n/a
+BraTS2021_01267	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00251_11	2001-09-17 00:00:00	n/a	n/a
+BraTS2021_01268	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00252_11	2003-01-05 00:00:00	n/a	n/a
+BraTS2021_01269	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00253_11	2003-01-29 00:00:00	n/a	n/a
+BraTS2021_01270	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00254_11	2002-12-29 00:00:00	n/a	n/a
+BraTS2021_01271	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00256_11	2002-09-15 00:00:00	n/a	n/a
+BraTS2021_01272	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00259_11	2002-04-19 00:00:00	n/a	n/a
+BraTS2021_01273	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00266_11	2003-12-13 00:00:00	n/a	n/a
+BraTS2021_01274	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00270_11	2003-03-19 00:00:00	n/a	n/a
+BraTS2021_01275	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00272_11	2003-10-26 00:00:00	n/a	n/a
+BraTS2021_01276	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00275_11	2003-07-09 00:00:00	n/a	n/a
+BraTS2021_01277	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00277_11	2003-06-30 00:00:00	n/a	n/a
+BraTS2021_01278	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00285_11	2007-07-08 00:00:00	n/a	n/a
+BraTS2021_01279	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00307_11	2007-07-06 00:00:00	n/a	n/a
+BraTS2021_01280	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00330_11	2006-08-27 00:00:00	n/a	n/a
+BraTS2021_01281	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0034	1997-07-27 00:00:00	n/a	n/a
+BraTS2021_01282	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0037	1998-01-13 00:00:00	n/a	n/a
+BraTS2021_01283	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0046	1998-11-28 00:00:00	n/a	n/a
+BraTS2021_01284	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0059	1999-08-29 00:00:00	n/a	n/a
+BraTS2021_01285	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00284_11	2008-08-05 00:00:00	n/a	n/a
+BraTS2021_01286	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00294_11	2009-04-01 00:00:00	n/a	n/a
+BraTS2021_01287	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00362_11	2010-03-17 00:00:00	n/a	n/a
+BraTS2021_01288	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00375_11	2009-10-14 00:00:00	n/a	n/a
+BraTS2021_01289	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0068	2000-05-16 00:00:00	n/a	n/a
+BraTS2021_01290	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0070	2000-07-10 00:00:00	n/a	n/a
+BraTS2021_01291	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0087	1999-12-13 00:00:00	n/a	n/a
+BraTS2021_01292	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0106	1998-10-30 00:00:00	n/a	n/a
+BraTS2021_01293	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00130_11	2006-09-11 00:00:00	n/a	n/a
+BraTS2021_01294	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00165_11	2004-08-11 00:00:00	n/a	n/a
+BraTS2021_01295	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00247_11	2008-07-03 00:00:00	n/a	n/a
+BraTS2021_01296	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0138	2002-11-25 00:00:00	n/a	n/a
+BraTS2021_01297	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0149	2003-03-25 00:00:00	n/a	n/a
+BraTS2021_01298	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0154	1996-04-05 00:00:00	n/a	n/a
+BraTS2021_01299	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00303_11	2007-06-30 00:00:00	n/a	n/a
+BraTS2021_01300	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0158	1996-09-05 00:00:00	n/a	n/a
+BraTS2021_01301	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00305_11	2006-03-03 00:00:00	n/a	n/a
+BraTS2021_01302	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0162	1998-12-07 00:00:00	n/a	n/a
+BraTS2021_01303	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0164	1999-02-17 00:00:00	n/a	n/a
+BraTS2021_01304	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00331_11	2006-07-26 00:00:00	n/a	n/a
+BraTS2021_01305	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00337_11	2009-08-07 00:00:00	n/a	n/a
+BraTS2021_01306	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01307	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01308	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01309	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01310	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01311	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01312	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01313	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01314	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01315	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01316	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01317	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01318	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01319	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01320	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01321	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01322	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01323	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01324	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01325	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01326	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01327	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01328	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01329	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01330	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01331	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01332	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01333	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01334	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01335	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01336	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01337	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01338	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01339	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01340	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01341	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01342	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01343	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01344	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01345	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01346	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01347	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01348	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01349	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01350	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01351	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01352	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01353	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01354	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01355	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01356	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01357	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01358	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01359	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01360	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01361	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01362	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01363	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01364	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01365	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01366	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01367	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01368	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01369	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01370	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01371	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01372	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01373	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01374	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01375	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01376	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01377	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01378	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01379	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01380	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01381	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01382	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01383	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01384	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01385	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01386	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01387	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01388	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01389	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01390	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01391	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01392	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01393	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01394	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01395	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01396	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01397	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01398	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01399	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01400	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01401	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01402	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01403	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01404	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01405	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01406	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01407	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01408	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01409	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01410	1	n/a	n/a	1	UPENN-GBM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01411	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01412	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01413	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01414	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01415	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01416	1	n/a	n/a	2	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01417	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01418	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01419	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01420	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01421	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01422	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01423	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01424	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01425	1	n/a	n/a	17	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01426	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01427	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01428	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01429	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01430	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01431	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01432	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01433	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01434	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01435	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01436	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01437	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01438	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01439	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01440	1	n/a	n/a	3	Collection 4	n/a	n/a	n/a	n/a
+BraTS2021_01441	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0176	2002-04-09 00:00:00	n/a	n/a
+BraTS2021_01442	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0177	2002-05-25 00:00:00	n/a	n/a
+BraTS2021_01443	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0179	2002-07-27 00:00:00	n/a	n/a
+BraTS2021_01444	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0182	2002-09-01 00:00:00	n/a	n/a
+BraTS2021_01445	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0184	2003-07-13 00:00:00	n/a	n/a
+BraTS2021_01446	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0185	2003-11-07 00:00:00	n/a	n/a
+BraTS2021_01447	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0187	2004-07-07 00:00:00	n/a	n/a
+BraTS2021_01448	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0188	2004-07-17 00:00:00	n/a	n/a
+BraTS2021_01449	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0192	2005-04-08 00:00:00	n/a	n/a
+BraTS2021_01450	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0238	2005-04-12 00:00:00	n/a	n/a
+BraTS2021_01451	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0240	2005-07-02 00:00:00	n/a	n/a
+BraTS2021_01452	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0644	2005-11-28 00:00:00	n/a	n/a
+BraTS2021_01453	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0646	2005-12-09 00:00:00	n/a	n/a
+BraTS2021_01454	1	n/a	n/a	6	TCGA-GBM	TCGA-06-1084	2007-01-15 00:00:00	n/a	n/a
+BraTS2021_01455	1	n/a	n/a	6	TCGA-GBM	TCGA-06-5408	2008-01-11 00:00:00	n/a	n/a
+BraTS2021_01456	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0355	2001-06-06 00:00:00	n/a	n/a
+BraTS2021_01457	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0356	2002-03-26 00:00:00	n/a	n/a
+BraTS2021_01458	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0359	2003-01-19 00:00:00	n/a	n/a
+BraTS2021_01459	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0360	2003-02-23 00:00:00	n/a	n/a
+BraTS2021_01460	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0385	2001-08-27 00:00:00	n/a	n/a
+BraTS2021_01461	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0389	2003-07-25 00:00:00	n/a	n/a
+BraTS2021_01462	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0390	2003-08-05 00:00:00	n/a	n/a
+BraTS2021_01463	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0392	2003-11-03 00:00:00	n/a	n/a
+BraTS2021_01464	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0509	1997-11-13 00:00:00	n/a	n/a
+BraTS2021_01465	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0512	1998-05-25 00:00:00	n/a	n/a
+BraTS2021_01466	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0520	1999-10-13 00:00:00	n/a	n/a
+BraTS2021_01467	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0522	2000-04-24 00:00:00	n/a	n/a
+BraTS2021_01468	1	n/a	n/a	8	TCGA-GBM	TCGA-12-0616	1999-04-12 00:00:00	n/a	n/a
+BraTS2021_01469	1	n/a	n/a	8	TCGA-GBM	TCGA-12-0776	1998-05-12 00:00:00	n/a	n/a
+BraTS2021_01470	1	n/a	n/a	8	TCGA-GBM	TCGA-12-0829	1999-06-02 00:00:00	n/a	n/a
+BraTS2021_01471	1	n/a	n/a	9	TCGA-GBM	TCGA-14-1794	1998-04-11 00:00:00	n/a	n/a
+BraTS2021_01472	1	n/a	n/a	10	TCGA-GBM	TCGA-19-5951	2003-09-14 00:00:00	n/a	n/a
+BraTS2021_01473	1	n/a	n/a	10	TCGA-GBM	TCGA-19-5960	2004-03-15 00:00:00	n/a	n/a
+BraTS2021_01474	1	n/a	n/a	11	TCGA-GBM	TCGA-76-4932	1997-03-16 00:00:00	n/a	n/a
+BraTS2021_01475	1	n/a	n/a	11	TCGA-GBM	TCGA-76-6282	1998-08-24 00:00:00	n/a	n/a
+BraTS2021_01476	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-4942	1997-02-22 00:00:00	n/a	n/a
+BraTS2021_01477	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-4944	2001-02-08 00:00:00	n/a	n/a
+BraTS2021_01478	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-5393	1999-06-06 00:00:00	n/a	n/a
+BraTS2021_01479	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-5396	2001-03-02 00:00:00	n/a	n/a
+BraTS2021_01480	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-5397	2001-03-15 00:00:00	n/a	n/a
+BraTS2021_01481	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6186	2000-06-01 00:00:00	n/a	n/a
+BraTS2021_01482	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6188	2001-08-12 00:00:00	n/a	n/a
+BraTS2021_01483	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6665	2001-08-17 00:00:00	n/a	n/a
+BraTS2021_01484	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6666	2001-11-09 00:00:00	n/a	n/a
+BraTS2021_01485	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6668	2001-10-25 00:00:00	n/a	n/a
+BraTS2021_01486	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6669	2002-01-02 00:00:00	n/a	n/a
+BraTS2021_01487	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5851	1995-04-28 00:00:00	n/a	n/a
+BraTS2021_01488	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5854	1995-11-04 00:00:00	n/a	n/a
+BraTS2021_01489	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5855	1995-12-17 00:00:00	n/a	n/a
+BraTS2021_01490	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5872	1995-02-23 00:00:00	n/a	n/a
+BraTS2021_01491	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5874	1995-05-10 00:00:00	n/a	n/a
+BraTS2021_01492	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6404	1985-06-29 00:00:00	n/a	n/a
+BraTS2021_01493	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6542	1996-05-08 00:00:00	n/a	n/a
+BraTS2021_01494	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7008	1983-07-23 00:00:00	n/a	n/a
+BraTS2021_01495	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7010	1986-03-07 00:00:00	n/a	n/a
+BraTS2021_01496	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7014	1986-06-18 00:00:00	n/a	n/a
+BraTS2021_01497	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7015	1989-06-18 00:00:00	n/a	n/a
+BraTS2021_01498	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7018	1991-12-20 00:00:00	n/a	n/a
+BraTS2021_01499	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7019	1994-09-08 00:00:00	n/a	n/a
+BraTS2021_01500	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7294	1989-01-04 00:00:00	n/a	n/a
+BraTS2021_01501	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7298	1991-03-24 00:00:00	n/a	n/a
+BraTS2021_01502	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7299	1991-04-17 00:00:00	n/a	n/a
+BraTS2021_01503	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7300	1991-08-14 00:00:00	n/a	n/a
+BraTS2021_01504	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7301	1991-11-12 00:00:00	n/a	n/a
+BraTS2021_01505	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7302	1991-12-03 00:00:00	n/a	n/a
+BraTS2021_01506	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7304	1993-03-25 00:00:00	n/a	n/a
+BraTS2021_01507	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7306	1993-05-12 00:00:00	n/a	n/a
+BraTS2021_01508	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-7309	1996-08-31 00:00:00	n/a	n/a
+BraTS2021_01509	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8162	1996-10-29 00:00:00	n/a	n/a
+BraTS2021_01510	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8164	1997-01-11 00:00:00	n/a	n/a
+BraTS2021_01511	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8166	1997-03-22 00:00:00	n/a	n/a
+BraTS2021_01512	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8167	1997-04-02 00:00:00	n/a	n/a
+BraTS2021_01513	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8168	1997-05-03 00:00:00	n/a	n/a
+BraTS2021_01514	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TR	1997-07-26 00:00:00	n/a	n/a
+BraTS2021_01515	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TS	1997-07-26 00:00:00	n/a	n/a
+BraTS2021_01516	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TT	1998-03-18 00:00:00	n/a	n/a
+BraTS2021_01517	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TU	1998-03-12 00:00:00	n/a	n/a
+BraTS2021_01518	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TW	1998-02-28 00:00:00	n/a	n/a
+BraTS2021_01519	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TY	1997-07-09 00:00:00	n/a	n/a
+BraTS2021_01520	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A6S7	1998-05-13 00:00:00	n/a	n/a
+BraTS2021_01521	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A6S8	1998-06-20 00:00:00	n/a	n/a
+BraTS2021_01522	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-5964	2001-05-11 00:00:00	n/a	n/a
+BraTS2021_01523	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-6689	2002-03-26 00:00:00	n/a	n/a
+BraTS2021_01524	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-6691	2002-04-05 00:00:00	n/a	n/a
+BraTS2021_01525	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-6692	2002-06-06 00:00:00	n/a	n/a
+BraTS2021_01526	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-7634	2000-01-28 00:00:00	n/a	n/a
+BraTS2021_01527	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-A4MT	2002-02-12 00:00:00	n/a	n/a
+BraTS2021_01528	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7473	1997-08-26 00:00:00	n/a	n/a
+BraTS2021_01529	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7602	1995-11-03 00:00:00	n/a	n/a
+BraTS2021_01530	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7680	1997-02-02 00:00:00	n/a	n/a
+BraTS2021_01531	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7686	1995-06-29 00:00:00	n/a	n/a
+BraTS2021_01532	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7690	1996-03-12 00:00:00	n/a	n/a
+BraTS2021_01533	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7694	1995-04-04 00:00:00	n/a	n/a
+BraTS2021_01534	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7879	1998-10-09 00:00:00	n/a	n/a
+BraTS2021_01535	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7884	1998-09-13 00:00:00	n/a	n/a
+BraTS2021_01536	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8018	1997-04-11 00:00:00	n/a	n/a
+BraTS2021_01537	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01538	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01539	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01540	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01541	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01542	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01543	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01544	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01545	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01546	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01547	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01548	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01549	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01550	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01551	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01552	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01553	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01554	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01555	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01556	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01557	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01558	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01559	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01560	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01561	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01562	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01563	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01564	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01565	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01566	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01567	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01568	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01569	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01570	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01571	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01572	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01573	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01574	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01575	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01576	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01577	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01578	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01579	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01580	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01581	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01582	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01583	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01584	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01585	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01586	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01587	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01588	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01589	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01590	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01591	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01592	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01593	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01594	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01595	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01596	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01597	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01598	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01599	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01600	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01601	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01602	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01603	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01604	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01605	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01606	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01607	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01608	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01609	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01610	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01611	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01612	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01613	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01614	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01615	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01616	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01617	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01618	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01619	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01620	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01621	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01622	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01623	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01624	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01625	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01626	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01627	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01628	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01629	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01630	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01631	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01632	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01633	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01634	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01635	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01636	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01637	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01638	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01639	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01640	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01641	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01642	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01643	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01644	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01645	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01646	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01647	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01648	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01649	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01650	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01651	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01652	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01653	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01654	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01655	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01656	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01657	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01658	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01659	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01660	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01661	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01662	1	n/a	n/a	4	Collection 5	n/a	n/a	n/a	n/a
+BraTS2021_01663	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8111	1998-03-30 00:00:00	n/a	n/a
+BraTS2021_01664	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8114	1998-10-30 00:00:00	n/a	n/a
+BraTS2021_01665	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8563	1998-12-09 00:00:00	n/a	n/a
+BraTS2021_01666	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-A61A	2000-01-27 00:00:00	n/a	n/a
+BraTS2021_01667	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01668	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01669	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01670	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01671	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01672	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01673	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01674	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01675	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01676	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01677	1	n/a	n/a	22	Collection3	n/a	n/a	n/a	n/a
+BraTS2021_01678	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00009_11	2002-09-01 00:00:00	n/a	n/a
+BraTS2021_01679	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00020_11	2004-02-29 00:00:00	n/a	n/a
+BraTS2021_01680	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00026_11	2003-08-06 00:00:00	n/a	n/a
+BraTS2021_01681	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00029_11	2003-02-22 00:00:00	n/a	n/a
+BraTS2021_01682	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00031_11	2003-07-18 00:00:00	n/a	n/a
+BraTS2021_01683	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00035_11	2004-11-18 00:00:00	n/a	n/a
+BraTS2021_01684	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00041_11	2001-10-21 00:00:00	n/a	n/a
+BraTS2021_01685	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00054_11	2005-12-30 00:00:00	n/a	n/a
+BraTS2021_01686	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00062_11	2003-04-16 00:00:00	n/a	n/a
+BraTS2021_01687	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00106_11	2003-07-02 00:00:00	n/a	n/a
+BraTS2021_01688	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00173_11	2001-08-08 00:00:00	n/a	n/a
+BraTS2021_01689	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00178_11	2003-03-05 00:00:00	n/a	n/a
+BraTS2021_01690	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00180_11	2001-07-27 00:00:00	n/a	n/a
+BraTS2021_01691	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00274_11	2004-01-19 00:00:00	n/a	n/a
+BraTS2021_01692	1	n/a	n/a	1	UPENN-GBM	UPENN-GBM-00437_11	2011-05-06 00:00:00	n/a	n/a
+BraTS2021_01693	1	n/a	n/a	5	TCGA-GBM	TCGA-02-0048	1999-01-29 00:00:00	n/a	n/a
+BraTS2021_01694	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0128	1999-02-18 00:00:00	n/a	n/a
+BraTS2021_01695	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0132	2005-05-17 00:00:00	n/a	n/a
+BraTS2021_01696	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0166	1999-06-01 00:00:00	n/a	n/a
+BraTS2021_01697	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0168	2000-08-12 00:00:00	n/a	n/a
+BraTS2021_01698	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0175	2001-11-20 00:00:00	n/a	n/a
+BraTS2021_01699	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0189	2004-10-02 00:00:00	n/a	n/a
+BraTS2021_01700	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0213	1996-10-23 00:00:00	n/a	n/a
+BraTS2021_01701	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0241	2005-08-30 00:00:00	n/a	n/a
+BraTS2021_01702	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0648	2006-01-20 00:00:00	n/a	n/a
+BraTS2021_01703	1	n/a	n/a	6	TCGA-GBM	TCGA-06-0649	2006-01-26 00:00:00	n/a	n/a
+BraTS2021_01704	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0350	1998-12-15 00:00:00	n/a	n/a
+BraTS2021_01705	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0352	2000-12-25 00:00:00	n/a	n/a
+BraTS2021_01706	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0353	2001-03-14 00:00:00	n/a	n/a
+BraTS2021_01707	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0354	2001-05-08 00:00:00	n/a	n/a
+BraTS2021_01708	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0357	2002-05-28 00:00:00	n/a	n/a
+BraTS2021_01709	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0358	2002-11-26 00:00:00	n/a	n/a
+BraTS2021_01710	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0510	1998-01-26 00:00:00	n/a	n/a
+BraTS2021_01711	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0521	2000-03-07 00:00:00	n/a	n/a
+BraTS2021_01712	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0524	2000-11-02 00:00:00	n/a	n/a
+BraTS2021_01713	1	n/a	n/a	7	TCGA-GBM	TCGA-08-0529	2002-10-29 00:00:00	n/a	n/a
+BraTS2021_01714	1	n/a	n/a	9	TCGA-GBM	TCGA-14-0789	1997-11-19 00:00:00	methylated	n/a
+BraTS2021_01715	1	n/a	n/a	28	TCGA-GBM	TCGA-27-1838	1988-08-29 00:00:00	unmethylated	n/a
+BraTS2021_01716	1	n/a	n/a	28	TCGA-GBM	TCGA-27-2526	1988-03-07 00:00:00	unmethylated	n/a
+BraTS2021_01717	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-4941	1996-09-09 00:00:00	n/a	n/a
+BraTS2021_01718	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-4943	2000-09-02 00:00:00	n/a	n/a
+BraTS2021_01719	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-5395	1998-10-04 00:00:00	n/a	n/a
+BraTS2021_01720	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6290	2000-09-17 00:00:00	n/a	n/a
+BraTS2021_01721	1	n/a	n/a	12	TCGA-LGG	TCGA-CS-6667	2001-11-05 00:00:00	n/a	n/a
+BraTS2021_01722	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5849	1995-04-05 00:00:00	n/a	n/a
+BraTS2021_01723	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5852	1995-07-09 00:00:00	n/a	n/a
+BraTS2021_01724	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5853	1995-08-23 00:00:00	n/a	n/a
+BraTS2021_01725	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-5871	1994-12-06 00:00:00	n/a	n/a
+BraTS2021_01726	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6397	1985-01-30 00:00:00	n/a	n/a
+BraTS2021_01727	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6399	1983-04-16 00:00:00	n/a	n/a
+BraTS2021_01728	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6400	1983-05-18 00:00:00	n/a	n/a
+BraTS2021_01729	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6401	1983-10-01 00:00:00	n/a	n/a
+BraTS2021_01730	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6405	1985-10-05 00:00:00	n/a	n/a
+BraTS2021_01731	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6407	1986-05-14 00:00:00	n/a	n/a
+BraTS2021_01732	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6408	1986-05-21 00:00:00	n/a	n/a
+BraTS2021_01733	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-6410	1995-12-28 00:00:00	n/a	n/a
+BraTS2021_01734	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-8165	1997-02-05 00:00:00	n/a	n/a
+BraTS2021_01735	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A5TP	1997-06-14 00:00:00	n/a	n/a
+BraTS2021_01736	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A6S2	1998-04-04 00:00:00	n/a	n/a
+BraTS2021_01737	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A6S3	1998-07-11 00:00:00	n/a	n/a
+BraTS2021_01738	1	n/a	n/a	13	TCGA-LGG	TCGA-DU-A6S6	1992-05-21 00:00:00	n/a	n/a
+BraTS2021_01739	1	n/a	n/a	29	TCGA-LGG	TCGA-EZ-7265A	2001-09-15 00:00:00	n/a	n/a
+BraTS2021_01740	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-6688	2002-02-15 00:00:00	n/a	n/a
+BraTS2021_01741	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-7643	2002-11-04 00:00:00	n/a	n/a
+BraTS2021_01742	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-A6IZ	2004-02-20 00:00:00	n/a	n/a
+BraTS2021_01743	1	n/a	n/a	14	TCGA-LGG	TCGA-FG-A713	2004-07-09 00:00:00	n/a	n/a
+BraTS2021_01744	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7475	1997-09-18 00:00:00	n/a	n/a
+BraTS2021_01745	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7616	1994-08-13 00:00:00	n/a	n/a
+BraTS2021_01746	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7684	1995-08-16 00:00:00	n/a	n/a
+BraTS2021_01747	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7692	1996-07-24 00:00:00	n/a	n/a
+BraTS2021_01748	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7693	1995-05-20 00:00:00	n/a	n/a
+BraTS2021_01749	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7855	1995-10-20 00:00:00	n/a	n/a
+BraTS2021_01750	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7856	1995-08-31 00:00:00	n/a	n/a
+BraTS2021_01751	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7860	1996-05-13 00:00:00	n/a	n/a
+BraTS2021_01752	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7874	1995-09-02 00:00:00	n/a	n/a
+BraTS2021_01753	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-7882	1997-01-25 00:00:00	n/a	n/a
+BraTS2021_01754	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8105	1998-08-26 00:00:00	n/a	n/a
+BraTS2021_01755	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8106	1997-07-27 00:00:00	n/a	n/a
+BraTS2021_01756	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01757	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01758	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01759	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01760	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01761	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01762	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01763	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01764	1	n/a	n/a	23	Collection 7	n/a	n/a	n/a	n/a
+BraTS2021_01765	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01766	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01767	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01768	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01769	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01770	1	n/a	n/a	24	Collection 9	n/a	n/a	n/a	n/a
+BraTS2021_01771	1	n/a	n/a	24	Collection 9	n/a	n/a	unmethylated	n/a
+BraTS2021_01772	1	n/a	n/a	24	Collection 9	n/a	n/a	methylated	n/a
+BraTS2021_01773	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8107	1998-07-08 00:00:00	n/a	n/a
+BraTS2021_01774	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-8113	1993-08-09 00:00:00	n/a	n/a
+BraTS2021_01775	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-A5RC	1999-08-31 00:00:00	n/a	n/a
+BraTS2021_01776	1	n/a	n/a	15	TCGA-LGG	TCGA-HT-A614	1999-12-24 00:00:00	n/a	n/a
+BraTS2021_01777	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01778	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01779	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01780	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01781	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01782	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01783	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01784	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01785	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01786	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01787	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01788	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01789	1	n/a	n/a	20	CPTAC-GBM	C3N-03003	02/23/2001	n/a	n/a
+BraTS2021_01790	1	n/a	n/a	20	CPTAC-GBM	C3N-03756	07/21/2001	n/a	n/a
+BraTS2021_01791	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01792	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01793	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01794	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01795	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01796	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01797	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a
+BraTS2021_01798	1	n/a	n/a	18	UCSF-PDGM_Additional	n/a	n/a	n/a	n/a

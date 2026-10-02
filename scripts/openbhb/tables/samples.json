@@ -1,0 +1,79 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "study": {
+    "Description": "Source cohort study (integer code).",
+    "Source": "study"
+  },
+  "diagnosis": {
+    "Description": "Diagnosis (all healthy controls).",
+    "Source": "diagnosis"
+  },
+  "magnetic_field_strength": {
+    "Description": "Scanner field strength.",
+    "Source": "magnetic_field_strength",
+    "Units": "T"
+  },
+  "acquisition_setting": {
+    "Description": "Acquisition setting code within a site.",
+    "Source": "acquisition_setting"
+  },
+  "site_x_acquisition": {
+    "Description": "Site x acquisition setting code (64 values).",
+    "Source": "siteXacq"
+  },
+  "tiv": {
+    "Description": "Total intracranial volume (CAT12).",
+    "Source": "tiv",
+    "Units": "cm^3"
+  },
+  "csfv": {
+    "Description": "CSF volume (CAT12).",
+    "Source": "csfv",
+    "Units": "cm^3"
+  },
+  "gmv": {
+    "Description": "Grey matter volume (CAT12).",
+    "Source": "gmv",
+    "Units": "cm^3"
+  },
+  "wmv": {
+    "Description": "White matter volume (CAT12).",
+    "Source": "wmv",
+    "Units": "cm^3"
+  },
+  "qc_freesurfer_euler": {
+    "Description": "FreeSurfer recon-all Euler number (QC).",
+    "Source": "qc.tsv reconall-euler"
+  },
+  "qc_cat12_ncr": {
+    "Description": "CAT12 noise-to-contrast ratio (QC).",
+    "Source": "qc.tsv cat12vbm-ncr"
+  },
+  "qc_cat12_iqr": {
+    "Description": "CAT12 image quality rating (QC).",
+    "Source": "qc.tsv cat12vbm-iqr"
+  },
+  "qc_quasiraw_corr": {
+    "Description": "Correlation of the quasi-raw image with the template (QC).",
+    "Source": "qc.tsv quasiraw-corr"
+  }
+}

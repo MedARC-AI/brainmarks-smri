@@ -1,0 +1,55 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "study_date": {
+    "Description": "Scan date.",
+    "Source": "STUDY_DATE"
+  },
+  "height_cm": {
+    "Description": "Height.",
+    "Source": "HEIGHT",
+    "Units": "cm"
+  },
+  "weight_kg": {
+    "Description": "Weight.",
+    "Source": "WEIGHT",
+    "Units": "kg"
+  },
+  "ethnicity": {
+    "Description": "Ethnicity (decoded with the Ethnicity sheet).",
+    "Source": "ETHNIC_ID"
+  },
+  "marital_status": {
+    "Description": "Marital status (decoded with the Marital Status sheet).",
+    "Source": "MARITAL_ID"
+  },
+  "occupation": {
+    "Description": "Occupation (decoded with the Occupation sheet).",
+    "Source": "OCCUPATION_ID"
+  },
+  "qualification": {
+    "Description": "Highest qualification (decoded with the Qualification sheet).",
+    "Source": "QUALIFICATION_ID"
+  },
+  "demographics_conflict": {
+    "Description": "IXI.xls has two conflicting rows for this ID; the conflicting age/sex are set to n/a."
+  }
+}

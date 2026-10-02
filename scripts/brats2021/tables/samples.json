@@ -1,0 +1,50 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "collection": {
+    "Description": "Source collection (TCIA collection, '<collection>_Additional', or anonymized 'Collection N').",
+    "Source": "Data Collection (as on TCIA+additional)"
+  },
+  "tcia_patient_id": {
+    "Description": "PatientID in the source TCIA collection (for overlap with upenn_gbm / ucsf_pdgm).",
+    "Source": "PatientID on TCIA Radiology Portal"
+  },
+  "study_date": {
+    "Description": "Study date as given in the crosswalk (m/d/yyyy; some cases).",
+    "Source": "Study date (m/d/yyyy) per PatientID"
+  },
+  "mgmt": {
+    "Description": "MGMT promoter methylation (Task 2 target; also given for some non-Task-2 cases).",
+    "Source": "MGMT value",
+    "Levels": {
+      "methylated": "1",
+      "unmethylated": "0"
+    }
+  },
+  "mgmt_cohort": {
+    "Description": "Official Task 2 (MGMT) cohort.",
+    "Source": "MGMT (Task 2) Cohort",
+    "Levels": {
+      "train": "Training",
+      "val": "Validation"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "site_folder": {
+    "Description": "BIDS site folder under RawDataBIDS/ (some SITE_IDs are split into sub-sites, e.g. CMU_a/CMU_b)."
+  },
+  "diagnosis": {
+    "Description": "Diagnostic group (target).",
+    "Source": "DX_GROUP",
+    "Levels": {
+      "ASD": "autism spectrum disorder",
+      "TDC": "typically developing control"
+    }
+  },
+  "dsm_iv_tr": {
+    "Description": "DSM-IV-TR diagnostic subtype.",
+    "Source": "DSM_IV_TR"
+  },
+  "handedness": {
+    "Description": "Handedness category.",
+    "Source": "HANDEDNESS_CATEGORY"
+  },
+  "fiq": {
+    "Description": "Full-scale IQ (test type varies by site: FIQ_TEST_TYPE).",
+    "Source": "FIQ"
+  },
+  "viq": {
+    "Description": "Verbal IQ.",
+    "Source": "VIQ"
+  },
+  "piq": {
+    "Description": "Performance IQ.",
+    "Source": "PIQ"
+  },
+  "ados_total": {
+    "Description": "ADOS total score (communication + social).",
+    "Source": "ADOS_TOTAL"
+  },
+  "ados_gotham_severity": {
+    "Description": "ADOS calibrated severity score (Gotham).",
+    "Source": "ADOS_GOTHAM_SEVERITY"
+  },
+  "srs_raw_total": {
+    "Description": "Social Responsiveness Scale raw total.",
+    "Source": "SRS_RAW_TOTAL"
+  },
+  "current_med_status": {
+    "Description": "Taking medication at the time of scan.",
+    "Source": "CURRENT_MED_STATUS"
+  }
+}

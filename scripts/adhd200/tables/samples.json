@@ -1,0 +1,105 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "diagnosis": {
+    "Description": "Diagnosis (target). n/a for Brown (labels never released).",
+    "Source": "dx",
+    "Levels": {
+      "TDC": "typically developing",
+      "ADHD-Combined": "",
+      "ADHD-Hyperactive/Impulsive": "",
+      "ADHD-Inattentive": ""
+    }
+  },
+  "adhd": {
+    "Description": "ADHD of any subtype vs TDC (binary target).",
+    "Source": "dx"
+  },
+  "secondary_diagnosis": {
+    "Description": "Secondary diagnoses (free text; some sites).",
+    "Source": "secondary_dx"
+  },
+  "adhd_measure": {
+    "Description": "ADHD rating instrument (some sites).",
+    "Source": "adhd_measure"
+  },
+  "adhd_index": {
+    "Description": "ADHD index score (instrument varies by site).",
+    "Source": "adhd_index"
+  },
+  "inattentive": {
+    "Description": "Inattentive subscale score.",
+    "Source": "inattentive"
+  },
+  "hyper_impulsive": {
+    "Description": "Hyperactive/impulsive subscale score.",
+    "Source": "hyper_impulsive"
+  },
+  "med_status": {
+    "Description": "Medication status (some sites).",
+    "Source": "med_status",
+    "Levels": {
+      "Medication Naive": "",
+      "Not Medication Naive": ""
+    }
+  },
+  "handedness": {
+    "Description": "Handedness category (all sites except NYU).",
+    "Source": "handedness",
+    "Levels": {
+      "Left": "",
+      "Right": "",
+      "Ambidextrous": ""
+    }
+  },
+  "handedness_score": {
+    "Description": "Edinburgh handedness score, -1 (left) to 1 (right) (NYU only).",
+    "Source": "handedness"
+  },
+  "iq_measure": {
+    "Description": "IQ instrument.",
+    "Source": "iq_measure"
+  },
+  "verbal_iq": {
+    "Description": "Verbal IQ.",
+    "Source": "verbal_iq"
+  },
+  "performance_iq": {
+    "Description": "Performance IQ.",
+    "Source": "performance_iq"
+  },
+  "full4_iq": {
+    "Description": "Full-scale IQ, four subtests.",
+    "Source": "full4_iq"
+  },
+  "full2_iq": {
+    "Description": "Full-scale IQ, two subtests.",
+    "Source": "full2_iq"
+  },
+  "qc_anatomical": {
+    "Description": "Quality control of the (first) anatomical scan.",
+    "Source": "qc_anatomical_1 (WashU: qc_s1_anat)",
+    "Levels": {
+      "Pass": "",
+      "Questionable": ""
+    }
+  }
+}

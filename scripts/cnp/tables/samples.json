@@ -1,0 +1,40 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "diagnosis": {
+    "Description": "Diagnostic group (target).",
+    "Source": "diagnosis",
+    "Levels": {
+      "CONTROL": "healthy control",
+      "SCHZ": "schizophrenia",
+      "BIPOLAR": "bipolar disorder",
+      "ADHD": "adult ADHD"
+    }
+  },
+  "scanner_serial": {
+    "Description": "Serial number of the 3T Siemens Trio scanner used.",
+    "Source": "ScannerSerialNumber"
+  },
+  "ghost_artifact": {
+    "Description": "Ghosting artifact through the temporal lobes on the T1w (QC covariate).",
+    "Source": "ghost_NoGhost"
+  }
+}

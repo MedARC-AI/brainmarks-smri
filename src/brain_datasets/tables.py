@@ -11,6 +11,11 @@ Each dataset gets a small set of derived tables in `datasets/<name>/tables/`, bu
     samples.json   description of every samples.tsv column (BIDS sidecar style)
     splits.tsv     one row per participant: participant_id, split, official_split, rank, complete
 
+`modality` uses one vocabulary across datasets: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD,
+DWI (trace / b1000 diffusion image), ADC, DTI (raw multi-direction diffusion series, 4D or one
+file per volume), mask (segmentations; `desc` says which, e.g. tumor, lesion). `desc` marks
+variants (e.g. bias-corrected, skull-stripped or not) and is n/a for the plain image.
+
 IDs follow BIDS naming: `participant_id` is the person, `session_id` one scan session of that
 person (often the only one). Splits are by participant, so all sessions of a person land in the
 same split.
@@ -54,6 +59,28 @@ def dataset_dir(name: str) -> Path:
     return DATA_ROOT / name
 
 
+def bids_images(root: Path, base: Path) -> pd.DataFrame:
+    """images.tsv rows for the NIfTI files of a BIDS tree `root` (sub-*/[ses-*/]<datatype>/).
+
+    modality = the BIDS suffix (T1w, dwi, ...), desc = the other entities except sub/ses joined
+    by '_' (e.g. 'rec-ADC'), session_id = the ses label or '1'. Paths are relative to `base`.
+    """
+    rows = []
+    for path in sorted(root.glob("sub-*/**/*.nii.gz")):
+        entities = path.name.removesuffix(".nii.gz").split("_")
+        suffix = entities.pop()
+        labels = dict(e.split("-", 1) for e in entities)
+        desc = "_".join(e for e in entities if not e.startswith(("sub-", "ses-")))
+        rows.append((f"sub-{labels['sub']}", labels.get("ses", "1"), suffix, desc or None,
+                     str(path.relative_to(base))))
+    return pd.DataFrame(rows, columns=IMAGE_COLUMNS)
+
+
+def stratum_keys(strata: pd.Series) -> pd.Series:
+    """Strata as strings, with missing values as their own 'n/a' stratum (groupby drops NA keys)."""
+    return strata.astype(object).where(strata.notna(), "n/a").astype(str)
+
+
 def stratified_split(strata: pd.Series, fractions: dict[str, float] = FRACTIONS, seed: int = SEED) -> pd.Series:
     """Assign each participant to a split.
 
@@ -63,17 +90,22 @@ def stratified_split(strata: pd.Series, fractions: dict[str, float] = FRACTIONS,
     """
     rng = np.random.default_rng(seed)
     split = pd.Series(index=strata.index, dtype=object)
-    for _, group in strata.groupby(strata.astype(str)):  # groupby sorts the keys
+    assert strata.index.is_unique
+    for _, group in strata.groupby(stratum_keys(strata)):  # groupby sorts the keys
         ids = list(rng.permutation(sorted(group.index)))
         exact = np.array(list(fractions.values())) * len(ids)
         counts = np.floor(exact).astype(int)
         leftover = len(ids) - counts.sum()
-        for i in np.argsort(-(exact - counts))[:leftover]:
+        # largest remainders first; equal remainders (e.g. val vs test) in random order
+        order = rng.permutation(len(counts))
+        by_remainder = order[np.argsort(-(exact - counts)[order], kind="stable")]
+        for i in by_remainder[:leftover]:
             counts[i] += 1
         start = 0
         for name, count in zip(fractions, counts):
             split[ids[start:start + count]] = name
             start += count
+    assert split.notna().all()
     return split
 
 
@@ -86,7 +118,7 @@ def interleaved_rank(split: pd.Series, strata: pd.Series, seed: int = SEED) -> p
     """
     rng = np.random.default_rng(seed + 1)
     position = pd.Series(np.nan, index=split.index)
-    groups = pd.DataFrame({"split": split, "stratum": strata.astype(str)}).groupby(["split", "stratum"])
+    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)}).groupby(["split", "stratum"])
     for _, group in groups:
         ids = rng.permutation(sorted(group.index))
         position[ids] = (np.arange(len(ids)) + rng.uniform()) / len(ids)

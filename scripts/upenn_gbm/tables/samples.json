@@ -1,0 +1,72 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "days_since_baseline": {
+    "Description": "Days from the baseline pre-operative scan.",
+    "Source": "Time_since_baseline_preop",
+    "Units": "days"
+  },
+  "os_days": {
+    "Description": "Overall survival from surgery: time to death if os_event = 1, else censoring time (target).",
+    "Source": "Survival_from_surgery_days_UPDATED, Survival_Censor",
+    "Units": "days"
+  },
+  "os_event": {
+    "Description": "Death observed.",
+    "Source": "Survival_Status",
+    "Levels": {
+      "1": "deceased",
+      "0": "alive or lost to follow-up (censored)"
+    }
+  },
+  "survival_status": {
+    "Description": "Survival status as reported.",
+    "Source": "Survival_Status"
+  },
+  "idh1": {
+    "Description": "IDH1 mutation status (target).",
+    "Source": "IDH1",
+    "Levels": {
+      "wildtype": "",
+      "mutated": ""
+    }
+  },
+  "mgmt": {
+    "Description": "MGMT promoter methylation (target).",
+    "Source": "MGMT",
+    "Levels": {
+      "methylated": "",
+      "unmethylated": ""
+    }
+  },
+  "kps": {
+    "Description": "Karnofsky performance status.",
+    "Source": "KPS"
+  },
+  "gross_total_resection": {
+    "Description": "More than 90% of the tumor resected.",
+    "Source": "GTR_over90percent"
+  },
+  "psp_tp_score": {
+    "Description": "Pseudoprogression vs true progression score, 1-6 (follow-ups only).",
+    "Source": "PsP_TP_score"
+  }
+}

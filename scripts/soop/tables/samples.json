@@ -1,0 +1,79 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "scanner_model": {
+    "Description": "Scanner model of the T1w (from its JSON sidecar).",
+    "Source": "sub-*_T1w.json ManufacturersModelName"
+  },
+  "age_clamped": {
+    "Description": "Age was reported as '89+' (age set to 89)."
+  },
+  "race": {
+    "Description": "Race from electronic health records.",
+    "Source": "race",
+    "Levels": {
+      "Black": "Black or African American",
+      "White": "White"
+    }
+  },
+  "acute_ischemic_stroke": {
+    "Description": "Acute ischemic stroke diagnosed at admission.",
+    "Source": "acuteischaemicstroke",
+    "Levels": {
+      "1": "yes"
+    }
+  },
+  "prior_stroke": {
+    "Description": "Evidence of a prior (chronic) stroke.",
+    "Source": "priorstroke",
+    "Levels": {
+      "0": "no",
+      "1": "yes"
+    }
+  },
+  "bmi": {
+    "Description": "Body mass index.",
+    "Source": "bmi"
+  },
+  "nihss": {
+    "Description": "NIH Stroke Scale at admission (target).",
+    "Source": "nihss"
+  },
+  "mrs_discharge": {
+    "Description": "Modified Rankin Scale at discharge, 0-6 (6 = death) (target).",
+    "Source": "gs_rankin_6isdeath"
+  },
+  "mrs_poor": {
+    "Description": "Poor outcome: discharge mRS 3-6 (binary target).",
+    "Source": "gs_rankin_6isdeath"
+  },
+  "etiology": {
+    "Description": "Stroke etiology (TOAST class).",
+    "Source": "etiology",
+    "Levels": {
+      "1": "large-artery atherosclerosis",
+      "2": "cardioembolism",
+      "3": "small-vessel disease",
+      "4": "other determined etiology",
+      "5": "cryptogenic"
+    }
+  }
+}
