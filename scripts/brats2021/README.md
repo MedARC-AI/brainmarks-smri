@@ -44,7 +44,7 @@ Source folders: UPENN-GBM, UCSF-PDGM, TCGA-GBM, TCGA-LGG, CPTAC-GBM, IvyGAP, ACR
 
 ## Notes
 
-- **Case counts:** `datasets.md` and the TCIA page say 1,480. The package has 1,251 + 219 = 1,470 Task 1 cases, plus 9 Task-2-only cases (8 train, 1 val), so **1,479**, matching the crosswalk.
+- **Case counts:** the TCIA page says 1,480. The package has 1,251 + 219 = 1,470 Task 1 cases, plus 9 Task-2-only cases (8 train, 1 val), so **1,479**, matching the crosswalk.
 - **Validation segmentations are not included.** We checked all 53 "new" validation cases and one case per source folder. Only the 1,251 training cases have labels.
 - **Subject overlap** (from the crosswalk): UPENN-GBM 447 (TCIA IDs like `UPENN-GBM-00011_11`), UCSF-PDGM 299 (PatientID holds only the number, e.g. `57`), TCGA-GBM 135, TCGA-LGG 108, CPTAC-GBM 39, IvyGAP 34, ACRIN-FMISO-Brain 4. 413 are new institutional cases with no TCIA equivalent: `UPENN-GBM_Additional` 115, `UCSF-PDGM_Additional` 139, and anonymized "Collection N" sites 159. The `_Additional` rows are probably patients *not* in the UPENN-GBM or UCSF-PDGM collections, but the crosswalk can't confirm it. Use the crosswalk to deduplicate against `upenn_gbm` and `ucsf_pdgm`.
 - The 9 Task-2-only cases use bare IDs (`00169`) where the others use `BraTS2021_NNNNN`.

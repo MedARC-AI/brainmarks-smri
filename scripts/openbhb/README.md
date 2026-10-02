@@ -31,7 +31,7 @@ The per-subject preprocessed arrays in `{train,val}/derivatives/sub-*/` (float32
 ## Notes
 
 - The HF release includes the original T1w (`rawdata/`), which the challenge description doesn't mention. It fits our "no preprocessing" rule better than quasi-raw.
-- Counts: the public part has 3984 subjects (3227 / 362 / 395). The HF card says 664 private test subjects; the paper's 5330 total includes privateBHB. Site counts vary by source: "93 centers" on the HF card, 71 in `datasets.md` (unsourced), and 62 `site` codes (64 `siteXacq`) in the public `participants.tsv`. The external test set covers 6 sites that are absent from train.
+- Counts: the public part has 3984 subjects (3227 / 362 / 395). The HF card says 664 private test subjects; the paper's 5330 total includes privateBHB. Site counts vary by source: "93 centers" on the HF card and 62 `site` codes (64 `siteXacq`) in the public `participants.tsv`. The external test set covers 6 sites that are absent from train.
 - Subject IDs are anonymized 12-digit numbers with no mapping back to the source cohort IDs, so overlap with our ABIDE I and IXI copies can't be resolved from these files.
 - `hf download` writes timestamped metadata to `source/.cache/`; the script deletes it so the manifest is stable. A re-run re-hashes local files (about 3.5 min) instead of downloading.
 
