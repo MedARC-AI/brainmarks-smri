@@ -1,5 +1,6 @@
 #!/bin/bash
-# Egress policy: DNS to configured resolvers, HTTP(S) to public addresses only.
+# Egress policy: DNS to configured resolvers, HTTP(S) to public addresses, and FASP to
+# the TCIA Aspera server only.
 # Everything else (private/cluster ranges, the docker host, SSH, ...) is rejected.
 set -euo pipefail
 
@@ -17,6 +18,14 @@ for net in 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 100.64.0.0/10 169.254.0.0/16 
 done
 
 iptables -A OUTPUT -p tcp -m multiport --dports 80,443 -j ACCEPT
+
+# TCIA's Aspera (FASP) transfer node. Some TCIA releases (UCSF-PDGM, UPENN-GBM NIfTI,
+# BraTS 2021) are only distributed as Faspex packages. FASP uses TCP + UDP 33001.
+for host in 144.30.235.113; do
+  iptables -A OUTPUT -d "$host" -p tcp --dport 33001 -j ACCEPT
+  iptables -A OUTPUT -d "$host" -p udp --dport 33001 -j ACCEPT
+done
+
 iptables -A OUTPUT -j REJECT
 
 if command -v ip6tables >/dev/null && ip6tables -L OUTPUT >/dev/null 2>&1; then
@@ -25,4 +34,4 @@ if command -v ip6tables >/dev/null && ip6tables -L OUTPUT >/dev/null 2>&1; then
   ip6tables -A OUTPUT -j REJECT
 fi
 
-echo "firewall: egress limited to public HTTP(S) + DNS"
+echo "firewall: egress limited to public HTTP(S), DNS and TCIA Aspera"

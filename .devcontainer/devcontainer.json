@@ -1,5 +1,5 @@
 // Isolated dev environment for running Claude Code with permissions bypassed.
-// Only the project folder is mounted; egress is limited to public HTTP(S) (see init-firewall.sh).
+// Only the project folder is mounted; egress is limited to public HTTP(S) and TCIA Aspera (see init-firewall.sh).
 {
   "name": "brain_datasets",
   "build": {
