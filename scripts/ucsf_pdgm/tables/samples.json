@@ -1,0 +1,110 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "who_grade": {
+    "Description": "WHO CNS 2021 grade.",
+    "Source": "WHO CNS Grade",
+    "Levels": {
+      "2": "grade 2",
+      "3": "grade 3",
+      "4": "grade 4"
+    }
+  },
+  "diagnosis": {
+    "Description": "Final integrated pathologic diagnosis (WHO CNS 2021).",
+    "Source": "Final pathologic diagnosis (WHO 2021)"
+  },
+  "idh": {
+    "Description": "IDH mutation status (target).",
+    "Source": "IDH",
+    "Levels": {
+      "wildtype": "IDH wildtype",
+      "mutant": "any IDH1/IDH2 mutation, incl. 'mutated (NOS)'"
+    }
+  },
+  "idh_variant": {
+    "Description": "IDH mutation subtype as reported.",
+    "Source": "IDH"
+  },
+  "mgmt": {
+    "Description": "MGMT promoter methylation, clinical interpretation (target). 'unknown' and 'indeterminate' are n/a.",
+    "Source": "MGMT status",
+    "Levels": {
+      "positive": "methylated",
+      "negative": "unmethylated"
+    }
+  },
+  "mgmt_index": {
+    "Description": "MGMT methylation index: number of methylated promoter sites (0-17).",
+    "Source": "MGMT index"
+  },
+  "codeletion_1p19q": {
+    "Description": "1p/19q codeletion by FISH. 'unknown' is n/a.",
+    "Source": "1p/19q",
+    "Levels": {
+      "intact": "no codeletion",
+      "co-deletion": "codeleted",
+      "relative co-deletion": "relative codeletion"
+    }
+  },
+  "os_days": {
+    "Description": "Overall survival from initial diagnosis to last follow-up (target, with os_event).",
+    "Source": "OS",
+    "Units": "days"
+  },
+  "os_event": {
+    "Description": "Vital status at last follow-up.",
+    "Source": "1-dead 0-alive",
+    "Levels": {
+      "1": "dead (event)",
+      "0": "alive (censored)"
+    }
+  },
+  "resection": {
+    "Description": "Extent of resection.",
+    "Source": "EOR",
+    "Levels": {
+      "GTR": "gross total",
+      "STR": "subtotal",
+      "biopsy": "biopsy only"
+    }
+  },
+  "biopsy_prior": {
+    "Description": "Burr-hole biopsy before the MRI.",
+    "Source": "Biopsy prior to imaging",
+    "Levels": {
+      "yes": "biopsy before MRI",
+      "no": "no biopsy before MRI"
+    }
+  },
+  "brats21_id": {
+    "Description": "Case ID in BraTS 2021, if included (overlap with the brats2021 dataset).",
+    "Source": "BraTS21 ID"
+  },
+  "brats21_seg_cohort": {
+    "Description": "BraTS 2021 Task 1 cohort of this case.",
+    "Source": "BraTS21 Segmentation Cohort"
+  },
+  "brats21_mgmt_cohort": {
+    "Description": "BraTS 2021 Task 2 cohort of this case.",
+    "Source": "BraTS21 MGMT Cohort"
+  }
+}

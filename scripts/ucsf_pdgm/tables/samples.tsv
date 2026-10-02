@@ -1,0 +1,502 @@
+participant_id	session_id	age	sex	site	who_grade	diagnosis	idh	idh_variant	mgmt	mgmt_index	codeletion_1p19q	os_days	os_event	resection	biopsy_prior	brats21_id	brats21_seg_cohort	brats21_mgmt_cohort
+UCSF-PDGM-0004	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	1303.0	1	STR	no	BraTS2021_00097	Training	Training
+UCSF-PDGM-0005	baseline	80	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	n/a	274.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0007	baseline	70	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	n/a	417.0	1	STR	no	BraTS2021_00103	Training	n/a
+UCSF-PDGM-0008	baseline	70	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	185.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0009	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	389.0	1	STR	no	BraTS2021_00049	Training	Training
+UCSF-PDGM-0010	baseline	39	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	n/a	17.0	0	GTR	no	BraTS2021_00087	Training	Training
+UCSF-PDGM-0011	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	n/a	133.0	0	STR	no	BraTS2021_00068	Training	Training
+UCSF-PDGM-0012	baseline	74	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	15.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0013	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	n/a	322.0	1	STR	no	BraTS2021_00056	Training	Training
+UCSF-PDGM-0014	baseline	64	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	n/a	313.0	1	STR	no	BraTS2021_00002	Training	Training
+UCSF-PDGM-0015	baseline	50	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	54.0	1	STR	no	BraTS2021_00021	Training	Training
+UCSF-PDGM-0016	baseline	57	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	n/a	14.0	0	STR	yes	BraTS2021_00054	Training	Training
+UCSF-PDGM-0017	baseline	54	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	241.0	1	STR	no	BraTS2021_00003	Training	Training
+UCSF-PDGM-0018	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	n/a	1449.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0019	baseline	50	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	719.0	1	GTR	no	BraTS2021_00027	Validation	Validation
+UCSF-PDGM-0020	baseline	49	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	551.0	0	GTR	no	BraTS2021_00032	Training	Training
+UCSF-PDGM-0021	baseline	41	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	8	n/a	1759.0	0	GTR	no	BraTS2021_00085	Training	Training
+UCSF-PDGM-0022	baseline	61	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	n/a	533.0	1	STR	no	BraTS2021_00013	Validation	Validation
+UCSF-PDGM-0023	baseline	67	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	1161.0	1	GTR	no	BraTS2021_00035	Training	Training
+UCSF-PDGM-0024	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	653.0	1	STR	no	BraTS2021_00072	Training	Training
+UCSF-PDGM-0025	baseline	34	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	465.0	1	STR	no	BraTS2021_00094	Training	Training
+UCSF-PDGM-0026	baseline	83	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	n/a	236.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0027	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	298.0	1	STR	no	BraTS2021_00016	Training	n/a
+UCSF-PDGM-0029	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	n/a	75.0	1	biopsy	no	BraTS2021_01027	Training	n/a
+UCSF-PDGM-0030	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	n/a	17.0	0	STR	no	BraTS2021_00098	Training	Training
+UCSF-PDGM-0031	baseline	40	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	13	intact	824.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0032	baseline	66	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	n/a	105.0	0	STR	no	BraTS2021_01028	Training	n/a
+UCSF-PDGM-0033	baseline	37	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	10	n/a	1489.0	1	STR	no	BraTS2021_00070	Training	Training
+UCSF-PDGM-0034	baseline	63	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	52.0	0	STR	no	BraTS2021_00088	Training	Training
+UCSF-PDGM-0035	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	132.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0036	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	8	intact	1673.0	0	GTR	no	BraTS2021_00025	Training	Training
+UCSF-PDGM-0037	baseline	74	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	n/a	460.0	0	GTR	no	BraTS2021_00078	Training	Training
+UCSF-PDGM-0038	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	152.0	1	STR	no	BraTS2021_00082	Validation	Validation
+UCSF-PDGM-0039	baseline	53	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	134.0	0	GTR	no	BraTS2021_00024	Training	Training
+UCSF-PDGM-0040	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	716.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0041	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	128.0	0	STR	no	BraTS2021_00015	Validation	Validation
+UCSF-PDGM-0042	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	635.0	1	GTR	no	BraTS2021_00044	Training	Training
+UCSF-PDGM-0043	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	1116.0	1	GTR	no	BraTS2021_00058	Training	Training
+UCSF-PDGM-0044	baseline	38	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	6	n/a	930.0	0	STR	no	BraTS2021_00059	Training	Training
+UCSF-PDGM-0045	baseline	32	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	11	relative co-deletion	1718.0	0	GTR	no	BraTS2021_00043	Training	Training
+UCSF-PDGM-0046	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	178.0	1	STR	yes	BraTS2021_00030	Training	Training
+UCSF-PDGM-0047	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	385.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0048	baseline	74	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	54.0	1	biopsy	no	BraTS2021_00026	Training	Training
+UCSF-PDGM-0049	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	n/a	721.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0050	baseline	37	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	n/a	554.0	1	GTR	no	BraTS2021_00048	Training	Training
+UCSF-PDGM-0053	baseline	64	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	575.0	0	GTR	no	BraTS2021_00018	Training	Training
+UCSF-PDGM-0055	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	n/a	1328.0	0	GTR	no	BraTS2021_00011	Training	Training
+UCSF-PDGM-0056	baseline	79	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	207.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0057	baseline	38	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	n/a	224.0	0	STR	no	BraTS2021_00000	Training	Training
+UCSF-PDGM-0058	baseline	51	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	1540.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0059	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	223.0	0	STR	no	BraTS2021_00036	Training	Training
+UCSF-PDGM-0061	baseline	46	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	16	intact	1907.0	0	STR	no	BraTS2021_00012	Training	Training
+UCSF-PDGM-0063	baseline	56	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	287.0	1	STR	no	BraTS2021_00031	Training	Training
+UCSF-PDGM-0064	baseline	49	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	187.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0065	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	167.0	1	STR	no	BraTS2021_00095	Training	Training
+UCSF-PDGM-0066	baseline	38	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	1913.0	0	biopsy	no	BraTS2021_01035	Training	n/a
+UCSF-PDGM-0067	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	n/a	299.0	1	STR	no	BraTS2021_00074	Training	Training
+UCSF-PDGM-0068	baseline	54	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	336.0	1	biopsy	no	BraTS2021_00047	Validation	Validation
+UCSF-PDGM-0069	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	n/a	245.0	1	biopsy	no	BraTS2021_00037	Validation	Validation
+UCSF-PDGM-0070	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	n/a	678.0	1	STR	no	BraTS2021_00052	Training	Training
+UCSF-PDGM-0071	baseline	71	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	315.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0072	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	184.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0073	baseline	54	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	12	n/a	1617.0	0	STR	no	BraTS2021_00079	Validation	Validation
+UCSF-PDGM-0074	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	583.0	0	GTR	yes	BraTS2021_00084	Training	Training
+UCSF-PDGM-0075	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	421.0	1	GTR	no	BraTS2021_00061	Training	Training
+UCSF-PDGM-0076	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	n/a	108.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0077	baseline	84	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	n/a	142.0	1	STR	no	BraTS2021_00077	Training	Training
+UCSF-PDGM-0078	baseline	79	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	354.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0079	baseline	79	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	560.0	1	STR	no	BraTS2021_00081	Training	Training
+UCSF-PDGM-0080	baseline	77	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	n/a	253.0	1	GTR	no	BraTS2021_00066	Training	Training
+UCSF-PDGM-0082	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	6.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0083	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	n/a	260.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0084	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	902.0	0	GTR	no	BraTS2021_00045	Training	Training
+UCSF-PDGM-0085	baseline	77	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	232.0	0	GTR	no	BraTS2021_00017	Training	Training
+UCSF-PDGM-0086	baseline	72	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	n/a	266.0	0	STR	no	BraTS2021_00089	Training	Training
+UCSF-PDGM-0087	baseline	63	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	intact	406.0	1	GTR	no	BraTS2021_00071	Training	Training
+UCSF-PDGM-0088	baseline	60	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	1797.0	0	GTR	no	BraTS2021_00008	Training	Training
+UCSF-PDGM-0089	baseline	25	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	4	intact	1785.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0090	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	749.0	1	STR	no	BraTS2021_00060	Training	Training
+UCSF-PDGM-0091	baseline	79	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	n/a	463.0	1	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0092	baseline	52	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	567.0	1	GTR	no	BraTS2021_00009	Training	Training
+UCSF-PDGM-0093	baseline	79	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	n/a	994.0	1	GTR	no	BraTS2021_00020	Training	Training
+UCSF-PDGM-0094	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	n/a	161.0	0	STR	no	BraTS2021_00091	Validation	Validation
+UCSF-PDGM-0095	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	n/a	777.0	1	STR	no	BraTS2021_00046	Training	Training
+UCSF-PDGM-0096	baseline	46	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	591.0	1	STR	no	BraTS2021_00001	Validation	Validation
+UCSF-PDGM-0097	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	110.0	1	STR	no	BraTS2021_00022	Training	Training
+UCSF-PDGM-0099	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	n/a	472.0	1	GTR	no	BraTS2021_00028	Training	Training
+UCSF-PDGM-0101	baseline	50	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	705.0	1	STR	no	BraTS2021_00090	Training	Training
+UCSF-PDGM-0102	baseline	45	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	6	n/a	798.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0103	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	1694.0	0	GTR	no	BraTS2021_00096	Training	Training
+UCSF-PDGM-0104	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	70.0	1	biopsy	no	BraTS2021_00053	Training	Training
+UCSF-PDGM-0105	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	667.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0106	baseline	51	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	351.0	1	GTR	no	BraTS2021_00014	Training	Training
+UCSF-PDGM-0107	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	n/a	175.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0108	baseline	29	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	8	n/a	1715.0	0	GTR	no	BraTS2021_00033	Training	Training
+UCSF-PDGM-0109	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	611.0	1	STR	no	BraTS2021_00063	Training	Training
+UCSF-PDGM-0111	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	39.0	1	biopsy	no	BraTS2021_00019	Training	Training
+UCSF-PDGM-0112	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	301.0	1	STR	yes	BraTS2021_00064	Training	Training
+UCSF-PDGM-0113	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	1351.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0114	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	n/a	92.0	1	GTR	no	BraTS2021_00062	Training	Training
+UCSF-PDGM-0115	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	430.0	1	GTR	no	BraTS2021_00080	Validation	Validation
+UCSF-PDGM-0116	baseline	37	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	1611.0	0	GTR	no	BraTS2021_00006	Training	Training
+UCSF-PDGM-0118	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	162.0	1	GTR	no	BraTS2021_00099	Training	Training
+UCSF-PDGM-0119	baseline	49	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	positive	15	relative co-deletion	1650.0	0	STR	no	BraTS2021_00005	Training	Training
+UCSF-PDGM-0121	baseline	56	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	879.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0122	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	intact	1024.0	1	GTR	no	BraTS2021_00535	Validation	Validation
+UCSF-PDGM-0123	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	485.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0124	baseline	17	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	negative	0	intact	1299.0	0	STR	yes	BraTS2021_00530	Training	Training
+UCSF-PDGM-0126	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	intact	919.0	1	GTR	no	BraTS2021_00517	Training	Training
+UCSF-PDGM-0127	baseline	53	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	n/a	1296.0	0	GTR	no	BraTS2021_00548	Training	Training
+UCSF-PDGM-0128	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	n/a	645.0	0	STR	no	BraTS2021_00511	Training	Training
+UCSF-PDGM-0129	baseline	47	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	553.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0130	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	n/a	1440.0	0	GTR	no	BraTS2021_00529	Training	Training
+UCSF-PDGM-0131	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	n/a	410.0	0	GTR	no	BraTS2021_00547	Training	Training
+UCSF-PDGM-0132	baseline	29	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	positive	12	intact	1139.0	0	STR	no	BraTS2021_00525	Training	Training
+UCSF-PDGM-0133	baseline	64	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	n/a	109.0	1	GTR	no	BraTS2021_00481	Training	Training
+UCSF-PDGM-0134	baseline	67	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	n/a	288.0	0	STR	no	BraTS2021_00502	Training	Training
+UCSF-PDGM-0135	baseline	36	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	868.0	1	GTR	no	BraTS2021_00549	Training	Training
+UCSF-PDGM-0136	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	586.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0137	baseline	53	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	799.0	1	GTR	no	BraTS2021_00491	Training	Training
+UCSF-PDGM-0139	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	188.0	1	GTR	no	BraTS2021_00466	Training	Training
+UCSF-PDGM-0140	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	39.0	1	GTR	no	BraTS2021_00554	Training	Training
+UCSF-PDGM-0141	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	758.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0142	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	430.0	1	GTR	no	BraTS2021_00553	Validation	Validation
+UCSF-PDGM-0143	baseline	81	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	91.0	1	biopsy	no	BraTS2021_00552	Training	Training
+UCSF-PDGM-0144	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	142.0	1	STR	no	BraTS2021_00559	Training	Training
+UCSF-PDGM-0145	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	310.0	1	GTR	no	BraTS2021_00463	Validation	Validation
+UCSF-PDGM-0146	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1392.0	0	GTR	no	BraTS2021_00498	Training	Training
+UCSF-PDGM-0147	baseline	58	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	13	intact	482.0	1	STR	no	BraTS2021_00532	Training	Training
+UCSF-PDGM-0148	baseline	78	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	86.0	1	biopsy	no	BraTS2021_00493	Training	Training
+UCSF-PDGM-0149	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	15.0	1	GTR	no	BraTS2021_00464	Training	Training
+UCSF-PDGM-0150	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	1308.0	1	GTR	no	BraTS2021_00506	Training	Training
+UCSF-PDGM-0151	baseline	66	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	611.0	1	GTR	no	BraTS2021_00507	Training	Training
+UCSF-PDGM-0152	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	471.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0153	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	316.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0154	baseline	63	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	394.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0155	baseline	71	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	1132.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0156	baseline	27	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	positive	16	intact	1035.0	0	GTR	yes	BraTS2021_00504	Training	Training
+UCSF-PDGM-0157	baseline	60	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	902.0	0	GTR	no	BraTS2021_00505	Training	Training
+UCSF-PDGM-0158	baseline	83	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	130.0	1	GTR	no	BraTS2021_00516	Training	Training
+UCSF-PDGM-0159	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	729.0	1	STR	no	BraTS2021_00483	Training	Training
+UCSF-PDGM-0160	baseline	67	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	628.0	1	STR	no	BraTS2021_00462	Validation	Validation
+UCSF-PDGM-0161	baseline	29	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	248.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0162	baseline	33	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	positive	14	intact	1366.0	0	STR	no	BraTS2021_00543	Training	Training
+UCSF-PDGM-0163	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	194.0	1	STR	no	BraTS2021_00469	Training	Training
+UCSF-PDGM-0164	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	633.0	1	GTR	no	BraTS2021_00518	Training	Training
+UCSF-PDGM-0165	baseline	70	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	60.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0166	baseline	49	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	689.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0167	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	1196.0	0	GTR	no	BraTS2021_00470	Training	Training
+UCSF-PDGM-0168	baseline	49	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	418.0	1	GTR	no	BraTS2021_00533	Training	Training
+UCSF-PDGM-0169	baseline	79	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	intact	n/a	1	n/a	no	BraTS2021_00556	Training	Training
+UCSF-PDGM-0170	baseline	42	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	418.0	1	biopsy	no	BraTS2021_00537	Training	Training
+UCSF-PDGM-0172	baseline	64	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	925.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0173	baseline	80	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	72.0	1	GTR	no	BraTS2021_00551	Training	Training
+UCSF-PDGM-0174	baseline	26	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	8	intact	376.0	1	STR	no	BraTS2021_00528	Training	Training
+UCSF-PDGM-0176	baseline	74	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	302.0	1	GTR	no	BraTS2021_00503	Validation	Validation
+UCSF-PDGM-0178	baseline	77	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	676.0	1	STR	no	BraTS2021_00512	Training	Training
+UCSF-PDGM-0179	baseline	75	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	1201.0	0	GTR	no	BraTS2021_00472	Training	Training
+UCSF-PDGM-0180	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	494.0	1	GTR	no	BraTS2021_00545	Training	Training
+UCSF-PDGM-0182	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	446.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0183	baseline	76	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	1163.0	0	GTR	no	BraTS2021_00524	Training	Training
+UCSF-PDGM-0184	baseline	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	545.0	1	GTR	no	BraTS2021_00520	Training	Training
+UCSF-PDGM-0185	baseline	35	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	1142.0	0	GTR	yes	BraTS2021_00526	Training	Training
+UCSF-PDGM-0186	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	230.0	1	GTR	no	BraTS2021_00558	Training	Training
+UCSF-PDGM-0187	baseline	61	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	115.0	1	GTR	no	BraTS2021_00501	Training	Training
+UCSF-PDGM-0188	baseline	46	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	329.0	1	STR	yes	BraTS2021_00513	Training	Training
+UCSF-PDGM-0189	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	416.0	0	STR	yes	BraTS2021_00550	Training	Training
+UCSF-PDGM-0190	baseline	39	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	16	intact	698.0	0	STR	no	BraTS2021_00523	Training	Training
+UCSF-PDGM-0191	baseline	26	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	837.0	1	GTR	no	BraTS2021_00478	Training	Training
+UCSF-PDGM-0193	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	394.0	1	GTR	yes	BraTS2021_00500	Training	Training
+UCSF-PDGM-0194	baseline	52	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	512.0	1	GTR	no	BraTS2021_00485	Training	Training
+UCSF-PDGM-0195	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	304.0	0	STR	no	BraTS2021_00510	Training	Training
+UCSF-PDGM-0196	baseline	72	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	150.0	1	GTR	no	BraTS2021_00496	Training	Training
+UCSF-PDGM-0197	baseline	43	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	809.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0198	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	809.0	1	GTR	no	BraTS2021_00542	Training	Training
+UCSF-PDGM-0200	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	141.0	1	GTR	no	BraTS2021_00479	Training	Training
+UCSF-PDGM-0201	baseline	46	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	1015.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0202	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	920.0	1	GTR	no	BraTS2021_00519	Training	Training
+UCSF-PDGM-0203	baseline	81	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	421.0	0	GTR	yes	BraTS2021_00540	Training	Training
+UCSF-PDGM-0204	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	428.0	0	GTR	no	BraTS2021_00467	Validation	Validation
+UCSF-PDGM-0205	baseline	67	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	11	intact	60.0	1	GTR	yes	BraTS2021_00474	Validation	Validation
+UCSF-PDGM-0206	baseline	35	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	2	intact	125.0	0	STR	no	BraTS2021_00521	Validation	Validation
+UCSF-PDGM-0207	baseline	57	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	281.0	1	GTR	no	BraTS2021_00492	Validation	Validation
+UCSF-PDGM-0208	baseline	73	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	52.0	1	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0209	baseline	61	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	446.0	1	GTR	no	BraTS2021_00495	Training	Training
+UCSF-PDGM-0210	baseline	67	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	603.0	1	GTR	no	BraTS2021_00560	Validation	Validation
+UCSF-PDGM-0212	baseline	86	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	48.0	1	biopsy	no	BraTS2021_00514	Training	Training
+UCSF-PDGM-0213	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	361.0	1	GTR	no	BraTS2021_00494	Training	Training
+UCSF-PDGM-0214	baseline	68	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	845.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0215	baseline	79	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	128.0	0	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0223	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	961.0	0	GTR	yes	BraTS2021_00488	Training	Training
+UCSF-PDGM-0225	baseline	72	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	108.0	1	biopsy	no	BraTS2021_00477	Training	Training
+UCSF-PDGM-0227	baseline	72	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	421.0	1	GTR	yes	BraTS2021_00468	Training	Training
+UCSF-PDGM-0228	baseline	89	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	203.0	1	STR	no	BraTS2021_00555	Training	Training
+UCSF-PDGM-0229	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	476.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0231	baseline	36	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	2043.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0232	baseline	22	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	11	intact	1612.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0233	baseline	31	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1182.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0234	baseline	30	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132G	positive	9	intact	2191.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0235	baseline	34	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH2 p.R172K	n/a	n/a	intact	1848.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0236	baseline	35	F	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	2209.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0237	baseline	42	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	534.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0238	baseline	24	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	2098.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0239	baseline	57	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	157.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0240	baseline	26	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	2018.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0241	baseline	30	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	1382.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0242	baseline	37	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	1833.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0243	baseline	59	M	UCSF	3	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	relative co-deletion	1850.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0244	baseline	43	F	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	1714.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0245	baseline	34	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	n/a	n/a	intact	1840.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0246	baseline	46	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	41.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0247	baseline	26	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	13.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0248	baseline	46	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1643.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0249	baseline	59	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	22.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0250	baseline	44	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	14.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0251	baseline	36	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	689.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0252	baseline	35	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132G	n/a	n/a	intact	1595.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0253	baseline	25	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1547.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0254	baseline	53	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	718.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0255	baseline	40	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	1521.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0256	baseline	28	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1513.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0257	baseline	32	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1449.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0258	baseline	23	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	187.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0259	baseline	28	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	1421.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0260	baseline	56	F	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	relative co-deletion	1118.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0261	baseline	29	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	805.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0262	baseline	44	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132S	negative	0	intact	1190.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0263	baseline	54	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	663.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0264	baseline	48	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	839.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0265	baseline	44	F	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	916.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0266	baseline	31	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	mutated (NOS)	n/a	n/a	intact	689.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0267	baseline	45	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	55.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0268	baseline	51	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	639.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0269	baseline	48	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	co-deletion	565.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0270	baseline	46	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	166.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0272	baseline	35	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH2 p.Arg172Trp	negative	n/a	intact	574.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0273	baseline	47	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	483.0	0	GTR	no	BraTS2021_00544	Training	Training
+UCSF-PDGM-0274	baseline	35	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	n/a	n/a	intact	728.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0275	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	n/a	intact	465.0	1	STR	yes	BraTS2021_00480	Training	Training
+UCSF-PDGM-0276	baseline	51	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	439.0	0	STR	no	BraTS2021_00489	Validation	Validation
+UCSF-PDGM-0277	baseline	75	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	629.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0279	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	163.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0280	baseline	62	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	773.0	0	GTR	no	BraTS2021_00734	Training	Training
+UCSF-PDGM-0281	baseline	46	M	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	mutated (NOS)	n/a	n/a	relative co-deletion	836.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0282	baseline	48	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	763.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0283	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	748.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0284	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	685.0	0	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0285	baseline	60	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	714.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0286	baseline	39	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	189.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0287	baseline	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	435.0	1	biopsy	no	BraTS2021_00694	Training	Training
+UCSF-PDGM-0288	baseline	46	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	420.0	1	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0290	baseline	43	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	4	intact	407.0	0	GTR	no	BraTS2021_00768	Training	Training
+UCSF-PDGM-0291	baseline	71	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	396.0	1	biopsy	no	BraTS2021_00725	Training	Training
+UCSF-PDGM-0295	baseline	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	221.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0296	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	491.0	1	GTR	no	BraTS2021_00692	Training	Training
+UCSF-PDGM-0297	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	0	intact	357.0	1	GTR	no	BraTS2021_01153	Training	n/a
+UCSF-PDGM-0298	baseline	48	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	757.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0300	baseline	33	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	184.0	0	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0302	baseline	45	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	999.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0303	baseline	64	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	15	intact	624.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0304	baseline	52	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1176.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0305	baseline	36	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	706.0	0	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0306	baseline	70	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	163.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0307	baseline	31	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	740.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0308	baseline	45	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	720.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0309	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	319.0	1	STR	yes	BraTS2021_00703	Training	Training
+UCSF-PDGM-0310	baseline	74	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	174.0	1	GTR	no	BraTS2021_00765	Training	Training
+UCSF-PDGM-0311	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	405.0	0	GTR	no	BraTS2021_00706	Training	Training
+UCSF-PDGM-0312	baseline	75	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	55.0	1	biopsy	no	BraTS2021_01154	Training	n/a
+UCSF-PDGM-0313	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	349.0	0	STR	no	BraTS2021_00757	Training	Training
+UCSF-PDGM-0314	baseline	68	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	135.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0316	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	300.0	1	GTR	no	BraTS2021_00682	Training	Training
+UCSF-PDGM-0317	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	677.0	0	GTR	no	BraTS2021_00728	Training	Training
+UCSF-PDGM-0318	baseline	33	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	128.0	0	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0319	baseline	83	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	275.0	0	GTR	no	BraTS2021_00697	Training	Training
+UCSF-PDGM-0320	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	571.0	0	GTR	no	BraTS2021_00772	Training	Training
+UCSF-PDGM-0321	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	280.0	0	STR	no	BraTS2021_00691	Training	Training
+UCSF-PDGM-0323	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	332.0	1	GTR	no	BraTS2021_00698	Training	Training
+UCSF-PDGM-0324	baseline	37	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132G	positive	2	intact	15.0	0	STR	no	BraTS2021_00680	Training	Training
+UCSF-PDGM-0325	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	108.0	1	GTR	no	BraTS2021_00702	Validation	Validation
+UCSF-PDGM-0326	baseline	32	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	positive	11	intact	514.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0327	baseline	57	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	658.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0328	baseline	54	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	292.0	0	GTR	no	BraTS2021_00723	Training	Training
+UCSF-PDGM-0329	baseline	44	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	1812.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0330	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	599.0	1	GTR	no	BraTS2021_01155	Training	n/a
+UCSF-PDGM-0331	baseline	46	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	10	intact	1640.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0332	baseline	68	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	42.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0333	baseline	52	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	496.0	1	GTR	no	BraTS2021_00719	Validation	Validation
+UCSF-PDGM-0334	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	386.0	1	GTR	no	BraTS2021_00778	Training	Training
+UCSF-PDGM-0335	baseline	41	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1690.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0336	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	177.0	1	GTR	no	BraTS2021_01156	Training	n/a
+UCSF-PDGM-0337	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	1113.0	0	STR	yes	BraTS2021_01157	Training	n/a
+UCSF-PDGM-0338	baseline	62	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	356.0	1	GTR	no	BraTS2021_00686	Training	Training
+UCSF-PDGM-0339	baseline	50	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	930.0	0	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0340	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	1347.0	0	GTR	no	BraTS2021_00708	Training	Training
+UCSF-PDGM-0341	baseline	57	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	1067.0	1	GTR	no	BraTS2021_00681	Validation	Validation
+UCSF-PDGM-0342	baseline	66	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	1248.0	1	GTR	yes	BraTS2021_00732	Training	Training
+UCSF-PDGM-0343	baseline	48	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	183.0	1	STR	no	BraTS2021_00704	Training	Training
+UCSF-PDGM-0344	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	329.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0345	baseline	46	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	743.0	1	GTR	no	BraTS2021_00731	Training	Training
+UCSF-PDGM-0346	baseline	72	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	n/a	intact	676.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0347	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	6	intact	1333.0	0	GTR	yes	BraTS2021_00693	Training	Training
+UCSF-PDGM-0348	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	627.0	1	STR	yes	BraTS2021_00769	Validation	Validation
+UCSF-PDGM-0349	baseline	52	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	445.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0350	baseline	44	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	643.0	1	STR	yes	BraTS2021_00715	Training	Training
+UCSF-PDGM-0351	baseline	61	F	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	1226.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0352	baseline	78	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	631.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0353	baseline	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	539.0	1	GTR	no	BraTS2021_00746	Training	Training
+UCSF-PDGM-0354	baseline	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	248.0	1	STR	no	BraTS2021_00773	Training	Training
+UCSF-PDGM-0355	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1037.0	0	GTR	no	BraTS2021_00756	Training	Training
+UCSF-PDGM-0356	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	1098.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0357	baseline	43	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	567.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0358	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	430.0	1	STR	yes	BraTS2021_00712	Validation	Validation
+UCSF-PDGM-0359	baseline	69	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	681.0	1	GTR	yes	BraTS2021_00709	Training	Training
+UCSF-PDGM-0360	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	15	intact	777.0	0	GTR	no	BraTS2021_00689	Training	n/a
+UCSF-PDGM-0361	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	499.0	1	GTR	no	BraTS2021_00688	Training	Training
+UCSF-PDGM-0362	baseline	75	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	364.0	1	GTR	no	BraTS2021_00687	Training	Training
+UCSF-PDGM-0363	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	363.0	1	STR	yes	BraTS2021_00724	Training	Training
+UCSF-PDGM-0364	baseline	47	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	740.0	0	GTR	no	BraTS2021_00733	Training	Training
+UCSF-PDGM-0365	baseline	74	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	415.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0366	baseline	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	762.0	0	GTR	yes	BraTS2021_00777	Training	Training
+UCSF-PDGM-0367	baseline	59	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	10	intact	1029.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0368	baseline	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	561.0	1	GTR	no	BraTS2021_00729	Training	Training
+UCSF-PDGM-0369	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	421.0	1	GTR	yes	BraTS2021_00759	Training	Training
+UCSF-PDGM-0370	baseline	76	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	461.0	1	STR	yes	BraTS2021_00736	Training	Training
+UCSF-PDGM-0371	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	660.0	1	GTR	yes	BraTS2021_00735	Training	Training
+UCSF-PDGM-0372	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	219.0	1	biopsy	no	BraTS2021_00774	Training	Training
+UCSF-PDGM-0373	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	18.0	1	GTR	no	BraTS2021_01158	Training	n/a
+UCSF-PDGM-0374	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	566.0	0	GTR	yes	BraTS2021_00684	Training	Training
+UCSF-PDGM-0375	baseline	44	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	616.0	0	GTR	no	BraTS2021_00775	Training	Training
+UCSF-PDGM-0376	baseline	57	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	509.0	1	STR	yes	BraTS2021_00742	Training	Training
+UCSF-PDGM-0377	baseline	72	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	384.0	1	GTR	no	BraTS2021_00714	Training	Training
+UCSF-PDGM-0378	baseline	31	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	510.0	1	biopsy	yes	BraTS2021_00753	Training	Training
+UCSF-PDGM-0379	baseline	43	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	213.0	1	biopsy	no	BraTS2021_00751	Training	Training
+UCSF-PDGM-0380	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	534.0	0	GTR	no	BraTS2021_00744	Training	Training
+UCSF-PDGM-0381	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	intact	302.0	0	GTR	no	BraTS2021_00779	Validation	Validation
+UCSF-PDGM-0382	baseline	68	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	19.0	1	STR	no	BraTS2021_00730	Training	Training
+UCSF-PDGM-0383	baseline	82	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	754.0	1	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0384	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	319.0	1	STR	no	BraTS2021_00750	Training	Training
+UCSF-PDGM-0385	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	450.0	1	STR	yes	BraTS2021_00699	Validation	Validation
+UCSF-PDGM-0386	baseline	60	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	912.0	1	GTR	yes	BraTS2021_00721	Validation	Validation
+UCSF-PDGM-0387	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	86.0	0	biopsy	no	BraTS2021_00737	Training	Training
+UCSF-PDGM-0388	baseline	62	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1119.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0389	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	10	intact	498.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0390	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	618.0	0	GTR	no	BraTS2021_00727	Training	Training
+UCSF-PDGM-0391	FU016d	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	711.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0391	baseline	59	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	711.0	0	STR	no	BraTS2021_00716	Training	Training
+UCSF-PDGM-0392	baseline	67	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	363.0	0	biopsy	no	BraTS2021_00762	Validation	Validation
+UCSF-PDGM-0393	baseline	66	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	375.0	0	STR	no	BraTS2021_00685	Training	Training
+UCSF-PDGM-0394	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	565.0	0	GTR	yes	BraTS2021_00740	Training	Training
+UCSF-PDGM-0395	baseline	60	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	785.0	1	GTR	yes	BraTS2021_01159	Training	n/a
+UCSF-PDGM-0396	FU175d	36	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1084.0	1	STR	no	BraTS2021_00538	Training	Training
+UCSF-PDGM-0396	baseline	36	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1084.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0397	baseline	81	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	19.0	1	GTR	no	BraTS2021_00690	Training	Training
+UCSF-PDGM-0398	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	11	intact	753.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0399	baseline	48	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	548.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0400	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	244.0	0	STR	yes	BraTS2021_00747	Training	Training
+UCSF-PDGM-0401	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	114.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0402	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	90.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0403	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	69.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0404	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	191.0	0	GTR	no	BraTS2021_00683	Training	Training
+UCSF-PDGM-0405	baseline	45	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	319.0	0	GTR	no	BraTS2021_00718	Training	Training
+UCSF-PDGM-0406	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	169.0	1	GTR	no	BraTS2021_00760	Training	Training
+UCSF-PDGM-0407	baseline	42	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	17	intact	165.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0409	FU001d	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	1167.0	0	GTR	no	BraTS2021_00539	Training	Training
+UCSF-PDGM-0409	baseline	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	1167.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0410	baseline	49	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	366.0	1	GTR	no	BraTS2021_00749	Validation	Validation
+UCSF-PDGM-0411	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	7	intact	388.0	0	GTR	yes	BraTS2021_00739	Training	Training
+UCSF-PDGM-0412	baseline	47	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	239.0	1	biopsy	no	BraTS2021_00764	Training	Training
+UCSF-PDGM-0413	baseline	56	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	2144.0	1	GTR	yes	BraTS2021_00707	Training	Training
+UCSF-PDGM-0414	baseline	77	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	351.0	0	GTR	no	BraTS2021_00767	Training	Training
+UCSF-PDGM-0415	baseline	30	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	7	intact	1320.0	0	GTR	yes	BraTS2021_00705	Training	Training
+UCSF-PDGM-0416	baseline	63	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	484.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0417	baseline	68	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	334.0	1	GTR	no	BraTS2021_00625	Training	Training
+UCSF-PDGM-0418	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	657.0	1	STR	no	BraTS2021_00610	Training	Training
+UCSF-PDGM-0419	baseline	77	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	10	intact	307.0	0	GTR	no	BraTS2021_00675	Training	Training
+UCSF-PDGM-0420	baseline	57	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	213.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0421	baseline	80	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	518.0	0	GTR	no	BraTS2021_00615	Training	Training
+UCSF-PDGM-0422	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	264.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0423	baseline	52	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	602.0	0	STR	no	BraTS2021_00676	Training	Training
+UCSF-PDGM-0424	baseline	42	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	504.0	0	GTR	no	BraTS2021_00651	Training	Training
+UCSF-PDGM-0425	baseline	54	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	5	intact	605.0	1	GTR	no	BraTS2021_00658	Training	Training
+UCSF-PDGM-0426	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	8	intact	249.0	0	STR	no	BraTS2021_00608	Training	Training
+UCSF-PDGM-0427	baseline	51	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	16	intact	222.0	0	GTR	no	BraTS2021_00656	Training	Training
+UCSF-PDGM-0428	baseline	42	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	422.0	1	GTR	no	BraTS2021_00636	Training	Training
+UCSF-PDGM-0429	FU003d	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	624.0	1	GTR	no	BraTS2021_00557	Training	Training
+UCSF-PDGM-0429	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	624.0	1	GTR	no	BraTS2021_00639	Training	Training
+UCSF-PDGM-0430	baseline	79	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	406.0	1	GTR	yes	BraTS2021_00642	Training	Training
+UCSF-PDGM-0431	FU001d	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	intact	358.0	0	GTR	no	BraTS2021_00499	Training	Training
+UCSF-PDGM-0431	baseline	69	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	intact	358.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0432	baseline	19	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	9	intact	639.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0433	FU007d	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	205.0	1	GTR	no	BraTS2021_00758	Training	Training
+UCSF-PDGM-0433	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	205.0	1	GTR	no	BraTS2021_00626	Training	Training
+UCSF-PDGM-0434	baseline	67	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	134.0	1	STR	no	BraTS2021_00624	Training	Training
+UCSF-PDGM-0435	baseline	73	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	183.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0436	baseline	57	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	424.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0437	baseline	38	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132G	negative	0	intact	4177.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0438	baseline	38	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	n/a	n/a	intact	1280.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0439	baseline	38	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1022.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0440	baseline	31	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132G	n/a	n/a	intact	1210.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0441	baseline	26	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	375.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0442	baseline	66	F	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	1145.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0443	baseline	47	F	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	187.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0444	baseline	32	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1730.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0445	baseline	48	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	672.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0446	baseline	71	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	118.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0447	baseline	71	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	28.0	1	biopsy	no	BraTS2021_00638	Training	Training
+UCSF-PDGM-0448	baseline	55	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	158.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0449	baseline	61	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	4	intact	404.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0450	baseline	55	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	369.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0451	baseline	43	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	512.0	0	GTR	no	BraTS2021_00667	Training	Training
+UCSF-PDGM-0452	baseline	76	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	112.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0453	baseline	75	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	13	intact	96.0	1	biopsy	no	BraTS2021_00606	Training	Training
+UCSF-PDGM-0454	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	285.0	0	STR	no	BraTS2021_00674	Training	Training
+UCSF-PDGM-0455	baseline	55	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	n/a	intact	165.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0456	baseline	66	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	409.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0457	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	241.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0458	baseline	65	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	110.0	1	STR	no	BraTS2021_01160	Training	n/a
+UCSF-PDGM-0459	baseline	78	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	78.0	0	STR	no	BraTS2021_00641	Training	Training
+UCSF-PDGM-0460	baseline	33	F	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132C	positive	14	intact	106.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0461	baseline	73	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	66.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0462	baseline	83	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	84.0	1	GTR	no	BraTS2021_00618	Training	Training
+UCSF-PDGM-0463	baseline	74	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	108.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0464	baseline	75	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	10.0	0	biopsy	no	BraTS2021_00602	Training	Training
+UCSF-PDGM-0465	baseline	35	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	92.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0466	baseline	72	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	287.0	1	biopsy	no	BraTS2021_00668	Training	Training
+UCSF-PDGM-0467	baseline	75	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	169.0	1	STR	no	BraTS2021_00607	Training	Training
+UCSF-PDGM-0468	baseline	38	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	9	intact	523.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0469	baseline	43	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1338.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0470	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	70.0	1	biopsy	no	BraTS2021_00650	Training	Training
+UCSF-PDGM-0471	baseline	26	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	319.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0472	baseline	76	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	38.0	1	biopsy	no	BraTS2021_00613	Training	Training
+UCSF-PDGM-0473	baseline	34	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	952.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0474	baseline	40	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	593.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0475	baseline	31	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1369.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0476	baseline	22	F	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	1677.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0477	baseline	69	F	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	792.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0478	baseline	37	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	957.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0479	baseline	67	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	475.0	1	STR	yes	BraTS2021_00619	Training	Training
+UCSF-PDGM-0480	baseline	94	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	54.0	1	GTR	no	BraTS2021_00679	Training	Training
+UCSF-PDGM-0481	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	483.0	0	GTR	no	BraTS2021_00616	Training	Training
+UCSF-PDGM-0482	baseline	45	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	998.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0483	baseline	71	M	UCSF	2	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	342.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0484	baseline	60	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	149.0	1	GTR	yes	n/a	n/a	n/a
+UCSF-PDGM-0485	baseline	65	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	524.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0486	baseline	54	F	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	232.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0487	baseline	21	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	111.0	1	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0488	baseline	77	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	142.0	0	GTR	yes	BraTS2021_00646	Training	Training
+UCSF-PDGM-0489	baseline	42	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.Arg132His	n/a	n/a	intact	846.0	0	STR	yes	n/a	n/a	n/a
+UCSF-PDGM-0490	baseline	29	M	UCSF	2	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	505.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0491	baseline	64	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	2708.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0492	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	262.0	0	GTR	no	BraTS2021_00605	Training	Training
+UCSF-PDGM-0493	baseline	74	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	114.0	0	GTR	no	BraTS2021_00663	Training	Training
+UCSF-PDGM-0494	baseline	71	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	111.0	1	GTR	no	BraTS2021_00644	Validation	Validation
+UCSF-PDGM-0495	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	2	intact	168.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0496	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	92.0	0	GTR	no	BraTS2021_00611	Training	Training
+UCSF-PDGM-0497	baseline	73	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	262.0	0	GTR	no	BraTS2021_00603	Validation	Validation
+UCSF-PDGM-0498	baseline	53	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	95.0	0	GTR	no	BraTS2021_01161	Training	n/a
+UCSF-PDGM-0499	baseline	34	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	n/a	n/a	intact	12.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0500	baseline	47	M	UCSF	3	Astrocytoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	185.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0501	baseline	26	M	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	16	intact	531.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0502	baseline	77	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	59.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0503	baseline	73	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	204.0	0	GTR	no	BraTS2021_00620	Training	Training
+UCSF-PDGM-0504	baseline	63	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	9	intact	1101.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0505	baseline	63	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	208.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0506	baseline	85	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	n/a	86.0	1	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0507	baseline	61	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	35.0	0	GTR	no	BraTS2021_00645	Training	Training
+UCSF-PDGM-0508	baseline	61	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	81.0	0	STR	no	BraTS2021_00662	Validation	Validation
+UCSF-PDGM-0509	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	267.0	0	GTR	no	BraTS2021_00659	Training	Training
+UCSF-PDGM-0510	baseline	62	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	252.0	0	GTR	no	BraTS2021_00677	Training	Training
+UCSF-PDGM-0511	baseline	60	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	112.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0512	baseline	80	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	303.0	1	GTR	no	BraTS2021_00649	Training	Training
+UCSF-PDGM-0513	baseline	73	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	80.0	1	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0514	baseline	54	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	375.0	0	biopsy	no	BraTS2021_00623	Training	Training
+UCSF-PDGM-0515	baseline	82	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	45.0	1	GTR	no	BraTS2021_00654	Training	Training
+UCSF-PDGM-0516	baseline	55	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	4	intact	316.0	0	GTR	no	BraTS2021_00622	Training	Training
+UCSF-PDGM-0517	baseline	53	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	15	intact	86.0	0	GTR	no	BraTS2021_00671	Validation	Validation
+UCSF-PDGM-0518	baseline	32	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	369.0	0	GTR	no	BraTS2021_00657	Training	Training
+UCSF-PDGM-0519	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	14	intact	320.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0520	baseline	70	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	8	intact	373.0	0	GTR	no	BraTS2021_00655	Training	Training
+UCSF-PDGM-0521	baseline	58	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	n/a	n/a	intact	305.0	0	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0522	baseline	62	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	306.0	0	GTR	no	BraTS2021_00631	Training	Training
+UCSF-PDGM-0523	baseline	65	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	3	intact	156.0	0	GTR	no	BraTS2021_00661	Training	Training
+UCSF-PDGM-0524	baseline	47	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	680.0	0	STR	yes	BraTS2021_00628	Training	Training
+UCSF-PDGM-0525	baseline	62	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	37.0	0	biopsy	no	BraTS2021_00630	Training	Training
+UCSF-PDGM-0526	baseline	74	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	1	intact	126.0	0	GTR	no	BraTS2021_00601	Training	Training
+UCSF-PDGM-0527	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	150.0	0	GTR	no	BraTS2021_00640	Training	Training
+UCSF-PDGM-0528	baseline	57	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	54.0	1	biopsy	no	n/a	n/a	n/a
+UCSF-PDGM-0529	baseline	34	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132S	positive	14	intact	112.0	0	GTR	no	BraTS2021_00604	Training	Training
+UCSF-PDGM-0530	baseline	34	F	UCSF	3	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	13	intact	96.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0531	baseline	36	M	UCSF	4	Astrocytoma, IDH-mutant	mutant	IDH1 p.R132H	positive	15	intact	21.0	0	STR	yes	BraTS2021_00612	Training	Training
+UCSF-PDGM-0532	baseline	75	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	322.0	1	GTR	no	BraTS2021_00647	Validation	Validation
+UCSF-PDGM-0533	baseline	31	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	292.0	0	GTR	no	BraTS2021_00652	Training	Training
+UCSF-PDGM-0534	baseline	71	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	17	intact	55.0	0	biopsy	no	BraTS2021_00621	Training	Training
+UCSF-PDGM-0535	baseline	19	M	UCSF	3	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	IDH1 p.R132H	n/a	n/a	relative co-deletion	749.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0536	baseline	58	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	267.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0537	baseline	64	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	16	intact	334.0	0	biopsy	yes	n/a	n/a	n/a
+UCSF-PDGM-0538	baseline	41	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	287.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0539	baseline	72	M	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	positive	12	intact	291.0	0	GTR	no	n/a	n/a	n/a
+UCSF-PDGM-0540	baseline	70	F	UCSF	2	Oligodendroglioma, IDH-mutant, 1p/19q-codeleted	mutant	IDH1 p.R132H	positive	17	co-deletion	215.0	0	STR	no	n/a	n/a	n/a
+UCSF-PDGM-0541	baseline	68	F	UCSF	4	Glioblastoma, IDH-wildtype	wildtype	wildtype	negative	0	intact	199.0	0	GTR	no	n/a	n/a	n/a
