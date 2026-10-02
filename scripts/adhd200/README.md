@@ -8,6 +8,24 @@ Children and adolescents (7–21 y) with ADHD and typically developing controls,
 - **License:** CC BY-NC (NITRC category "Attribution Non-Commercial"). The project page says "data usage is unrestricted for non-commercial research purposes", asks users to name the datasets used and acknowledge their funding (per-site `Funding`/`Acknowledgements` are in each `dataset_description.json`), and asks users to register with NITRC and the 1000 Functional Connectomes Project. The S3 copy is open.
 - **Citation:** ADHD-200 Consortium (2012). The ADHD-200 Consortium: a model to advance the translational potential of neuroimaging in clinical neuroscience. *Frontiers in Systems Neuroscience*, 6, 62. Plus per-site acknowledgement.
 
+## Usage
+
+```sh
+bash scripts/adhd200/download.sh                 # 9.0 GB; resumable
+uv run python scripts/adhd200/build_tables.py    # tables/; prints the summary below
+```
+
+## Samples
+
+One sample per participant with a T1w (961). The official competition split is kept: the holdout (186 with images) is `test`, and the training release is split 75/25 into train/val, stratified by diagnosis × site (`official_split` holds train/test). Complete = T1w and diagnosis; Brown's 26 test participants never had labels released, so the labeled test set is 160.
+
+| split | participants | complete | age | female | sites | adhd |
+|---|---|---|---|---|---|---|
+| train | 582 | 582 | 12.1 ± 3.2 | 39% | 9 | False 368 / True 214 |
+| val | 193 | 193 | 11.6 ± 3.2 | 34% | 9 | False 122 / True 71 |
+| test | 186 | 160 | 12.3 ± 3.8 | 44% | 6 | False 86 / True 74 |
+| total | 961 | 935 | 12.1 ± 3.3 | 39% | 10 | False 576 / True 359 |
+
 ## Contents
 
 `source/` mirrors the S3 paths (1030 files, 9.0 GB):
@@ -23,6 +41,12 @@ Children and adolescents (7–21 y) with ADHD and typically developing controls,
 
 Train/test split: subjects in `allSubs_testSet_phenotypic_dx.csv` are the holdout (197); the rest are the training release (776). Diagnosis codes in the CSVs: 0 = TDC, 1 = ADHD-Combined, 2 = ADHD-Hyperactive/Impulsive, 3 = ADHD-Inattentive.
 
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: one T1w per participant. 9 WashU participants have theirs in `ses-2`/`ses-3`/`ses-4` (session_id follows).
+- `samples.tsv` + `samples.json`: diagnosis (4 levels) and `adhd` (binary target), age, sex, site (the 10 BIDS site folders), ADHD scores, IQ, medication, handedness and anatomical QC, from the per-site `participants.tsv`. Site-specific phenotypes that are only in the `*_phenotypic.csv` files are not merged. participant_id is the BIDS label (`sub-0010001`).
+- `splits.tsv`: split, official split, rank and complete per participant.
+
 ## Excluded
 
 - rs-fMRI: `sub-*/ses-*/func/` and `*_bold.json` (1,403 files, 79 GB).
@@ -32,14 +56,7 @@ Train/test split: subjects in `allSubs_testSet_phenotypic_dx.csv` are the holdou
 
 ## Notes
 
-- **Labeled T1w cohort: 935** (775 train + 160 test; 576 TDC / 359 ADHD of any subtype).
 - **961 vs 973 subjects.** The competition had 973 (776 train / 197 holdout). S3 has 961 with T1w: 775 train (WashU 15019 has a phenotypic row but no images) + 186 test (the **11 KKI test subjects**, IDs 20001–20022, are missing from S3).
 - **Brown labels were never released.** All 26 Brown subjects are test-only with DX = "pending", and Brown's `participants.tsv` has no `dx`. They are usable only for unlabeled, age or sex tasks.
-- **Duplicate rows:** in NYU, Peking_1 and Pittsburgh `participants.tsv`, the test subjects appear twice (identical rows; 41 + 51 + 9). Deduplicate when building tables.
+- In `source/`, the NYU, Peking_1 and Pittsburgh `participants.tsv` list their test subjects twice (41 + 51 + 9 rows), some sites use numeric codes (KKI IQ measure, WashU QC) and NYU's handedness is a score. The tables deduplicate and decode these.
 - Site and diagnosis are strongly confounded: WashU is all controls (60 TDC), and Pittsburgh has 4 ADHD out of 98.
-
-## Usage
-
-```sh
-bash scripts/adhd200/download.sh   # 9.0 GB; resumable
-```

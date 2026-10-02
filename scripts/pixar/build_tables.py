@@ -85,7 +85,7 @@ def main() -> None:
     has_t1w = participants.index.isin(img.participant_id)
     complete = pd.Series(has_t1w & participants.age.notna().values, index=participants.index)
     splits = tables.make_splits(participants.age_group, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["child_adult"])
 
 
 if __name__ == "__main__":

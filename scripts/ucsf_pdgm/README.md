@@ -8,13 +8,33 @@ Preoperative 3T MRI of adult diffuse glioma (WHO grade 2–4), 495 patients / 50
 - **License:** CC BY 4.0. Use must follow the [TCIA Data Usage Policy](https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/), and the dataset must be cited.
 - **Citation:** Calabrese, E., Villanueva-Meyer, J., Rudie, J., Rauschecker, A., Baid, U., Bakas, S., Cha, S., Mongan, J., Hess, C. (2022). The University of California San Francisco Preoperative Diffuse Glioma MRI (UCSF-PDGM) (Version 5) [dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/tcia.bdgf-8v37. Paper: Calabrese, E., et al. (2022). The University of California San Francisco Preoperative Diffuse Glioma MRI Dataset. *Radiology: Artificial Intelligence*, 4(6), e220058.
 
+## Usage
+
+Downloading requires `ascp` at `~/.aspera/sdk/` (install with `ascli config ascp install`) and outbound FASP to TCIA.
+
+```sh
+bash scripts/ucsf_pdgm/download.sh                 # 15.9 GB, ~25 min; resumable (a complete re-run transfers nothing but takes ~12 min)
+uv run python scripts/ucsf_pdgm/build_tables.py    # tables/ (seconds); prints the summary below
+```
+
+## Samples
+
+One sample per exam: 501 exams of 495 patients (6 follow-up exams are extra sessions of their patient). Split 60/20/20 by patient, stratified by IDH status × WHO grade; there is no official split. Complete = all 13 images, IDH status and overall survival.
+
+| split | participants | samples | complete | age | female | idh | who_grade | mgmt | os_event |
+|---|---|---|---|---|---|---|---|---|---|
+| train | 297 | 299 | 296 | 56.5 ± 15.4 | 41% | mutant 62 / wildtype 237 | 2 34 / 3 25 / 4 240 | negative 68 / positive 176 | 0 148 / 1 151 |
+| val | 100 | 103 | 100 | 57.1 ± 15.2 | 42% | mutant 21 / wildtype 82 | 2 11 / 3 9 / 4 83 | negative 22 / positive 65 | 0 51 / 1 52 |
+| test | 98 | 99 | 98 | 57.8 ± 13.9 | 36% | mutant 20 / wildtype 79 | 2 11 / 3 9 / 4 79 | negative 24 / positive 61 | 0 51 / 1 48 |
+| total | 495 | 501 | 494 | 56.9 ± 15.0 | 40% | mutant 103 / wildtype 398 | 2 56 / 3 43 / 4 402 | negative 114 / positive 302 | 0 250 / 1 251 |
+
 ## Contents
 
-6,515 files, 15.9 GB:
+`source/` (6,515 files, 15.9 GB):
 
-- `UCSF-PDGM-metadata_v5.csv`: 501 rows, one per exam. Sex, age at MRI, WHO CNS grade (2: 56, 3: 43, 4: 402), WHO 2021 diagnosis, MGMT status/index, 1p/19q, IDH (wildtype 398 / mutant 103), vital status + OS (days), extent of resection, prior biopsy, and **BraTS 2021 ID and cohort** (262 BraTS21 segmentation-training cases, 36 validation).
+- `UCSF-PDGM-metadata_v5.csv`: one row per exam: demographics, WHO grade and diagnosis, IDH, MGMT, 1p/19q, OS, extent of resection, and the BraTS 2021 ID and cohort.
 - `UCSF-PDGM-metadata_glossary.csv`: column definitions.
-- `UCSF-PDGM-v5/UCSF-PDGM-NNNN_nifti/UCSF-PDGM-NNNN_<type>.nii.gz`: 501 exam folders × 13 files = 6,513 NIfTI files, as in the package tree. All volumes were skull-stripped and co-registered to 1 mm FLAIR space by the source. No DICOM is available. Every exam has all 13 types.
+- `UCSF-PDGM-v5/UCSF-PDGM-NNNN_nifti/UCSF-PDGM-NNNN_<type>.nii.gz`: 501 exam folders × 13 files, as in the package tree. All volumes are skull-stripped and co-registered by the source, on the same 240×240×155 1 mm grid as BraTS 2021. No DICOM is available.
 
 Each package folder holds 24 files (25 for the six follow-up exams, which add `ASL_M0`):
 
@@ -26,7 +46,13 @@ Each package folder holds 24 files (25 for the six follow-up exams, which add `A
 | diffusion | `DWI_bias` | no | |
 | DTI | fits `DTI_eddy_{FA,MD,L1,L2,L3}`; raw 4D `DTI_eddy_noreg` + `DTI_eddy.eddy_rotated_bvecs` | no | |
 | other | `SWI`, `SWI_bias`, `ASL` (+ `ASL_M0` in 6 exams) | no | |
-| targets | `tumor_segmentation` (BraTS-style labels, radiologist-corrected), `brain_segmentation`, `brain_parenchyma_segmentation` | yes | 0.36 GB |
+| targets | `tumor_segmentation` (BraTS-style labels 1/2/4, radiologist-corrected), `brain_segmentation`, `brain_parenchyma_segmentation` | yes | 0.36 GB |
+
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: the 13 images per exam. Modalities T1w, T1c, T2w, FLAIR (desc `bias` for the bias-corrected copies), DWI, ADC, and masks `tumor`, `brain`, `parenchyma`.
+- `samples.tsv` + `samples.json`: one row per exam with cleaned metadata. Targets: `idh` (with `idh_variant`), `mgmt`, `codeletion_1p19q`, `who_grade`, `os_days` + `os_event`. IDs use 4 digits (`UCSF-PDGM-0004`); follow-ups are session `FU007d` etc. of their patient.
+- `splits.tsv`: split, rank and complete per patient.
 
 ## Excluded
 
@@ -39,15 +65,7 @@ Each package folder holds 24 files (25 for the six follow-up exams, which add `A
 ## Notes
 
 - Integrity: the package has no checksum file. FASP verifies each transfer, and all 6,513 files pass `gzip -t`.
-- IDs: the image folders use 4 digits (`UCSF-PDGM-0004`), but `metadata_v5.csv` uses 3 (`UCSF-PDGM-004`). Normalize before joining.
-- 501 exams from 495 patients. Six IDs are follow-up exams of other patients, renamed in v3 (e.g. `UCSF-PDGM-0315` → `UCSF-PDGM-0433_FU007d`). Split by patient.
-- Overlap: 298 exams are in BraTS 2021 (`BraTS21 ID` column). Use it to avoid train/test leakage when using both datasets.
+- In `source/`, the image folders use 4-digit IDs (`UCSF-PDGM-0004`) but `metadata_v5.csv` uses 3 (`UCSF-PDGM-004`), and the six follow-up exams have their own IDs (renamed in v3, e.g. `UCSF-PDGM-0315` → `UCSF-PDGM-0433_FU007d`). The tables normalize both.
+- `mgmt` (clinical interpretation) and `mgmt_index` disagree for 5 exams in the source.
+- Overlap: 298 exams are also in BraTS 2021 (`brats21_id`). Benchmarks are evaluated within each dataset, so this only correlates scores across the two.
 - Version history: v2 fixed segmentation rounding errors and added BraTS IDs; v3 renamed the follow-up exams; v5 fixed headers in `DTI_eddy_noreg` and added rotated bvecs.
-
-## Usage
-
-Requires `ascp` at `~/.aspera/sdk/` (install with `ascli config ascp install`) and outbound FASP to TCIA.
-
-```sh
-bash scripts/ucsf_pdgm/download.sh   # 15.9 GB, ~25 min; resumable (a complete re-run transfers nothing but takes ~12 min)
-```

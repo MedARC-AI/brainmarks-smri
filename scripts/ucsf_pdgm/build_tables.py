@@ -162,7 +162,7 @@ def main() -> None:
     strata = baseline.idh + "_" + baseline.who_grade.astype(str)
 
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["idh", "who_grade", "mgmt", "os_event"])
 
 
 if __name__ == "__main__":

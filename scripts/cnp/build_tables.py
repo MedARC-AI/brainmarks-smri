@@ -9,7 +9,7 @@ See `brain_datasets.tables` for the table layout.
   without a T1w (fMRI only) are kept in the tables but not complete.
 - Single site (UCLA), two 3T Siemens Trio scanners (`scanner_serial`).
 - The per-task availability flags of participants.tsv (fMRI tasks) are left out. The phenotype/
-  questionnaires (~30 tables) stay in source/ and are not merged here.
+  instruments (52 tables) stay in source/ and are not merged here.
 - No official split: 60/20/20, stratified by diagnosis.
 - Complete: T1w and diagnosis.
 """
@@ -62,7 +62,7 @@ def main() -> None:
     complete = pd.Series(participants.index.isin(t1w) & participants.diagnosis.notna().values,
                          index=participants.index)
     splits = tables.make_splits(participants.diagnosis, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])
 
 
 if __name__ == "__main__":

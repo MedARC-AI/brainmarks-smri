@@ -8,6 +8,24 @@ Autism Brain Imaging Data Exchange I: 1112 subjects (539 ASD, 573 typical contro
 - **License:** CC BY-NC-SA 3.0 (`License` in each site's `dataset_description.json`, and the project page). The project page asks users to register with NITRC and INDI. The NITRC tarballs are behind a login, but the S3 bucket is open.
 - **Citation:** Di Martino, A., Yan, C.-G., Li, Q., et al. (2014). The autism brain imaging data exchange: towards a large-scale evaluation of the intrinsic brain architecture in autism. *Molecular Psychiatry*, 19, 659–667. The project page also asks you to name the site datasets used and acknowledge their funding.
 
+## Usage
+
+```sh
+bash scripts/abide1/download.sh                 # 7.4 GB; resumable
+uv run python scripts/abide1/build_tables.py    # tables/; prints the summary below
+```
+
+## Samples
+
+One sample per participant (1112; 1102 have a T1w). Split 60/20/20, stratified by diagnosis × site; there is no official split. Complete = T1w and diagnosis.
+
+| split | participants | complete | age | female | sites | diagnosis |
+|---|---|---|---|---|---|---|
+| train | 665 | 660 | 16.9 ± 7.9 | 15% | 20 | ASD 321 / TDC 344 |
+| val | 223 | 220 | 17.0 ± 7.7 | 15% | 20 | ASD 109 / TDC 114 |
+| test | 224 | 222 | 17.4 ± 8.8 | 13% | 20 | ASD 109 / TDC 115 |
+| total | 1112 | 1102 | 17.0 ± 8.0 | 15% | 20 | ASD 539 / TDC 573 |
+
 ## Contents
 
 `source/` mirrors the S3 tree (2278 files, 7.4 GB):
@@ -16,6 +34,12 @@ Autism Brain Imaging Data Exchange I: 1112 subjects (539 ASD, 573 typical contro
 - `RawDataBIDS/sidecards/sub-<id>/ses-<site>/anat/sub-<id>_ses-<site>_T1w.json`: per-subject T1w sidecars added by INDI in 2022 (1102). `sidecards` is INDI's spelling. These use a `ses-<site>` level that the images don't have.
 - `Phenotypic_V1_0b.csv`: the composite phenotypic file, 1112 rows. Labels: `DX_GROUP` (1 = ASD, 2 = control), `AGE_AT_SCAN`, `SEX` (1 = M, 2 = F), `SITE_ID`, plus DSM-IV, IQ, ADI-R, ADOS, SRS, etc. Missing values are `-9999` or empty.
 - `ABIDE_LEGEND_V1.02.pdf`: column definitions and coding.
+
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: one T1w per participant, across the 24 BIDS site folders.
+- `samples.tsv` + `samples.json`: diagnosis (ASD/TDC, target), age, sex, site (`SITE_ID`, 20 sites) and BIDS site folder, DSM-IV subtype, IQ, ADOS and SRS totals, handedness, medication status. The other phenotypic columns stay in `Phenotypic_V1_0b.csv`. participant_id is the BIDS label (`sub-0050002`).
+- `splits.tsv`: split, rank and complete per participant.
 
 ## Excluded
 
@@ -26,13 +50,8 @@ Autism Brain Imaging Data Exchange I: 1112 subjects (539 ASD, 573 typical contro
 
 ## Notes
 
-- **Usable T1w cohort: 1102** (531 ASD / 571 TDC; 939 M / 163 F), 20 sites. 10 subjects have no T1w, only rs-fMRI: UCLA_1 51232, 51233, 51242–51247, 51270 and UCLA_2 51310 (8 ASD, 2 TDC).
-- Counts match `Phenotypic_V1_0b.csv`: 1112 subjects (539 ASD / 573 TDC; 948 M / 164 F). Every phenotypic subject has a BIDS folder and vice versa.
-- Subject IDs are 7-digit zero-padded in BIDS (`sub-0050002`) and plain integers in `SUB_ID` (`50002`).
+- 10 subjects have no T1w, only rs-fMRI (not complete in the tables): UCLA_1 51232, 51233, 51242–51247, 51270 and UCLA_2 51310 (8 ASD, 2 TDC).
+- Every phenotypic subject has a BIDS folder and vice versa.
+- Subject IDs are 7-digit zero-padded in BIDS (`sub-0050002`) and plain integers in `SUB_ID` (`50002`); the tables use the BIDS form.
+- In the source, 20 ASD participants have DSM-IV-TR code 0 (control), and one VIQ (180) is above the legend's range. Use `diagnosis` as the label.
 - OpenBHB includes ABIDE I subjects, but its IDs are anonymized (see `scripts/openbhb/README.md`).
-
-## Usage
-
-```sh
-bash scripts/abide1/download.sh   # 7.4 GB; resumable
-```

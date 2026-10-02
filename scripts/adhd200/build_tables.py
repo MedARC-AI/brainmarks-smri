@@ -135,7 +135,7 @@ def main() -> None:
     complete = pd.Series(participants.index.isin(images.participant_id) & participants.diagnosis.notna().values,
                          index=participants.index)
     splits = tables.make_splits(strata, complete, official=official, split=split)
-    tables.write(NAME, images, smp, columns, splits)
+    tables.write(NAME, images, smp, columns, splits, summary=["adhd"])
 
 
 if __name__ == "__main__":

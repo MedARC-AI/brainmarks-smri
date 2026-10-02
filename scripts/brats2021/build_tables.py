@@ -124,7 +124,7 @@ def main() -> None:
     complete = participants.complete.all()
     strata = first.has_mask.map({True: "mask", False: "nomask"}) + "_" + first.mgmt.fillna("n/a")
     splits = tables.make_splits(strata, complete, official=first.official)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["mgmt"])
 
 
 if __name__ == "__main__":

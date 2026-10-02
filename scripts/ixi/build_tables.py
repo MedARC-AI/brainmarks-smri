@@ -7,6 +7,7 @@ See `brain_datasets.tables` for the table layout.
 - Images stay inside the original tarballs: images.tsv has `path` = the tar and `member` = the
   file inside it. T1/T2/PD are one NIfTI per participant. The DTI is one NIfTI per volume
   (desc `vol-NN`), 16-17 per participant, with the shared gradient table in bvals.txt/bvecs.txt.
+  Caution: the gradient table has 16 entries, but 397 of 400 participants have 17 volumes.
 - Participants: everyone with at least one image (584; 3 have no T1). participant_id is `IXI<id>` with 3+
   digits (as in the file names); site (Guys/HH/IOP) comes from the file names.
 - Demographics (IXI.xls, sheet Table): 0 means missing for the coded columns, height and weight.
@@ -151,7 +152,7 @@ def main() -> None:
     age_bin = pd.cut(participants.age, AGE_BINS, right=False).astype(str)
     strata = participants.site + "_" + age_bin
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=[])
 
 
 if __name__ == "__main__":

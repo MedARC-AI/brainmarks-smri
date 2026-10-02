@@ -105,7 +105,7 @@ def main() -> None:
     complete = have.map(lambda h: CORE <= h) & participants.mrs_discharge.notna()
     strata = participants.mrs_poor.astype(str) + "_mask-" + has_mask.astype(str)
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["mrs_poor", "nihss"])
 
 
 if __name__ == "__main__":

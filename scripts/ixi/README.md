@@ -20,6 +20,24 @@ Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: G
 - **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode). Attribution required; derivatives must be shared alike. No DUA or login.
 - **Citation:** the source asks: "If you use the IXI data please acknowledge the source of the IXI data, e.g. this website" (https://brain-development.org/ixi-dataset/). Collected under the EPSRC project IXI – Information eXtraction from Images (GR/S21533/02).
 
+## Usage
+
+```sh
+bash scripts/ixi/download.sh                 # 17 GB; resumable
+uv run python scripts/ixi/build_tables.py    # tables/ (lists the tar members, ~10 s); prints the summary below
+```
+
+## Samples
+
+One sample per participant: everyone with at least one image (584; 3 have no T1). Split 60/20/20, stratified by site × age bin (<30, 30–45, 45–60, 60–75, 75+); there is no official split. Complete = T1, T2, PD and age (557); 561 T1 participants have an age.
+
+| split | participants | complete | age | female | sites |
+|---|---|---|---|---|---|
+| train | 351 | 335 | 48.8 ± 16.8 | 54% | 3 |
+| val | 116 | 110 | 48.3 ± 16.3 | 55% | 3 |
+| test | 117 | 112 | 48.3 ± 16.1 | 58% | 3 |
+| total | 584 | 557 | 48.6 ± 16.5 | 55% | 3 |
+
 ## Contents
 
 `source/` (tarballs kept as distributed, not unpacked; 17 GB):
@@ -39,18 +57,18 @@ Subject counts (from `tar -tf`):
 | PD | 319 | 185 | 74 | 578 |
 | DTI | 217 | 183 | – | 400 |
 
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: `path` is the tar file and `member` the NIfTI inside it, so images can be read without unpacking (e.g. with Python's `tarfile`). T1w, T2w, PD, and the DTI volumes (modality `DTI`, desc `vol-NN`).
+- `samples.tsv` + `samples.json`: age (the brain-age target), sex, site (from the file names), study date, height, weight and the decoded demographic codes. The spreadsheet's duplicate and conflicting rows are resolved (see `demographics_conflict`).
+- `splits.tsv`: split, rank and complete per participant.
+
 ## Excluded
 
 - `IXI-MRA.tar`: MR angiography (12.4 GB, 42% of the full release). Not an input to the brain-age benchmarks.
 
 ## Notes
 
-- **Usable brain-age cohort: 563 T1 subjects with an age.** `IXI.xls` has 619 rows but only 593 unique IXI_IDs (duplicate rows), and 590 have AGE. 15 of the 581 T1 subjects are missing from the spreadsheet. Build subject lists from the tarballs and join on IXI_ID, after deduplicating.
+- `IXI.xls` has 619 rows for 593 IDs: duplicate rows, mostly a full row plus a zeroed copy, and 4 IDs whose rows disagree. It also has entry errors (e.g. heights of 1520 cm) and an ethnicity code (2) that is missing from the lookup sheet. 15 of the 581 T1 subjects have no row. The tables handle all of these (see `build_tables.py`).
 - DTI: `bvals.txt`/`bvecs.txt` list **16** gradients (1 b0 + 15 at b=1000), but 397 of 400 subjects have **17** volumes (3 have 16). Check the volume order before using the gradient table. There is no DTI for IOP.
 - OpenBHB includes IXI subjects, but its IDs are anonymized (see `scripts/openbhb/README.md`).
-
-## Usage
-
-```sh
-bash scripts/ixi/download.sh   # 17 GB; resumable
-```

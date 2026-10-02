@@ -153,8 +153,11 @@ def mini_split(splits: pd.DataFrame, split: str, n: int) -> pd.DataFrame:
 
 
 def write(name: str, images: pd.DataFrame, samples: pd.DataFrame, columns: dict[str, dict],
-          splits: pd.DataFrame) -> None:
+          splits: pd.DataFrame, summary: list[str] = ()) -> None:
     """Validate the tables and write them to datasets/<name>/tables/ and scripts/<name>/tables/.
+
+    Also refreshes the README copy in datasets/<name>/ and prints a markdown summary table
+    (counts, age, sex, site and the `summary` target columns by split) for the README.
 
     `columns` documents the dataset-specific samples.tsv columns (the common ones are added).
     """
@@ -186,10 +189,38 @@ def write(name: str, images: pd.DataFrame, samples: pd.DataFrame, columns: dict[
     tracked = REPO / "scripts" / name / "tables"
     shutil.rmtree(tracked, ignore_errors=True)
     shutil.copytree(out, tracked)
-    print_summary(splits)
+    shutil.copy(REPO / "scripts" / name / "README.md", dataset_dir(name) / "README.md")
+    print(summary_table(samples, splits, list(summary)))
 
 
-def print_summary(splits: pd.DataFrame) -> None:
-    for name in FRACTIONS:
-        rows = splits[splits.split == name]
-        print(f"{name:5s} {len(rows):5d} participants, {rows.complete.sum():5d} complete")
+def describe(values: pd.Series) -> str:
+    """Compact summary of one column: mean ± sd for continuous values, level counts otherwise."""
+    values = values.dropna()
+    if values.empty:
+        return "n/a"
+    numeric = pd.api.types.is_numeric_dtype(values) and not pd.api.types.is_bool_dtype(values)
+    if numeric and values.nunique() > 10:
+        return f"{values.mean():.1f} ± {values.std():.1f}"
+    counts = values.astype(str).value_counts().sort_index()
+    return " / ".join(f"{level} {count}" for level, count in counts.items())
+
+
+def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: list[str]) -> str:
+    """Markdown table of the samples by split (rows) for the dataset README."""
+    merged = samples.merge(splits, on="participant_id", validate="many_to_one")
+    multi_session = len(samples) > samples.participant_id.nunique()
+    multi_site = merged.site.nunique() > 1
+    header = ["split", "participants", *(["samples"] if multi_session else []), "complete",
+              "age", "female", *(["sites"] if multi_site else []), *targets]
+    rows = []
+    for name in [*FRACTIONS, "total"]:
+        part = merged if name == "total" else merged[merged.split == name]
+        people = part.drop_duplicates("participant_id")
+        sex = part.sex.dropna()
+        row = [name, str(len(people)), *([str(len(part))] if multi_session else []), str(int(people.complete.sum())),
+               describe(part.age), f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a",
+               *([str(part.site.nunique())] if multi_site else []), *(describe(part[t]) for t in targets)]
+        rows.append(row)
+    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
+    lines += ["| " + " | ".join(row) + " |" for row in rows]
+    return "\n".join(lines)

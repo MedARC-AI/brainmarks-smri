@@ -129,7 +129,7 @@ def main() -> None:
     complete = has_core & os_known
     strata = "corrected-" + has_corrected.astype(str) + "_os-" + os_known.astype(str)
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["idh1", "mgmt", "os_event"])
 
 
 if __name__ == "__main__":

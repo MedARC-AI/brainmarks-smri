@@ -82,7 +82,7 @@ def main() -> None:
     split = pd.concat([train_val, official[~in_train].map(lambda _: "test")]).reindex(participants.index)
     complete = participants.age.notna()
     splits = tables.make_splits(participants.site, complete, official=official, split=split)
-    tables.write(NAME, images, smp, columns, splits)
+    tables.write(NAME, images, smp, columns, splits, summary=[])
 
 
 if __name__ == "__main__":

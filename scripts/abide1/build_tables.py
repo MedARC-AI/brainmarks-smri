@@ -91,7 +91,7 @@ def main() -> None:
                          index=participants.index)
     strata = participants.diagnosis + "_" + participants.site
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits)
+    tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])
 
 
 if __name__ == "__main__":

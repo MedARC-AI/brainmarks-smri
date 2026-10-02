@@ -8,14 +8,38 @@ Stroke Outcome Optimization Project: clinical MRI of 1715 patients admitted to a
 - **License:** CC0
 - **Citation:** Absher, J., Goncher, S., Newman-Norlund, R., Perkins, N., Yourganov, G., Vargas, J., & Rorden, C. (2024). The stroke outcome optimization project: Acute ischemic strokes from a comprehensive stroke center. *Scientific Data*, 11, 839. [doi:10.1038/s41597-024-03667-5](https://doi.org/10.1038/s41597-024-03667-5). (`dataset_description.json` has no `HowToAcknowledge`.)
 
+## Usage
+
+```sh
+bash scripts/soop/download.sh                 # 72 GB; resumable
+uv run python scripts/soop/build_tables.py    # tables/; prints the summary below
+```
+
+## Samples
+
+One sample per imaged participant (1715; only 1106 have clinical data). Split 60/20/20, stratified by poor outcome (discharge mRS 3–6) × has a lesion mask; there is no official split. Complete = T1w, FLAIR, DWI, ADC, the combined lesion mask and discharge mRS (621).
+
+| split | participants | complete | age | female | mrs_poor | nihss |
+|---|---|---|---|---|---|---|
+| train | 1029 | 373 | 64.7 ± 14.1 | 49% | False 231 / True 212 | 8.2 ± 8.0 |
+| val | 345 | 125 | 65.3 ± 14.5 | 46% | False 78 / True 71 | 7.5 ± 7.6 |
+| test | 341 | 123 | 64.5 ± 15.0 | 49% | False 76 / True 70 | 8.0 ± 7.9 |
+| total | 1715 | 621 | 64.8 ± 14.3 | 49% | False 385 / True 353 | 8.0 ± 7.9 |
+
 ## Contents
 
-The complete snapshot (16,838 files, 72 GB):
+`source/`: the complete snapshot (16,838 files, 72 GB):
 
 - 1715 subjects, each with `anat/` T1w + FLAIR and `dwi/` `rec-TRACE_dwi` (b1000 trace) + `rec-ADC_dwi`, all with JSON sidecars. The top-level `dwi.bval`/`dwi.bvec` are BIDS-inherited placeholders. There is no raw multi-direction DWI.
 - `derivatives/lesion_masks/`: segmentation targets in TRACE (DWI) space. `desc-lesion_mask` (combined) covers 1455 subjects, `desc-lesionAcute_mask` 1451 and `desc-lesionChronic_mask` 203.
 - `participants.tsv` (+ `participants.json`): sex, age (clamped to 89), race, `acuteischaemicstroke`, `priorstroke`, `bmi`, `nihss`, `gs_rankin_6isdeath` (**discharge** mRS, 0–6 where 6 is death) and `etiology` (TOAST class, added in 1.1.1/1.1.2).
 - `README.md`, `CHANGES`, `dataset_description.json`.
+
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: T1w, FLAIR, DWI (`rec-TRACE`) and ADC (`rec-ADC`), and the lesion masks as modality `mask` with desc `lesion` (combined), `lesionAcute` or `lesionChronic`. The masks are on the DWI/ADC grid (6 mm slices); T1w and FLAIR are native high-resolution volumes in another space.
+- `samples.tsv` + `samples.json`: discharge mRS (`mrs_discharge`, and `mrs_poor` = 3–6), NIHSS, etiology (TOAST), age (clamped at 89, `age_clamped`), sex, race, prior stroke, BMI, and the scanner model from the T1w sidecars. The source names no site, so `site` is n/a.
+- `splits.tsv`: split, rank and complete per participant.
 
 ## Excluded
 
@@ -24,13 +48,8 @@ The complete snapshot (16,838 files, 72 GB):
 ## Notes
 
 - **Label coverage:** `participants.tsv` has 1505 rows for 1715 imaged subjects, and all 1505 are imaged. 399 rows are n/a for every clinical field. The other 1106 are all `acuteischaemicstroke=1` (there are no 0s), and these 1106 have NIHSS. Discharge mRS is labeled for 738 (0:112, 1:167, 2:106, 3:109, 4:147, 5:54, 6:43). Etiology is labeled for 1080. Of the 1455 subjects with a combined lesion mask, 1270 are in `participants.tsv`.
-- The paper reports 1461 acute ischemic strokes among the 1715, but the table flags only 1106 (the rows with demographics). Build subject lists from `participants.tsv`, not the subject directories.
+- The paper reports 1461 acute ischemic strokes among the 1715, but the table flags only 1106 (the rows with demographics). The tables include every imaged subject; those without a `participants.tsv` row have n/a metadata.
 - The mRS is at **discharge**, not 90 days.
+- A few BMI values are implausible (e.g. 115.6, 12.2); they are kept as in the source.
 - `participants.json` describes a `lesion_size_cc` column that is not in `participants.tsv`. It does not describe the `etiology` column.
 - The ARC dataset (OpenNeuro ds004512) is a companion chronic-stroke cohort from the same group.
-
-## Usage
-
-```sh
-bash scripts/soop/download.sh   # 72 GB; resumable
-```

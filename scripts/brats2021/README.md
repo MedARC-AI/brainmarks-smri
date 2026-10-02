@@ -8,6 +8,25 @@ Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI
 - **License:** CC BY 4.0 for the challenge data and the crosswalk. The *original* DICOMs of TCGA-GBM/LGG, CPTAC-GBM, IvyGAP and ACRIN-FMISO-Brain (which the `.tcia` manifests point to) fall under the NIH Controlled Data Access Policy; we don't fetch them.
 - **Citation:** Baid, U., et al. (2023). RSNA-ASNR-MICCAI-BraTS-2021 Dataset. The Cancer Imaging Archive. https://doi.org/10.7937/jc8x-9874. Also: Baid, U., et al. (2021). The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor Segmentation and Radiogenomic Classification. arXiv:2107.02314; Menze et al. 2015 (*IEEE TMI*); Bakas et al. 2017 (*Scientific Data*); and the source collections (full list on the TCIA page). TCGA acknowledgement required.
 
+## Usage
+
+```sh
+bash scripts/brats2021/download.sh                 # 15.8 GB, ~17 min at ~150 Mbit/s; resumable (a complete re-run transfers nothing but still takes ~17 min); checks md5s
+uv run python scripts/brats2021/build_tables.py    # tables/; prints the summary below
+uv run python scripts/brats2021/list_package.py    # list the Faspex package (HTTPS)
+```
+
+## Samples
+
+One sample per BraTS case: 1,479 cases of 1,477 patients (two UCSF-PDGM follow-up cases belong to patients who also have a baseline case; they are sessions of one participant). The official Task 1 validation set has no masks, so all cases are split 60/20/20 by patient, stratified by has mask × MGMT label, giving a held-out test set with masks. `official_split` keeps the Task 1 cohort and `mgmt_cohort` the Task 2 cohort. Complete = the 4 images and the tumor mask. The source has no age or sex.
+
+| split | participants | samples | complete | age | female | sites | mgmt |
+|---|---|---|---|---|---|---|---|
+| train | 885 | 886 | 749 | n/a | n/a | 25 | methylated 218 / unmethylated 198 |
+| val | 294 | 295 | 249 | n/a | n/a | 23 | methylated 73 / unmethylated 66 |
+| test | 298 | 298 | 251 | n/a | n/a | 23 | methylated 73 / unmethylated 67 |
+| total | 1477 | 1479 | 1249 | n/a | n/a | 26 | methylated 364 / unmethylated 331 |
+
 ## Contents
 
 `source/`: 7,160 files, 15.8 GB.
@@ -45,6 +64,12 @@ Cases per source folder:
 
 Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4 = enhancing tumor) for Task 1, and the MGMT column of `BraTS2021_MappingToTCIA.xlsx` for Task 2.
 
+`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+
+- `images.tsv`: T1w, T1c (`t1ce`), T2w, FLAIR and the tumor mask (desc `tumor`) per case; session_id is the BraTS case ID.
+- `samples.tsv` + `samples.json`: MGMT (target), Task 2 cohort, site (BraTS institution code), source collection, TCIA PatientID (to link cases to `upenn_gbm` / `ucsf_pdgm`) and study date (de-identified, shifted by TCIA).
+- `splits.tsv`: split, official Task 1 cohort, rank and complete per patient.
+
 ## Excluded
 
 - The Task 2 `_dcm` folders, `BraTS2021_TrainingSet_dcm/` (585 cases) and `BraTS2021_ValidationSet_dcm/` (87 cases), ~127 GB, 400,114 files: the Task 2 scans converted NIfTI→DICOM (Kaggle format, not strictly standard DICOM), including the 9 Task-2-only cases. Only needed to reproduce the Kaggle Task 2 setup. MGMT can be predicted from the Task 1 NIfTI with the crosswalk labels.
@@ -56,12 +81,7 @@ Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4
 
 - **Case counts:** the TCIA page says 1,480. The package has 1,251 + 219 = 1,470 Task 1 cases, plus 9 Task-2-only cases (8 train, 1 val), so **1,479**, matching the crosswalk.
 - **Validation segmentations are not included.** We checked all 53 "new" validation cases and one case per source folder. Only the 1,251 training cases have labels.
-- **Subject overlap** (from the crosswalk): UPENN-GBM 447 (TCIA IDs like `UPENN-GBM-00011_11`), UCSF-PDGM 299 (PatientID holds only the number, e.g. `57`), TCGA-GBM 135, TCGA-LGG 108, CPTAC-GBM 39, IvyGAP 34, ACRIN-FMISO-Brain 4. 413 are new institutional cases with no TCIA equivalent: `UPENN-GBM_Additional` 115, `UCSF-PDGM_Additional` 139, and anonymized "Collection N" sites 159. The `_Additional` rows are probably patients *not* in the UPENN-GBM or UCSF-PDGM collections, but the crosswalk can't confirm it. Use the crosswalk to deduplicate against `upenn_gbm` and `ucsf_pdgm`.
-- The 9 Task-2-only cases use bare IDs (`00169`) where the others use `BraTS2021_NNNNN`.
-
-## Usage
-
-```sh
-bash scripts/brats2021/download.sh                                # 15.8 GB, ~17 min at ~150 Mbit/s; resumable (a complete re-run transfers nothing but still takes ~17 min); checks md5s
-uv run python scripts/brats2021/list_package.py                   # list the Faspex package (HTTPS)
-```
+- **Subject overlap** (from the crosswalk): UPENN-GBM 447 (TCIA IDs like `UPENN-GBM-00011_11`), UCSF-PDGM 299 (PatientID holds only the number, e.g. `57`), TCGA-GBM 135, TCGA-LGG 108, CPTAC-GBM 39, IvyGAP 34, ACRIN-FMISO-Brain 4. 413 are new institutional cases with no TCIA equivalent: `UPENN-GBM_Additional` 115, `UCSF-PDGM_Additional` 139, and anonymized "Collection N" sites 159. The `_Additional` rows are probably patients *not* in the UPENN-GBM or UCSF-PDGM collections, but the crosswalk can't confirm it. Benchmarks are evaluated within each dataset, so this overlap only correlates scores across datasets.
+- **Same-patient cases:** the crosswalk lists two UCSF-PDGM follow-up exams under their old PatientIDs (138, 315), so it doesn't show that they belong to patients 429 and 433, who also have baseline cases. UCSF-PDGM v5 renamed them (`UCSF-PDGM-0429_FU003d`, `UCSF-PDGM-0433_FU007d`). The tables group them by patient. The anonymized `_Additional` and "Collection N" cases can't be checked for this.
+- 8 of the 9 Task-2-only cases use bare IDs (`00169`) in the crosswalk where the others use `BraTS2021_NNNNN`; the tables normalize them.
+- The crosswalk's study dates mix Excel dates and m/d/yyyy text; the tables write YYYY-MM-DD.
