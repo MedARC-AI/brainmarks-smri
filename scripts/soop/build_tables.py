@@ -2,7 +2,7 @@
 
     uv run python scripts/soop/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - 1715 imaged participants, one session each (session_id '1'): T1w, FLAIR, DWI (rec-TRACE,
   b1000 trace) and ADC (rec-ADC). Lesion masks from derivatives/lesion_masks/ are modality
@@ -23,7 +23,7 @@ import json
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "soop"
 ROOT = tables.dataset_dir(NAME)

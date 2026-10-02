@@ -2,18 +2,13 @@
 
 UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y) who are healthy controls or have schizophrenia, bipolar disorder or ADHD. We use the T1w (and DWI) scans for 4-way diagnosis classification.
 
+- **Homepage:** <https://openneuro.org/datasets/ds000030>
 - **Source:** OpenNeuro [ds000030](https://openneuro.org/datasets/ds000030/versions/1.0.0). Downloaded with `openneuro-py`.
 - **Version:** snapshot 1.0.0 (2020-04-21), the latest.
 - **DOI:** [10.18112/openneuro.ds000030.v1.0.0](https://doi.org/10.18112/openneuro.ds000030.v1.0.0)
 - **License:** CC0
 - **Citation** (per `HowToAcknowledge`): Poldrack, R. A., Congdon, E., Triplett, W., et al. (2016). A phenome-wide examination of neural and cognitive function. *Scientific Data*, 3, 160110. If using derived data, also: Gorgolewski, K. J., Durnez, J., & Poldrack, R. A. (2017). Preprocessed Consortium for Neuropsychiatric Phenomics dataset. *F1000Research*, 6, 1262.
-
-## Usage
-
-```sh
-bash scripts/cnp/download.sh                 # 13.4 GB; resumable
-uv run python scripts/cnp/build_tables.py    # tables/; prints the summary below
-```
+- **Code:** [`scripts/cnp/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/cnp) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -36,7 +31,7 @@ One sample per participant. Split 60/20/20, stratified by diagnosis; there is no
 - `phenotype/`: 52 instrument tables + JSON data dictionaries (SCID, BPRS, SANS/SAPS, Hamilton, YMRS, ASRS, WAIS, medication, demographics, ...).
 - `dataset_description.json`, `README`, `CHANGES`.
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: T1w, and the raw DWI series as modality `DTI` (the `.bval`/`.bvec` sit next to the NIfTI).
 - `samples.tsv` + `samples.json`: diagnosis (target), age, sex, scanner serial and `ghost_artifact`. The fMRI availability flags are left out, and the `phenotype/` instruments are not merged.

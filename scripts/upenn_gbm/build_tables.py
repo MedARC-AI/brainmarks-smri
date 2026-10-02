@@ -2,7 +2,7 @@
 
     uv run python scripts/upenn_gbm/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - Sessions: scan IDs `UPENN-GBM-NNNNN_11` (pre-operative baseline, 611) and `_21` (follow-up,
   60; 41 of them have a baseline here) become participant `UPENN-GBM-NNNNN` with session
@@ -24,7 +24,7 @@ import re
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "upenn_gbm"
 ROOT = tables.dataset_dir(NAME)

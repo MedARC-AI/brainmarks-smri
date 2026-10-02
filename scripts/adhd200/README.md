@@ -2,18 +2,13 @@
 
 Children and adolescents (7–21 y) with ADHD and typically developing controls, from 8 sites (Peking is split into 3 scanner sub-sites): the cohort of the 2011 ADHD-200 Global Competition. We use only the T1w scans, for ADHD classification (TDC vs ADHD, or TDC / combined / inattentive / hyperactive-impulsive).
 
+- **Homepage:** <https://fcon_1000.projects.nitrc.org/indi/adhd200/>
 - **Source:** INDI / 1000 Functional Connectomes Project public S3 bucket, `s3://fcp-indi/data/Projects/ADHD200/`: the `RawDataBIDS/` tree, plus the phenotypic CSVs from the older `RawData/` tree. Downloaded with `aws s3 sync --no-sign-request`. Docs and the released test-set labels come from the [project page](https://fcon_1000.projects.nitrc.org/indi/adhd200/) over plain HTTPS (no login needed for those files).
 - **Version:** S3 is unversioned, so the release is pinned by the S3 listing (2026-10-01T22:29Z) and `manifest.sha256`. Object dates: T1w images 2016-11 to 2020-02; `participants.tsv`/`dataset_description.json` 2020-01/02; phenotypic CSVs 2016-10 (`RawData/`) and 2024-02-23 (`RawDataBIDS/`); NITRC files 2011.
 - **DOI:** none for the data. Consortium paper: [10.3389/fnsys.2012.00062](https://doi.org/10.3389/fnsys.2012.00062).
 - **License:** CC BY-NC (NITRC category "Attribution Non-Commercial"). The project page says "data usage is unrestricted for non-commercial research purposes", asks users to name the datasets used and acknowledge their funding (per-site `Funding`/`Acknowledgements` are in each `dataset_description.json`), and asks users to register with NITRC and the 1000 Functional Connectomes Project. The S3 copy is open.
 - **Citation:** ADHD-200 Consortium (2012). The ADHD-200 Consortium: a model to advance the translational potential of neuroimaging in clinical neuroscience. *Frontiers in Systems Neuroscience*, 6, 62. Plus per-site acknowledgement.
-
-## Usage
-
-```sh
-bash scripts/adhd200/download.sh                 # 9.0 GB; resumable
-uv run python scripts/adhd200/build_tables.py    # tables/; prints the summary below
-```
+- **Code:** [`scripts/adhd200/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/adhd200) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -41,7 +36,7 @@ One sample per participant with a T1w (961). The official competition split is k
 
 Train/test split: subjects in `allSubs_testSet_phenotypic_dx.csv` are the holdout (197); the rest are the training release (776). Diagnosis codes in the CSVs: 0 = TDC, 1 = ADHD-Combined, 2 = ADHD-Hyperactive/Impulsive, 3 = ADHD-Inattentive.
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: one T1w per participant. 9 WashU participants have theirs in `ses-2`/`ses-3`/`ses-4` (session_id follows).
 - `samples.tsv` + `samples.json`: diagnosis (4 levels) and `adhd` (binary target), age, sex, site (the 10 BIDS site folders), ADHD scores, IQ, medication, handedness and anatomical QC, from the per-site `participants.tsv`. Site-specific phenotypes that are only in the `*_phenotypic.csv` files are not merged. participant_id is the BIDS label (`sub-0010001`).

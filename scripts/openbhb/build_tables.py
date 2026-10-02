@@ -2,7 +2,7 @@
 
     uv run python scripts/openbhb/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - 3984 healthy participants (public part), one session each (the BIDS ses-1), one original
   T1w each in {train,val}/rawdata/. participant_id gets the BIDS `sub-` prefix.
@@ -18,7 +18,7 @@ See `brain_datasets.tables` for the table layout.
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "openbhb"
 ROOT = tables.dataset_dir(NAME)

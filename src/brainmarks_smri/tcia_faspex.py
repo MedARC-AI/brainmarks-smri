@@ -7,8 +7,8 @@ No account is needed: the link's `context` is exchanged for an OAuth bearer toke
 v5 API lists the package and issues a transfer spec (with a FASP token) for chosen paths,
 and `ascp` (installed by `ascli config ascp install`) downloads them over FASP (port 33001).
 
-    uv run python -m brain_datasets.tcia_faspex ls  <public-link> [<path>]
-    uv run python -m brain_datasets.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
+    uv run python -m brainmarks_smri.tcia_faspex ls  <public-link> [<path>]
+    uv run python -m brainmarks_smri.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
 
 `ls` prints `type<TAB>path` for one directory of the package (default: the root).
 `get` downloads each package path (file or directory, recursively) into <dest-dir>/<basename>,

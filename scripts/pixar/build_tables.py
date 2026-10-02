@@ -2,7 +2,7 @@
 
     uv run python scripts/pixar/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - 155 participants (122 children 3-12 y, 33 adults), one session each (session_id '1'), one T1w.
 - Single site (MIT, two 3T Siemens Trio scanners: `scanner`).
@@ -13,7 +13,7 @@ See `brain_datasets.tables` for the table layout.
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "pixar"
 ROOT = tables.dataset_dir(NAME)

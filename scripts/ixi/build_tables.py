@@ -2,7 +2,7 @@
 
     uv run python scripts/ixi/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - Images stay inside the original tarballs: images.tsv has `path` = the tar and `member` = the
   file inside it. T1/T2/PD are one NIfTI per participant. The DTI is one NIfTI per volume
@@ -27,7 +27,7 @@ import tarfile
 import numpy as np
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "ixi"
 ROOT = tables.dataset_dir(NAME)

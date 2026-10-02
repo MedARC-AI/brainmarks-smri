@@ -6,12 +6,12 @@ in the first case. Used to verify case counts and which splits carry segmentatio
     uv run python scripts/brats2021/list_package.py [--all-cases]
 
 --all-cases lists every case directory (~1,500 paced requests) instead of one per folder.
-Login and listing use `brain_datasets.tcia_faspex` (public-link OAuth + Faspex v5 API).
+Login and listing use `brainmarks_smri.tcia_faspex` (public-link OAuth + Faspex v5 API).
 """
 
 import sys
 
-from brain_datasets import tcia_faspex
+from brainmarks_smri import tcia_faspex
 
 # "Challenge data both tasks" public link on the TCIA page (package 636), as in download.sh.
 LINK = ("https://faspex.cancerimagingarchive.net/aspera/faspex/public/package?context="

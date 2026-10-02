@@ -2,18 +2,13 @@
 
 Stroke Outcome Optimization Project: clinical MRI of 1715 patients admitted to a South Carolina comprehensive stroke center (Prisma Health-Upstate). We use it for stroke lesion segmentation (DWI TRACE + ADC), discharge mRS prediction and NIHSS regression.
 
-- **Source:** OpenNeuro [ds004889](https://openneuro.org/datasets/ds004889/versions/1.1.2). **Not** downloaded with `openneuro-py`: for this dataset OpenNeuro hands out S3 URLs presigned for GET only (15,153 of 16,838 files), and `openneuro-py` 2026.9.1 sends a HEAD request first, which S3 rejects with 403. Instead, `snapshot_files.py` lists the snapshot through the OpenNeuro GraphQL API, and curl fetches each file's pinned S3 object version (`?versionId=...`, public, unsigned). Every file is then checked against the snapshot's own checksums (the SHA256 in the git-annex key, or the git blob SHA1).
+- **Homepage:** <https://openneuro.org/datasets/ds004889>
+- **Source:** OpenNeuro [ds004889](https://openneuro.org/datasets/ds004889/versions/1.1.2). **Not** downloaded with `openneuro-py`: for this dataset OpenNeuro hands out S3 URLs presigned for GET only (15,153 of 16,838 files), and `openneuro-py` 2026.9.1 sends a HEAD request first, which S3 rejects with 403. Instead, we list the snapshot through the OpenNeuro GraphQL API, and curl fetches each file's pinned S3 object version (`?versionId=...`, public, unsigned). Every file is then checked against the snapshot's own checksums (the SHA256 in the git-annex key, or the git blob SHA1).
 - **Version:** snapshot 1.1.2 (2024-05-08), the latest as of 2026-10-01.
 - **DOI:** [10.18112/openneuro.ds004889.v1.1.2](https://doi.org/10.18112/openneuro.ds004889.v1.1.2)
 - **License:** CC0
 - **Citation:** Absher, J., Goncher, S., Newman-Norlund, R., Perkins, N., Yourganov, G., Vargas, J., & Rorden, C. (2024). The stroke outcome optimization project: Acute ischemic strokes from a comprehensive stroke center. *Scientific Data*, 11, 839. [doi:10.1038/s41597-024-03667-5](https://doi.org/10.1038/s41597-024-03667-5). (`dataset_description.json` has no `HowToAcknowledge`.)
-
-## Usage
-
-```sh
-bash scripts/soop/download.sh                 # 72 GB; resumable
-uv run python scripts/soop/build_tables.py    # tables/; prints the summary below
-```
+- **Code:** [`scripts/soop/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/soop) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -35,7 +30,7 @@ One sample per imaged participant (1715; only 1106 have clinical data). Split 60
 - `participants.tsv` (+ `participants.json`): sex, age (clamped to 89), race, `acuteischaemicstroke`, `priorstroke`, `bmi`, `nihss`, `gs_rankin_6isdeath` (**discharge** mRS, 0–6 where 6 is death) and `etiology` (TOAST class, added in 1.1.1/1.1.2).
 - `README.md`, `CHANGES`, `dataset_description.json`.
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: T1w, FLAIR, DWI (`rec-TRACE`) and ADC (`rec-ADC`), and the lesion masks as modality `mask` with desc `lesion` (combined), `lesionAcute` or `lesionChronic`. The masks are on the DWI/ADC grid (6 mm slices); T1w and FLAIR are native high-resolution volumes in another space.
 - `samples.tsv` + `samples.json`: discharge mRS (`mrs_discharge`, and `mrs_poor` = 3–6), NIHSS, etiology (TOAST), age (clamped at 89, `age_clamped`), sex, race, prior stroke, BMI, and the scanner model from the T1w sidecars. The source names no site, so `site` is n/a.

@@ -2,7 +2,7 @@
 
     uv run python scripts/ucsf_pdgm/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - Sessions: 501 exams of 495 patients. The 6 follow-up exams (e.g. `UCSF-PDGM-0433_FU007d`)
   become session `FU007d` of participant `UCSF-PDGM-0433`; every other exam is session `baseline`.
@@ -16,7 +16,7 @@ import re
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "ucsf_pdgm"
 ROOT = tables.dataset_dir(NAME)

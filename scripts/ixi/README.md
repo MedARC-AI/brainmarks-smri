@@ -2,6 +2,7 @@
 
 Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: Guy's (Philips 1.5T), Hammersmith (Philips 3T) and IOP (GE 1.5T). We use the T1/T2/PD scans for brain-age prediction.
 
+- **Homepage:** <https://brain-development.org/ixi-dataset/>
 - **Source:** [brain-development.org/ixi-dataset](https://brain-development.org/ixi-dataset/) (Imperial College London). Plain HTTPS tarballs from `https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/`, fetched with `curl -fL -C -`. The page links use `http://`, which redirects to `https://`.
 - **Version:** no versioning and no published checksums. The files have been unchanged since 2014-10-07. Pinned by the server metadata below (retrieved 2026-10-01) and `manifest.sha256`.
 
@@ -19,13 +20,7 @@ Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: G
 - **DOI:** none.
 - **License:** [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/legalcode). Attribution required; derivatives must be shared alike. No DUA or login.
 - **Citation:** the source asks: "If you use the IXI data please acknowledge the source of the IXI data, e.g. this website" (https://brain-development.org/ixi-dataset/). Collected under the EPSRC project IXI – Information eXtraction from Images (GR/S21533/02).
-
-## Usage
-
-```sh
-bash scripts/ixi/download.sh                 # 17 GB; resumable
-uv run python scripts/ixi/build_tables.py    # tables/ (lists the tar members, ~10 s); prints the summary below
-```
+- **Code:** [`scripts/ixi/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/ixi) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -57,7 +52,7 @@ Subject counts (from `tar -tf`):
 | PD | 319 | 185 | 74 | 578 |
 | DTI | 217 | 183 | – | 400 |
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: `path` is the tar file and `member` the NIfTI inside it, so images can be read without unpacking (e.g. with Python's `tarfile`). T1w, T2w, PD, and the DTI volumes (modality `DTI`, desc `vol-NN`).
 - `samples.tsv` + `samples.json`: age (the brain-age target), sex, site (from the file names), study date, height, weight and the decoded demographic codes. The spreadsheet's duplicate and conflicting rows are resolved (see `demographics_conflict`).
@@ -69,6 +64,6 @@ Subject counts (from `tar -tf`):
 
 ## Notes
 
-- `IXI.xls` has 619 rows for 593 IDs: duplicate rows, mostly a full row plus a zeroed copy, and 4 IDs whose rows disagree. It also has entry errors (e.g. heights of 1520 cm) and an ethnicity code (2) that is missing from the lookup sheet. 15 of the 581 T1 subjects have no row. The tables handle all of these (see `build_tables.py`).
+- `IXI.xls` has 619 rows for 593 IDs: duplicate rows, mostly a full row plus a zeroed copy, and 4 IDs whose rows disagree. It also has entry errors (e.g. heights of 1520 cm) and an ethnicity code (2) that is missing from the lookup sheet. 15 of the 581 T1 subjects have no row. The tables handle all of these.
 - DTI: `bvals.txt`/`bvecs.txt` list **16** gradients (1 b0 + 15 at b=1000), but 397 of 400 subjects have **17** volumes (3 have 16). Check the volume order before using the gradient table. There is no DTI for IOP.
-- OpenBHB includes IXI subjects, but its IDs are anonymized (see `scripts/openbhb/README.md`).
+- OpenBHB includes IXI subjects, but its IDs are anonymized (see the [OpenBHB README](../openbhb/README.md)).

@@ -2,19 +2,13 @@
 
 Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI BraTS 2021 challenge, skull-stripped and co-registered as distributed. We use it for tumor segmentation (Task 1) and MGMT promoter methylation classification (Task 2).
 
-- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). The Task 1 NIfTI and the `.sums` file are fetched over FASP with `brain_datasets.tcia_faspex` (`src/brain_datasets/tcia_faspex.py`) (public-link OAuth + Faspex v5 transfer spec + `ascp`; needs TCP/UDP 33001 to TCIA's transfer node `144.30.235.113`), using the page's "Challenge data both tasks" public link. The server has no HTTP gateway, and `ascli faspex5 packages receive` fails against it. `list_package.py` lists the package over HTTPS.
+- **Homepage:** <https://www.med.upenn.edu/cbica/brats2021/>
+- **Source:** TCIA analysis result [RSNA-ASNR-MICCAI-BraTS-2021](https://www.cancerimagingarchive.net/analysis-result/rsna-asnr-miccai-brats-2021/). The metadata is 28 plain HTTPS files linked from the page, fetched with `curl`. The imaging is an Aspera Faspex package: id 636, "RSNA-ASNR-MICCAI-BraTS-2021", released 2023-11-11, 407,245 files, plus `RSNA-ASNR-MICCAI-BraTS-2021.sums` (checksum list, 2024-03-25). The Task 1 NIfTI and the `.sums` file are fetched over FASP with `ascp` (public-link OAuth + Faspex v5 transfer spec; needs TCP/UDP 33001 to TCIA's transfer node `144.30.235.113`), using the page's "Challenge data both tasks" public link. The server has no HTTP gateway, and `ascli faspex5 packages receive` fails against it.
 - **Version:** Version 1 (updated 2023/08/25). The metadata files are not versioned on the server, so `manifest.sha256` is the pin.
 - **DOI:** [10.7937/jc8x-9874](https://doi.org/10.7937/jc8x-9874)
 - **License:** CC BY 4.0 for the challenge data and the crosswalk. The *original* DICOMs of TCGA-GBM/LGG, CPTAC-GBM, IvyGAP and ACRIN-FMISO-Brain (which the `.tcia` manifests point to) fall under the NIH Controlled Data Access Policy; we don't fetch them.
 - **Citation:** Baid, U., et al. (2023). RSNA-ASNR-MICCAI-BraTS-2021 Dataset. The Cancer Imaging Archive. https://doi.org/10.7937/jc8x-9874. Also: Baid, U., et al. (2021). The RSNA-ASNR-MICCAI BraTS 2021 Benchmark on Brain Tumor Segmentation and Radiogenomic Classification. arXiv:2107.02314; Menze et al. 2015 (*IEEE TMI*); Bakas et al. 2017 (*Scientific Data*); and the source collections (full list on the TCIA page). TCGA acknowledgement required.
-
-## Usage
-
-```sh
-bash scripts/brats2021/download.sh                 # 15.8 GB, ~17 min at ~150 Mbit/s; resumable (a complete re-run transfers nothing but still takes ~17 min); checks md5s
-uv run python scripts/brats2021/build_tables.py    # tables/; prints the summary below
-uv run python scripts/brats2021/list_package.py    # list the Faspex package (HTTPS)
-```
+- **Code:** [`scripts/brats2021/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/brats2021) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -40,7 +34,7 @@ One sample per BraTS case: 1,479 cases of 1,477 patients (two UCSF-PDGM follow-u
 - `BraTS2021_<source>_<Seg|Class>-Task-<Training|Validation>.tcia` (23 files), plus `RSNA-ASNR-MICCAI-BraTS-2021_UPENN-GBM_manifest.tcia` and its `...nbia-digest-1.xlsx`: NBIA manifests of the original DICOM series behind each split. The TCIA page calls the series-to-volume link a "best effort" reconstruction.
 - `GC_manifest_RSNA-ASNR-MICCAI-BRATS-2021_sources.csv`: CRDC DRS IDs (`dg.4DFC/...`) to SeriesInstanceUID for the original series.
 
-`source/RSNA-ASNR-MICCAI-BraTS-2021.sums` (50 MB): the package's md5 list (`md5 relpath`, 407,245 lines, paths relative to `source/`). `download.sh` checks every downloaded NIfTI against it.
+`source/RSNA-ASNR-MICCAI-BraTS-2021.sums` (50 MB): the package's md5 list (`md5 relpath`, 407,245 lines, paths relative to `source/`). Every downloaded NIfTI was checked against it.
 
 `source/RSNA-ASNR-MICCAI-BraTS-2021/` (7,131 `.nii.gz`, 15.8 GB), the Task 1 NIfTI from Faspex package 636, in the package's tree:
 
@@ -64,7 +58,7 @@ Cases per source folder:
 
 Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4 = enhancing tumor) for Task 1, and the MGMT column of `BraTS2021_MappingToTCIA.xlsx` for Task 2.
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: T1w, T1c (`t1ce`), T2w, FLAIR and the tumor mask (desc `tumor`) per case; session_id is the BraTS case ID.
 - `samples.tsv` + `samples.json`: MGMT (target), Task 2 cohort, site (BraTS institution code), source collection, TCIA PatientID (to link cases to `upenn_gbm` / `ucsf_pdgm`) and study date (de-identified, shifted by TCIA).

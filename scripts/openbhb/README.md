@@ -2,18 +2,13 @@
 
 Open Big Healthy Brains: T1w scans of healthy controls from 10 public cohorts (ABIDE I/II, IXI, CoRR, GSP, Localizer, MPI-Leipzig, NAR, NPC, RBP), ages 6–88. We use it for brain-age prediction with site debiasing (the OpenBHB challenge).
 
+- **Homepage:** <https://baobablab.github.io/bhb/>
 - **Source:** HuggingFace [`benoit-dufumier/openBHB`](https://huggingface.co/datasets/benoit-dufumier/openBHB), uploaded by the first author; not gated. Downloaded with `hf download` (huggingface_hub 2.1.1). The project site ([baobablab.github.io/bhb](https://baobablab.github.io/bhb/)) points to [IEEE DataPort](https://ieee-dataport.org/open-access/openbhb-multi-site-brain-mri-dataset-age-prediction-and-debiasing), which requires an IEEE login, so we don't use it.
 - **Version:** HF commit `8508cda68fea74f217926acbf46ee5863f8879d1` (2025-09-05).
 - **DOI:** [10.21227/7jsg-jx57](https://doi.org/10.21227/7jsg-jx57) (the IEEE DataPort release). The HF repo has no DOI.
 - **License:** CC BY-NC-SA 3.0, as stated in the dataset card text and on IEEE DataPort. The HF metadata tag says `apache-2.0`, which is wrong. The card also says: "By downloading this dataset, you also agree to the most restrictive Data Usage Agreement (DUA) of all cohorts". Per-cohort terms listed there: ABIDE I/II CC BY-NC-SA 3.0 + DUA; IXI, CoRR CC0 + DUA; GSP DUA only (Harvard Dataverse); NAR, MPI-Leipzig, NPC, RBP CC0; Localizer CC BY 3.0. The DUA text itself is only on IEEE DataPort, behind the login.
 - **Citation:** Dufumier, B., Grigis, A., Victor, J., Ambroise, C., Frouin, V., & Duchesnay, E. (2022). OpenBHB: a Large-Scale Multi-Site Brain MRI Data-set for Age Prediction and Debiasing. *NeuroImage*, 263, 119637. Cite the source cohorts as well (list on the dataset card).
-
-## Usage
-
-```sh
-bash scripts/openbhb/download.sh                 # 32 GB; resumable
-uv run python scripts/openbhb/build_tables.py    # tables/; prints the summary below
-```
+- **Code:** [`scripts/openbhb/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/openbhb) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -37,7 +32,7 @@ One sample per participant (3984 healthy controls, one T1w each). The official s
 - `{train,val}/derivatives/{cat12vbm_roi,freesurfer_roi}/*.csv`: ROI features (CAT12 GM volumes, FreeSurfer Desikan/Destrieux), all subjects concatenated per split.
 - `README.md`: the dataset card.
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: one original T1w (`rawdata/`) per participant.
 - `samples.tsv` + `samples.json`: age (target), sex, site and study codes, field strength, acquisition setting, CAT12 tissue volumes, and the `qc.tsv` metrics. participant_id gets the BIDS `sub-` prefix.

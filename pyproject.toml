@@ -1,5 +1,5 @@
 [project]
-name = "brain-datasets"
+name = "brainmarks-smri"
 version = "0.1.0"
 description = "Structural MRI benchmark datasets"
 readme = "README.md"

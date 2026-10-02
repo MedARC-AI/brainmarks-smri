@@ -2,7 +2,7 @@
 
     uv run python scripts/brats2021/build_tables.py
 
-See `brain_datasets.tables` for the table layout.
+See `brainmarks_smri.tables` for the table layout.
 
 - Samples: the 1479 cases of the BraTS<->TCIA crosswalk (metadata/BraTS2021_MappingToTCIA.xlsx).
   session_id is the BraTS 2021 case ID (the 8 Task-2-only cases written as bare numbers, '00169',
@@ -27,7 +27,7 @@ import re
 
 import pandas as pd
 
-from brain_datasets import tables
+from brainmarks_smri import tables
 
 NAME = "brats2021"
 ROOT = tables.dataset_dir(NAME)

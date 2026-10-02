@@ -2,20 +2,13 @@
 
 Preoperative 3T MRI of adult diffuse glioma (WHO grade 2–4), 495 patients / 501 exams, single center (UCSF, GE Discovery 750). We use it for IDH, MGMT, 1p/19q and grade classification, OS survival, and tumor segmentation.
 
-- **Source:** TCIA collection [UCSF-PDGM](https://www.cancerimagingarchive.net/collection/ucsf-pdgm/). The clinical CSVs are plain HTTPS downloads from the collection page. The images are only distributed as an Aspera Faspex package (id 1065, "UCSF-PDGM Version 5", UUID `e6a98a44-bc23-4ef1-8380-9a64c2150b8a`, released 2025-05-29, 12,030 files, 142 GB, top folder `UCSF-PDGM-v5/`). There is no HTTPS route: the package isn't in NBIA or IDC, and the Faspex server has no HTTP gateway. `download.sh` fetches the exam folders over FASP (TCP/UDP 33001 to `144.30.235.113`) with `brain_datasets.tcia_faspex` (`src/brain_datasets/tcia_faspex.py`), using the public link from the collection page and `ascp` exclude patterns for the file types we leave out. The server sometimes stalls a session or refuses its connection partway through; `tcia_faspex` restarts `ascp` when it stops making progress, and `ascp` resumes.
+- **Homepage:** <https://www.cancerimagingarchive.net/collection/ucsf-pdgm/>
+- **Source:** TCIA collection [UCSF-PDGM](https://www.cancerimagingarchive.net/collection/ucsf-pdgm/). The clinical CSVs are plain HTTPS downloads from the collection page. The images are only distributed as an Aspera Faspex package (id 1065, "UCSF-PDGM Version 5", UUID `e6a98a44-bc23-4ef1-8380-9a64c2150b8a`, released 2025-05-29, 12,030 files, 142 GB, top folder `UCSF-PDGM-v5/`). There is no HTTPS route: the package isn't in NBIA or IDC, and the Faspex server has no HTTP gateway. We fetch the exam folders over FASP (TCP/UDP 33001 to `144.30.235.113`) with `ascp`, using the public link from the collection page and `ascp` exclude patterns for the file types we leave out. The server sometimes stalls a session or refuses its connection partway through, so the download restarts `ascp` when it stops making progress, and `ascp` resumes.
 - **Version:** collection version 5 (2025-05-30).
 - **DOI:** [10.7937/tcia.bdgf-8v37](https://doi.org/10.7937/tcia.bdgf-8v37)
 - **License:** CC BY 4.0. Use must follow the [TCIA Data Usage Policy](https://www.cancerimagingarchive.net/data-usage-policies-and-restrictions/), and the dataset must be cited.
 - **Citation:** Calabrese, E., Villanueva-Meyer, J., Rudie, J., Rauschecker, A., Baid, U., Bakas, S., Cha, S., Mongan, J., Hess, C. (2022). The University of California San Francisco Preoperative Diffuse Glioma MRI (UCSF-PDGM) (Version 5) [dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/tcia.bdgf-8v37. Paper: Calabrese, E., et al. (2022). The University of California San Francisco Preoperative Diffuse Glioma MRI Dataset. *Radiology: Artificial Intelligence*, 4(6), e220058.
-
-## Usage
-
-Downloading requires `ascp` at `~/.aspera/sdk/` (install with `ascli config ascp install`) and outbound FASP to TCIA.
-
-```sh
-bash scripts/ucsf_pdgm/download.sh                 # 15.9 GB, ~25 min; resumable (a complete re-run transfers nothing but takes ~12 min)
-uv run python scripts/ucsf_pdgm/build_tables.py    # tables/ (seconds); prints the summary below
-```
+- **Code:** [`scripts/ucsf_pdgm/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/ucsf_pdgm) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples
 
@@ -48,7 +41,7 @@ Each package folder holds 24 files (25 for the six follow-up exams, which add `A
 | other | `SWI`, `SWI_bias`, `ASL` (+ `ASL_M0` in 6 exams) | no | |
 | targets | `tumor_segmentation` (BraTS-style labels 1/2/4, radiologist-corrected), `brain_segmentation`, `brain_parenchyma_segmentation` | yes | 0.36 GB |
 
-`tables/` (built by `build_tables.py`; layout in `src/brain_datasets/tables.py`):
+`tables/` (derived from `source/`):
 
 - `images.tsv`: the 13 images per exam. Modalities T1w, T1c, T2w, FLAIR (desc `bias` for the bias-corrected copies), DWI, ADC, and masks `tumor`, `brain`, `parenchyma`.
 - `samples.tsv` + `samples.json`: one row per exam with cleaned metadata. Targets: `idh` (with `idh_variant`), `mgmt`, `codeletion_1p19q`, `who_grade`, `os_days` + `os_event`. IDs use 4 digits (`UCSF-PDGM-0004`); follow-ups are session `FU007d` etc. of their patient.

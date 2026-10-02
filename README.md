@@ -1,33 +1,44 @@
-# brain_datasets
+# Brainmarks-sMRI
 
 Benchmark datasets for evaluating structural MRI foundation models. The data is collected unmodified from the original sources, with pinned versions, checksums and provenance.
 
-Each dataset has a self-contained folder `scripts/<name>/` with:
-- `download.sh`: downloads the data into `datasets/<name>/source/`
-- `README.md`: source, version, license, citation, and what is included or excluded
-- `manifest.sha256`: checksums of the expected files
+This repo holds the code that builds the collection. The data itself is mirrored on Hugging Face at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The dataset index, licenses and table schemas are in the dataset card, [`README_hf.md`](README_hf.md).
 
-```sh
-bash scripts/pixar/download.sh                              # download (resumable)
-cd datasets/pixar && sha256sum -c --quiet manifest.sha256   # verify
+## Layout
+
+```
+scripts/
+  lib.sh                 # shared bash helpers
+  upload.sh              # uploads datasets/ to the Hugging Face mirror
+  <name>/
+    download.sh          # downloads the release into datasets/<name>/source/ (resumable)
+    build_tables.py      # builds datasets/<name>/tables/ from source/
+    README.md            # source, version, license, citation, contents, exclusions
+    manifest.sha256      # checksums of source/
+    tables/              # tracked copy of the built tables
+src/brainmarks_smri/     # Python helpers: tables.py (table building), tcia_faspex.py (TCIA downloads)
+datasets/                # the data (gitignored); this folder is what gets mirrored
 ```
 
-## Benchmark tables
+`download.sh` and `build_tables.py` also copy the dataset's README into `datasets/<name>/`, so each dataset folder describes itself.
 
-`scripts/<name>/build_tables.py` derives metadata tables from `datasets/<name>/source/` (which is never modified). They are written to `datasets/<name>/tables/`, with a tracked copy in `scripts/<name>/tables/`. Shared helpers are in the `brain_datasets` package (`src/brain_datasets/tables.py`).
+## Reproducing
 
-| File | One row per | Columns |
-|---|---|---|
-| `images.tsv` | image file | `participant_id, session_id, modality, desc, path` (+ `member` for files inside a tar, IXI) |
-| `samples.tsv` | sample (scan session) | `participant_id, session_id, age, sex, site`, then dataset-specific labels and covariates |
-| `samples.json` | `samples.tsv` column | description, source column, levels, units |
-| `splits.tsv` | participant | `participant_id, split, official_split, rank, complete` |
-
-- `split` is train/val/test by participant. Official splits are kept where they exist (`official_split`); otherwise 60/20/20, stratified, with a fixed seed.
-- `rank` orders participants within a split so that every prefix is balanced; `complete` marks participants with all core images and primary targets. `brain_datasets.tables.mini_split(splits, "train", 100)` gives a nested 100-participant subset.
-- Paths in `images.tsv` are relative to `datasets/<name>/`.
+Requirements: [uv](https://docs.astral.sh/uv/), `curl`, the [AWS CLI](https://aws.amazon.com/cli/) (anonymous S3 for ABIDE I and ADHD-200), and for the TCIA datasets (UCSF-PDGM, UPENN-GBM, BraTS 2021) the Aspera `ascp` binary (`gem install aspera-cli && ascli config ascp install`) plus outbound TCP/UDP port 33001. The [devcontainer](.devcontainer/) sets all of this up.
 
 ```sh
-uv sync                                          # dependencies + the brain_datasets package
-uv run python scripts/ucsf_pdgm/build_tables.py  # rebuild one dataset's tables
+uv sync                                         # dependencies + the brainmarks_smri package
+bash scripts/pixar/download.sh                  # download into datasets/pixar/source/
+(cd datasets/pixar && sha256sum -c --quiet manifest.sha256)  # verify
+uv run python scripts/pixar/build_tables.py     # rebuild datasets/pixar/tables/
 ```
+
+- Each dataset is pinned to a fixed release. Re-running `download.sh` only fetches missing files. If the scripts reproduce the collection, `git diff` on the tracked manifest and tables shows no changes.
+- Some sources (the INDI S3 buckets for ABIDE I and ADHD-200, and IXI) are not versioned. For those, the manifest detects changes but cannot restore old files; the Hugging Face mirror keeps the collected copy.
+- The TCIA downloads are the slow ones: about 17 min for BraTS 2021 and 25 min for UCSF-PDGM. A complete re-run transfers nothing but still takes 12–17 min, because `ascp` checks every file against the server.
+
+To publish to the mirror: `bash scripts/upload.sh`. It checks every dataset against its manifest, creates the repo if needed with an automatic access gate, and uploads (resumable).
+
+## License
+
+The code is under the [MIT License](LICENSE). Each dataset keeps its original license, listed in its README and in the dataset card. The tracked tables in `scripts/<name>/tables/` are derived from each dataset and follow its license.
