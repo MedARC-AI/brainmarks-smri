@@ -73,20 +73,49 @@ def samples(participant_ids: list[str]) -> tuple[pd.DataFrame, dict[str, dict]]:
     s["etiology"] = meta.etiology.str.split(":").str[0].astype("Int64").values
 
     columns = {
-        "scanner_model": {"Description": "Scanner model of the T1w (from its JSON sidecar).", "Source": "sub-*_T1w.json ManufacturersModelName"},
+        "scanner_model": {
+            "Description": "Scanner model of the T1w (from its JSON sidecar).",
+            "Source": "sub-*_T1w.json ManufacturersModelName",
+        },
         "age_clamped": {"Description": "Age was reported as '89+' (age set to 89)."},
-        "race": {"Description": "Race from electronic health records.", "Source": "race", "Levels": {"Black": "Black or African American", "White": "White"}},
-        "acute_ischemic_stroke": {"Description": "Acute ischemic stroke diagnosed at admission.", "Source": "acuteischaemicstroke", "Levels": {"1": "yes"}},
-        "prior_stroke": {"Description": "Evidence of a prior (chronic) stroke.", "Source": "priorstroke", "Levels": {"0": "no", "1": "yes"}},
-        "bmi": {"Description": "Body mass index, as in the source (a few implausible values, e.g. 115.6 and 12.2).", "Source": "bmi"},
+        "race": {
+            "Description": "Race from electronic health records.",
+            "Source": "race",
+            "Levels": {"Black": "Black or African American", "White": "White"},
+        },
+        "acute_ischemic_stroke": {
+            "Description": "Acute ischemic stroke diagnosed at admission.",
+            "Source": "acuteischaemicstroke",
+            "Levels": {"1": "yes"},
+        },
+        "prior_stroke": {
+            "Description": "Evidence of a prior (chronic) stroke.",
+            "Source": "priorstroke",
+            "Levels": {"0": "no", "1": "yes"},
+        },
+        "bmi": {
+            "Description": "Body mass index, as in the source (a few implausible values, e.g. 115.6 and 12.2).",
+            "Source": "bmi",
+        },
         "nihss": {"Description": "NIH Stroke Scale at admission (target).", "Source": "nihss"},
-        "mrs_discharge": {"Description": "Modified Rankin Scale at discharge, 0-6 (6 = death) (target).", "Source": "gs_rankin_6isdeath"},
-        "mrs_poor": {"Description": "Poor outcome: discharge mRS 3-6 (binary target).", "Source": "gs_rankin_6isdeath"},
+        "mrs_discharge": {
+            "Description": "Modified Rankin Scale at discharge, 0-6 (6 = death) (target).",
+            "Source": "gs_rankin_6isdeath",
+        },
+        "mrs_poor": {
+            "Description": "Poor outcome: discharge mRS 3-6 (binary target).",
+            "Source": "gs_rankin_6isdeath",
+        },
         "etiology": {
             "Description": "Stroke etiology (TOAST class).",
             "Source": "etiology",
-            "Levels": {"1": "large-artery atherosclerosis", "2": "cardioembolism", "3": "small-vessel disease",
-                       "4": "other determined etiology", "5": "cryptogenic"},
+            "Levels": {
+                "1": "large-artery atherosclerosis",
+                "2": "cardioembolism",
+                "3": "small-vessel disease",
+                "4": "other determined etiology",
+                "5": "cryptogenic",
+            },
         },
     }
     return s, columns
@@ -100,7 +129,11 @@ def main() -> None:
 
     participants = smp.set_index("participant_id")
     desc = img.desc.fillna("n/a")
-    have = img.assign(desc=desc).groupby("participant_id").apply(lambda g: set(zip(g.modality, g.desc)))
+    have = (
+        img.assign(desc=desc)
+        .groupby("participant_id")
+        .apply(lambda g: set(zip(g.modality, g.desc)))
+    )
     has_mask = have.map(lambda h: ("mask", "lesion") in h)
     complete = have.map(lambda h: CORE <= h) & participants.mrs_discharge.notna()
     strata = participants.mrs_poor.astype(str) + "_mask-" + has_mask.astype(str)

@@ -28,8 +28,11 @@ BIDS = SOURCE / "RawDataBIDS"
 
 def images() -> pd.DataFrame:
     """Images of all BIDS site folders (`sidecards/` only holds JSON sidecars)."""
-    per_site = [tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir())
-                if folder.is_dir() and folder.name != "sidecards"]
+    per_site = [
+        tables.bids_images(folder, ROOT)
+        for folder in sorted(BIDS.iterdir())
+        if folder.is_dir() and folder.name != "sidecards"
+    ]
     return pd.concat(per_site, ignore_index=True)
 
 
@@ -37,14 +40,20 @@ def samples(img: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
     meta = pd.read_csv(SOURCE / "Phenotypic_V1_0b.csv", dtype={"CURRENT_MED_STATUS": str})
     meta = meta.replace({-9999: pd.NA, "-9999": pd.NA, "`": pd.NA})
 
-    s = pd.DataFrame({"participant_id": meta.SUB_ID.map(lambda i: f"sub-{i:07d}"), "session_id": "1"})
+    s = pd.DataFrame(
+        {"participant_id": meta.SUB_ID.map(lambda i: f"sub-{i:07d}"), "session_id": "1"}
+    )
     s["age"] = pd.to_numeric(meta.AGE_AT_SCAN)
     s["sex"] = meta.SEX.map({1: "M", 2: "F"})
     s["site"] = meta.SITE_ID
-    folder_of = img.assign(folder=img.path.str.split("/").str[2]).groupby("participant_id").folder.first()
+    folder_of = (
+        img.assign(folder=img.path.str.split("/").str[2]).groupby("participant_id").folder.first()
+    )
     s["site_folder"] = s.participant_id.map(folder_of)
     s["diagnosis"] = meta.DX_GROUP.map({1: "ASD", 2: "TDC"})
-    s["dsm_iv_tr"] = meta.DSM_IV_TR.map({0: "control", 1: "autism", 2: "asperger", 3: "PDD-NOS", 4: "asperger or PDD-NOS"})
+    s["dsm_iv_tr"] = meta.DSM_IV_TR.map(
+        {0: "control", 1: "autism", 2: "asperger", 3: "PDD-NOS", 4: "asperger or PDD-NOS"}
+    )
     s["handedness"] = meta.HANDEDNESS_CATEGORY
     s["fiq"] = pd.to_numeric(meta.FIQ)
     s["viq"] = pd.to_numeric(meta.VIQ)
@@ -55,26 +64,59 @@ def samples(img: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
     s["current_med_status"] = meta.CURRENT_MED_STATUS.map({"0": False, "1": True})
 
     columns = {
-        "site_folder": {"Description": "BIDS site folder under RawDataBIDS/ (some SITE_IDs are split into sub-sites, e.g. CMU_a/CMU_b)."},
-        "diagnosis": {"Description": "Diagnostic group (target).", "Source": "DX_GROUP", "Levels": {"ASD": "autism spectrum disorder", "TDC": "typically developing control"}},
+        "site_folder": {
+            "Description": "BIDS site folder under RawDataBIDS/ (some SITE_IDs are split into sub-sites, e.g. CMU_a/CMU_b)."
+        },
+        "diagnosis": {
+            "Description": "Diagnostic group (target).",
+            "Source": "DX_GROUP",
+            "Levels": {"ASD": "autism spectrum disorder", "TDC": "typically developing control"},
+        },
         "dsm_iv_tr": {
             "Description": "DSM-IV-TR diagnostic subtype. As in the source, 20 ASD participants are coded 'control' here; "
-                           "use `diagnosis` as the label.",
+            "use `diagnosis` as the label.",
             "Source": "DSM_IV_TR",
-            "Levels": {"control": "0", "autism": "1", "asperger": "2", "PDD-NOS": "3", "asperger or PDD-NOS": "4"},
+            "Levels": {
+                "control": "0",
+                "autism": "1",
+                "asperger": "2",
+                "PDD-NOS": "3",
+                "asperger or PDD-NOS": "4",
+            },
         },
         "handedness": {
             "Description": "Handedness category, as coded by each site.",
             "Source": "HANDEDNESS_CATEGORY",
-            "Levels": {"R": "right", "L": "left", "Ambi": "ambidextrous", "Mixed": "mixed", "L->R": "left, converted to right"},
+            "Levels": {
+                "R": "right",
+                "L": "left",
+                "Ambi": "ambidextrous",
+                "Mixed": "mixed",
+                "L->R": "left, converted to right",
+            },
         },
-        "fiq": {"Description": "Full-scale IQ (test type varies by site: FIQ_TEST_TYPE).", "Source": "FIQ"},
+        "fiq": {
+            "Description": "Full-scale IQ (test type varies by site: FIQ_TEST_TYPE).",
+            "Source": "FIQ",
+        },
         "viq": {"Description": "Verbal IQ.", "Source": "VIQ"},
         "piq": {"Description": "Performance IQ.", "Source": "PIQ"},
-        "ados_total": {"Description": "ADOS total score (communication + social).", "Source": "ADOS_TOTAL"},
-        "ados_gotham_severity": {"Description": "ADOS calibrated severity score (Gotham).", "Source": "ADOS_GOTHAM_SEVERITY"},
-        "srs_raw_total": {"Description": "Social Responsiveness Scale raw total.", "Source": "SRS_RAW_TOTAL"},
-        "current_med_status": {"Description": "Taking medication at the time of scan.", "Source": "CURRENT_MED_STATUS"},
+        "ados_total": {
+            "Description": "ADOS total score (communication + social).",
+            "Source": "ADOS_TOTAL",
+        },
+        "ados_gotham_severity": {
+            "Description": "ADOS calibrated severity score (Gotham).",
+            "Source": "ADOS_GOTHAM_SEVERITY",
+        },
+        "srs_raw_total": {
+            "Description": "Social Responsiveness Scale raw total.",
+            "Source": "SRS_RAW_TOTAL",
+        },
+        "current_med_status": {
+            "Description": "Taking medication at the time of scan.",
+            "Source": "CURRENT_MED_STATUS",
+        },
     }
     return s, columns
 
@@ -87,8 +129,10 @@ def main() -> None:
     assert set(img.participant_id) <= set(smp.participant_id)
 
     participants = smp.set_index("participant_id")
-    complete = pd.Series(participants.index.isin(img.participant_id) & participants.diagnosis.notna().values,
-                         index=participants.index)
+    complete = pd.Series(
+        participants.index.isin(img.participant_id) & participants.diagnosis.notna().values,
+        index=participants.index,
+    )
     strata = participants.diagnosis + "_" + participants.site
     splits = tables.make_splits(strata, complete)
     tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])

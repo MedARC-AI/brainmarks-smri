@@ -45,7 +45,9 @@ SEED = 0
 FRACTIONS = {"train": 0.6, "val": 0.2, "test": 0.2}
 IMAGE_COLUMNS = ["participant_id", "session_id", "modality", "desc", "path"]
 COMMON = {
-    "participant_id": {"Description": "Person identifier (as in the source, normalized where noted)."},
+    "participant_id": {
+        "Description": "Person identifier (as in the source, normalized where noted)."
+    },
     "session_id": {"Description": "Scan session identifier within the participant."},
     "age": {"Description": "Age at scan.", "Units": "years"},
     "sex": {"Description": "Sex.", "Levels": {"M": "male", "F": "female"}},
@@ -71,8 +73,15 @@ def bids_images(root: Path, base: Path) -> pd.DataFrame:
         suffix = entities.pop()
         labels = dict(e.split("-", 1) for e in entities)
         desc = "_".join(e for e in entities if not e.startswith(("sub-", "ses-")))
-        rows.append((f"sub-{labels['sub']}", labels.get("ses", "1"), suffix, desc or None,
-                     str(path.relative_to(base))))
+        rows.append(
+            (
+                f"sub-{labels['sub']}",
+                labels.get("ses", "1"),
+                suffix,
+                desc or None,
+                str(path.relative_to(base)),
+            )
+        )
     return pd.DataFrame(rows, columns=IMAGE_COLUMNS)
 
 
@@ -81,7 +90,9 @@ def stratum_keys(strata: pd.Series) -> pd.Series:
     return strata.astype(object).where(strata.notna(), "n/a").astype(str)
 
 
-def stratified_split(strata: pd.Series, fractions: dict[str, float] = FRACTIONS, seed: int = SEED) -> pd.Series:
+def stratified_split(
+    strata: pd.Series, fractions: dict[str, float] = FRACTIONS, seed: int = SEED
+) -> pd.Series:
     """Assign each participant to a split.
 
     `strata` is indexed by participant_id and holds each participant's stratum key. Within each
@@ -103,7 +114,7 @@ def stratified_split(strata: pd.Series, fractions: dict[str, float] = FRACTIONS,
             counts[i] += 1
         start = 0
         for name, count in zip(fractions, counts):
-            split[ids[start:start + count]] = name
+            split[ids[start : start + count]] = name
             start += count
     assert split.notna().all()
     return split
@@ -118,7 +129,9 @@ def interleaved_rank(split: pd.Series, strata: pd.Series, seed: int = SEED) -> p
     """
     rng = np.random.default_rng(seed + 1)
     position = pd.Series(np.nan, index=split.index)
-    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)}).groupby(["split", "stratum"])
+    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)}).groupby(
+        ["split", "stratum"]
+    )
     for _, group in groups:
         ids = rng.permutation(sorted(group.index))
         position[ids] = (np.arange(len(ids)) + rng.uniform()) / len(ids)
@@ -129,21 +142,29 @@ def interleaved_rank(split: pd.Series, strata: pd.Series, seed: int = SEED) -> p
     return rank
 
 
-def make_splits(strata: pd.Series, complete: pd.Series, official: pd.Series | None = None,
-                split: pd.Series | None = None) -> pd.DataFrame:
+def make_splits(
+    strata: pd.Series,
+    complete: pd.Series,
+    official: pd.Series | None = None,
+    split: pd.Series | None = None,
+) -> pd.DataFrame:
     """splits.tsv rows from per-participant strata and completeness (both indexed by participant_id).
 
     By default the split is a stratified 60/20/20; pass `split` to use a dataset-specific one.
     """
     if split is None:
         split = stratified_split(strata)
-    return pd.DataFrame({
-        "participant_id": split.index,
-        "split": split.values,
-        "official_split": official.reindex(split.index).values if official is not None else pd.NA,
-        "rank": interleaved_rank(split, strata).values,
-        "complete": complete.reindex(split.index).values,
-    })
+    return pd.DataFrame(
+        {
+            "participant_id": split.index,
+            "split": split.values,
+            "official_split": official.reindex(split.index).values
+            if official is not None
+            else pd.NA,
+            "rank": interleaved_rank(split, strata).values,
+            "complete": complete.reindex(split.index).values,
+        }
+    )
 
 
 def mini_split(splits: pd.DataFrame, split: str, n: int) -> pd.DataFrame:
@@ -152,8 +173,14 @@ def mini_split(splits: pd.DataFrame, split: str, n: int) -> pd.DataFrame:
     return rows.nsmallest(n, "rank")
 
 
-def write(name: str, images: pd.DataFrame, samples: pd.DataFrame, columns: dict[str, dict],
-          splits: pd.DataFrame, summary: list[str] = ()) -> None:
+def write(
+    name: str,
+    images: pd.DataFrame,
+    samples: pd.DataFrame,
+    columns: dict[str, dict],
+    splits: pd.DataFrame,
+    summary: list[str] = (),
+) -> None:
     """Validate the tables and write them to datasets/<name>/tables/ and scripts/<name>/tables/.
 
     Also refreshes the README copy in datasets/<name>/ and prints a markdown summary table
@@ -170,18 +197,23 @@ def write(name: str, images: pd.DataFrame, samples: pd.DataFrame, columns: dict[
     assert set(samples.participant_id) == set(splits.participant_id), "samples/splits mismatch"
     keys = ["participant_id", "session_id"]
     unknown = set(images[keys].itertuples(index=False)) - set(samples[keys].itertuples(index=False))
-    assert not unknown, f"{len(unknown)} image sessions without a samples row, e.g. {sorted(unknown)[:3]}"
+    assert not unknown, (
+        f"{len(unknown)} image sessions without a samples row, e.g. {sorted(unknown)[:3]}"
+    )
     assert splits.split.isin(list(FRACTIONS)).all(), "unknown split"
     assert splits.complete.dtype == bool, "complete must be boolean"
-    assert list(columns) == list(samples.columns), \
+    assert list(columns) == list(samples.columns), (
         f"undocumented or missing columns: {set(columns) ^ set(samples.columns)}"
+    )
     missing = [p for p in images.path if not (dataset_dir(name) / p).exists()]
     assert not missing, f"{len(missing)} image paths missing, e.g. {missing[:3]}"
 
     out = dataset_dir(name) / "tables"
     shutil.rmtree(out, ignore_errors=True)  # no stale files from earlier builds
     out.mkdir()
-    images.sort_values(["participant_id", "session_id", "modality", "path"]).to_csv(out / "images.tsv", **TSV)
+    images.sort_values(["participant_id", "session_id", "modality", "path"]).to_csv(
+        out / "images.tsv", **TSV
+    )
     samples.sort_values(["participant_id", "session_id"]).to_csv(out / "samples.tsv", **TSV)
     splits.sort_values("participant_id").to_csv(out / "splits.tsv", **TSV)
     (out / "samples.json").write_text(json.dumps(columns, indent=2) + "\n")
@@ -210,16 +242,31 @@ def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: list[str
     merged = samples.merge(splits, on="participant_id", validate="many_to_one")
     multi_session = len(samples) > samples.participant_id.nunique()
     multi_site = merged.site.nunique() > 1
-    header = ["split", "participants", *(["samples"] if multi_session else []), "complete",
-              "age", "female", *(["sites"] if multi_site else []), *targets]
+    header = [
+        "split",
+        "participants",
+        *(["samples"] if multi_session else []),
+        "complete",
+        "age",
+        "female",
+        *(["sites"] if multi_site else []),
+        *targets,
+    ]
     rows = []
     for name in [*FRACTIONS, "total"]:
         part = merged if name == "total" else merged[merged.split == name]
         people = part.drop_duplicates("participant_id")
         sex = part.sex.dropna()
-        row = [name, str(len(people)), *([str(len(part))] if multi_session else []), str(int(people.complete.sum())),
-               describe(part.age), f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a",
-               *([str(part.site.nunique())] if multi_site else []), *(describe(part[t]) for t in targets)]
+        row = [
+            name,
+            str(len(people)),
+            *([str(len(part))] if multi_session else []),
+            str(int(people.complete.sum())),
+            describe(part.age),
+            f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a",
+            *([str(part.site.nunique())] if multi_site else []),
+            *(describe(part[t]) for t in targets),
+        ]
         rows.append(row)
     lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
     lines += ["| " + " | ".join(row) + " |" for row in rows]

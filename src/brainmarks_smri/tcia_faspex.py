@@ -50,11 +50,18 @@ def session(link: str) -> tuple[requests.Session, str]:
     package = json.loads(base64.b64decode(context + "=="))["package_id"]
     oauth = dict(client_id=CLIENT_ID, redirect_uri=REDIRECT, state=context)
 
-    authorize = requests.get(f"{BASE}/auth/authorize_public_link", allow_redirects=False, timeout=60,
-                             params=dict(response_type="code", **oauth))
+    authorize = requests.get(
+        f"{BASE}/auth/authorize_public_link",
+        allow_redirects=False,
+        timeout=60,
+        params=dict(response_type="code", **oauth),
+    )
     code = query_param(authorize.headers["location"], "code")
-    token = requests.post(f"{BASE}/auth/token", timeout=60,
-                          json=dict(code=code, grant_type="authorization_code", **oauth))
+    token = requests.post(
+        f"{BASE}/auth/token",
+        timeout=60,
+        json=dict(code=code, grant_type="authorization_code", **oauth),
+    )
     token.raise_for_status()
 
     s = requests.Session()
@@ -66,8 +73,12 @@ def ls(s: requests.Session, package: str, path: str) -> list[dict]:
     """All entries of a package directory (the API pages by limit/offset, max 100)."""
     entries: list[dict] = []
     while True:
-        r = s.post(f"{BASE}/api/v5/packages/{package}/files/received", json={"path": path},
-                   params={"limit": 100, "offset": len(entries)}, timeout=120)
+        r = s.post(
+            f"{BASE}/api/v5/packages/{package}/files/received",
+            json={"path": path},
+            params={"limit": 100, "offset": len(entries)},
+            timeout=120,
+        )
         r.raise_for_status()
         page = r.json()
         entries += page["items"]
@@ -91,9 +102,12 @@ def disk_bytes(folder: Path) -> int:
 def transfer_spec(s: requests.Session, package: str, paths: list[str]) -> dict:
     """FASP transfer spec (host, token, source paths) for downloading `paths`."""
     # The body must be {"paths": [{"path": ...}]}; other shapes (incl. what ascli 4.27 sends) give a 500.
-    r = s.post(f"{BASE}/api/v5/packages/{package}/transfer_spec/download", timeout=60,
-               params={"transfer_type": "connect", "type": "received"},
-               json={"paths": [{"path": p} for p in paths]})
+    r = s.post(
+        f"{BASE}/api/v5/packages/{package}/transfer_spec/download",
+        timeout=60,
+        params={"transfer_type": "connect", "type": "received"},
+        json={"paths": [{"path": p} for p in paths]},
+    )
     r.raise_for_status()
     return r.json()
 
@@ -105,10 +119,30 @@ def run_ascp(spec: dict, dest: Path, exclude: list[str]) -> int:
     sources = [p["source"] for p in spec["paths"]]
     with tempfile.TemporaryDirectory() as log_dir:
         log = Path(log_dir)
-        cmd = [str(SDK / "ascp"), "-L", str(log), "-i", str(SDK / "aspera_bypass_rsa.pem"), "--mode", "recv",
-               "--host", spec["remote_host"], "--user", spec["remote_user"],
-               "-P", str(spec["ssh_port"]), "-O", str(spec["fasp_port"]), "-l", "1g", "-k", "1",
-               *exclude_args, *sources, str(dest)]
+        cmd = [
+            str(SDK / "ascp"),
+            "-L",
+            str(log),
+            "-i",
+            str(SDK / "aspera_bypass_rsa.pem"),
+            "--mode",
+            "recv",
+            "--host",
+            spec["remote_host"],
+            "--user",
+            spec["remote_user"],
+            "-P",
+            str(spec["ssh_port"]),
+            "-O",
+            str(spec["fasp_port"]),
+            "-l",
+            "1g",
+            "-k",
+            "1",
+            *exclude_args,
+            *sources,
+            str(dest),
+        ]
         proc = subprocess.Popen(cmd, env=env)
         last, idle = -1, 0
         while proc.poll() is None:
@@ -117,7 +151,11 @@ def run_ascp(spec: dict, dest: Path, exclude: list[str]) -> int:
             idle = idle + POLL if progress == last else 0
             last = progress
             if idle >= STALL:
-                print(f"tcia_faspex: no progress for {STALL} s, restarting ascp", file=sys.stderr, flush=True)
+                print(
+                    f"tcia_faspex: no progress for {STALL} s, restarting ascp",
+                    file=sys.stderr,
+                    flush=True,
+                )
                 proc.kill()
         return proc.wait()
 

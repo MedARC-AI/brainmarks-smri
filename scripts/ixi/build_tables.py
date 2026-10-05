@@ -56,7 +56,17 @@ def images() -> pd.DataFrame:
             assert match and match[4] == tar_name, f"unexpected member {member!r} in {tar.name}"
             number, site, _, _, volume = match.groups()
             desc = f"vol-{volume}" if volume else None
-            rows.append((f"IXI{int(number):03d}", "1", modality, desc, str(tar.relative_to(ROOT)), member, site))
+            rows.append(
+                (
+                    f"IXI{int(number):03d}",
+                    "1",
+                    modality,
+                    desc,
+                    str(tar.relative_to(ROOT)),
+                    member,
+                    site,
+                )
+            )
     return pd.DataFrame(rows, columns=tables.IMAGE_COLUMNS + ["member", "site"])
 
 
@@ -78,7 +88,9 @@ def demographics() -> pd.DataFrame:
     d["WEIGHT"] = d.WEIGHT.where(d.WEIGHT.between(*WEIGHT_KG))
     for column, (sheet, label) in CODES.items():
         d[column] = decode(d[column], sheets[sheet].set_index("ID")[label])
-    assert set(d.ETHNIC_ID[d.ETHNIC_ID.str.startswith("code", na=False)]) == {"code 2 (undocumented)"}
+    assert set(d.ETHNIC_ID[d.ETHNIC_ID.str.startswith("code", na=False)]) == {
+        "code 2 (undocumented)"
+    }
     assert not d[[c for c in CODES if c != "ETHNIC_ID"]].stack().str.startswith("code").any()
     d["AGE"] = d.AGE.round(6)
 
@@ -87,7 +99,9 @@ def demographics() -> pd.DataFrame:
     merged = groups.first()  # first non-missing value of each field
     conflicting = groups.nunique() > 1
     merged = merged.mask(conflicting)
-    merged["conflict"] = conflicting.apply(lambda row: ",".join(f for f in fields if row[f]) or pd.NA, axis=1)
+    merged["conflict"] = conflicting.apply(
+        lambda row: ",".join(f for f in fields if row[f]) or pd.NA, axis=1
+    )
     assert set(merged.conflict.dropna().index) == {219, 328, 392, 416}
 
     # STUDY_DATE is missing in Table for some IDs that the 'Study Date' sheet has
@@ -120,20 +134,40 @@ def samples(img: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, dict]]:
     s["demographics_conflict"] = demo.conflict.values
 
     columns = {
-        "study_date": {"Description": "Scan date.", "Source": "STUDY_DATE (Table), else the Study Date sheet"},
-        "height_cm": {"Description": "Height. Values outside 120-220 cm (entry errors) are n/a.", "Source": "HEIGHT", "Units": "cm"},
-        "weight_kg": {"Description": "Weight. Values outside 30-250 kg (entry errors) are n/a.", "Source": "WEIGHT", "Units": "kg"},
+        "study_date": {
+            "Description": "Scan date.",
+            "Source": "STUDY_DATE (Table), else the Study Date sheet",
+        },
+        "height_cm": {
+            "Description": "Height. Values outside 120-220 cm (entry errors) are n/a.",
+            "Source": "HEIGHT",
+            "Units": "cm",
+        },
+        "weight_kg": {
+            "Description": "Weight. Values outside 30-250 kg (entry errors) are n/a.",
+            "Source": "WEIGHT",
+            "Units": "kg",
+        },
         "ethnicity": {
             "Description": "Ethnicity (decoded with the Ethnicity sheet). Code 2 is used but not in the sheet: "
-                           "'code 2 (undocumented)'.",
+            "'code 2 (undocumented)'.",
             "Source": "ETHNIC_ID",
         },
-        "marital_status": {"Description": "Marital status (decoded with the Marital Status sheet).", "Source": "MARITAL_ID"},
-        "occupation": {"Description": "Occupation (decoded with the Occupation sheet).", "Source": "OCCUPATION_ID"},
-        "qualification": {"Description": "Highest qualification (decoded with the Qualification sheet).", "Source": "QUALIFICATION_ID"},
+        "marital_status": {
+            "Description": "Marital status (decoded with the Marital Status sheet).",
+            "Source": "MARITAL_ID",
+        },
+        "occupation": {
+            "Description": "Occupation (decoded with the Occupation sheet).",
+            "Source": "OCCUPATION_ID",
+        },
+        "qualification": {
+            "Description": "Highest qualification (decoded with the Qualification sheet).",
+            "Source": "QUALIFICATION_ID",
+        },
         "demographics_conflict": {
             "Description": "IXI.xls has duplicate rows for this ID that disagree on these fields (comma-separated); "
-                           "they are set to n/a. n/a = no conflict.",
+            "they are set to n/a. n/a = no conflict.",
             "Source": "IXI.xls Table",
         },
     }

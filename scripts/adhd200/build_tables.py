@@ -31,7 +31,12 @@ NAME = "adhd200"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
 BIDS = SOURCE / "RawDataBIDS"
-DX_CODES = {"0": "TDC", "1": "ADHD-Combined", "2": "ADHD-Hyperactive/Impulsive", "3": "ADHD-Inattentive"}
+DX_CODES = {
+    "0": "TDC",
+    "1": "ADHD-Combined",
+    "2": "ADHD-Hyperactive/Impulsive",
+    "3": "ADHD-Inattentive",
+}
 DX_NAMES = {"Typically Developing Children": "TDC"}
 HANDEDNESS = {"L": "Left", "R": "Right"}
 # codes used by some sites instead of labels (ADHD-200_PhenotypicKey.pdf)
@@ -62,7 +67,12 @@ def samples(meta: pd.DataFrame, session: pd.Series) -> tuple[pd.DataFrame, dict[
     """`session` maps participant_id to the BIDS session of its T1w (WashU uses ses-2..4)."""
     handedness_score = pd.to_numeric(meta.handedness, errors="coerce")
 
-    s = pd.DataFrame({"participant_id": meta.participant_id, "session_id": meta.participant_id.map(session).fillna("1")})
+    s = pd.DataFrame(
+        {
+            "participant_id": meta.participant_id,
+            "session_id": meta.participant_id.map(session).fillna("1"),
+        }
+    )
     s["age"] = pd.to_numeric(meta.age)
     s["sex"] = meta.gender.map({"Male": "M", "Female": "F"})
     s["site"] = meta.site
@@ -81,29 +91,63 @@ def samples(meta: pd.DataFrame, session: pd.Series) -> tuple[pd.DataFrame, dict[
     s["performance_iq"] = pd.to_numeric(meta.performance_iq)
     s["full4_iq"] = pd.to_numeric(meta.full4_iq)
     s["full2_iq"] = pd.to_numeric(meta.full2_iq)
-    s["qc_anatomical"] = meta.qc_anatomical_1.fillna(meta.qc_s1_anat).fillna(meta.qc_s2_anat).replace(QC_CODES)
+    s["qc_anatomical"] = (
+        meta.qc_anatomical_1.fillna(meta.qc_s1_anat).fillna(meta.qc_s2_anat).replace(QC_CODES)
+    )
 
     columns = {
         "diagnosis": {
             "Description": "Diagnosis (target). n/a for Brown (labels never released).",
             "Source": "dx",
-            "Levels": {"TDC": "typically developing", "ADHD-Combined": "", "ADHD-Hyperactive/Impulsive": "", "ADHD-Inattentive": ""},
+            "Levels": {
+                "TDC": "typically developing",
+                "ADHD-Combined": "",
+                "ADHD-Hyperactive/Impulsive": "",
+                "ADHD-Inattentive": "",
+            },
         },
         "adhd": {"Description": "ADHD of any subtype vs TDC (binary target).", "Source": "dx"},
-        "secondary_diagnosis": {"Description": "Secondary diagnoses (free text; some sites).", "Source": "secondary_dx"},
-        "adhd_measure": {"Description": "ADHD rating instrument (some sites).", "Source": "adhd_measure"},
-        "adhd_index": {"Description": "ADHD index score (instrument varies by site).", "Source": "adhd_index"},
+        "secondary_diagnosis": {
+            "Description": "Secondary diagnoses (free text; some sites).",
+            "Source": "secondary_dx",
+        },
+        "adhd_measure": {
+            "Description": "ADHD rating instrument (some sites).",
+            "Source": "adhd_measure",
+        },
+        "adhd_index": {
+            "Description": "ADHD index score (instrument varies by site).",
+            "Source": "adhd_index",
+        },
         "inattentive": {"Description": "Inattentive subscale score.", "Source": "inattentive"},
-        "hyper_impulsive": {"Description": "Hyperactive/impulsive subscale score.", "Source": "hyper_impulsive"},
-        "med_status": {"Description": "Medication status (some sites).", "Source": "med_status", "Levels": {"Medication Naive": "", "Not Medication Naive": ""}},
-        "handedness": {"Description": "Handedness category (all sites except NYU).", "Source": "handedness", "Levels": {"Left": "", "Right": "", "Ambidextrous": ""}},
-        "handedness_score": {"Description": "Edinburgh handedness score, -1 (left) to 1 (right) (NYU only).", "Source": "handedness"},
+        "hyper_impulsive": {
+            "Description": "Hyperactive/impulsive subscale score.",
+            "Source": "hyper_impulsive",
+        },
+        "med_status": {
+            "Description": "Medication status (some sites).",
+            "Source": "med_status",
+            "Levels": {"Medication Naive": "", "Not Medication Naive": ""},
+        },
+        "handedness": {
+            "Description": "Handedness category (all sites except NYU).",
+            "Source": "handedness",
+            "Levels": {"Left": "", "Right": "", "Ambidextrous": ""},
+        },
+        "handedness_score": {
+            "Description": "Edinburgh handedness score, -1 (left) to 1 (right) (NYU only).",
+            "Source": "handedness",
+        },
         "iq_measure": {"Description": "IQ instrument.", "Source": "iq_measure"},
         "verbal_iq": {"Description": "Verbal IQ.", "Source": "verbal_iq"},
         "performance_iq": {"Description": "Performance IQ.", "Source": "performance_iq"},
         "full4_iq": {"Description": "Full-scale IQ, four subtests.", "Source": "full4_iq"},
         "full2_iq": {"Description": "Full-scale IQ, two subtests.", "Source": "full2_iq"},
-        "qc_anatomical": {"Description": "Quality control of the (first) anatomical scan. WashU codes (1/0) decoded with the phenotypic key.", "Source": "qc_anatomical_1 (WashU: qc_s1_anat, else qc_s2_anat)", "Levels": {"Pass": "", "Questionable": ""}},
+        "qc_anatomical": {
+            "Description": "Quality control of the (first) anatomical scan. WashU codes (1/0) decoded with the phenotypic key.",
+            "Source": "qc_anatomical_1 (WashU: qc_s1_anat, else qc_s2_anat)",
+            "Levels": {"Pass": "", "Questionable": ""},
+        },
     }
     return s, columns
 
@@ -115,25 +159,33 @@ def official_test() -> pd.Series:
 
 
 def main() -> None:
-    per_site = [tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir()) if folder.is_dir()]
+    per_site = [
+        tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir()) if folder.is_dir()
+    ]
     images = pd.concat(per_site, ignore_index=True)
     meta = read_participants()
     smp, columns = samples(meta, images.set_index("participant_id").session_id)
-    assert images.participant_id.is_unique and (images.modality == "T1w").all() and len(images) == 961
+    assert (
+        images.participant_id.is_unique and (images.modality == "T1w").all() and len(images) == 961
+    )
     assert set(images.participant_id) <= set(smp.participant_id)
 
     participants = smp.set_index("participant_id")
     test_labels = official_test()
     in_test = participants.index.isin(test_labels.index)
     labeled_test = test_labels.dropna()[test_labels.dropna().index.isin(participants.index)]
-    assert (participants.diagnosis[labeled_test.index] == labeled_test).all(), "test labels disagree"
+    assert (participants.diagnosis[labeled_test.index] == labeled_test).all(), (
+        "test labels disagree"
+    )
     official = pd.Series(["test" if t else "train" for t in in_test], index=participants.index)
 
     strata = participants.diagnosis + "_" + participants.site
     train_val = tables.stratified_split(strata[~in_test], {"train": 0.75, "val": 0.25})
     split = pd.concat([train_val, official[in_test]]).reindex(participants.index)
-    complete = pd.Series(participants.index.isin(images.participant_id) & participants.diagnosis.notna().values,
-                         index=participants.index)
+    complete = pd.Series(
+        participants.index.isin(images.participant_id) & participants.diagnosis.notna().values,
+        index=participants.index,
+    )
     splits = tables.make_splits(strata, complete, official=official, split=split)
     tables.write(NAME, images, smp, columns, splits, summary=["adhd"])
 

@@ -33,7 +33,13 @@ NAME = "brats2021"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
 PACKAGE = SOURCE / "RSNA-ASNR-MICCAI-BraTS-2021"
-FILES = {"t1": ("T1w", None), "t1ce": ("T1c", None), "t2": ("T2w", None), "flair": ("FLAIR", None), "seg": ("mask", "tumor")}
+FILES = {
+    "t1": ("T1w", None),
+    "t1ce": ("T1c", None),
+    "t2": ("T2w", None),
+    "flair": ("FLAIR", None),
+    "seg": ("mask", "tumor"),
+}
 COHORT = {"Training": "train", "Validation": "val"}
 CASE_ID = re.compile(r"(?:BraTS2021_)?(\d{5})")
 # Follow-up case -> baseline case of the same patient. The crosswalk can't show this: it lists the
@@ -66,19 +72,34 @@ def images() -> pd.DataFrame:
         for path in sorted((PACKAGE / split_folder).glob("*/BraTS2021_*/*.nii.gz")):
             case = path.parent.name
             modality, desc = FILES[path.name.removeprefix(case + "_").removesuffix(".nii.gz")]
-            rows.append((SAME_PATIENT.get(case, case), case, modality, desc, str(path.relative_to(ROOT))))
+            rows.append(
+                (SAME_PATIENT.get(case, case), case, modality, desc, str(path.relative_to(ROOT)))
+            )
     return pd.DataFrame(rows, columns=tables.IMAGE_COLUMNS)
 
 
 def samples() -> tuple[pd.DataFrame, dict[str, dict], pd.Series]:
     meta = pd.read_excel(SOURCE / "metadata" / "BraTS2021_MappingToTCIA.xlsx", dtype=str)
-    meta.columns = ["collection", "site", "tcia_patient_id", "study_date", "brats_id", "seg_cohort", "mgmt_cohort", "mgmt"]
+    meta.columns = [
+        "collection",
+        "site",
+        "tcia_patient_id",
+        "study_date",
+        "brats_id",
+        "seg_cohort",
+        "mgmt_cohort",
+        "mgmt",
+    ]
     real_ids = meta.dropna(subset=["tcia_patient_id"])
     real_ids = real_ids[real_ids.tcia_patient_id != "new-not-previously-in-TCIA"]
-    assert not real_ids.duplicated(["collection", "tcia_patient_id"]).any(), "a TCIA patient has several cases"
+    assert not real_ids.duplicated(["collection", "tcia_patient_id"]).any(), (
+        "a TCIA patient has several cases"
+    )
 
     cases = meta.brats_id.map(case_id)
-    s = pd.DataFrame({"participant_id": cases.map(lambda c: SAME_PATIENT.get(c, c)), "session_id": cases})
+    s = pd.DataFrame(
+        {"participant_id": cases.map(lambda c: SAME_PATIENT.get(c, c)), "session_id": cases}
+    )
     s["age"] = pd.NA
     s["sex"] = pd.NA
     s["site"] = meta.site
@@ -90,19 +111,33 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict], pd.Series]:
     official = meta.seg_cohort.map(COHORT).set_axis(cases)
 
     columns = {
-        "collection": {"Description": "Source collection (TCIA collection, '<collection>_Additional', or anonymized 'Collection N').", "Source": "Data Collection (as on TCIA+additional)"},
+        "collection": {
+            "Description": "Source collection (TCIA collection, '<collection>_Additional', or anonymized 'Collection N').",
+            "Source": "Data Collection (as on TCIA+additional)",
+        },
         "tcia_patient_id": {
             "Description": "PatientID in the source TCIA collection (for overlap with upenn_gbm / ucsf_pdgm). Formats differ by "
-                           "collection (UCSF-PDGM: bare number; UPENN-GBM: scan ID). UCSF-PDGM IDs 138, 175, 181, 278, 315 are "
-                           "pre-v3 IDs of follow-up exams, renamed in UCSF-PDGM v3.",
+            "collection (UCSF-PDGM: bare number; UPENN-GBM: scan ID). UCSF-PDGM IDs 138, 175, 181, 278, 315 are "
+            "pre-v3 IDs of follow-up exams, renamed in UCSF-PDGM v3.",
             "Source": "PatientID on TCIA Radiology Portal",
         },
         "age": {"Description": "Not in the source (all n/a).", "Units": "years"},
         "sex": {"Description": "Not in the source (all n/a)."},
-        "study_date": {"Description": "Study date (some cases), as de-identified by TCIA (dates are shifted, so they are not real "
-                                      "calendar dates). The crosswalk mixes Excel dates and m/d/yyyy text; written as YYYY-MM-DD.", "Source": "Study date (m/d/yyyy) per PatientID"},
-        "mgmt": {"Description": "MGMT promoter methylation (Task 2 target; also given for some non-Task-2 cases).", "Source": "MGMT value", "Levels": {"methylated": "1", "unmethylated": "0"}},
-        "mgmt_cohort": {"Description": "Official Task 2 (MGMT) cohort.", "Source": "MGMT (Task 2) Cohort", "Levels": {"train": "Training", "val": "Validation"}},
+        "study_date": {
+            "Description": "Study date (some cases), as de-identified by TCIA (dates are shifted, so they are not real "
+            "calendar dates). The crosswalk mixes Excel dates and m/d/yyyy text; written as YYYY-MM-DD.",
+            "Source": "Study date (m/d/yyyy) per PatientID",
+        },
+        "mgmt": {
+            "Description": "MGMT promoter methylation (Task 2 target; also given for some non-Task-2 cases).",
+            "Source": "MGMT value",
+            "Levels": {"methylated": "1", "unmethylated": "0"},
+        },
+        "mgmt_cohort": {
+            "Description": "Official Task 2 (MGMT) cohort.",
+            "Source": "MGMT (Task 2) Cohort",
+            "Levels": {"train": "Training", "val": "Validation"},
+        },
     }
     return s, columns, official
 
@@ -112,13 +147,17 @@ def main() -> None:
     smp, columns, official = samples()
     assert len(smp) == 1479 and smp.session_id.is_unique and smp.participant_id.nunique() == 1477
     masked_cases = img[img.modality == "mask"].session_id
-    assert len(masked_cases) == 1251 and set(masked_cases) == set(official.index[official == "train"])
+    assert len(masked_cases) == 1251 and set(masked_cases) == set(
+        official.index[official == "train"]
+    )
 
     # per participant: complete if every case has the 4 images + mask; strata/official from the first case
     n_images = img.groupby("session_id").size().reindex(smp.session_id, fill_value=0)
-    smp_flags = smp.assign(complete=(n_images == len(FILES)).values,
-                           has_mask=smp.session_id.isin(masked_cases).values,
-                           official=smp.session_id.map(official).values)
+    smp_flags = smp.assign(
+        complete=(n_images == len(FILES)).values,
+        has_mask=smp.session_id.isin(masked_cases).values,
+        official=smp.session_id.map(official).values,
+    )
     participants = smp_flags.sort_values("session_id").groupby("participant_id")
     first = participants.first()
     complete = participants.complete.all()

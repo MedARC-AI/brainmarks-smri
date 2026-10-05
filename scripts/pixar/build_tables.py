@@ -48,8 +48,16 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
             "Source": "AgeGroup",
             "Levels": {"3yo": "", "4yo": "", "5yo": "", "7yo": "", "8-12yo": "", "Adult": ""},
         },
-        "child_adult": {"Description": "Child or adult.", "Source": "Child_Adult", "Levels": {"child": "", "adult": ""}},
-        "handedness": {"Description": "Handedness.", "Source": "Handedness", "Levels": {"R": "right", "L": "left", "Ambi": "ambidextrous"}},
+        "child_adult": {
+            "Description": "Child or adult.",
+            "Source": "Child_Adult",
+            "Levels": {"child": "", "adult": ""},
+        },
+        "handedness": {
+            "Description": "Handedness.",
+            "Source": "Handedness",
+            "Levels": {"R": "right", "L": "left", "Ambi": "ambidextrous"},
+        },
         "tom_booklet_matched": {
             "Description": "Theory of Mind battery: proportion correct on 24 matched items (children only).",
             "Source": "ToM Booklet-Matched",
@@ -58,19 +66,43 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
             "Description": "Theory of Mind battery: proportion correct on 18 matched items without the false-belief questions.",
             "Source": "ToM Booklet-Matched-NOFB",
         },
-        "fb_composite": {"Description": "Explicit false-belief questions answered correctly, out of 6.", "Source": "FB_Composite"},
+        "fb_composite": {
+            "Description": "Explicit false-belief questions answered correctly, out of 6.",
+            "Source": "FB_Composite",
+        },
         "fb_group": {
             "Description": "False-belief task group (from fb_composite).",
             "Source": "FB_Group",
             "Levels": {"pass": "5-6 correct", "inc": "3-4 correct", "fail": "0-2 correct"},
         },
-        "wppsi_bd_raw": {"Description": "WPPSI Block Design raw score (nonverbal IQ, children under 5).", "Source": "WPPSI BD raw"},
-        "wppsi_bd_scaled": {"Description": "WPPSI Block Design scaled score.", "Source": "WPPSI BD scaled"},
-        "kbit_raw": {"Description": "KBIT-2 nonverbal matrices raw score (children 5 and older).", "Source": "KBIT_raw"},
-        "kbit_standard": {"Description": "KBIT-2 nonverbal matrices standardized score.", "Source": "KBIT_standard"},
-        "dccs_summary": {"Description": "Dimensional Change Card Sort summary score, 0-3 (children 3-5).", "Source": "DCCS Summary"},
-        "scanner": {"Description": "Which of the two 3T Siemens Tim Trio scanners at MIT.", "Source": "Scanlog: Scanner"},
-        "coil": {"Description": "32-channel head coil used (custom child coils for some under-fives).", "Source": "Scanlog: Coil"},
+        "wppsi_bd_raw": {
+            "Description": "WPPSI Block Design raw score (nonverbal IQ, children under 5).",
+            "Source": "WPPSI BD raw",
+        },
+        "wppsi_bd_scaled": {
+            "Description": "WPPSI Block Design scaled score.",
+            "Source": "WPPSI BD scaled",
+        },
+        "kbit_raw": {
+            "Description": "KBIT-2 nonverbal matrices raw score (children 5 and older).",
+            "Source": "KBIT_raw",
+        },
+        "kbit_standard": {
+            "Description": "KBIT-2 nonverbal matrices standardized score.",
+            "Source": "KBIT_standard",
+        },
+        "dccs_summary": {
+            "Description": "Dimensional Change Card Sort summary score, 0-3 (children 3-5).",
+            "Source": "DCCS Summary",
+        },
+        "scanner": {
+            "Description": "Which of the two 3T Siemens Tim Trio scanners at MIT.",
+            "Source": "Scanlog: Scanner",
+        },
+        "coil": {
+            "Description": "32-channel head coil used (custom child coils for some under-fives).",
+            "Source": "Scanlog: Coil",
+        },
     }
     return s, columns
 

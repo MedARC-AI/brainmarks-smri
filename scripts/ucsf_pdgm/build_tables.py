@@ -23,10 +23,14 @@ ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
 # file name suffix -> (modality, desc)
 FILES = {
-    "T1": ("T1w", None), "T1_bias": ("T1w", "bias"),
-    "T1c": ("T1c", None), "T1c_bias": ("T1c", "bias"),
-    "T2": ("T2w", None), "T2_bias": ("T2w", "bias"),
-    "FLAIR": ("FLAIR", None), "FLAIR_bias": ("FLAIR", "bias"),
+    "T1": ("T1w", None),
+    "T1_bias": ("T1w", "bias"),
+    "T1c": ("T1c", None),
+    "T1c_bias": ("T1c", "bias"),
+    "T2": ("T2w", None),
+    "T2_bias": ("T2w", "bias"),
+    "FLAIR": ("FLAIR", None),
+    "FLAIR_bias": ("FLAIR", "bias"),
     "DWI": ("DWI", None),
     "ADC": ("ADC", None),
     "tumor_segmentation": ("mask", "tumor"),
@@ -93,12 +97,15 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
         "idh": {
             "Description": "IDH mutation status (target).",
             "Source": "IDH",
-            "Levels": {"wildtype": "IDH wildtype", "mutant": "any IDH1/IDH2 mutation, incl. 'mutated (NOS)'"},
+            "Levels": {
+                "wildtype": "IDH wildtype",
+                "mutant": "any IDH1/IDH2 mutation, incl. 'mutated (NOS)'",
+            },
         },
         "idh_variant": {"Description": "IDH mutation subtype as reported.", "Source": "IDH"},
         "mgmt": {
             "Description": "MGMT promoter methylation, clinical interpretation (target). "
-                           "'unknown' and 'indeterminate' are n/a.",
+            "'unknown' and 'indeterminate' are n/a.",
             "Source": "MGMT status",
             "Levels": {"positive": "methylated", "negative": "unmethylated"},
         },
@@ -109,7 +116,11 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
         "codeletion_1p19q": {
             "Description": "1p/19q codeletion by FISH. 'unknown' is n/a.",
             "Source": "1p/19q",
-            "Levels": {"intact": "no codeletion", "co-deletion": "codeleted", "relative co-deletion": "relative codeletion"},
+            "Levels": {
+                "intact": "no codeletion",
+                "co-deletion": "codeleted",
+                "relative co-deletion": "relative codeletion",
+            },
         },
         "os_days": {
             "Description": "Overall survival from initial diagnosis to last follow-up (target, with os_event).",
@@ -135,8 +146,14 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
             "Description": "Case ID in BraTS 2021, if included (overlap with the brats2021 dataset).",
             "Source": "BraTS21 ID",
         },
-        "brats21_seg_cohort": {"Description": "BraTS 2021 Task 1 cohort of this case.", "Source": "BraTS21 Segmentation Cohort"},
-        "brats21_mgmt_cohort": {"Description": "BraTS 2021 Task 2 cohort of this case.", "Source": "BraTS21 MGMT Cohort"},
+        "brats21_seg_cohort": {
+            "Description": "BraTS 2021 Task 1 cohort of this case.",
+            "Source": "BraTS21 Segmentation Cohort",
+        },
+        "brats21_mgmt_cohort": {
+            "Description": "BraTS 2021 Task 2 cohort of this case.",
+            "Source": "BraTS21 MGMT Cohort",
+        },
     }
     return s, columns
 

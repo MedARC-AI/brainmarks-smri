@@ -53,8 +53,10 @@ def images() -> pd.DataFrame:
             variants = ["old"] if path.parent.name == "old" else []
             variants += ["unstripped"] if name.endswith("_unstripped") else []
             rows.append((*parse_scan(scan), modality, "_".join(variants) or None, path))
-    for folder, suffix, desc in (("automated_segm", "_automated_approx_segm", "tumor_automated"),
-                                 ("images_segm", "_segm", "tumor_corrected")):
+    for folder, suffix, desc in (
+        ("automated_segm", "_automated_approx_segm", "tumor_automated"),
+        ("images_segm", "_segm", "tumor_corrected"),
+    ):
         for path in sorted((NIFTI / folder).glob("*.nii.gz")):
             scan = path.name.removesuffix(suffix + ".nii.gz")
             rows.append((*parse_scan(scan), "mask", desc, path))
@@ -64,7 +66,9 @@ def images() -> pd.DataFrame:
 
 
 def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
-    meta = pd.read_csv(SOURCE / "UPENN-GBM_clinical_info_v2.1.csv", dtype=str).replace(MISSING, pd.NA)
+    meta = pd.read_csv(SOURCE / "UPENN-GBM_clinical_info_v2.1.csv", dtype=str).replace(
+        MISSING, pd.NA
+    )
 
     s = pd.DataFrame(meta.ID.map(parse_scan).tolist(), columns=["participant_id", "session_id"])
     s["age"] = pd.to_numeric(meta.Age_at_scan_years)
@@ -80,7 +84,9 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
     censor_days = pd.to_numeric(meta.Survival_Censor)
     assert death_days[deceased].notna().all() and censor_days[censored].notna().all()
     s["os_days"] = death_days.where(deceased, censor_days.where(censored)).astype("Int64")
-    s["os_event"] = pd.Series(pd.NA, index=s.index, dtype="Int64").mask(deceased, 1).mask(censored, 0)
+    s["os_event"] = (
+        pd.Series(pd.NA, index=s.index, dtype="Int64").mask(deceased, 1).mask(censored, 0)
+    )
     s["survival_status"] = status
     s["idh1"] = meta.IDH1.str.lower()
     s["mgmt"] = meta.MGMT.str.lower()
@@ -89,22 +95,50 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
     s["psp_tp_score"] = pd.to_numeric(meta.PsP_TP_score).astype("Int64")
 
     columns = {
-        "days_since_baseline": {"Description": "Days from the baseline pre-operative scan.", "Source": "Time_since_baseline_preop", "Units": "days"},
+        "days_since_baseline": {
+            "Description": "Days from the baseline pre-operative scan.",
+            "Source": "Time_since_baseline_preop",
+            "Units": "days",
+        },
         "os_days": {
             "Description": "Overall survival: time to death if os_event = 1, else censoring time (target). For baseline "
-                           "sessions it is from surgery; for follow-up sessions the source measures it from the "
-                           "follow-up scan (about the baseline value minus days_since_baseline). Use the baseline "
-                           "session for survival tasks.",
+            "sessions it is from surgery; for follow-up sessions the source measures it from the "
+            "follow-up scan (about the baseline value minus days_since_baseline). Use the baseline "
+            "session for survival tasks.",
             "Source": "Survival_from_surgery_days_UPDATED, Survival_Censor",
             "Units": "days",
         },
-        "os_event": {"Description": "Death observed.", "Source": "Survival_Status", "Levels": {"1": "deceased", "0": "censored: alive, lost to follow-up, or deceased with an uncertain date"}},
-        "survival_status": {"Description": "Survival status as reported.", "Source": "Survival_Status"},
-        "idh1": {"Description": "IDH1 mutation status (target).", "Source": "IDH1", "Levels": {"wildtype": "", "mutated": ""}},
-        "mgmt": {"Description": "MGMT promoter methylation (target).", "Source": "MGMT", "Levels": {"methylated": "", "unmethylated": ""}},
+        "os_event": {
+            "Description": "Death observed.",
+            "Source": "Survival_Status",
+            "Levels": {
+                "1": "deceased",
+                "0": "censored: alive, lost to follow-up, or deceased with an uncertain date",
+            },
+        },
+        "survival_status": {
+            "Description": "Survival status as reported.",
+            "Source": "Survival_Status",
+        },
+        "idh1": {
+            "Description": "IDH1 mutation status (target).",
+            "Source": "IDH1",
+            "Levels": {"wildtype": "", "mutated": ""},
+        },
+        "mgmt": {
+            "Description": "MGMT promoter methylation (target).",
+            "Source": "MGMT",
+            "Levels": {"methylated": "", "unmethylated": ""},
+        },
         "kps": {"Description": "Karnofsky performance status.", "Source": "KPS"},
-        "gross_total_resection": {"Description": "More than 90% of the tumor resected.", "Source": "GTR_over90percent"},
-        "psp_tp_score": {"Description": "Pseudoprogression vs true progression score, 1-6 (follow-ups only).", "Source": "PsP_TP_score"},
+        "gross_total_resection": {
+            "Description": "More than 90% of the tumor resected.",
+            "Source": "GTR_over90percent",
+        },
+        "psp_tp_score": {
+            "Description": "Pseudoprogression vs true progression score, 1-6 (follow-ups only).",
+            "Source": "PsP_TP_score",
+        },
     }
     return s, columns
 
@@ -115,16 +149,24 @@ def main() -> None:
     assert len(smp) == 671 and smp.participant_id.nunique() == 630
     keys = ["participant_id", "session_id"]
     assert set(img[keys].itertuples(index=False)) <= set(smp[keys].itertuples(index=False))
-    assert (img.desc == "tumor_corrected").sum() == 147 and (img.desc == "tumor_automated").sum() == 611
+    assert (img.desc == "tumor_corrected").sum() == 147 and (
+        img.desc == "tumor_automated"
+    ).sum() == 611
 
     participants = smp.groupby("participant_id").first()
     baseline_images = img[img.session_id == "baseline"].fillna({"desc": "n/a"})
     have = baseline_images.groupby("participant_id").apply(lambda g: set(zip(g.modality, g.desc)))
-    core = {(m, d) for m in MODALITIES.values() for d in ("n/a", "unstripped")} | {("mask", "tumor_automated")}
+    core = {(m, d) for m in MODALITIES.values() for d in ("n/a", "unstripped")} | {
+        ("mask", "tumor_automated")
+    }
     has_core = have.map(lambda h: core <= h).reindex(participants.index, fill_value=False)
-    has_corrected = have.map(lambda h: ("mask", "tumor_corrected") in h).reindex(participants.index, fill_value=False)
+    has_corrected = have.map(lambda h: ("mask", "tumor_corrected") in h).reindex(
+        participants.index, fill_value=False
+    )
     baseline = smp[smp.session_id == "baseline"].set_index("participant_id")
-    os_known = (baseline.os_days.notna() & baseline.os_event.notna()).reindex(participants.index, fill_value=False)
+    os_known = (baseline.os_days.notna() & baseline.os_event.notna()).reindex(
+        participants.index, fill_value=False
+    )
 
     complete = has_core & os_known
     strata = "corrected-" + has_corrected.astype(str) + "_os-" + os_known.astype(str)
