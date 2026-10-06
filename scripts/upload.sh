@@ -16,6 +16,10 @@ for dir in "$DATA_ROOT"/*/; do
     diff -r "$REPO/scripts/$name/tables" "$dir/tables" > /dev/null || die "$name: tables/ differ from scripts/$name/tables/"
     cmp -s "$REPO/scripts/$name/manifest.sha256" "$dir/manifest.sha256" || die "$name: manifest differs from scripts/$name/"
     (cd "$dir" && sha256sum -c --quiet manifest.sha256) || die "$name: manifest check failed"
+    if [[ -f "$dir/derivatives.sha256" ]]; then
+        cmp -s "$REPO/scripts/$name/derivatives.sha256" "$dir/derivatives.sha256" || die "$name: derivatives manifest differs from scripts/$name/"
+        (cd "$dir" && sha256sum -c --quiet derivatives.sha256) || die "$name: derivatives check failed"
+    fi
 done
 cp "$REPO/README_hf.md" "$DATA_ROOT/README.md"
 

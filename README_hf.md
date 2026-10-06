@@ -63,6 +63,8 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
   README.md          # source, version, license, citation, splits
   manifest.sha256    # checksums of source/; verify with `sha256sum -c manifest.sha256`
   source/            # the original release, verbatim
+  derivatives/       # per 3D image: brain mask and affine to MNI152NLin6Asym, mirroring source/
+  derivatives.sha256 # checksums of derivatives/
   tables/
     images.tsv       # one row per image: participant_id, session_id, modality, desc, path
     samples.tsv      # one row per scan session: participant_id, session_id, age, sex, site, targets...
@@ -71,6 +73,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 ```
 
 - Paths in `images.tsv` are relative to `<dataset>/`.
+- Derivatives: `<image>_mask.nii.gz` (brain mask on the image grid) and `<image>_mni.txt` (4×4 nibabel-style affine matrix: image to MNI152NLin6Asym).
 - Splits are by participant. Official splits are kept where they exist; otherwise the split is 60/20/20, stratified, with a fixed seed.
 - `complete` marks participants with all core images and the primary targets.
 - `rank` orders participants within each split so that the lowest-ranked N form a balanced subset; subsets are nested as N grows.

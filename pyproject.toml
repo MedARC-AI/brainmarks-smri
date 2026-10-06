@@ -9,25 +9,30 @@ dependencies = [
     "numpy>=2",
     "openpyxl>=3.1",
     "pandas>=3",
+    "platformdirs>=4",
     "requests>=2.28",
+    "scipy>=1.11",
+    "torch>=2.5",
     "xlrd>=2",
 ]
 
 [project.optional-dependencies]
-brainiac = ["torch>=2.5", "monai>=1.4", "platformdirs>=4"]
+brainiac = ["monai>=1.4"]
 neurojepa = [
-    "torch>=2.5",
     "monai>=1.4",
     "neurojepa @ git+https://github.com/clane9/Neuro-JEPA.git@e9dff69446f643b6cab8213c15a44523301e51da",
 ]
 neurovfm = [
-    "torch>=2.5",
     "SimpleITK>=2.4",
     "neurovfm @ git+https://github.com/clane9/neurovfm.git@ed3af2dfa1d54433f33432ebd677db6ba10a9e96",
 ]
 braindino = [
-    "torch>=2.5",
     "dinov3 @ git+https://github.com/facebookresearch/dinov3.git@6876159a11b4df116f30f667f8c9888617df0751",
+]
+preprocess = [
+    "antspyx>=0.6.3",  # 0.6.1 ignores the random seed
+    # SynthStrip: 0.6.3 breaks with numpy>=2.3 (np.bool passed as an int); fixed on master, unreleased
+    "surfa @ git+https://github.com/freesurfer/surfa.git@0a3ee465817a83d3da20d9e09d22b022dee5290e",
 ]
 
 [build-system]

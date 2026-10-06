@@ -10,13 +10,15 @@ This repo holds the code that builds the collection. The data itself is mirrored
 scripts/
   lib.sh                 # shared bash helpers
   upload.sh              # uploads datasets/ to the Hugging Face mirror
+  preprocess.py          # brain masks + affines to MNI into datasets/<name>/derivatives/
   <name>/
     download.sh          # downloads the release into datasets/<name>/source/ (resumable)
     build_tables.py      # builds datasets/<name>/tables/ from source/
     README.md            # source, version, license, citation, contents, exclusions
     manifest.sha256      # checksums of source/
+    derivatives.sha256   # checksums of derivatives/
     tables/              # tracked copy of the built tables
-src/brainmarks_smri/     # Python helpers: tables.py (table building), tcia_faspex.py (TCIA downloads)
+src/brainmarks_smri/     # Python helpers: tables.py (table building), tcia_faspex.py (TCIA downloads), models/
 datasets/                # the data (gitignored); this folder is what gets mirrored
 ```
 
@@ -31,6 +33,7 @@ uv sync                                         # dependencies + the brainmarks_
 bash scripts/pixar/download.sh                  # download into datasets/pixar/source/
 (cd datasets/pixar && sha256sum -c --quiet manifest.sha256)  # verify
 uv run python scripts/pixar/build_tables.py     # rebuild datasets/pixar/tables/
+uv run --extra preprocess scripts/preprocess.py datasets/pixar  # rebuild datasets/pixar/derivatives/
 ```
 
 - Each dataset is pinned to a fixed release. Re-running `download.sh` only fetches missing files. If the scripts reproduce the collection, `git diff` on the tracked manifest and tables shows no changes.
