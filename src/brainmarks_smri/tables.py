@@ -5,7 +5,6 @@ Each dataset gets a small set of derived tables in `datasets/<name>/tables/`, bu
 `scripts/<name>/tables/` so that the splits are versioned:
 
     images.tsv     one row per image file: participant_id, session_id, modality, desc, path
-                   (+ member, for images inside a tar archive)
     samples.tsv    one row per sample (= scan session): participant_id, session_id, age, sex,
                    site, then dataset-specific columns (labels/targets) with cleaned values
     samples.json   description of every samples.tsv column (BIDS sidecar style)
@@ -188,8 +187,7 @@ def write(
 
     `columns` documents the dataset-specific samples.tsv columns (the common ones are added).
     """
-    image_columns = IMAGE_COLUMNS + (["member"] if "member" in images else [])
-    images = images[image_columns]
+    images = images[IMAGE_COLUMNS]
     columns = {**{c: COMMON[c] for c in COMMON if c in samples}, **columns}
 
     assert not samples.duplicated(["participant_id", "session_id"]).any(), "duplicate sessions"

@@ -4,8 +4,8 @@
 
 See `brainmarks_smri.tables` for the table layout.
 
-- Images stay inside the original tarballs: images.tsv has `path` = the tar and `member` = the
-  file inside it. T1/T2/PD are one NIfTI per participant. The DTI is one NIfTI per volume
+- Images: one folder per extracted tarball (source/IXI-T1/ etc.). T1/T2/PD are one NIfTI per
+  participant. The DTI is one NIfTI per volume
   (desc `vol-NN`), 16-17 per participant, with the shared gradient table in bvals.txt/bvecs.txt.
   Caution: the gradient table has 16 entries, but 397 of 400 participants have 17 volumes.
 - Participants: everyone with at least one image (584; 3 have no T1). participant_id is `IXI<id>` with 3+
@@ -22,7 +22,6 @@ See `brainmarks_smri.tables` for the table layout.
 """
 
 import re
-import tarfile
 
 import numpy as np
 import pandas as pd
@@ -32,8 +31,8 @@ from brainmarks_smri import tables
 NAME = "ixi"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
-TARS = {"T1": "T1w", "T2": "T2w", "PD": "PD", "DTI": "DTI"}
-MEMBER = re.compile(r"IXI(\d+)-(Guys|HH|IOP)-(\d+)-(T1|T2|PD|DTI)(?:-(\d+))?\.nii\.gz$")
+FOLDERS = {"T1": "T1w", "T2": "T2w", "PD": "PD", "DTI": "DTI"}
+FILE_NAME = re.compile(r"IXI(\d+)-(Guys|HH|IOP)-(\d+)-(T1|T2|PD|DTI)(?:-(\d+))?\.nii\.gz$")
 AGE_BINS = [0, 30, 45, 60, 75, np.inf]
 HEIGHT_CM = (120, 220)  # plausible ranges; values outside (e.g. 1520, 75) are entry errors -> n/a
 WEIGHT_KG = (30, 250)
@@ -47,13 +46,11 @@ CODES = {  # lookup sheets of IXI.xls
 
 def images() -> pd.DataFrame:
     rows = []
-    for tar_name, modality in TARS.items():
-        tar = SOURCE / f"IXI-{tar_name}.tar"
-        with tarfile.open(tar) as archive:
-            members = sorted(archive.getnames())
-        for member in members:
-            match = MEMBER.match(member.removeprefix("./"))  # IXI-DTI.tar members start with './'
-            assert match and match[4] == tar_name, f"unexpected member {member!r} in {tar.name}"
+    for folder_name, modality in FOLDERS.items():
+        folder = SOURCE / f"IXI-{folder_name}"
+        for path in sorted(folder.iterdir()):
+            match = FILE_NAME.match(path.name)
+            assert match and match[4] == folder_name, f"unexpected file {path}"
             number, site, _, _, volume = match.groups()
             desc = f"vol-{volume}" if volume else None
             rows.append(
@@ -62,12 +59,11 @@ def images() -> pd.DataFrame:
                     "1",
                     modality,
                     desc,
-                    str(tar.relative_to(ROOT)),
-                    member,
+                    str(path.relative_to(ROOT)),
                     site,
                 )
             )
-    return pd.DataFrame(rows, columns=tables.IMAGE_COLUMNS + ["member", "site"])
+    return pd.DataFrame(rows, columns=tables.IMAGE_COLUMNS + ["site"])
 
 
 def decode(codes: pd.Series, lookup: pd.Series) -> pd.Series:

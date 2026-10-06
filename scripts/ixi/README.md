@@ -4,7 +4,7 @@ Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: G
 
 - **Homepage:** <https://brain-development.org/ixi-dataset/>
 - **Source:** [brain-development.org/ixi-dataset](https://brain-development.org/ixi-dataset/) (Imperial College London). Plain HTTPS tarballs from `https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/`, fetched with `curl -fL -C -`. The page links use `http://`, which redirects to `https://`.
-- **Version:** no versioning and no published checksums. The files have been unchanged since 2014-10-07. Pinned by the server metadata below (retrieved 2026-10-01) and `manifest.sha256`.
+- **Version:** no versioning and no published checksums. The files have been unchanged since 2014-10-07. Pinned by the server metadata below (retrieved 2026-10-01), the tarball sha256s in `download.sh` and `manifest.sha256`.
 
   | File | Size (bytes) | Last-Modified | ETag |
   |---|---|---|---|
@@ -35,15 +35,15 @@ One sample per participant: everyone with at least one image (584; 3 have no T1)
 
 ## Contents
 
-`source/` (tarballs kept as distributed, not unpacked; 17 GB):
+`source/` (17 GB). Each tarball is checked against the sha256 pinned in `download.sh`, extracted to a folder of the same name, and deleted:
 
-- `IXI-T1.tar`, `IXI-T2.tar`, `IXI-PD.tar`: one NIfTI (`.nii.gz`) per subject, named `IXI<id>-<Site>-<scan>-<mod>.nii.gz`, where the site is `Guys`/`HH`/`IOP`.
-- `IXI-DTI.tar`: raw DWI, one NIfTI per volume (`IXI<id>-<Site>-<scan>-DTI-<nn>.nii.gz`). `bvals.txt`/`bvecs.txt` hold the gradient table.
+- `IXI-T1/`, `IXI-T2/`, `IXI-PD/`: one NIfTI (`.nii.gz`) per subject, named `IXI<id>-<Site>-<scan>-<mod>.nii.gz`, where the site is `Guys`/`HH`/`IOP`.
+- `IXI-DTI/`: raw DWI, one NIfTI per volume (`IXI<id>-<Site>-<scan>-DTI-<nn>.nii.gz`). `bvals.txt`/`bvecs.txt` hold the gradient table.
 - `IXI.xls`: demographics. Sheet `Table` has IXI_ID, SEX_ID (1 = m, 2 = f), HEIGHT, WEIGHT, ETHNIC_ID, MARITAL_ID, OCCUPATION_ID, QUALIFICATION_ID, DOB, DATE_AVAILABLE, STUDY_DATE and **AGE** (the brain-age target). The other sheets are code lookup tables.
 - `marital.xls`: the marital-status code lookup. It is in the server directory but not linked from the page.
 - `docs/`: a one-time HTML snapshot of the dataset page (description + license) and the two Philips scanner-parameter pages. The GE/IOP parameters were never published.
 
-Subject counts (from `tar -tf`):
+Subject counts:
 
 | | Guys | HH | IOP | Total |
 |---|---|---|---|---|
@@ -54,7 +54,7 @@ Subject counts (from `tar -tf`):
 
 `tables/` (derived from `source/`):
 
-- `images.tsv`: `path` is the tar file and `member` the NIfTI inside it, so images can be read without unpacking (e.g. with Python's `tarfile`). T1w, T2w, PD, and the DTI volumes (modality `DTI`, desc `vol-NN`).
+- `images.tsv`: T1w, T2w, PD, and the DTI volumes (modality `DTI`, desc `vol-NN`).
 - `samples.tsv` + `samples.json`: age (the brain-age target), sex, site (from the file names), study date, height, weight and the decoded demographic codes. The spreadsheet's duplicate and conflicting rows are resolved (see `demographics_conflict`).
 - `splits.tsv`: split, rank and complete per participant.
 
