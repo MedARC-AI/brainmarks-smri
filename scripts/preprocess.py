@@ -5,15 +5,10 @@
 Outputs in `derivatives/` inside each dataset folder.
 """
 
-import os
-
-# Before importing ants/torch: one thread per job, needed for reproducible registration.
-os.environ["ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS"] = "1"
-os.environ["OMP_NUM_THREADS"] = "1"
-
 import argparse
 import hashlib
 import logging
+import os
 import subprocess
 import sys
 import tempfile
@@ -108,7 +103,6 @@ def synthstrip(image: nib.Nifti1Image, files: dict[str, Path]) -> np.ndarray:
             "-i", f"{tmp}/image.nii",
             "-m", f"{tmp}/mask.nii",
             "--model", files["synthstrip_weights"],
-            "-t", "1",
         ]  # fmt: skip
         result = subprocess.run(command, capture_output=True, text=True)
         if result.returncode != 0:
@@ -179,7 +173,7 @@ def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path])
         # ANTs 12-DOF registration to MNI template with Mattes MI.
         template = nib.load(files["template"])
         masked_data = image.get_fdata(dtype=np.float32) * mask
-        ants.config.set_ants_deterministic(True, seed_value=ANTS_SEED)
+        ants.config._random_seed = ANTS_SEED
         with tempfile.TemporaryDirectory() as tmp:
             registration = ants.registration(
                 fixed=to_ants(template.get_fdata(dtype=np.float32), template.affine),
