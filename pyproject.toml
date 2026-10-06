@@ -45,5 +45,8 @@ dev = [
     "pytest>=8",
 ]
 
+[tool.uv]
+python-preference = "only-managed"
+
 [tool.ruff]
 line-length = 100

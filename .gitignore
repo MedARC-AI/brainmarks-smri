@@ -13,6 +13,7 @@ _version.py
 
 # Virtual environment
 .venv/
+.python/
 # too many conflicts
 uv.lock
 
