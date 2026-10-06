@@ -14,7 +14,19 @@ BLOB = np.array([20.0, -30.0, 15.0])
 
 @pytest.fixture(scope="module")
 def model() -> BrainIAC:
-    return BrainIAC()
+    from monai.networks.nets import ViT
+
+    return BrainIAC(
+        ViT(
+            in_channels=1,
+            img_size=IMG_SIZE,
+            patch_size=(16, 16, 16),
+            hidden_size=768,
+            mlp_dim=3072,
+            num_layers=12,
+            num_heads=12,
+        )
+    )
 
 
 def make_head(axcodes: tuple[str, str, str] = ("L", "A", "S")) -> nib.Nifti1Image:
@@ -109,8 +121,10 @@ def test_forward_embeddings(model: BrainIAC):
         )
 
 
-@pytest.mark.skipif("BRAINIAC_CKPT" not in os.environ, reason="set BRAINIAC_CKPT to BrainIAC.ckpt")
+@pytest.mark.skipif(
+    "BRAINMARKS_SMRI_CACHE" not in os.environ, reason="downloads a 362 MB checkpoint to the cache"
+)
 def test_pretrained():
-    model = create_model("brainiac", checkpoint=os.environ["BRAINIAC_CKPT"])
+    model = create_model("brainiac")
     outputs = model.forward_embeddings([model.transform({"image": make_head()})])
     assert torch.isfinite(outputs[0]["global_embedding"]).all()

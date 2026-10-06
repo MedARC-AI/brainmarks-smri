@@ -16,7 +16,12 @@ RADII = np.array([60.0, 85.0, 45.0])
 
 @pytest.fixture(scope="module")
 def model() -> BrainDINO:
-    return BrainDINO()
+    from dinov3.models.vision_transformer import vit_base
+
+    # as upstream SliceStudent, random weights
+    backbone = vit_base(layerscale_init=1e-5, n_storage_tokens=4, qkv_bias=False, mask_k_bias=True)
+    backbone.init_weights()
+    return BrainDINO(backbone)
 
 
 def make_head(axcodes: tuple[str, str, str] = ("R", "A", "S")) -> nib.Nifti1Image:
@@ -83,3 +88,21 @@ def test_pretrained():
     model = create_model("braindino", checkpoint=os.environ["BRAINDINO_CKPT"])
     outputs = model.forward_embeddings([model.transform({"image": make_head()})])
     assert torch.isfinite(outputs[0]["global_embedding"]).all()
+
+
+def test_dinov3_matches_timm():
+    """The official architecture with converted weights reproduces timm's model exactly."""
+    import timm
+
+    model = create_model("dinov3_vitb16")
+    reference = timm.create_model("vit_base_patch16_dinov3.lvd1689m", pretrained=True).eval()
+    torch.manual_seed(0)
+    images = torch.randn(2, 3, 224, 224)
+    with torch.no_grad():
+        ours = model.backbone.forward_features(images)
+        expected = reference.forward_features(images)  # (B, 1 + 4 + 196, 768), after the norm
+    torch.testing.assert_close(ours["x_norm_clstoken"], expected[:, 0])
+    torch.testing.assert_close(ours["x_norm_patchtokens"], expected[:, 5:])
+
+    outputs = model.forward_embeddings([model.transform({"image": make_head()})])
+    assert outputs[0]["global_embedding"].shape == (768,)

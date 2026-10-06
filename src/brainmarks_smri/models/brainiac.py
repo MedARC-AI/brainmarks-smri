@@ -12,11 +12,13 @@ MONAI's `ViT(classification=False)` has no CLS token, so that is the corner patc
 mean of all 216 tokens instead.
 """
 
+import os
 from pathlib import Path
 from typing import Any
 
 import nibabel as nib
 import numpy as np
+import platformdirs
 import torch
 import torch.nn as nn
 from monai import transforms
@@ -24,6 +26,16 @@ from monai.networks.nets import ViT
 from scipy import ndimage
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
+
+CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
+
+# The upstream Dropbox folder holds all their checkpoints (7.4 GB as a zip); this is the
+# backbone file alone.
+CHECKPOINT_URL = (
+    "https://www.dropbox.com/scl/fo/i51xt63roognvt7vuslbl/AMblt6reQVvlSrORTB3_2lE/BrainIAC.ckpt"
+    "?rlkey=9w55le6tslwxlfz6c0viylmjb&dl=1"
+)
+CHECKPOINT_SHA256 = "f22bdbcae26823a9d9e8aee883c6f24386ba4617339c12269848b6666cc62693"
 
 IMG_SIZE = (96, 96, 96)
 PATCH_SIZE = (16, 16, 16)
@@ -57,19 +69,9 @@ class BrainIAC(nn.Module):
     embed_dim = 768
     patch_size = PATCH_SIZE
 
-    def __init__(self):
+    def __init__(self, backbone: ViT):
         super().__init__()
-        # cl: I don't see why break the pattern of neurovfm, neurojepa to construct the encoder in
-        # the model fn?
-        self.backbone = ViT(
-            in_channels=1,
-            img_size=IMG_SIZE,
-            patch_size=PATCH_SIZE,
-            hidden_size=768,
-            mlp_dim=3072,
-            num_layers=12,
-            num_heads=12,
-        )
+        self.backbone = backbone
         self.requires_grad_(False)
         self.eval()
 
@@ -136,32 +138,49 @@ class BrainIAC(nn.Module):
 
 
 @register_model
-def brainiac(checkpoint: str | Path) -> BrainIAC:
-    """Load the upstream `BrainIAC.ckpt` (Lightning checkpoint, from their Dropbox folder)."""
-    # cl: any way we can download and cache the checkpoint from dropbox in this code here?
-    # feel free to set up a BRAINMARKS_SMRI_CACHE, which we will use for checkpoints and datasets.
-    model = BrainIAC()
+def brainiac(checkpoint: str | Path | None = None) -> BrainIAC:
+    """Load the upstream `BrainIAC.ckpt` (Lightning checkpoint). Downloaded from their Dropbox
+    into `CACHE_DIR` if not given."""
+    if checkpoint is None:
+        checkpoint = CACHE_DIR / "checkpoints" / "brainiac" / "BrainIAC.ckpt"
+        if not checkpoint.exists():
+            checkpoint.parent.mkdir(parents=True, exist_ok=True)
+            torch.hub.download_url_to_file(
+                CHECKPOINT_URL, str(checkpoint), hash_prefix=CHECKPOINT_SHA256
+            )
+
+    # as upstream ViTBackboneNet
+    backbone = ViT(
+        in_channels=1,
+        img_size=IMG_SIZE,
+        patch_size=PATCH_SIZE,
+        hidden_size=768,
+        mlp_dim=3072,
+        num_layers=12,
+        num_heads=12,
+    )
     lightning_checkpoint = torch.load(checkpoint, map_location="cpu", weights_only=False)
     state_dict = lightning_checkpoint.get("state_dict", lightning_checkpoint)
     prefix = "backbone."
     state_dict = {
         key[len(prefix) :]: value for key, value in state_dict.items() if key.startswith(prefix)
     }
-    missing, unexpected = model.backbone.load_state_dict(state_dict, strict=False)
+    missing, unexpected = backbone.load_state_dict(state_dict, strict=False)
     # MONAI >= 1.4 adds cross-attention norms that are unused without cross-attention
     missing = [key for key in missing if ".norm_cross_attn." not in key]
     if missing or unexpected:
         raise RuntimeError(f"missing keys {missing}, unexpected keys {unexpected}")
-    return model
+    return BrainIAC(backbone)
 
 
-# cl: why are we doing this 12dof affine to rigid conversion every time rather than just once
-# offline?
 def rigid_template_to_image(image_to_template: np.ndarray) -> np.ndarray:
     """The rigid part of an image world -> template world affine, inverted.
 
-    Upstream registers rigidly, so head size is kept. We keep the rotation from the polar
-    decomposition and fix the image point that the full affine sends to the template centre.
+    Upstream registers each scan rigidly, so head size is kept. Our image -> template affine is
+    the subject's 12-DOF `mni_affine` followed by the fixed `MNI_TO_TEMPLATE`, so its rigid part
+    depends on the subject and is computed per scan (one 3x3 SVD). Only `MNI_TO_TEMPLATE` is
+    computed offline. We keep the rotation from the polar decomposition and fix the image point
+    that the full affine sends to the template centre.
     """
     u, _, vt = np.linalg.svd(image_to_template[:3, :3])
     rotation = u @ vt

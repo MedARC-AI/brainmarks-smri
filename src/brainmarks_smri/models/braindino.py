@@ -11,6 +11,9 @@ skull-stripped input, so `brain_mask` is applied when given. `mni_affine` is unu
 
 Global embedding: per-slice CLS tokens averaged over the 128 slices, as upstream. Dense: the
 14x14 patch tokens of every slice, a 14x14x128 grid of 16x16x1 patches on the 224x224x128 input.
+
+`dinov3_vitb16` is the same slice pipeline with Meta's natural-image DINOv3 ViT-B/16, the
+DINOv3 baseline in the BrainDINO paper.
 """
 
 from pathlib import Path
@@ -21,7 +24,10 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from dinov3.models.vision_transformer import vit_base
+from dinov3.hub.backbones import dinov3_vitb16 as official_dinov3_vitb16
+from dinov3.models.vision_transformer import DinoVisionTransformer, vit_base
+from huggingface_hub import hf_hub_download
+from safetensors.torch import load_file
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
 
@@ -30,19 +36,19 @@ SLICE_SIZE = 224
 IMG_SIZE = (SLICE_SIZE, SLICE_SIZE, N_SLICES)
 PATCH_SIZE = (16, 16, 1)
 
+# timm's copy of Meta's DINOv3 ViT-B/16 (LVD-1689M), ungated. Meta's own HF repo is gated.
+DINOV3_REPO_ID = "timm/vit_base_patch16_dinov3.lvd1689m"
+DINOV3_REVISION = "c6a5fb7d12bbd3cf3b0079253141c3332aaed7da"
+
 
 class BrainDINO(nn.Module):
-    name = "braindino"
     embed_dim = 768
     patch_size = PATCH_SIZE
 
-    def __init__(self):
+    def __init__(self, backbone: DinoVisionTransformer, name: str = "braindino"):
         super().__init__()
-        # as upstream SliceStudent
-        self.backbone = vit_base(
-            layerscale_init=1e-5, n_storage_tokens=4, qkv_bias=False, mask_k_bias=True
-        )
-        self.backbone.init_weights()
+        self.name = name
+        self.backbone = backbone
         self.requires_grad_(False)
         self.eval()
 
@@ -107,14 +113,12 @@ class BrainDINO(nn.Module):
         return outputs
 
 
-# cl: can we also add a model that uses the official dinov3 weights? ideally vit-b size.
-
-
 @register_model
 def braindino(checkpoint: str | Path) -> BrainDINO:
     """Load a DINOv3-style checkpoint (`teacher`, `model` or a bare state dict), as upstream
     SliceStudent does, but strictly."""
-    model = BrainDINO()
+    # as upstream SliceStudent
+    backbone = vit_base(layerscale_init=1e-5, n_storage_tokens=4, qkv_bias=False, mask_k_bias=True)
     dino_checkpoint = torch.load(checkpoint, map_location="cpu", weights_only=False)
     state_dict = dino_checkpoint.get("teacher", dino_checkpoint.get("model", dino_checkpoint))
     state_dict = {
@@ -122,8 +126,32 @@ def braindino(checkpoint: str | Path) -> BrainDINO:
         for key, value in state_dict.items()
         if "ibot" not in key and "dino_head" not in key and not key.startswith("head.")
     }
-    model.backbone.load_state_dict(state_dict, strict=True)
-    return model
+    backbone.load_state_dict(state_dict, strict=True)
+    return BrainDINO(backbone)
+
+
+@register_model
+def dinov3_vitb16(revision: str = DINOV3_REVISION) -> BrainDINO:
+    """Meta's DINOv3 ViT-B/16 in the official architecture, with weights from timm's copy.
+
+    timm renames a few keys and drops what it doesn't use: the qkv biases (all zero in the
+    distilled ViT-B), the RoPE periods, the pretraining mask token, and the k-bias mask. Those
+    come from the model's own init. `test_braindino.py` checks the output against timm's model.
+    """
+    backbone = official_dinov3_vitb16(pretrained=False)
+    timm_state_dict = load_file(
+        hf_hub_download(DINOV3_REPO_ID, "model.safetensors", revision=revision)
+    )
+    state_dict = {}
+    for key, value in timm_state_dict.items():
+        key = key.replace("reg_token", "storage_tokens")
+        key = key.replace("gamma_1", "ls1.gamma").replace("gamma_2", "ls2.gamma")
+        state_dict[key] = value
+    for key, value in backbone.state_dict().items():
+        if key not in state_dict:
+            state_dict[key] = torch.zeros_like(value) if key.endswith("qkv.bias") else value
+    backbone.load_state_dict(state_dict, strict=True)
+    return BrainDINO(backbone, name="dinov3_vitb16")
 
 
 def zscore_normalize(volume: np.ndarray) -> np.ndarray:

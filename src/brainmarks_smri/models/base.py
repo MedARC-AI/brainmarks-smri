@@ -36,7 +36,7 @@ class Model(nn.Module):
     def transform(self, sample: ImageInput) -> dict[str, Any]:
         """Preprocess one sample on CPU.
 
-        Outputs are not collated. Implementation can be ommitted if there is no CPU preprocessing.
+        Outputs are not collated. Implementation can be omitted if there is no CPU preprocessing.
         """
         raise NotImplementedError
 

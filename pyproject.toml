@@ -14,7 +14,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-brainiac = ["torch>=2.5", "monai>=1.4"]
+brainiac = ["torch>=2.5", "monai>=1.4", "platformdirs>=4"]
 neurojepa = [
     "torch>=2.5",
     "monai>=1.4",
