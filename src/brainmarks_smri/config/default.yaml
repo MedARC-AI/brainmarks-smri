@@ -1,0 +1,9 @@
+# Defaults for `python -m brainmarks_smri <model> <task>`. Override with --config or --overrides key=value.
+model_kwargs: {}
+max_per_split: null  # mini-splits: at most this many samples per split
+output_dir: results
+batch_size: 8
+num_workers: 8
+device: null  # cuda if available
+seed: 0
+overwrite: false

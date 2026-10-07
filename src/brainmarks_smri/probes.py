@@ -13,19 +13,32 @@ import torch.nn.functional as F
 from einops import rearrange
 from sklearn.linear_model import LogisticRegressionCV, RidgeCV
 from sklearn.metrics import balanced_accuracy_score, mean_absolute_error, r2_score
+from sklearn.model_selection import GroupShuffleSplit
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from torch import Tensor
 from torch.utils.data import DataLoader, Subset
 
 from brainmarks_smri.logistic import TorchLogisticRegressionCV
-from brainmarks_smri.metrics import auroc, bootstrap_ci, dice, pearson_r
+from brainmarks_smri.metrics import (
+    auroc,
+    average_precision,
+    bootstrap_ci,
+    dice,
+    pearson_r,
+    voxel_auroc,
+)
 from brainmarks_smri.models.base import EmbeddingOutput, Model
 from brainmarks_smri.tasks import Task
 
 SEED = 0
 LOGISTIC_CS = np.logspace(-4, 4, 9)
 RIDGE_ALPHAS = np.logspace(-2, 6, 9)
+SEGMENTATION_ALPHAS = (1e1, 1e2, 1e3, 1e4, 1e5)
+SEGMENTATION_THRESHOLDS = torch.logspace(-3, -0.1, 30)
+# fraction of training participants held out to tune the segmentation penalty and threshold
+HOLDOUT_FRACTION = 0.2
+MAX_NEGATIVE_RATIO = 10.0
 # Logit for voxels without a prediction (dropped tokens, outside the model input): sigmoid ~ 2e-9.
 BACKGROUND_LOGIT = -20.0
 
@@ -124,19 +137,38 @@ def probe_segmentation(
     features, labels, groups = segmentation_patches(
         model, task, task.train_ids, batch_size, num_workers
     )
-    # the penalty and threshold are tuned on held-out training participants
-    classifier = TorchLogisticRegressionCV()
+    classifier = TorchLogisticRegressionCV(
+        alphas=SEGMENTATION_ALPHAS,
+        thresholds=SEGMENTATION_THRESHOLDS,
+        cv=GroupShuffleSplit(n_splits=1, test_size=HOLDOUT_FRACTION, random_state=SEED),
+        max_negative_ratio=MAX_NEGATIVE_RATIO,
+        seed=SEED,
+    )
     classifier.fit(features.to(device), labels.to(device), groups)
 
-    subject_dice = segmentation_dice(model, task, classifier, batch_size, num_workers)
-    metrics = {
-        "dice": float(subject_dice.mean()),
-        "dice_ci": bootstrap_ci(np.mean, subject_dice, seed=SEED),
-    }
+    subject_metrics = {"dice": [], "voxel_auroc": [], "average_precision": []}
+    predictions = segmentation_predictions(model, task, classifier, batch_size, num_workers)
+    for probabilities, target, brain in predictions:
+        predicted = probabilities >= classifier.threshold_
+        subject_metrics["dice"].append(dice(predicted, target))
+        # ranking metrics within the brain, where the background is not trivial
+        brain_probabilities = probabilities[brain]
+        brain_target = target[brain]
+        subject_metrics["voxel_auroc"].append(voxel_auroc(brain_probabilities, brain_target))
+        subject_metrics["average_precision"].append(
+            average_precision(brain_probabilities, brain_target)
+        )
+    metrics = {}
+    for name, values in subject_metrics.items():
+        values = np.array(values)
+        metrics[name] = float(np.nanmean(values))
+        metrics[f"{name}_ci"] = bootstrap_ci(np.nanmean, values, seed=SEED)
+
     eval_samples = samples.iloc[task.eval_ids][["participant_id", "session_id"]]
     eval_samples = eval_samples.to_dict("records")
-    for record, record_dice in zip(eval_samples, subject_dice):
-        record["dice"] = float(record_dice)
+    for ii, record in enumerate(eval_samples):
+        for name, values in subject_metrics.items():
+            record[name] = float(values[ii])
     return {
         "label_values": task.label_values,
         "n_train": len(task.train_ids),
@@ -219,15 +251,14 @@ def segmentation_patches(
     return torch.cat(all_features), torch.cat(all_labels), np.array(all_groups)
 
 
-def segmentation_dice(
+def segmentation_predictions(
     model: Model,
     task: Task,
     classifier: TorchLogisticRegressionCV,
     batch_size: int,
     num_workers: int,
-) -> np.ndarray:
-    """Dice per eval subject, scored on the label image grid."""
-    subject_dice = []
+) -> Iterator[tuple[Tensor, Tensor, Tensor]]:
+    """Yield `(probabilities, target, brain mask)` on the label image grid for each eval sample."""
     px, py, pz = model.patch_size
     embeddings = compute_embeddings(
         model, task, task.eval_ids, batch_size, num_workers, return_dense=True
@@ -248,20 +279,21 @@ def segmentation_dice(
         shifted = logits[None] - BACKGROUND_LOGIT
         logits = resample(shifted, label_to_input, label_image.shape, "bilinear")[0]
         logits = logits + BACKGROUND_LOGIT
+        probabilities = torch.sigmoid(logits)
 
-        predicted = torch.sigmoid(logits) >= classifier.threshold_
         target = label_mask(label_image, task.label_values, logits.device)
-        subject_dice.append(dice(predicted, target))
-    return np.array(subject_dice)
+        brain_image = nib.load(task.dataset.root / targets["brain_mask_path"])
+        assert brain_image.shape == label_image.shape, f"{task.name}: brain mask not on label grid"
+        brain = torch.as_tensor(np.asanyarray(brain_image.dataobj) > 0, device=logits.device)
+        yield probabilities, target, brain
 
 
 def label_mask(
     label_image: nib.Nifti1Image, label_values: list[int], device: torch.device
 ) -> Tensor:
     """Bool mask of the voxels with one of `label_values`."""
-    label = np.asanyarray(label_image.dataobj).astype(np.int64)
-    label = torch.as_tensor(label, device=device)
-    return torch.isin(label, torch.tensor(label_values, device=device))
+    mask = np.isin(np.asanyarray(label_image.dataobj), label_values)
+    return torch.as_tensor(mask, device=device)
 
 
 def resample(volume: Tensor, matrix: np.ndarray, output_shape: tuple, mode: str) -> Tensor:

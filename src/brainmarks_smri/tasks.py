@@ -1,8 +1,7 @@
 """Benchmark tasks.
 
 A task is a plain function returning a `Task`: a dataset, a target and the train/eval ids. It
-handles its own special cases inside. `eval_split` ("val" or "test") and `max_per_split`
-(mini-splits) are run options.
+handles its own special cases inside. `eval_split` is val by default; the CLI never uses test.
 """
 
 from collections.abc import Callable
@@ -31,6 +30,24 @@ class Task:
     label_values: list[int] | None = None
 
 
+TASKS: dict[str, Callable[..., Task]] = {}
+
+
+def register_task(task_fn: Callable[..., Task]) -> Callable[..., Task]:
+    TASKS[task_fn.__name__] = task_fn
+    return task_fn
+
+
+def create_task(name: str, **kwargs) -> Task:
+    if name not in TASKS:
+        raise ValueError(f"Unknown task {name!r}; available: {list_tasks()}")
+    return TASKS[name](**kwargs)
+
+
+def list_tasks() -> list[str]:
+    return sorted(TASKS)
+
+
 def split_ids(
     samples: pd.DataFrame, keep: pd.Series, eval_split: str
 ) -> tuple[np.ndarray, np.ndarray]:
@@ -41,6 +58,7 @@ def split_ids(
     return train_ids, eval_ids
 
 
+@register_task
 def abide_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("abide1", modality="T1w", max_per_split=max_per_split)
     keep = dataset.samples["diagnosis"].notna()
@@ -56,6 +74,7 @@ def abide_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -
     )
 
 
+@register_task
 def cnp_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("cnp", modality="T1w", max_per_split=max_per_split)
     keep = dataset.samples["diagnosis"].notna()
@@ -71,6 +90,7 @@ def cnp_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> 
     )
 
 
+@register_task
 def ixi_age(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("ixi", modality="T1w", max_per_split=max_per_split)
     keep = dataset.samples["age"].notna()
@@ -104,18 +124,22 @@ def brats_region(
 
 
 # The BraTS challenge regions, from labels 1 (necrotic core), 2 (edema), 4 (enhancing tumor).
+@register_task
 def brats_whole_tumor(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     return brats_region("brats_whole_tumor", [1, 2, 4], eval_split, max_per_split)
 
 
+@register_task
 def brats_tumor_core(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     return brats_region("brats_tumor_core", [1, 4], eval_split, max_per_split)
 
 
+@register_task
 def brats_enhancing_tumor(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     return brats_region("brats_enhancing_tumor", [4], eval_split, max_per_split)
 
 
+@register_task
 def soop_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("soop", modality="DWI", max_per_split=max_per_split)
     samples = dataset.samples
@@ -136,17 +160,3 @@ def soop_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Ta
         # Binary masks; a few use 2 or 3 as the lesion value instead of 1.
         label_values=[1, 2, 3],
     )
-
-
-TASKS: dict[str, Callable[..., Task]] = {
-    task.__name__: task
-    for task in [
-        abide_diagnosis,
-        cnp_diagnosis,
-        ixi_age,
-        brats_whole_tumor,
-        brats_tumor_core,
-        brats_enhancing_tumor,
-        soop_lesion,
-    ]
-}

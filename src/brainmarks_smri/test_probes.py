@@ -3,7 +3,7 @@ import torch
 from scipy import ndimage
 
 from brainmarks_smri.logistic import TorchLogisticRegressionCV
-from brainmarks_smri.metrics import dice
+from brainmarks_smri.metrics import average_precision, dice, voxel_auroc
 from brainmarks_smri.probes import resample
 
 
@@ -47,3 +47,14 @@ def test_logistic_regression_cv_learns_linear_rule():
     classifier.fit(features[:500], targets[:500], groups[:500])
     assert classifier.alpha_ != 1e5  # heavy penalty can't fit the rule
     assert dice(classifier.predict(features[500:]), targets[500:]) > 0.9
+
+
+def test_voxel_ranking_metrics():
+    target = torch.tensor([False, False, True, True])
+    perfect = torch.tensor([0.1, 0.2, 0.8, 0.9])
+    assert voxel_auroc(perfect, target) == 1.0
+    assert average_precision(perfect, target) == 1.0
+    swapped = torch.tensor([0.1, 0.9, 0.8, 0.2])
+    # ranked: 0.9 (neg), 0.8 (pos), 0.2 (pos), 0.1 (neg)
+    assert voxel_auroc(swapped, target) == 0.5
+    assert abs(average_precision(swapped, target) - (1 / 2 + 2 / 3) / 2) < 1e-6

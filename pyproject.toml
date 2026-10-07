@@ -9,6 +9,7 @@ dependencies = [
     "huggingface-hub>=0.30",
     "nibabel>=5",
     "numpy>=2",
+    "omegaconf>=2.3",
     "openpyxl>=3.1",
     "pandas>=3",
     "platformdirs>=4",

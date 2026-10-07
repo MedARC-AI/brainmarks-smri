@@ -3,6 +3,7 @@
 from collections.abc import Callable
 
 import numpy as np
+import torch
 from sklearn.metrics import roc_auc_score
 from torch import Tensor
 
@@ -29,6 +30,33 @@ def dice(predicted: Tensor, target: Tensor) -> float:
     if total == 0:
         return 1.0
     return float(2 * overlap / total)
+
+
+def voxel_auroc(probabilities: Tensor, target: Tensor) -> float:
+    """AUROC over voxels, from ranks (ties not merged). NaN without positives."""
+    probabilities = probabilities.flatten()
+    target = target.flatten()
+    n_positive = int(target.sum())
+    n_negative = len(target) - n_positive
+    if n_positive == 0:
+        return np.nan
+    ranks = torch.empty(len(target), dtype=torch.float64, device=target.device)
+    order = probabilities.argsort()
+    ranks[order] = torch.arange(1, len(target) + 1, dtype=torch.float64, device=target.device)
+    positive_rank_sum = float(ranks[target].sum())
+    return (positive_rank_sum - n_positive * (n_positive + 1) / 2) / (n_positive * n_negative)
+
+
+def average_precision(probabilities: Tensor, target: Tensor) -> float:
+    """Average precision over voxels (ties not merged). NaN without positives."""
+    order = probabilities.flatten().argsort(descending=True)
+    sorted_target = target.flatten()[order].float()
+    n_positive = float(sorted_target.sum())
+    if n_positive == 0:
+        return np.nan
+    ranks = torch.arange(1, len(sorted_target) + 1, device=sorted_target.device)
+    precision = sorted_target.cumsum(dim=0) / ranks
+    return float((precision * sorted_target).sum()) / n_positive
 
 
 def bootstrap_ci(

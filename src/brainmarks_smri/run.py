@@ -1,89 +1,85 @@
-"""Run one model on a list of benchmark tasks; one JSON per task in `<output>/<model>/<task>.json`.
-Tasks with an existing result are skipped.
+"""Run one model on one benchmark task; writes `<output_dir>/<model>/<task>.json`.
 
-    python -m brainmarks_smri.run --model neurojepa --tasks abide_diagnosis ixi_age --max-per-split 50
+python -m brainmarks_smri neurojepa abide_diagnosis --overrides max_per_split=50
 """
 
 import argparse
 import datetime
 import json
 import logging
-import subprocess
 import time
+from importlib import resources
 from pathlib import Path
 
 import torch
+from omegaconf import OmegaConf
 
 from brainmarks_smri import probes
+from brainmarks_smri.misc import git_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
-from brainmarks_smri.tasks import TASKS
+from brainmarks_smri.tasks import create_task, list_tasks
 
+DEFAULT_CONFIG = resources.files("brainmarks_smri") / "config" / "default.yaml"
 PROBES = {
     "classification": probes.probe_classification,
     "regression": probes.probe_regression,
     "segmentation": probes.probe_segmentation,
 }
 
-logger = logging.getLogger("brainmarks_smri.run")
+logger = logging.getLogger("brainmarks_smri")
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--model", required=True)
-    parser.add_argument("--model-kwargs", default="{}", help="JSON kwargs for create_model")
-    parser.add_argument("--tasks", nargs="+", default=list(TASKS), choices=list(TASKS))
-    parser.add_argument("--eval-split", default="val", choices=["val", "test"])
-    parser.add_argument("--max-per-split", type=int, default=None, help="mini-splits")
-    parser.add_argument("--output", type=Path, default=Path("results"))
-    parser.add_argument("--batch-size", type=int, default=8)
-    parser.add_argument("--num-workers", type=int, default=8)
-    parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
-    parser.add_argument("--overwrite", action="store_true")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("model")
+    parser.add_argument("task", choices=list_tasks())
+    parser.add_argument("--config", type=Path, help="yaml merged over the default config")
+    parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. max_per_split=50")
     args = parser.parse_args()
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-    model_kwargs = json.loads(args.model_kwargs)
-    model = create_model(args.model, **model_kwargs).to(args.device).eval()
-    git_sha = subprocess.run(
-        ["git", "describe", "--always", "--dirty"],
-        capture_output=True,
-        text=True,
-        cwd=Path(__file__).parent,
-    ).stdout.strip()
-    output_dir = args.output / args.model
-    output_dir.mkdir(parents=True, exist_ok=True)
+    cfg = OmegaConf.load(DEFAULT_CONFIG)
+    if args.config:
+        cfg = OmegaConf.unsafe_merge(cfg, OmegaConf.load(args.config))
+    if args.overrides:
+        cfg = OmegaConf.unsafe_merge(cfg, OmegaConf.from_dotlist(args.overrides))
+    setup_logging(logger)
 
-    for name in args.tasks:
-        path = output_dir / f"{name}.json"
-        if path.exists() and not args.overwrite:
-            logger.info(f"{name}: result exists, skipping")
-            continue
-        logger.info(f"{name}: running")
-        start = time.perf_counter()
-        # one failed task shouldn't lose the others
-        try:
-            task = TASKS[name](eval_split=args.eval_split, max_per_split=args.max_per_split)
-            task.dataset.transform = getattr(model, "transform", None)
-            result = PROBES[task.type](model, task, args.batch_size, args.num_workers)
-        except Exception:
-            logger.exception(f"{name}: failed")
-            continue
-        result = {
-            "task": name,
-            "type": task.type,
-            "dataset": task.dataset.name,
-            "model": args.model,
-            "model_kwargs": model_kwargs,
-            "eval_split": args.eval_split,
-            "max_per_split": args.max_per_split,
-            "git_sha": git_sha,
-            "date": datetime.datetime.now().isoformat(timespec="seconds"),
-            "seconds": time.perf_counter() - start,
-            **result,
-        }
-        path.write_text(json.dumps(result, indent=1))
-        logger.info(f"{name}: {result['metrics']}")
+    path = Path(cfg.output_dir) / args.model / f"{args.task}.json"
+    if path.exists() and not cfg.overwrite:
+        logger.info(f"{path} exists, skipping")
+        return
+    logger.info(f"evaluating {args.model} on {args.task}")
+    logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
+    logger.info(f"cwd: {Path.cwd()}")
+    logger.info(f"git: {git_info()}")
+    logger.info(f"cwd git: {git_info(Path.cwd())}")
+    logger.info(f"config:\n{OmegaConf.to_yaml(cfg)}")
 
+    random_seed(cfg.seed)
+    device = cfg.device or ("cuda" if torch.cuda.is_available() else "cpu")
+    model = create_model(args.model, **cfg.model_kwargs).to(device).eval()
+    task = create_task(args.task, max_per_split=cfg.max_per_split)
+    task.dataset.transform = getattr(model, "transform", None)
 
-if __name__ == "__main__":
-    main()
+    start = time.perf_counter()
+    result = PROBES[task.type](model, task, cfg.batch_size, cfg.num_workers)
+    elapsed = time.perf_counter() - start
+    result = {
+        "model": args.model,
+        "task": args.task,
+        "type": task.type,
+        "dataset": task.dataset.name,
+        "config": OmegaConf.to_container(cfg),
+        "git": git_info(),
+        # the calling repo, e.g. a model's research code
+        "cwd": str(Path.cwd()),
+        "cwd_git": git_info(Path.cwd()),
+        "date": datetime.datetime.now().isoformat(timespec="seconds"),
+        "seconds": elapsed,
+        **result,
+    }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(result, indent=1))
+    logger.info(f"done {args.model} {args.task} in {elapsed:.0f}s\n{json.dumps(result['metrics'])}")
