@@ -2,6 +2,8 @@ import numpy as np
 import torch
 from scipy import ndimage
 
+from brainmarks_smri.logistic import LogisticRegressionVal
+from brainmarks_smri.metrics import dice
 from brainmarks_smri.probes import patchify, resample, unpatchify
 
 
@@ -41,3 +43,18 @@ def test_resample_matches_scipy():
     inside = ndimage.binary_erosion(inside, iterations=2)
     assert inside.sum() > 1000
     np.testing.assert_allclose(actual[inside], expected[inside], atol=1e-4)
+
+
+def test_logistic_regression_val_learns_linear_rule():
+    generator = torch.Generator().manual_seed(0)
+    features = torch.randn(600, 8, generator=generator)
+    # 2 outputs x 2 channels, each a linear rule on the features
+    weights = torch.randn(8, 4, generator=generator)
+    targets = (features @ weights > 0.5).reshape(600, 2, 2)
+    classifier = LogisticRegressionVal(alphas=(1e-1, 1e1, 1e5), max_negative_ratio=None)
+    classifier.fit(features[:400], targets[:400], features[400:500], targets[400:500])
+    predicted = classifier.predict(features[500:])
+    assert predicted.shape == (100, 2, 2)
+    assert classifier.alpha_ != 1e5  # heavy penalty can't fit the rule
+    channel_dice = dice(predicted.permute(2, 0, 1), targets[500:].permute(2, 0, 1))
+    assert (channel_dice > 0.9).all()
