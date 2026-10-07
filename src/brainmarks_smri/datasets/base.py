@@ -51,9 +51,11 @@ class BrainDataset(torch.utils.data.Dataset):
         if str(root).startswith("hf://"):
             from huggingface_hub import snapshot_download
 
-            # download only this dataset's folder, once
-            repo_id = str(root).removeprefix("hf://")
-            root = CACHE_DIR / "datasets" / repo_id
+            # hf://datasets/<org>/<repo>: download this dataset's folder once, into the cache
+            repo_path = str(root).removeprefix("hf://")
+            assert repo_path.startswith("datasets/"), f"expected hf://datasets/<org>/<repo>: {root}"
+            repo_id = repo_path.removeprefix("datasets/")
+            root = CACHE_DIR / "datasets"
             snapshot_download(
                 repo_id, repo_type="dataset", allow_patterns=f"{self.name}/**", local_dir=root
             )
@@ -92,16 +94,17 @@ class BrainDataset(torch.utils.data.Dataset):
         max_per_split: int | None = None,
         derivatives_modality: str | None = None,
     ) -> None:
-        """Set `self.samples`: samples.tsv + splits.tsv joined with the `modality` image and mask
-        paths, and the derivative paths of the image (or of the session's `derivatives_modality`
-        image). Drops samples without derivatives. `max_per_split` keeps the lowest ranks per
-        split (nested, balanced mini-splits)."""
+        """Set `self.samples` from the dataset tables.
+
+        `derivatives_modality`: use the session's image of this modality for the derivatives.
+        `max_per_split`: keep the lowest-rank samples per split (nested, balanced mini-splits).
+        """
         assert modality in self.modalities, f"{self.name}: {modality!r} not in {self.modalities}"
         ids = ["participant_id", "session_id"]
-        read = dict(sep="\t", dtype={"participant_id": str, "session_id": str})
-        images = pd.read_csv(self.root / "tables" / "images.tsv", **read)
-        samples = pd.read_csv(self.root / "tables" / "samples.tsv", **read)
-        splits = pd.read_csv(self.root / "tables" / "splits.tsv", **read)
+        read_kwargs = dict(sep="\t", dtype={"participant_id": str, "session_id": str})
+        images = pd.read_csv(self.root / "tables" / "images.tsv", **read_kwargs)
+        samples = pd.read_csv(self.root / "tables" / "samples.tsv", **read_kwargs)
+        splits = pd.read_csv(self.root / "tables" / "splits.tsv", **read_kwargs)
         samples = samples.merge(splits, on="participant_id")
 
         derivatives_modality = derivatives_modality or modality

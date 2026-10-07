@@ -5,6 +5,7 @@ description = "Structural MRI benchmark datasets"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "einops>=0.8",
     "huggingface-hub>=0.30",
     "nibabel>=5",
     "numpy>=2",

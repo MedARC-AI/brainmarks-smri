@@ -1,55 +1,68 @@
-"""L2 logistic regression for many binary outputs, fit with full-batch L-BFGS in torch.
+"""Multi-output L2 logistic regression in torch, fit with full-batch L-BFGS."""
 
-Used by the segmentation probe, where each patch embedding predicts the labels of the voxels in
-its patch.
-"""
-
+import numpy as np
 import torch
 import torch.nn.functional as F
+from sklearn.model_selection import GroupShuffleSplit
 from torch import Tensor
 
 from brainmarks_smri.metrics import dice
 
 
-class LogisticRegressionVal:
-    """Like sklearn's `LogisticRegressionCV`, with two differences: the penalty is chosen on a
-    validation set rather than by k-fold, and the score is Dice of thresholded probabilities, which
-    also picks a decision threshold per channel.
-
-    Targets are bool (n, n_outputs, n_channels): one binary problem per output and channel, sharing
-    the features. All outputs of a channel share its threshold (for segmentation, the outputs are
-    the voxels of a patch). Features are standardized. Training rows with no positive target are
-    subsampled to about `max_negative_ratio` per row with a positive.
-    """
+class TorchLogisticRegressionCV:
+    """Like sklearn's `LogisticRegressionCV`, but scored by Dice, which also picks the threshold."""
 
     def __init__(
         self,
         alphas: tuple[float, ...] = (1e1, 1e2, 1e3, 1e4, 1e5),
         thresholds: Tensor = torch.logspace(-3, -0.1, 30),
+        cv=GroupShuffleSplit(n_splits=1, test_size=0.2, random_state=0),
+        # rows without a positive target are subsampled to about this many per positive row
         max_negative_ratio: float | None = 10.0,
         max_iter: int = 1000,
         seed: int = 0,
     ):
         self.alphas = alphas
         self.thresholds = thresholds
+        self.cv = cv
         self.max_negative_ratio = max_negative_ratio
         self.max_iter = max_iter
         self.seed = seed
 
     def fit(
-        self, features: Tensor, targets: Tensor, val_features: Tensor, val_targets: Tensor
-    ) -> "LogisticRegressionVal":
-        n_channels = targets.shape[2]
-        self.n_channels_ = n_channels
-        device = features.device
+        self, features: Tensor, targets: Tensor, groups: np.ndarray
+    ) -> "TorchLogisticRegressionCV":
+        """`targets` is (n, n_outputs) bool; outputs share the features and the threshold."""
+        splits = list(self.cv.split(np.zeros(len(groups)), groups=groups))
+        # Dice per (split, alpha, threshold), pooled over the split's validation outputs
+        cv_dice = torch.zeros(len(splits), len(self.alphas), len(self.thresholds))
+        for split_id, (train_ids, val_ids) in enumerate(splits):
+            train_ids = torch.as_tensor(train_ids, device=features.device)
+            val_ids = torch.as_tensor(val_ids, device=features.device)
+            for alpha_id, alpha in enumerate(self.alphas):
+                self.fit_alpha(features[train_ids], targets[train_ids], alpha)
+                val_probabilities = torch.sigmoid(self.decision_function(features[val_ids]))
+                for threshold_id, threshold in enumerate(self.thresholds):
+                    predicted = val_probabilities >= threshold
+                    cv_dice[split_id, alpha_id, threshold_id] = dice(predicted, targets[val_ids])
+        self.cv_dice_ = cv_dice.mean(dim=0)  # (alphas, thresholds)
 
+        best = np.unravel_index(int(self.cv_dice_.argmax()), self.cv_dice_.shape)
+        alpha_id, threshold_id = int(best[0]), int(best[1])
+        self.alpha_ = self.alphas[alpha_id]
+        self.threshold_ = float(self.thresholds[threshold_id])
+        self.fit_alpha(features, targets, self.alpha_)
+        return self
+
+    def fit_alpha(self, features: Tensor, targets: Tensor, alpha: float) -> None:
+        """Fit with one penalty: subsample negative rows, standardize, L-BFGS."""
         if self.max_negative_ratio is not None:
-            positive = targets.flatten(1).any(dim=1)
-            negative_fraction = (
-                self.max_negative_ratio * positive.sum() / (~positive).sum().clamp_min(1)
-            )
+            positive = targets.any(dim=1)
+            n_positive = positive.sum()
+            n_negative = (~positive).sum().clamp_min(1)
+            negative_fraction = self.max_negative_ratio * n_positive / n_negative
             generator = torch.Generator().manual_seed(self.seed)
-            random = torch.rand(len(positive), generator=generator).to(device)
+            random = torch.rand(len(positive), generator=generator).to(features.device)
             keep = positive | (random < negative_fraction)
             features = features[keep]
             targets = targets[keep]
@@ -58,47 +71,20 @@ class LogisticRegressionVal:
         self.mean_ = features.mean(dim=0)
         self.std_ = features.std(dim=0, correction=0).clamp_min(1e-6)
         features = (features - self.mean_) / self.std_
-        targets = targets.flatten(1).float()
-
-        # Dice per (alpha, channel, threshold), pooled over all validation voxels
-        val_targets = val_targets.reshape(-1, n_channels).T  # (C, n_val * n_outputs)
-        self.val_dice_ = torch.zeros(len(self.alphas), n_channels, len(self.thresholds))
-        fits = []
-        for alpha_id, alpha in enumerate(self.alphas):
-            coef, intercept = fit_logistic(features, targets, alpha, self.max_iter)
-            fits.append((coef, intercept))
-            # score this fit through decision_function
-            self.coef_, self.intercept_ = coef, intercept
-            val_probabilities = torch.sigmoid(self.decision_function(val_features))
-            val_probabilities = val_probabilities.reshape(-1, n_channels).T
-            for threshold_id, threshold in enumerate(self.thresholds):
-                predicted = val_probabilities >= threshold
-                self.val_dice_[alpha_id, :, threshold_id] = dice(predicted, val_targets).cpu()
-
-        # one penalty for all channels (best mean over channels), one threshold per channel
-        best_dice_per_alpha = self.val_dice_.max(dim=2).values.mean(dim=1)
-        alpha_id = int(best_dice_per_alpha.argmax())
-        self.alpha_ = self.alphas[alpha_id]
-        self.thresholds_ = self.thresholds[self.val_dice_[alpha_id].argmax(dim=1)]
-        self.coef_, self.intercept_ = fits[alpha_id]
-        return self
+        self.coef_, self.intercept_ = fit_logistic(features, targets.float(), alpha, self.max_iter)
 
     def decision_function(self, features: Tensor) -> Tensor:
-        """Logits, (n, n_outputs, n_channels)."""
         features = (features.float() - self.mean_) / self.std_
-        logits = features @ self.coef_ + self.intercept_
-        return logits.reshape(len(features), -1, self.n_channels_)
+        return features @ self.coef_ + self.intercept_
 
     def predict(self, features: Tensor) -> Tensor:
-        probabilities = torch.sigmoid(self.decision_function(features))
-        return probabilities >= self.thresholds_.to(probabilities.device)
+        return torch.sigmoid(self.decision_function(features)) >= self.threshold_
 
 
 def fit_logistic(
     features: Tensor, targets: Tensor, alpha: float, max_iter: int = 1000
 ) -> tuple[Tensor, Tensor]:
-    """L2 penalized logistic regression fit with L-BFGS. Each target column is a separate binary
-    problem sharing the same features."""
+    """L2 logistic regression with L-BFGS, one binary problem per target column."""
     n, d = features.shape
     n_outputs = targets.shape[1]
     coef = torch.zeros(d, n_outputs, device=features.device, dtype=features.dtype)

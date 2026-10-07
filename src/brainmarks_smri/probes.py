@@ -1,10 +1,4 @@
-"""Linear probes on frozen embeddings. Each probe embeds the task's samples, fits on train,
-predicts eval, and scores with bootstrap CIs.
-
-Classification and regression probe the global embedding with sklearn, tuned by CV inside the
-training set. Segmentation probes the dense embedding: each patch predicts the voxels inside it
-(one sigmoid per voxel and channel, `LogisticRegressionVal`); the penalty and thresholds are chosen
-on a holdout of the training participants. Predictions are scored on the label image grid.
+"""Linear probes on frozen embeddings: embed the task's samples, fit on train, score eval.
 
 The task dataset's `transform` must be the model's transform.
 """
@@ -16,6 +10,7 @@ import nibabel as nib
 import numpy as np
 import torch
 import torch.nn.functional as F
+from einops import rearrange
 from sklearn.linear_model import LogisticRegressionCV, RidgeCV
 from sklearn.metrics import balanced_accuracy_score, mean_absolute_error, r2_score
 from sklearn.pipeline import make_pipeline
@@ -23,7 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from torch import Tensor
 from torch.utils.data import DataLoader, Subset
 
-from brainmarks_smri.logistic import LogisticRegressionVal
+from brainmarks_smri.logistic import TorchLogisticRegressionCV
 from brainmarks_smri.metrics import auroc, bootstrap_ci, dice, pearson_r
 from brainmarks_smri.models.base import EmbeddingOutput, Model
 from brainmarks_smri.tasks import Task
@@ -31,7 +26,6 @@ from brainmarks_smri.tasks import Task
 SEED = 0
 LOGISTIC_CS = np.logspace(-4, 4, 9)
 RIDGE_ALPHAS = np.logspace(-2, 6, 9)
-HOLDOUT_FRACTION = 0.2
 # Logit for voxels without a prediction (dropped tokens, outside the model input): sigmoid ~ 2e-9.
 BACKGROUND_LOGIT = -20.0
 
@@ -126,54 +120,32 @@ def probe_segmentation(
 ) -> dict[str, Any]:
     samples = task.dataset.samples
     device = next(model.parameters()).device
-    channel_names = list(task.channels)
 
-    # Hold out some training participants to choose the penalty and thresholds.
-    train_participants = samples["participant_id"].iloc[task.train_ids]
-    participants = np.sort(train_participants.unique())
-    n_holdout = round(HOLDOUT_FRACTION * len(participants))
-    assert 0 < n_holdout < len(participants), f"{task.name}: too few participants for a holdout"
-    rng = np.random.default_rng(SEED)
-    holdout_participants = rng.choice(participants, n_holdout, replace=False)
-    is_holdout = train_participants.isin(holdout_participants).to_numpy()
-    fit_ids = task.train_ids[~is_holdout]
-    holdout_ids = task.train_ids[is_holdout]
-
-    fit_features, fit_labels = segmentation_patches(model, task, fit_ids, batch_size, num_workers)
-    holdout_features, holdout_labels = segmentation_patches(
-        model, task, holdout_ids, batch_size, num_workers
+    features, labels, groups = segmentation_patches(
+        model, task, task.train_ids, batch_size, num_workers
     )
-    classifier = LogisticRegressionVal(seed=SEED)
-    classifier.fit(
-        fit_features.to(device),
-        fit_labels.to(device),
-        holdout_features.to(device),
-        holdout_labels.to(device),
-    )
+    # the penalty and threshold are tuned on held-out training participants
+    classifier = TorchLogisticRegressionCV()
+    classifier.fit(features.to(device), labels.to(device), groups)
 
     subject_dice = segmentation_dice(model, task, classifier, batch_size, num_workers)
-    metrics = {}
-    for channel, name in enumerate(channel_names):
-        metrics[f"dice_{name}"] = float(subject_dice[:, channel].mean())
-        metrics[f"dice_{name}_ci"] = bootstrap_ci(np.mean, subject_dice[:, channel], seed=SEED)
-    mean_dice = subject_dice.mean(axis=1)
-    metrics["dice_mean"] = float(mean_dice.mean())
-    metrics["dice_mean_ci"] = bootstrap_ci(np.mean, mean_dice, seed=SEED)
-
+    metrics = {
+        "dice": float(subject_dice.mean()),
+        "dice_ci": bootstrap_ci(np.mean, subject_dice, seed=SEED),
+    }
     eval_samples = samples.iloc[task.eval_ids][["participant_id", "session_id"]]
     eval_samples = eval_samples.to_dict("records")
     for record, record_dice in zip(eval_samples, subject_dice):
-        record["dice"] = dict(zip(channel_names, record_dice.tolist()))
+        record["dice"] = float(record_dice)
     return {
-        "channels": task.channels,
-        "n_train": len(fit_ids),
-        "n_holdout": len(holdout_ids),
+        "label_values": task.label_values,
+        "n_train": len(task.train_ids),
         "n_eval": len(task.eval_ids),
         "hyperparameters": {
             "alpha": classifier.alpha_,
-            "thresholds": dict(zip(channel_names, classifier.thresholds_.tolist())),
-            # best Dice over thresholds, (alphas, channels)
-            "holdout_dice": classifier.val_dice_.max(dim=2).values.tolist(),
+            "threshold": classifier.threshold_,
+            # best CV Dice over thresholds, per alpha
+            "cv_dice": classifier.cv_dice_.max(dim=1).values.tolist(),
         },
         "metrics": metrics,
         "eval_samples": eval_samples,
@@ -217,42 +189,46 @@ def global_embeddings(
 
 def segmentation_patches(
     model: Model, task: Task, ids: np.ndarray, batch_size: int, num_workers: int
-) -> tuple[Tensor, Tensor]:
-    """Dense features (n, D) of every token the model kept, and the labels of the voxels in each
-    patch (n, n_voxels, C), resampled onto the model input grid. On CPU, features in fp16."""
+) -> tuple[Tensor, Tensor, np.ndarray]:
+    """Features of the tokens the model kept, their patch voxel labels, and their participants."""
     all_features = []
     all_labels = []
+    all_groups = []
+    px, py, pz = model.patch_size
     embeddings = compute_embeddings(model, task, ids, batch_size, num_workers, return_dense=True)
     for output, targets in embeddings:
         dense = output["dense_embedding"]  # (X, Y, Z, D)
         grid_shape = dense.shape[:3]
-        input_shape = tuple(g * p for g, p in zip(grid_shape, model.patch_size))
+        input_shape = (grid_shape[0] * px, grid_shape[1] * py, grid_shape[2] * pz)
         if output["dense_mask"] is not None:
             kept = output["dense_mask"].to(dense.device)
         else:
             kept = torch.ones(grid_shape, dtype=torch.bool, device=dense.device)
 
         label_image = targets[task.target]
-        channels = label_channels(label_image, task.channels, dense.device)
+        mask = label_mask(label_image, task.label_values, dense.device)
         input_to_label = np.linalg.inv(label_image.affine) @ output["dense_affine"]
-        channels = resample(channels.float(), input_to_label, input_shape, "nearest") > 0.5
-        patches = patchify(channels.permute(1, 2, 3, 0), model.patch_size)  # (X, Y, Z, n_voxels, C)
+        mask = resample(mask[None].float(), input_to_label, input_shape, "nearest")[0] > 0.5
+        patch_labels = rearrange(
+            mask, "(x px) (y py) (z pz) -> x y z (px py pz)", px=px, py=py, pz=pz
+        )
 
-        all_features.append(dense[kept].half().cpu())
-        all_labels.append(patches[kept].cpu())
-    return torch.cat(all_features), torch.cat(all_labels)
+        all_features.append(dense[kept].half().cpu())  # (n_kept, D)
+        all_labels.append(patch_labels[kept].cpu())  # (n_kept, n_patch_voxels)
+        all_groups.extend([targets["participant_id"]] * int(kept.sum()))
+    return torch.cat(all_features), torch.cat(all_labels), np.array(all_groups)
 
 
 def segmentation_dice(
     model: Model,
     task: Task,
-    classifier: LogisticRegressionVal,
+    classifier: TorchLogisticRegressionCV,
     batch_size: int,
     num_workers: int,
 ) -> np.ndarray:
-    """Dice per eval subject and channel (n_eval, C). Patch logits are put back on the model input
-    grid and resampled onto the label image grid; dropped tokens predict background."""
+    """Dice per eval subject, scored on the label image grid."""
     subject_dice = []
+    px, py, pz = model.patch_size
     embeddings = compute_embeddings(
         model, task, task.eval_ids, batch_size, num_workers, return_dense=True
     )
@@ -260,34 +236,32 @@ def segmentation_dice(
         dense = output["dense_embedding"]  # (X, Y, Z, D)
         grid_shape = dense.shape[:3]
         logits = classifier.decision_function(dense.reshape(-1, dense.shape[-1]))
-        logits = logits.reshape(*grid_shape, *logits.shape[1:])  # (X, Y, Z, n_voxels, C)
+        logits = logits.reshape(*grid_shape, -1)  # (X, Y, Z, n_patch_voxels)
         if output["dense_mask"] is not None:
+            # dropped tokens predict background
             logits[~output["dense_mask"].to(logits.device)] = BACKGROUND_LOGIT
-        logits = unpatchify(logits, model.patch_size).permute(3, 0, 1, 2)  # (C, Xi, Yi, Zi)
+        logits = rearrange(logits, "x y z (px py pz) -> (x px) (y py) (z pz)", px=px, py=py, pz=pz)
 
         label_image = targets[task.target]
         label_to_input = np.linalg.inv(output["dense_affine"]) @ label_image.affine
         # shifted so that voxels outside the model input grid get BACKGROUND_LOGIT
-        logits = resample(logits - BACKGROUND_LOGIT, label_to_input, label_image.shape, "bilinear")
+        shifted = logits[None] - BACKGROUND_LOGIT
+        logits = resample(shifted, label_to_input, label_image.shape, "bilinear")[0]
         logits = logits + BACKGROUND_LOGIT
 
-        thresholds = classifier.thresholds_.to(logits.device)[:, None, None, None]
-        predicted = torch.sigmoid(logits) >= thresholds
-        target = label_channels(label_image, task.channels, logits.device)
-        subject_dice.append(dice(predicted, target).cpu().numpy())
-    return np.stack(subject_dice)
+        predicted = torch.sigmoid(logits) >= classifier.threshold_
+        target = label_mask(label_image, task.label_values, logits.device)
+        subject_dice.append(dice(predicted, target))
+    return np.array(subject_dice)
 
 
-def label_channels(
-    label_image: nib.Nifti1Image, channels: dict[str, list[int]], device: torch.device
+def label_mask(
+    label_image: nib.Nifti1Image, label_values: list[int], device: torch.device
 ) -> Tensor:
-    """Binary channels of a label image, (C, X, Y, Z) bool: each is the set of its label values."""
+    """Bool mask of the voxels with one of `label_values`."""
     label = np.asanyarray(label_image.dataobj).astype(np.int64)
     label = torch.as_tensor(label, device=device)
-    masks = []
-    for values in channels.values():
-        masks.append(torch.isin(label, torch.tensor(values, device=device)))
-    return torch.stack(masks)
+    return torch.isin(label, torch.tensor(label_values, device=device))
 
 
 def resample(volume: Tensor, matrix: np.ndarray, output_shape: tuple, mode: str) -> Tensor:
@@ -304,22 +278,3 @@ def resample(volume: Tensor, matrix: np.ndarray, output_shape: tuple, mode: str)
         volume[None], grid, mode=mode, padding_mode="zeros", align_corners=True
     )
     return resampled[0]
-
-
-def patchify(volume: Tensor, patch_size: tuple) -> Tensor:
-    """(X*px, Y*py, Z*pz, C) -> (X, Y, Z, px*py*pz, C)."""
-    px, py, pz = patch_size
-    xi, yi, zi, c = volume.shape
-    x, y, z = xi // px, yi // py, zi // pz
-    volume = volume.reshape(x, px, y, py, z, pz, c)
-    volume = volume.permute(0, 2, 4, 1, 3, 5, 6)
-    return volume.reshape(x, y, z, px * py * pz, c)
-
-
-def unpatchify(patches: Tensor, patch_size: tuple) -> Tensor:
-    """(X, Y, Z, px*py*pz, C) -> (X*px, Y*py, Z*pz, C)."""
-    px, py, pz = patch_size
-    x, y, z, _, c = patches.shape
-    patches = patches.reshape(x, y, z, px, py, pz, c)
-    patches = patches.permute(0, 3, 1, 4, 2, 5, 6)
-    return patches.reshape(x * px, y * py, z * pz, c)
