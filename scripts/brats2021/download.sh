@@ -41,7 +41,7 @@ done
 # package's md5 list; skip the Task 2 `_dcm` folders (~127 GB). Paths keep the package tree.
 LINK='https://faspex.cancerimagingarchive.net/aspera/faspex/public/package?context=eyJyZXNvdXJjZSI6InBhY2thZ2VzIiwidHlwZSI6ImV4dGVybmFsX2Rvd25sb2FkX3BhY2thZ2UiLCJpZCI6IjYzNiIsInBhc3Njb2RlIjoiNDM5YTVhZjM3NGRhYjk3OGExYjExMzA4MTcyZDhlMDdkY2Q5OWMzMSIsInBhY2thZ2VfaWQiOiI2MzYiLCJlbWFpbCI6ImhlbHBAY2FuY2VyaW1hZ2luZ2FyY2hpdmUubmV0In0='
 PKG=RSNA-ASNR-MICCAI-BraTS-2021
-faspex() { uv run --project "$REPO" python -m brainmarks_smri.tcia_faspex get "$LINK" "$@"; }
+faspex() { uv run --project "$REPO" python -m brainmarks_smri.datasets.tcia_faspex get "$LINK" "$@"; }
 check_budget $((17 * 10**9))
 faspex "$OUT/source" "/$PKG.sums"
 faspex "$OUT/source/$PKG" "/$PKG/BraTS2021_TrainingSet" "/$PKG/BraTS2021_ValidationSet"

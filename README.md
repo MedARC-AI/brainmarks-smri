@@ -18,7 +18,7 @@ scripts/
     manifest.sha256      # checksums of source/
     derivatives.sha256   # checksums of derivatives/
     tables/              # tracked copy of the built tables
-src/brainmarks_smri/     # Python helpers: tables.py (table building), tcia_faspex.py (TCIA downloads), models/
+src/brainmarks_smri/     # package: datasets/ (dataset classes, table building, TCIA downloads), models/, tasks, probes, run
 datasets/                # the data (gitignored); this folder is what gets mirrored
 ```
 

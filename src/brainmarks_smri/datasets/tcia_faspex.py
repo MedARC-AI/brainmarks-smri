@@ -1,22 +1,10 @@
-"""List and download files from a TCIA Aspera Faspex package via its public link.
+"""List and download files from a TCIA Aspera Faspex package via its public link (no account).
 
-TCIA distributes its NIfTI and analysis-result releases as Faspex 5 packages. Each
-collection page links a public download URL of the form
-    https://faspex.cancerimagingarchive.net/aspera/faspex/public/package?context=<base64 json>
-No account is needed: the link's `context` is exchanged for an OAuth bearer token, the
-v5 API lists the package and issues a transfer spec (with a FASP token) for chosen paths,
-and `ascp` (installed by `ascli config ascp install`) downloads them over FASP (port 33001).
+    python -m brainmarks_smri.datasets.tcia_faspex ls  <public-link> [<path>]
+    python -m brainmarks_smri.datasets.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
 
-    uv run python -m brainmarks_smri.tcia_faspex ls  <public-link> [<path>]
-    uv run python -m brainmarks_smri.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
-
-`ls` prints `type<TAB>path` for one directory of the package (default: the root).
-`get` downloads each package path (file or directory, recursively) into <dest-dir>/<basename>,
-skipping files whose name matches an --exclude glob (`ascp -E`). Files already present with
-the right size are skipped (`ascp -k 1`; ascp writes `<file>.partial` until a file is complete).
-TCIA's server sometimes stalls or drops a session, so ascp is killed after STALL seconds
-without progress and restarted (it resumes), up to ATTEMPTS times. Progress is new bytes on
-disk or new lines in ascp's log (skipping complete files writes no data but logs each file).
+Needs `ascp` (`ascli config ascp install`) and port 33001. Present files are skipped. TCIA's server
+stalls at times, so ascp is restarted (it resumes) after STALL seconds without progress.
 """
 
 import base64

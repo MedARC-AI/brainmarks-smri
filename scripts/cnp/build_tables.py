@@ -2,7 +2,7 @@
 
     uv run python scripts/cnp/build_tables.py
 
-See `brainmarks_smri.tables` for the table layout.
+See `brainmarks_smri.datasets.tables` for the table layout.
 
 - 272 participants in participants.tsv, one session each (session_id '1'). 265 have a T1w and
   262 a raw multi-direction DWI (modality DTI: 4D, with .bval/.bvec next to the NIfTI). The 7
@@ -16,7 +16,7 @@ See `brainmarks_smri.tables` for the table layout.
 
 import pandas as pd
 
-from brainmarks_smri import tables
+from brainmarks_smri.datasets import tables
 
 NAME = "cnp"
 ROOT = tables.dataset_dir(NAME)

@@ -2,7 +2,7 @@
 
     uv run python scripts/abide1/build_tables.py
 
-See `brainmarks_smri.tables` for the table layout.
+See `brainmarks_smri.datasets.tables` for the table layout.
 
 - 1112 participants (Phenotypic_V1_0b.csv), one session each (session_id '1'); 1102 have a T1w
   (10 UCLA participants have only rs-fMRI and are not complete).
@@ -18,7 +18,7 @@ See `brainmarks_smri.tables` for the table layout.
 
 import pandas as pd
 
-from brainmarks_smri import tables
+from brainmarks_smri.datasets import tables
 
 NAME = "abide1"
 ROOT = tables.dataset_dir(NAME)

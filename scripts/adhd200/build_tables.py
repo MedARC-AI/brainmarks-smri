@@ -2,7 +2,7 @@
 
     uv run python scripts/adhd200/build_tables.py
 
-See `brainmarks_smri.tables` for the table layout.
+See `brainmarks_smri.datasets.tables` for the table layout.
 
 - Participants: the per-site RawDataBIDS/<site>/participants.tsv files (read as latin-1), one
   session each: the BIDS session of the T1w ('1', except 9 WashU participants in ses-2/3/4).
@@ -25,7 +25,7 @@ See `brainmarks_smri.tables` for the table layout.
 
 import pandas as pd
 
-from brainmarks_smri import tables
+from brainmarks_smri.datasets import tables
 
 NAME = "adhd200"
 ROOT = tables.dataset_dir(NAME)

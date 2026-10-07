@@ -1,33 +1,10 @@
-"""Shared helpers for the per-dataset `scripts/<name>/build_tables.py` scripts.
+"""Helpers for the per-dataset `scripts/<name>/build_tables.py` scripts.
 
-Each dataset gets a small set of derived tables in `datasets/<name>/tables/`, built only from
-`datasets/<name>/source/` (which is never modified), plus a tracked copy in
-`scripts/<name>/tables/` so that the splits are versioned:
+Tables go to `datasets/<name>/tables/` with a tracked copy in `scripts/<name>/tables/`, and are
+built only from `source/`. Layout and split conventions: `README_hf.md`.
 
-    images.tsv     one row per image file: participant_id, session_id, modality, desc, path
-    samples.tsv    one row per sample (= scan session): participant_id, session_id, age, sex,
-                   site, then dataset-specific columns (labels/targets) with cleaned values
-    samples.json   description of every samples.tsv column (BIDS sidecar style)
-    splits.tsv     one row per participant: participant_id, split, official_split, rank, complete
-
-`modality` uses one vocabulary across datasets: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD,
-DWI (trace / b1000 diffusion image), ADC, DTI (raw multi-direction diffusion series, 4D or one
-file per volume), mask (segmentations; `desc` says which, e.g. tumor, lesion). `desc` marks
-variants (e.g. bias-corrected, skull-stripped or not) and is n/a for the plain image.
-
-IDs follow BIDS naming: `participant_id` is the person, `session_id` one scan session of that
-person (often the only one). Splits are by participant, so all sessions of a person land in the
-same split.
-
-Splits are train/val/test. Datasets without an official split are split 60/20/20, stratified by
-a dataset-specific key, with a fixed seed. Where the source defines a split, it is recorded in
-`official_split` and our split refines it (e.g. official train -> our train + val), so the two
-columns can differ.
-
-`rank` orders the participants within each split, interleaved across strata, so that every
-prefix is balanced. `complete` marks participants with all core images and primary targets.
-Nested mini-splits for fast benchmarking: the N complete participants with the lowest rank
-(e.g. N = 50, 100, 200, 400), see `mini_split`.
+`modality` vocabulary: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD, DWI (trace / b1000), ADC,
+DTI (raw multi-direction series), mask (segmentations; `desc` says which). `desc` marks variants.
 """
 
 import json
@@ -38,7 +15,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-REPO = Path(__file__).resolve().parents[2]
+REPO = Path(__file__).resolve().parents[3]
 DATA_ROOT = Path(os.environ.get("DATA_ROOT", REPO / "datasets"))
 SEED = 0
 FRACTIONS = {"train": 0.6, "val": 0.2, "test": 0.2}

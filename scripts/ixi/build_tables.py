@@ -2,7 +2,7 @@
 
     uv run python scripts/ixi/build_tables.py
 
-See `brainmarks_smri.tables` for the table layout.
+See `brainmarks_smri.datasets.tables` for the table layout.
 
 - Images: one folder per extracted tarball (source/IXI-T1/ etc.). T1/T2/PD are one NIfTI per
   participant. The DTI is one NIfTI per volume
@@ -26,7 +26,7 @@ import re
 import numpy as np
 import pandas as pd
 
-from brainmarks_smri import tables
+from brainmarks_smri.datasets import tables
 
 NAME = "ixi"
 ROOT = tables.dataset_dir(NAME)

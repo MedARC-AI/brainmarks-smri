@@ -21,6 +21,6 @@ done
 # Images: the exam folders over FASP into source/UCSF-PDGM-v5/, keeping 13 of the 24 files per
 # exam (structural + bias-corrected copies, DWI, ADC, segmentations). Left out: DWI_bias,
 # DTI_eddy_* (fits, raw 4D, bvecs), SWI, SWI_bias, ASL, ASL_M0. The package has no checksum file.
-uv run --project "$REPO" python -m brainmarks_smri.tcia_faspex get "$LINK" "$OUT/source" /UCSF-PDGM-v5 \
+uv run --project "$REPO" python -m brainmarks_smri.datasets.tcia_faspex get "$LINK" "$OUT/source" /UCSF-PDGM-v5 \
     --exclude='*_DWI_bias.nii.gz' --exclude='*_DTI_eddy*' --exclude='*_SWI*' --exclude='*_ASL*'
 write_manifest "$NAME"
