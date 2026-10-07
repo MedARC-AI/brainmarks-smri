@@ -3,6 +3,8 @@
 The task dataset's `transform` must be the model's transform.
 """
 
+import logging
+import time
 from collections.abc import Iterator
 from typing import Any
 
@@ -42,6 +44,8 @@ MAX_NEGATIVE_RATIO = 10.0
 # Logit for voxels without a prediction (dropped tokens, outside the model input): sigmoid ~ 2e-9.
 BACKGROUND_LOGIT = -20.0
 
+logger = logging.getLogger(__name__)
+
 
 def probe_classification(
     model: Model, task: Task, batch_size: int, num_workers: int
@@ -70,7 +74,9 @@ def probe_classification(
             use_legacy_attributes=False,
         ),
     )
+    fit_start = time.perf_counter()
     classifier.fit(train_features, train_labels)
+    logger.info(f"fit logistic regression probe in {time.perf_counter() - fit_start:.0f}s")
     probabilities = classifier.predict_proba(eval_features)
     predictions = probabilities.argmax(axis=1)
 
@@ -104,7 +110,9 @@ def probe_regression(model: Model, task: Task, batch_size: int, num_workers: int
     train_features = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
     eval_features = global_embeddings(model, task, task.eval_ids, batch_size, num_workers)
     regressor = make_pipeline(StandardScaler(), RidgeCV(alphas=RIDGE_ALPHAS))
+    fit_start = time.perf_counter()
     regressor.fit(train_features, train_targets)
+    logger.info(f"fit ridge regression probe in {time.perf_counter() - fit_start:.0f}s")
     predictions = regressor.predict(eval_features)
 
     metrics = {
@@ -144,7 +152,9 @@ def probe_segmentation(
         max_negative_ratio=MAX_NEGATIVE_RATIO,
         seed=SEED,
     )
+    fit_start = time.perf_counter()
     classifier.fit(features.to(device), labels.to(device), groups)
+    logger.info(f"fit segmentation probe in {time.perf_counter() - fit_start:.0f}s")
 
     subject_metrics = {"dice": [], "voxel_auroc": [], "average_precision": []}
     predictions = segmentation_predictions(model, task, classifier, batch_size, num_workers)
@@ -191,6 +201,7 @@ def compute_embeddings(
     batch_size: int,
     num_workers: int,
     return_dense: bool = False,
+    log_every: int = 20,
 ) -> Iterator[tuple[EmbeddingOutput, dict[str, Any]]]:
     """Yield `(embedding output, targets)` for each sample of `task.dataset` in `ids`."""
     loader = DataLoader(
@@ -201,11 +212,23 @@ def compute_embeddings(
         # fork, so the model's transform is not pickled into the workers
         multiprocessing_context="fork" if num_workers > 0 else None,
     )
-    for batch in loader:
+    n_done = 0
+    model_seconds = 0.0
+    start = time.perf_counter()
+    for batch_id, batch in enumerate(loader):
         image_inputs = [image_input for image_input, _ in batch]
         targets = [sample_targets for _, sample_targets in batch]
+        batch_start = time.perf_counter()
         with torch.inference_mode():
             outputs = model.forward_embeddings(image_inputs, return_dense)
+        model_seconds += time.perf_counter() - batch_start
+        n_done += len(batch)
+        if (batch_id + 1) % log_every == 0 or batch_id + 1 == len(loader):
+            elapsed = time.perf_counter() - start
+            logger.info(
+                f"embedded {n_done}/{len(ids)} in {elapsed:.0f}s "
+                f"({n_done / elapsed:.2f} samples/s, model {model_seconds:.0f}s)"
+            )
         yield from zip(outputs, targets)
 
 
