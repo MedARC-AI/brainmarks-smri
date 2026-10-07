@@ -9,8 +9,10 @@ Upstream never reorients, so the slice axis is whatever the file stores as axis 
 to RAS first so the slices are axial. Upstream z-scores over nonzero voxels, which assumes
 skull-stripped input, so `brain_mask` is applied when given. `mni_affine` is unused.
 
-Global embedding: per-slice CLS tokens averaged over the 128 slices, as upstream. Dense: the
-14x14 patch tokens of every slice, a 14x14x128 grid of 16x16x1 patches on the 224x224x128 input.
+Global embedding: per-slice CLS tokens averaged over the 128 slices, as upstream. Dense: the 14x14
+patch tokens of each slice, averaged over blocks of 16 slices, so a 14x14x8 grid of 16x16x16
+patches on the 224x224x128 input. The pooling (ours) keeps the dense grid comparable in size to
+the other models'; the per-slice grid would be 25k tokens per volume.
 
 `dinov3_vitb16` is the same slice pipeline with Meta's natural-image DINOv3 ViT-B/16, the
 DINOv3 baseline in the BrainDINO paper.
@@ -34,7 +36,7 @@ from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_mo
 N_SLICES = 128
 SLICE_SIZE = 224
 IMG_SIZE = (SLICE_SIZE, SLICE_SIZE, N_SLICES)
-PATCH_SIZE = (16, 16, 1)
+PATCH_SIZE = (16, 16, 16)  # in-plane ViT patches, 16 slices pooled
 
 # timm's copy of Meta's DINOv3 ViT-B/16 (LVD-1689M), ungated. Meta's own HF repo is gated.
 DINOV3_REPO_ID = "timm/vit_base_patch16_dinov3.lvd1689m"
@@ -93,6 +95,7 @@ class BrainDINO(nn.Module):
         features = self.backbone.forward_features(slices)
         cls_tokens = features["x_norm_clstoken"].reshape(batch_size, N_SLICES, self.embed_dim)
         grid = SLICE_SIZE // PATCH_SIZE[0]
+        n_slice_blocks = N_SLICES // PATCH_SIZE[2]
         patch_tokens = features["x_norm_patchtokens"].reshape(
             batch_size, N_SLICES, grid, grid, self.embed_dim
         )
@@ -106,8 +109,13 @@ class BrainDINO(nn.Module):
                 dense_mask=None,
             )
             if return_dense:
-                # (slice, row, col) = (z, x, y) -> (x, y, z)
-                output["dense_embedding"] = sample_patches.float().permute(1, 2, 0, 3)
+                # mean over each block of PATCH_SIZE[2] slices
+                blocks = sample_patches.float().reshape(
+                    n_slice_blocks, PATCH_SIZE[2], grid, grid, self.embed_dim
+                )
+                pooled = blocks.mean(dim=1)
+                # (slice block, row, col) = (z, x, y) -> (x, y, z)
+                output["dense_embedding"] = pooled.permute(1, 2, 0, 3)
                 output["dense_affine"] = sample["input_affine"]
             outputs.append(output)
         return outputs

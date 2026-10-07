@@ -78,7 +78,10 @@ def test_forward_embeddings(model: BrainDINO):
 
     output = outputs[0]
     assert output["global_embedding"].shape == (768,)
-    assert output["dense_embedding"].shape == (14, 14, 128, 768)
+    assert output["dense_embedding"].shape == (14, 14, 8, 768)
+    # the dense grid tiles the model input grid
+    grid = output["dense_embedding"].shape[:3]
+    assert tuple(g * p for g, p in zip(grid, model.patch_size)) == (224, 224, 128)
     assert output["dense_affine"].shape == (4, 4)
     assert output["dense_mask"] is None
 
