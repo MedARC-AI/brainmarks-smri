@@ -45,7 +45,8 @@ def main():
         cfg = OmegaConf.unsafe_merge(cfg, OmegaConf.load(args.config))
     if args.overrides:
         cfg = OmegaConf.unsafe_merge(cfg, OmegaConf.from_dotlist(args.overrides))
-    setup_logging(logger)
+    # the root logger, replacing handlers that model packages install on import (e.g. neurojepa)
+    setup_logging(logging.getLogger())
 
     path = Path(cfg.output_dir) / args.model / f"{args.task}.json"
     if path.exists() and not cfg.overwrite:

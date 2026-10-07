@@ -23,6 +23,7 @@ dependencies = [
 [project.optional-dependencies]
 brainiac = ["einops>=0.8", "monai>=1.4"]
 neurojepa = [
+    "cupy-cuda13x[ctk]>=14",
     "monai>=1.4",
     "neurojepa @ git+https://github.com/clane9/Neuro-JEPA.git@e9dff69446f643b6cab8213c15a44523301e51da",
 ]
