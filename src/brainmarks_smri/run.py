@@ -11,6 +11,7 @@ import time
 from importlib import resources
 from pathlib import Path
 
+import numpy as np
 import torch
 from omegaconf import OmegaConf
 
@@ -82,4 +83,7 @@ def main():
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, indent=1))
-    logger.info(f"done {args.model} {args.task} in {elapsed:.0f}s\n{json.dumps(result['metrics'])}")
+    rounded_metrics = {
+        name: np.round(value, 4).tolist() for name, value in result["metrics"].items()
+    }
+    logger.info(f"done {args.model} {args.task} in {elapsed:.0f}s\n{json.dumps(rounded_metrics)}")

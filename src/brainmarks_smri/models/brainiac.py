@@ -12,6 +12,7 @@ MONAI's `ViT(classification=False)` has no CLS token, so that is the corner patc
 mean of all 216 tokens instead.
 """
 
+import logging
 import os
 from pathlib import Path
 from typing import Any
@@ -38,6 +39,8 @@ CHECKPOINT_URL = (
 CHECKPOINT_SHA256 = "f22bdbcae26823a9d9e8aee883c6f24386ba4617339c12269848b6666cc62693"
 
 IMG_SIZE = (96, 96, 96)
+
+logger = logging.getLogger(__name__)
 PATCH_SIZE = (16, 16, 16)
 
 # Header of upstream src/preprocessing/atlases/temp_head.nii.gz (1 mm, LAS)
@@ -145,8 +148,9 @@ def brainiac(checkpoint: str | Path | None = None) -> BrainIAC:
         checkpoint = CACHE_DIR / "checkpoints" / "brainiac" / "BrainIAC.ckpt"
         if not checkpoint.exists():
             checkpoint.parent.mkdir(parents=True, exist_ok=True)
+            logger.info(f"downloading BrainIAC checkpoint (345 MB) to {checkpoint}")
             torch.hub.download_url_to_file(
-                CHECKPOINT_URL, str(checkpoint), hash_prefix=CHECKPOINT_SHA256
+                CHECKPOINT_URL, str(checkpoint), hash_prefix=CHECKPOINT_SHA256, progress=False
             )
 
     # as upstream ViTBackboneNet
