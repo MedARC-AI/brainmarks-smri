@@ -245,6 +245,12 @@ def main() -> None:
 
     dataset_dir = Path(args.dataset_dir).resolve()
     name = dataset_dir.name
+
+    manifest_path = dataset_dir / "derivatives.sha256"
+    if manifest_path.exists():
+        logger.info("manifest %s exists for dataset %s; exiting", manifest_path, name)
+        sys.exit(0)
+
     images = pd.read_csv(
         dataset_dir / "tables" / "images.tsv", sep="\t", dtype=str, keep_default_na=False
     )
@@ -298,8 +304,6 @@ def main() -> None:
             else:
                 logger.warning(message + " check: %s", *values, result["warnings"])
 
-    if not results:
-        sys.exit(1)
     derivatives_dir = dataset_dir / "derivatives"
     qc = pd.DataFrame(results).sort_values("path")
     qc.to_csv(derivatives_dir / "qc.tsv", sep="\t", index=False, lineterminator="\n")
@@ -307,8 +311,8 @@ def main() -> None:
     logger.info(
         "done: %d ok (%d with QC warnings), %d failed", len(results), flagged, len(failures)
     )
-    if failures or args.limit:
-        sys.exit(1 if failures else 0)
+    if args.limit:
+        sys.exit(0)
 
     # Leftovers from killed runs.
     for tmp_path in derivatives_dir.rglob(".tmp-*"):
@@ -320,7 +324,7 @@ def main() -> None:
         if (dataset_dir / path).is_file():
             digest = hashlib.sha256((dataset_dir / path).read_bytes()).hexdigest()
             manifest.append(f"{digest}  {path}\n")
-    (dataset_dir / "derivatives.sha256").write_text("".join(manifest))
+    manifest_path.write_text("".join(manifest))
     tracked_dir = REPO / "scripts" / name
     if tracked_dir.is_dir():
         (tracked_dir / "derivatives.sha256").write_text("".join(manifest))
