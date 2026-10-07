@@ -21,7 +21,9 @@
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
     "HISTFILE": "/home/vscode/.history/bash_history",
-    "PROMPT_COMMAND": "history -a"
+    "PROMPT_COMMAND": "history -a",
+    // uv's Python inside the project, so .venv works on the host and in the container alike.
+    "UV_PYTHON_INSTALL_DIR": "${localWorkspaceFolder}/.python"
   },
   // Don't hand the host's SSH agent to processes in the container.
   "remoteEnv": { "SSH_AUTH_SOCK": "" },
