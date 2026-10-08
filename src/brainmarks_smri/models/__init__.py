@@ -10,7 +10,7 @@ from brainmarks_smri.models.base import (
 )
 
 # Each model needs its own extra. Importing its module registers it; skip the ones not installed.
-for _module in ("brainiac", "braindino", "neurojepa", "neurovfm"):
+for _module in ("brainiac", "braindino", "neurojepa", "neurovfm", "walnut"):
     try:
         importlib.import_module(f"{__name__}.{_module}")
     except ModuleNotFoundError:

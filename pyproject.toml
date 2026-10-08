@@ -32,6 +32,9 @@ neurovfm = [
     "SimpleITK>=2.4",
     "neurovfm @ git+https://github.com/clane9/neurovfm.git@ed3af2dfa1d54433f33432ebd677db6ba10a9e96",
 ]
+walnut = [
+    "walnut-fomo26 @ https://github.com/MedARC-AI/walnut-fomo26/archive/173de005bf055390056aa609a3c58401ed0bdc11.tar.gz",
+]
 braindino = [
     "dinov3 @ git+https://github.com/facebookresearch/dinov3.git@6876159a11b4df116f30f667f8c9888617df0751",
     "gdown>=6.4.1",
