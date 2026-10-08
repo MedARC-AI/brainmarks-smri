@@ -1,7 +1,7 @@
 """List and download files from a TCIA Aspera Faspex package via its public link (no account).
 
-    python -m brainmarks_smri.datasets.tcia_faspex ls  <public-link> [<path>]
-    python -m brainmarks_smri.datasets.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
+    python -m brainmarks_smri.utils.tcia_faspex ls  <public-link> [<path>]
+    python -m brainmarks_smri.utils.tcia_faspex get <public-link> <dest-dir> <path>... [--exclude=<glob>]...
 
 Needs `ascp` (`ascli config ascp install`) and port 33001. Present files are skipped. TCIA's server
 stalls at times, so ascp is restarted (it resumes) after STALL seconds without progress.

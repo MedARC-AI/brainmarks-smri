@@ -16,7 +16,7 @@ import torch
 from omegaconf import OmegaConf
 
 from brainmarks_smri import probes
-from brainmarks_smri.misc import git_info, random_seed, setup_logging
+from brainmarks_smri.utils.misc import git_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
 from brainmarks_smri.tasks import create_task, list_tasks
 
