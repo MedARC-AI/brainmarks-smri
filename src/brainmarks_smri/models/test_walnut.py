@@ -152,3 +152,22 @@ def test_pretrained():
         torch.testing.assert_close(
             output["global_embedding"], alone["global_embedding"], atol=0.05, rtol=0.05
         )
+
+
+def test_dense_pool(model: Walnut):
+    pooled_model = Walnut(model.encoder, dense_pool=2)
+    assert pooled_model.patch_size == (16, 16, 16)
+    sample = model.transform({"image": make_head()})
+    output = model.forward_embeddings([sample], return_dense=True)[0]
+    pooled = pooled_model.forward_embeddings([sample], return_dense=True)[0]
+
+    assert pooled["dense_embedding"].shape == (13, 15, 13, 1024)
+    torch.testing.assert_close(pooled["global_embedding"], output["global_embedding"])
+    # one block: the mean of its live tokens
+    block = (slice(10, 12), slice(4, 6), slice(6, 8))
+    live = output["dense_mask"][block]
+    assert 0 < live.sum() < 8
+    torch.testing.assert_close(
+        pooled["dense_embedding"][5, 2, 3], output["dense_embedding"][block][live].mean(0)
+    )
+    assert pooled["dense_mask"][5, 2, 3]

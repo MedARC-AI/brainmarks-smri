@@ -1,4 +1,4 @@
-"""Run one model on one benchmark task; writes `<output_dir>/<model>/<task>.json`.
+"""Run one model on one benchmark task; writes `<output_dir>/<name>/<task>.json`.
 
 python -m brainmarks_smri neurojepa abide_diagnosis --overrides max_per_split=50
 """
@@ -48,7 +48,8 @@ def main():
     # the root logger, replacing handlers that model packages install on import (e.g. neurojepa)
     setup_logging(logging.getLogger())
 
-    path = Path(cfg.output_dir) / args.model / f"{args.task}.json"
+    name = cfg.name or args.model
+    path = Path(cfg.output_dir) / name / f"{args.task}.json"
     if path.exists() and not cfg.overwrite:
         logger.info(f"{path} exists, skipping")
         return
@@ -70,6 +71,7 @@ def main():
     elapsed = time.perf_counter() - start
     result = {
         "model": args.model,
+        "name": name,
         "task": args.task,
         "type": task.type,
         "dataset": task.dataset.name,
@@ -85,6 +87,6 @@ def main():
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, indent=1))
     rounded_metrics = {
-        name: np.round(value, 4).tolist() for name, value in result["metrics"].items()
+        metric: np.round(value, 4).tolist() for metric, value in result["metrics"].items()
     }
-    logger.info(f"done {args.model} {args.task} in {elapsed:.0f}s\n{json.dumps(rounded_metrics)}")
+    logger.info(f"done {name} {args.task} in {elapsed:.0f}s\n{json.dumps(rounded_metrics)}")

@@ -20,6 +20,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from einops import reduce
 from huggingface_hub import hf_hub_download
 from smri_mae.model_mae import MaskedViT
 from torch import Tensor
@@ -50,9 +51,12 @@ class Walnut(nn.Module):
     embed_dim = 1024
     patch_size = PATCH_SIZE
 
-    def __init__(self, encoder: MaskedViT):
+    def __init__(self, encoder: MaskedViT, dense_pool: int = 1):
         super().__init__()
         self.encoder = encoder
+        # average dense tokens over dense_pool^3 blocks, for comparing at a coarser patch size
+        self.dense_pool = dense_pool
+        self.patch_size = tuple(size * dense_pool for size in PATCH_SIZE)
         self.requires_grad_(False)
         self.eval()
 
@@ -119,8 +123,18 @@ class Walnut(nn.Module):
                 dense_mask = torch.zeros(num_patches, dtype=torch.bool, device=self.device)
                 dense_mask[live_ids] = True
                 # Patchify3D flattens patches in C order, so ids are (x y z) ordered
-                output["dense_embedding"] = dense.reshape(*GRID_SIZE, self.embed_dim)
-                output["dense_mask"] = dense_mask.reshape(GRID_SIZE)
+                dense = dense.reshape(*GRID_SIZE, self.embed_dim)
+                dense_mask = dense_mask.reshape(GRID_SIZE)
+                if self.dense_pool > 1:
+                    # mean over the live tokens of each block
+                    pattern = "(x i) (y j) (z k) ... -> x y z ..."
+                    k = self.dense_pool
+                    dense = reduce(dense, pattern, "sum", i=k, j=k, k=k)
+                    counts = reduce(dense_mask.int(), pattern, "sum", i=k, j=k, k=k)
+                    dense = dense / counts.clamp_min(1)[..., None]
+                    dense_mask = counts > 0
+                output["dense_embedding"] = dense
+                output["dense_mask"] = dense_mask
                 output["dense_affine"] = sample["input_affine"]
             outputs.append(output)
         return outputs
@@ -145,7 +159,7 @@ class Walnut(nn.Module):
 
 
 @register_model
-def walnut(checkpoint: str = CHECKPOINT, revision: str = REVISION) -> Walnut:
+def walnut(checkpoint: str = CHECKPOINT, revision: str = REVISION, dense_pool: int = 1) -> Walnut:
     """Load the encoder from the MAE checkpoint on the HF hub (public)."""
     path = hf_hub_download(REPO_ID, checkpoint, revision=revision)
     state = torch.load(path, map_location="cpu", weights_only=True, mmap=True)["model"]
@@ -156,7 +170,7 @@ def walnut(checkpoint: str = CHECKPOINT, revision: str = REVISION) -> Walnut:
     }
     encoder = vit_large()
     encoder.load_state_dict(state)
-    return Walnut(encoder)
+    return Walnut(encoder, dense_pool=dense_pool)
 
 
 def vit_large(depth: int = 24) -> MaskedViT:
