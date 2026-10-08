@@ -6,11 +6,13 @@ import torch.nn.functional as F
 from sklearn.model_selection import BaseCrossValidator, BaseShuffleSplit, GroupShuffleSplit
 from torch import Tensor
 
-from brainmarks_smri.metrics import dice
-
 
 class TorchLogisticRegressionCV:
-    """Like sklearn's `LogisticRegressionCV`, but scored by Dice, which also picks the threshold."""
+    """Like sklearn's `LogisticRegressionCV`, but scored by Dice, which also picks the threshold.
+
+    Dice is averaged over the validation groups (subjects), like the eval metric; without `groups`
+    it is pooled over all validation rows.
+    """
 
     def __init__(
         self,
@@ -39,11 +41,20 @@ class TorchLogisticRegressionCV:
             max_negative_ratio=self.max_negative_ratio, max_iter=self.max_iter, seed=self.seed
         )
         splits = list(self.cv.split(np.zeros(len(features)), groups=groups))
-        # Dice per (split, alpha, threshold), pooled over the split's validation outputs
+        if groups is None:
+            group_ids = np.zeros(len(features), dtype=int)
+        else:
+            group_ids = np.unique(groups, return_inverse=True)[1]
+        group_ids = torch.as_tensor(group_ids, device=features.device)
+        # Dice per (split, alpha, threshold), averaged over the split's validation groups
         cv_dice = torch.zeros(len(splits), len(self.alphas), len(self.thresholds))
         for split_id, (train_ids, val_ids) in enumerate(splits):
             train_ids = torch.as_tensor(train_ids, device=features.device)
             val_ids = torch.as_tensor(val_ids, device=features.device)
+            val_targets = targets[val_ids]
+            # val groups numbered 0..n_val_groups-1
+            _, val_groups = torch.unique(group_ids[val_ids], return_inverse=True)
+            n_val_groups = int(val_groups.max()) + 1
             for alpha_id, alpha in enumerate(self.alphas):
                 coef, intercept = fit_logistic(
                     features[train_ids], targets[train_ids], alpha, **fit_kwargs
@@ -52,7 +63,14 @@ class TorchLogisticRegressionCV:
                 val_probabilities = torch.sigmoid(val_logits)
                 for threshold_id, threshold in enumerate(self.thresholds):
                     predicted = val_probabilities >= threshold
-                    cv_dice[split_id, alpha_id, threshold_id] = dice(predicted, targets[val_ids])
+                    # metrics.dice per group, vectorized: rows are patches, many per group
+                    overlap = torch.zeros(n_val_groups, device=features.device)
+                    overlap.index_add_(0, val_groups, (predicted & val_targets).sum(1).float())
+                    total = torch.zeros(n_val_groups, device=features.device)
+                    total.index_add_(0, val_groups, (predicted.sum(1) + val_targets.sum(1)).float())
+                    # an empty prediction of an empty target is 1, as in metrics.dice
+                    group_dice = torch.where(total > 0, 2 * overlap / total.clamp(min=1), 1.0)
+                    cv_dice[split_id, alpha_id, threshold_id] = group_dice.mean()
         self.cv_dice_ = cv_dice.mean(dim=0)  # (alphas, thresholds)
 
         best = np.unravel_index(int(self.cv_dice_.argmax()), self.cv_dice_.shape)

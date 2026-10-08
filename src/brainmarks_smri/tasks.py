@@ -105,9 +105,16 @@ def cnp_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> 
 @register_task
 def adhd_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("adhd200", modality="T1w")
-    # Brown's test participants have no released labels.
-    keep = dataset.samples["adhd"].notna()
-    train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
+    samples = dataset.samples
+    # Site predicts the label (WashU is all controls, Pittsburgh nearly), so keep equal numbers of
+    # ADHD and TDC per site and split, lowest rank first. Brown's test labels were never released.
+    keep = pd.Series(False, index=samples.index)
+    for _, site_split in samples[samples["adhd"].notna()].groupby(["site", "split"]):
+        class_counts = site_split["adhd"].value_counts()
+        n_per_class = 0 if len(class_counts) < 2 else class_counts.min()
+        for _, rows in site_split.groupby("adhd"):
+            keep[rows.nsmallest(n_per_class, "rank").index] = True
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
     return Task(
         name="adhd_diagnosis",
         type="classification",
