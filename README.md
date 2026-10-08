@@ -1,47 +1,53 @@
 # Brainmarks-sMRI
 
-Benchmark datasets for evaluating structural MRI foundation models. The data is collected unmodified from the original sources, with pinned versions, checksums and provenance.
+An open benchmark for structural brain MRI foundation models. We train linear probes on frozen model embeddings to predict clinical and demographic targets and to segment lesions. The benchmark is a work in progress, so tasks and APIs may change.
 
-This repo holds the code that builds the collection. The data itself is mirrored on Hugging Face at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The dataset index, licenses and table schemas are in the dataset card, [`README_hf.md`](README_hf.md).
-
-## Layout
-
-```
-scripts/
-  lib.sh                 # shared bash helpers
-  upload.sh              # uploads datasets/ to the Hugging Face mirror
-  preprocess.py          # brain masks + affines to MNI into datasets/<name>/derivatives/
-  <name>/
-    download.sh          # downloads the release into datasets/<name>/source/ (resumable)
-    build_tables.py      # builds datasets/<name>/tables/ from source/
-    README.md            # source, version, license, citation, contents, exclusions
-    manifest.sha256      # checksums of source/
-    derivatives.sha256   # checksums of derivatives/
-    tables/              # tracked copy of the built tables
-src/brainmarks_smri/     # package: datasets/ (dataset classes, table building, TCIA downloads), models/, tasks, probes, run
-datasets/                # the data (gitignored); this folder is what gets mirrored
-```
-
-`download.sh` and `build_tables.py` also copy the dataset's README into `datasets/<name>/`, so each dataset folder describes itself.
-
-## Reproducing
-
-Requirements: [uv](https://docs.astral.sh/uv/), `curl`, the [AWS CLI](https://aws.amazon.com/cli/) (anonymous S3 for ABIDE I and ADHD-200), and for the TCIA datasets (UCSF-PDGM, UPENN-GBM, BraTS 2021) the Aspera `ascp` binary (`gem install aspera-cli && ascli config ascp install`) plus outbound TCP/UDP port 33001. The [devcontainer](.devcontainer/) sets all of this up.
+## Install
 
 ```sh
-uv sync                                         # dependencies + the brainmarks_smri package
-bash scripts/pixar/download.sh                  # download into datasets/pixar/source/
-(cd datasets/pixar && sha256sum -c --quiet manifest.sha256)  # verify
-uv run python scripts/pixar/build_tables.py     # rebuild datasets/pixar/tables/
-uv run --extra preprocess scripts/preprocess.py datasets/pixar  # rebuild datasets/pixar/derivatives/
+git clone https://github.com/MedARC-AI/brainmarks-smri && cd brainmarks-smri
+uv sync --all-extras
 ```
 
-- Each dataset is pinned to a fixed release. Re-running `download.sh` only fetches missing files. If the scripts reproduce the collection, `git diff` on the tracked manifest and tables shows no changes.
-- Some sources (the INDI S3 buckets for ABIDE I and ADHD-200, and IXI) are not versioned. For those, the manifest detects changes but cannot restore old files; the Hugging Face mirror keeps the collected copy.
-- The TCIA downloads are the slow ones: about 17 min for BraTS 2021 and 25 min for UCSF-PDGM. A complete re-run transfers nothing but still takes 12–17 min, because `ascp` checks every file against the server.
+Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, `neurovfm`, `walnut`. Some weights are gated on Hugging Face. Accept their terms first.
 
-To publish to the mirror: `bash scripts/upload.sh`. It checks every dataset against its manifest, creates the repo if needed with an automatic access gate, and uploads (resumable).
+## Data
+
+The benchmark uses ten public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
+
+We plan to host the datasets at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri) and download them automatically. This is still under construction. For now, the benchmark reads from a local `datasets/` folder (or `$DATA_ROOT`). The scripts in `scripts/` show how we downloaded and built each dataset.
+
+## Run
+
+```sh
+uv run --all-extras python -m brainmarks_smri neurojepa ixi_age
+```
+
+Each run evaluates one model on one task. The results go to `output/<model>/<task>.json`. This file has the metrics with bootstrap confidence intervals, and the prediction for each sample. Default settings are in [`config/default.yaml`](src/brainmarks_smri/config/default.yaml). You can change them on the command line, e.g. `--overrides max_per_split=50`.
+
+| Type | Tasks | Probe | Metric |
+|---|---|---|---|
+| classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS | logistic regression | AUROC |
+| regression | IXI age, OpenBHB age | ridge | R² |
+| segmentation | BraTS tumor regions (3), SOOP stroke lesion | patch-level logistic regression | Dice |
+
+Probe hyperparameters are tuned by cross-validation on the train split. Scores are reported on the val split. By default, each split is capped at 300 samples.
+
+## Add a model
+
+A model is an `nn.Module` with two methods, `transform` and `forward_embeddings`. You also register a function that builds the model and loads its weights. The full contract is in [`models/base.py`](src/brainmarks_smri/models/base.py).
+
+```python
+@register_model
+def my_model() -> MyModel:  # name, embed_dim, patch_size
+    ...
+
+# transform(sample) -> anything: preprocess one image on CPU.
+#   sample = {"image": Nifti1Image, "brain_mask": Nifti1Image, "mni_affine": 4x4 array}
+# forward_embeddings(samples, return_dense=False) -> one dict per sample:
+#   global_embedding (D,), and for segmentation dense_embedding (X, Y, Z, D) + dense_affine
+```
 
 ## License
 
-The code is under the [MIT License](LICENSE). Each dataset keeps its original license, listed in its README and in the dataset card. The tracked tables in `scripts/<name>/tables/` are derived from each dataset and follow its license.
+The code is MIT licensed. Each dataset keeps its original license. Three of them are non-commercial. Please cite the sources listed in each dataset's README.
