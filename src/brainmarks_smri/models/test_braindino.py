@@ -86,9 +86,11 @@ def test_forward_embeddings(model: BrainDINO):
     assert output["dense_mask"] is None
 
 
-@pytest.mark.skipif("BRAINDINO_CKPT" not in os.environ, reason="BrainDINO weights are unreleased")
+@pytest.mark.skipif(
+    "BRAINDINO_CHECKPOINT_URL" not in os.environ, reason="BrainDINO weights are shared on request"
+)
 def test_pretrained():
-    model = create_model("braindino", checkpoint=os.environ["BRAINDINO_CKPT"])
+    model = create_model("braindino")
     outputs = model.forward_embeddings([model.transform({"image": make_head()})])
     assert torch.isfinite(outputs[0]["global_embedding"]).all()
 

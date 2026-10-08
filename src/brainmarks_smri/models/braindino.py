@@ -1,7 +1,8 @@
 """BrainDINO: a DINOv3 ViT-B/16 (4 register tokens) pretrained on 2D brain MRI slices.
 
-Weights are not released yet, so this follows the upstream downstream code
-(`networks/SliceStudent.py`, dataset loaders) and has only been run with random weights.
+Follows the upstream downstream code (`networks/SliceStudent.py`, dataset loaders). The
+weights are shared by the authors on request; set `BRAINDINO_CHECKPOINT_URL` to their Google
+Drive link.
 
 Each volume is z-scored over nonzero voxels (after a 1-99 percentile clip), resized to 128
 slices along array axis 2, and each slice is resized to 224x224 and repeated to 3 channels.
@@ -18,11 +19,15 @@ the other models'; the per-slice grid would be 25k tokens per volume.
 DINOv3 baseline in the BrainDINO paper.
 """
 
+import logging
+import os
 from pathlib import Path
 from typing import Any
 
+import gdown
 import nibabel as nib
 import numpy as np
+import platformdirs
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -32,6 +37,12 @@ from huggingface_hub import hf_hub_download
 from safetensors.torch import load_file
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
+
+logger = logging.getLogger(__name__)
+
+CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
+# official teacher checkpoint (iteration 57999), from the authors on request
+CHECKPOINT_SHA256 = "990c2bcebac31b1a95d5e52f71db5d26c8552ff71896827030f8239a171a6901"
 
 N_SLICES = 128
 SLICE_SIZE = 224
@@ -122,12 +133,25 @@ class BrainDINO(nn.Module):
 
 
 @register_model
-def braindino(checkpoint: str | Path) -> BrainDINO:
+def braindino(checkpoint: str | Path | None = None) -> BrainDINO:
     """Load a DINOv3-style checkpoint (`teacher`, `model` or a bare state dict), as upstream
-    SliceStudent does, but strictly."""
+    SliceStudent does, but strictly. Downloaded from `BRAINDINO_CHECKPOINT_URL` into `CACHE_DIR`
+    if not given."""
+    if checkpoint is None:
+        checkpoint = CACHE_DIR / "checkpoints" / "braindino" / "model.pth"
+        if not checkpoint.exists():
+            url = os.environ.get("BRAINDINO_CHECKPOINT_URL")
+            if url is None:
+                raise RuntimeError("set BRAINDINO_CHECKPOINT_URL or pass checkpoint")
+            checkpoint.parent.mkdir(parents=True, exist_ok=True)
+            logger.info(f"downloading BrainDINO checkpoint (527 MB) to {checkpoint}")
+            gdown.cached_download(
+                url, str(checkpoint), hash=f"sha256:{CHECKPOINT_SHA256}", quiet=True
+            )
+
     # as upstream SliceStudent
     backbone = vit_base(layerscale_init=1e-5, n_storage_tokens=4, qkv_bias=False, mask_k_bias=True)
-    dino_checkpoint = torch.load(checkpoint, map_location="cpu", weights_only=False)
+    dino_checkpoint = torch.load(checkpoint, map_location="cpu", weights_only=True)
     state_dict = dino_checkpoint.get("teacher", dino_checkpoint.get("model", dino_checkpoint))
     state_dict = {
         key.replace("backbone.", ""): value

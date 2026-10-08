@@ -34,6 +34,7 @@ neurovfm = [
 ]
 braindino = [
     "dinov3 @ git+https://github.com/facebookresearch/dinov3.git@6876159a11b4df116f30f667f8c9888617df0751",
+    "gdown>=6.4.1",
 ]
 preprocess = [
     "antspyx>=0.6.3",  # 0.6.1 ignores the random seed
