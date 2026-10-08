@@ -37,3 +37,7 @@ tmp
 
 # Subdirectories
 /third_party/
+
+# Output
+slurms/
+output/
