@@ -91,13 +91,13 @@ class BrainDataset(torch.utils.data.Dataset):
     def load_samples(
         self,
         modality: str,
-        max_per_split: int | None = None,
         derivatives_modality: str | None = None,
+        desc_pattern: str | None = None,
     ) -> None:
         """Set `self.samples` from the dataset tables.
 
         `derivatives_modality`: use the session's image of this modality for the derivatives.
-        `max_per_split`: keep the lowest-rank samples per split (nested, balanced mini-splits).
+        `desc_pattern`: regex for the images' desc; by default, images without a desc.
         """
         assert modality in self.modalities, f"{self.name}: {modality!r} not in {self.modalities}"
         ids = ["participant_id", "session_id"]
@@ -108,11 +108,15 @@ class BrainDataset(torch.utils.data.Dataset):
         samples = samples.merge(splits, on="participant_id")
 
         derivatives_modality = derivatives_modality or modality
+        if desc_pattern is None:
+            desc_matches = images["desc"].isna()
+        else:
+            desc_matches = images["desc"].fillna("").str.fullmatch(desc_pattern)
         for column, image_modality in [
             ("image_path", modality),
             ("derivatives_of", derivatives_modality),
         ]:
-            selected = images[(images["modality"] == image_modality) & images["desc"].isna()]
+            selected = images[(images["modality"] == image_modality) & desc_matches]
             assert not selected.duplicated(ids).any(), f"{self.name}: several {image_modality}"
             selected = selected[ids + ["path"]].rename(columns={"path": column})
             samples = samples.merge(selected, on=ids)
@@ -130,8 +134,6 @@ class BrainDataset(torch.utils.data.Dataset):
             logger.warning(f"{self.name}: dropping {(~exists).sum()} samples without derivatives")
             samples = samples[exists]
 
-        if max_per_split is not None:
-            samples = samples.sort_values("rank").groupby("split").head(max_per_split)
         self.samples = samples.sort_values(ids).reset_index(drop=True)
 
 

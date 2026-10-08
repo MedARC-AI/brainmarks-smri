@@ -1,5 +1,5 @@
-"""BraTS 2021: tumor segmentation (training cases only) and MGMT. Skull-stripped, co-registered
-sequences, so every sequence uses the session's T1w derivatives."""
+"""UCSF-PDGM: IDH and other glioma targets, tumor segmentation. Skull-stripped, co-registered
+sequences (not the `bias` copies), so every sequence uses the session's T1w derivatives."""
 
 from pathlib import Path
 
@@ -7,9 +7,9 @@ from brainmarks_smri.datasets.base import BrainDataset, register_dataset
 
 
 @register_dataset
-class BraTS2021(BrainDataset):
-    name = "brats2021"
-    modalities = ("T1w", "T1c", "T2w", "FLAIR")
+class UCSFPDGM(BrainDataset):
+    name = "ucsf_pdgm"
+    modalities = ("T1w", "T1c", "T2w", "FLAIR", "DWI", "ADC")
 
     def __init__(
         self,

@@ -14,9 +14,8 @@ class ABIDE1(BrainDataset):
         self,
         root: str | Path | None = None,
         modality: str = "T1w",
-        max_per_split: int | None = None,
         transform=None,
         target_transform=None,
     ):
         super().__init__(root, transform, target_transform)
-        self.load_samples(modality, max_per_split)
+        self.load_samples(modality)
