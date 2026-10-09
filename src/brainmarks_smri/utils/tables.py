@@ -4,7 +4,7 @@ Tables go to `datasets/<name>/tables/` with a tracked copy in `scripts/<name>/ta
 built only from `source/`. Layout and split conventions: `README_hf.md`.
 
 `modality` vocabulary: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD, DWI (trace / b1000), ADC,
-DTI (raw multi-direction series), mask (segmentations; `desc` says which). `desc` marks variants.
+mask (segmentations; `desc` says which). `desc` marks variants; the main image has none.
 """
 
 import json

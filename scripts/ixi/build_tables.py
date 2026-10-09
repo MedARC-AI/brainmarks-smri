@@ -4,12 +4,9 @@
 
 See `brainmarks_smri.utils.tables` for the table layout.
 
-- Images: one folder per extracted tarball (source/IXI-T1/ etc.). T1/T2/PD are one NIfTI per
-  participant. The DTI is one NIfTI per volume
-  (desc `vol-NN`), 16-17 per participant, with the shared gradient table in bvals.txt/bvecs.txt.
-  Caution: the gradient table has 16 entries, but 397 of 400 participants have 17 volumes.
-- Participants: everyone with at least one image (584; 3 have no T1). participant_id is `IXI<id>` with 3+
-  digits (as in the file names); site (Guys/HH/IOP) comes from the file names.
+- Images: one folder per extracted tarball (source/IXI-T1/ etc.), one NIfTI per participant.
+- Participants: everyone with at least one image (582; 1 has no T1). participant_id is `IXI<id>`
+  with 3+ digits (as in the file names); site (Guys/HH/IOP) comes from the file names.
 - Demographics (IXI.xls, sheet Table): 0 means missing for the coded columns, height and weight.
   Heights outside 120-220 cm and weights outside 30-250 kg are entry errors (e.g. 1520, 710):
   n/a. Ethnicity code 2 is not in the lookup sheet and is kept as 'code 2 (undocumented)'.
@@ -31,8 +28,8 @@ from brainmarks_smri.utils import tables
 NAME = "ixi"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
-FOLDERS = {"T1": "T1w", "T2": "T2w", "PD": "PD", "DTI": "DTI"}
-FILE_NAME = re.compile(r"IXI(\d+)-(Guys|HH|IOP)-(\d+)-(T1|T2|PD|DTI)(?:-(\d+))?\.nii\.gz$")
+FOLDERS = {"T1": "T1w", "T2": "T2w", "PD": "PD"}
+FILE_NAME = re.compile(r"IXI(\d+)-(Guys|HH|IOP)-(\d+)-(T1|T2|PD)\.nii\.gz$")
 AGE_BINS = [0, 30, 45, 60, 75, np.inf]
 HEIGHT_CM = (120, 220)  # plausible ranges; values outside (e.g. 1520, 75) are entry errors -> n/a
 WEIGHT_KG = (30, 250)
@@ -51,14 +48,13 @@ def images() -> pd.DataFrame:
         for path in sorted(folder.iterdir()):
             match = FILE_NAME.match(path.name)
             assert match and match[4] == folder_name, f"unexpected file {path}"
-            number, site, _, _, volume = match.groups()
-            desc = f"vol-{volume}" if volume else None
+            number, site, _, _ = match.groups()
             rows.append(
                 (
                     f"IXI{int(number):03d}",
                     "1",
                     modality,
-                    desc,
+                    None,
                     str(path.relative_to(ROOT)),
                     site,
                 )
@@ -174,10 +170,10 @@ def main() -> None:
     img = images()
     smp, columns = samples(img)
     img = img.drop(columns="site")
-    assert len(smp) == 584
+    assert len(smp) == 582
 
     participants = smp.set_index("participant_id")
-    core = img[img.modality.isin(["T1w", "T2w", "PD"])].groupby("participant_id").modality.nunique()
+    core = img.groupby("participant_id").modality.nunique()
     complete = (core.reindex(participants.index) == 3) & participants.age.notna()
     age_bin = pd.cut(participants.age, AGE_BINS, right=False).astype(str)
     strata = participants.site + "_" + age_bin

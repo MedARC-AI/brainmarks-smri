@@ -908,8 +908,6 @@ sub-0051228	1	8.36	F	UCLA_1	UCLA_1	ASD	autism	R	95.0	91.0	98.0	13.0	7.0	n/a	True
 sub-0051229	1	14.59	M	UCLA_1	UCLA_1	ASD	autism	R	95.0	115.0	77.0	9.0	3.0	n/a	False
 sub-0051230	1	17.53	F	UCLA_1	UCLA_1	ASD	autism	R	127.0	132.0	116.0	3.0	n/a	n/a	False
 sub-0051231	1	10.28	M	UCLA_1	UCLA_1	ASD	autism	R	103.0	104.0	98.0	14.0	9.0	n/a	False
-sub-0051232	1	15.79	M	UCLA_1	n/a	ASD	autism	R	89.0	94.0	88.0	19.0	10.0	n/a	False
-sub-0051233	1	12.75	M	UCLA_1	n/a	ASD	autism	R	79.0	90.0	72.0	4.0	2.0	n/a	True
 sub-0051234	1	10.91	M	UCLA_1	UCLA_1	ASD	autism	R	87.0	93.0	89.0	14.0	8.0	n/a	False
 sub-0051235	1	10.67	M	UCLA_1	UCLA_1	ASD	autism	R	132.0	130.0	122.0	15.0	10.0	n/a	False
 sub-0051236	1	12.42	M	UCLA_1	UCLA_1	ASD	autism	R	89.0	85.0	94.0	10.0	7.0	n/a	True
@@ -918,12 +916,6 @@ sub-0051238	1	10.85	M	UCLA_1	UCLA_1	ASD	autism	R	73.0	67.0	82.0	15.0	9.0	n/a	Fal
 sub-0051239	1	13.67	M	UCLA_1	UCLA_1	ASD	autism	R	86.0	98.0	83.0	10.0	8.0	n/a	True
 sub-0051240	1	14.96	M	UCLA_1	UCLA_1	ASD	autism	R	121.0	106.0	120.0	14.0	8.0	n/a	False
 sub-0051241	1	10.9	M	UCLA_1	UCLA_1	ASD	autism	R	95.0	87.0	105.0	13.0	8.0	n/a	True
-sub-0051242	1	14.14	F	UCLA_1	n/a	ASD	autism	R	81.0	79.0	86.0	10.0	6.0	n/a	True
-sub-0051243	1	11.69	M	UCLA_1	n/a	ASD	autism	R	101.0	96.0	100.0	14.0	7.0	n/a	True
-sub-0051244	1	13.09	M	UCLA_1	n/a	ASD	autism	R	n/a	83.0	90.0	12.0	7.0	n/a	True
-sub-0051245	1	14.98	M	UCLA_1	n/a	ASD	autism	R	64.0	59.0	73.0	16.0	n/a	n/a	False
-sub-0051246	1	13.1	M	UCLA_1	n/a	ASD	autism	R	84.0	85.0	87.0	14.0	9.0	n/a	False
-sub-0051247	1	11.97	M	UCLA_1	n/a	ASD	autism	R	118.0	108.0	114.0	16.0	10.0	n/a	True
 sub-0051248	1	13.5	M	UCLA_1	UCLA_1	ASD	autism	R	110.0	99.0	110.0	14.0	7.0	n/a	True
 sub-0051249	1	8.49	M	UCLA_1	UCLA_1	ASD	autism	R	107.0	112.0	103.0	17.0	9.0	n/a	False
 sub-0051250	1	14.88	M	UCLA_1	UCLA_1	TDC	control	R	110.0	108.0	110.0	n/a	n/a	n/a	True
@@ -946,7 +938,6 @@ sub-0051266	1	14.03	M	UCLA_1	UCLA_1	TDC	control	R	108.0	107.0	108.0	n/a	n/a	n/a	
 sub-0051267	1	11.25	F	UCLA_1	UCLA_1	TDC	control	R	118.0	119.0	112.0	n/a	n/a	n/a	False
 sub-0051268	1	17.78	M	UCLA_1	UCLA_1	TDC	control	R	105.0	99.0	109.0	n/a	n/a	n/a	False
 sub-0051269	1	14.29	M	UCLA_1	UCLA_1	TDC	control	R	94.0	95.0	95.0	n/a	n/a	n/a	False
-sub-0051270	1	11.08	M	UCLA_1	n/a	TDC	control	R	117.0	113.0	117.0	n/a	n/a	n/a	False
 sub-0051271	1	12.09	M	UCLA_1	UCLA_1	TDC	control	R	113.0	121.0	102.0	n/a	n/a	n/a	False
 sub-0051272	1	13.41	M	UCLA_1	UCLA_1	TDC	control	R	84.0	94.0	77.0	n/a	n/a	n/a	False
 sub-0051273	1	12.68	M	UCLA_1	UCLA_1	TDC	control	R	104.0	109.0	98.0	n/a	n/a	n/a	False
@@ -978,7 +969,6 @@ sub-0051306	1	11.66	M	UCLA_2	UCLA_2	TDC	control	R	119.0	115.0	119.0	n/a	n/a	n/a	
 sub-0051307	1	12.15	M	UCLA_2	UCLA_2	TDC	control	R	128.0	127.0	124.0	n/a	n/a	n/a	False
 sub-0051308	1	9.79	M	UCLA_2	UCLA_2	TDC	control	R	124.0	125.0	118.0	n/a	n/a	n/a	False
 sub-0051309	1	11.9	M	UCLA_2	UCLA_2	TDC	control	R	107.0	116.0	97.0	n/a	n/a	n/a	False
-sub-0051310	1	11.7	M	UCLA_2	n/a	TDC	control	R	87.0	90.0	88.0	n/a	n/a	n/a	False
 sub-0051311	1	11.95	M	UCLA_2	UCLA_2	TDC	control	R	103.0	96.0	109.0	n/a	n/a	n/a	False
 sub-0051312	1	12.9	M	UCLA_2	UCLA_2	TDC	control	R	123.0	123.0	116.0	n/a	n/a	n/a	False
 sub-0051313	1	13.36	M	UCLA_2	UCLA_2	TDC	control	R	112.0	112.0	109.0	n/a	n/a	n/a	False

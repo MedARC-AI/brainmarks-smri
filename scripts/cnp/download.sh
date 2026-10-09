@@ -6,9 +6,9 @@ source "$(dirname "$0")/../lib.sh"
 NAME=cnp
 OUT=$DATA_ROOT/$NAME
 
-check_budget $((15 * 10**9))
-# Structural + DWI only: skip fMRI (func/, task-*_bold.json) and the per-subject
+check_budget $((4 * 10**9))
+# Structural only: skip fMRI (func/, task-*_bold.json), the raw DTI (dwi/) and the per-subject
 # stop-signal training behavioural logs (beh/, task-* files). The snapshot has no derivatives/.
 uvx openneuro-py@2026.9.1 download --dataset ds000030 --tag 1.0.0 --target-dir "$OUT/source" \
-    --exclude 'sub-*/func' --exclude 'sub-*/beh' --exclude 'task-*'
+    --exclude 'sub-*/func' --exclude 'sub-*/dwi' --exclude 'sub-*/beh' --exclude 'task-*'
 write_manifest "$NAME"

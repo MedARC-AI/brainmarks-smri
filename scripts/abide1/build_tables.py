@@ -4,8 +4,8 @@
 
 See `brainmarks_smri.utils.tables` for the table layout.
 
-- 1112 participants (Phenotypic_V1_0b.csv), one session each (session_id '1'); 1102 have a T1w
-  (10 UCLA participants have only rs-fMRI and are not complete).
+- 1112 participants (Phenotypic_V1_0b.csv), one session each (session_id '1'). The 1102 with a
+  T1w are the samples; 10 UCLA participants have only rs-fMRI and are dropped.
 - Images: the per-site BIDS folders RawDataBIDS/<site folder>/sub-*/anat/. participant_id is the
   BIDS label (`sub-0050002`, the 7-digit zero-padded SUB_ID).
 - site = SITE_ID (20 sites); `site_folder` = the BIDS folder (24, e.g. CMU_a/CMU_b).
@@ -13,7 +13,7 @@ See `brainmarks_smri.utils.tables` for the table layout.
   ADOS/SRS totals, handedness, medication). -9999 and the stray '`' are missing values. The full
   file and its legend (ABIDE_LEGEND_V1.02.pdf) stay in source/.
 - No official split: 60/20/20, stratified by diagnosis x site.
-- Complete: T1w and diagnosis.
+- Complete: diagnosis.
 """
 
 import pandas as pd
@@ -127,12 +127,10 @@ def main() -> None:
     assert len(smp) == 1112 and smp.participant_id.is_unique
     assert (img.modality == "T1w").all() and img.participant_id.is_unique and len(img) == 1102
     assert set(img.participant_id) <= set(smp.participant_id)
+    smp = smp[smp.participant_id.isin(img.participant_id)].reset_index(drop=True)
 
     participants = smp.set_index("participant_id")
-    complete = pd.Series(
-        participants.index.isin(img.participant_id) & participants.diagnosis.notna().values,
-        index=participants.index,
-    )
+    complete = participants.diagnosis.notna()
     strata = participants.diagnosis + "_" + participants.site
     splits = tables.make_splits(strata, complete)
     tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])

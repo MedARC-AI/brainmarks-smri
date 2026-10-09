@@ -163,6 +163,7 @@ def main() -> None:
         tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir()) if folder.is_dir()
     ]
     images = pd.concat(per_site, ignore_index=True)
+    images["desc"] = None
     meta = read_participants()
     smp, columns = samples(meta, images.set_index("participant_id").session_id)
     assert (

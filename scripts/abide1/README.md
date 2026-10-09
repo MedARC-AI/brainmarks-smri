@@ -12,14 +12,14 @@ Autism Brain Imaging Data Exchange I: 1112 subjects (539 ASD, 573 typical contro
 
 ## Samples
 
-One sample per participant (1112; 1102 have a T1w). Split 60/20/20, stratified by diagnosis × site; there is no official split. Complete = T1w and diagnosis.
+One sample per participant with a T1w (1102). The 10 participants with only rs-fMRI are left out. Split 60/20/20, stratified by diagnosis × site; there is no official split. Complete = diagnosis (all 1102).
 
 | split | participants | complete | age | female | sites | diagnosis |
 |---|---|---|---|---|---|---|
-| train | 665 | 660 | 16.9 ± 7.9 | 15% | 20 | ASD 321 / TDC 344 |
-| val | 223 | 220 | 17.0 ± 7.7 | 15% | 20 | ASD 109 / TDC 114 |
-| test | 224 | 222 | 17.4 ± 8.8 | 13% | 20 | ASD 109 / TDC 115 |
-| total | 1112 | 1102 | 17.0 ± 8.0 | 15% | 20 | ASD 539 / TDC 573 |
+| train | 660 | 660 | 17.0 ± 7.9 | 14% | 20 | ASD 317 / TDC 343 |
+| val | 221 | 221 | 16.7 ± 7.2 | 18% | 20 | ASD 106 / TDC 115 |
+| test | 221 | 221 | 17.8 ± 9.2 | 14% | 20 | ASD 108 / TDC 113 |
+| total | 1102 | 1102 | 17.1 ± 8.1 | 15% | 20 | ASD 531 / TDC 571 |
 
 ## Contents
 
@@ -45,7 +45,7 @@ One sample per participant (1112; 1102 have a T1w). Split 60/20/20, stratified b
 
 ## Notes
 
-- 10 subjects have no T1w, only rs-fMRI (not complete in the tables): UCLA_1 51232, 51233, 51242–51247, 51270 and UCLA_2 51310 (8 ASD, 2 TDC).
+- 10 subjects have no T1w, only rs-fMRI (left out of the tables): UCLA_1 51232, 51233, 51242–51247, 51270 and UCLA_2 51310 (8 ASD, 2 TDC).
 - Every phenotypic subject has a BIDS folder and vice versa.
 - Subject IDs are 7-digit zero-padded in BIDS (`sub-0050002`) and plain integers in `SUB_ID` (`50002`); the tables use the BIDS form.
 - In the source, 20 ASD participants have DSM-IV-TR code 0 (control), and one VIQ (180) is above the legend's range. Use `diagnosis` as the label.

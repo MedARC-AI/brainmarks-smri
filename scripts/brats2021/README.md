@@ -12,14 +12,14 @@ Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI
 
 ## Samples
 
-One sample per BraTS case: 1,479 cases of 1,477 patients (two UCSF-PDGM follow-up cases belong to patients who also have a baseline case; they are sessions of one participant). The official Task 1 validation set has no masks, so all cases are split 60/20/20 by patient, stratified by has mask × MGMT label, giving a held-out test set with masks. `official_split` keeps the Task 1 cohort and `mgmt_cohort` the Task 2 cohort. Complete = the 4 images and the tumor mask. The source has no age or sex.
+One sample per BraTS case with NIfTI images: 1,470 cases of 1,468 patients (two UCSF-PDGM follow-up cases belong to patients who also have a baseline case; they are sessions of one participant). The 9 Task-2-only cases have no NIfTI and are left out. The official Task 1 validation set has no masks, so all cases are split 60/20/20 by patient, stratified by has mask × MGMT label, giving a held-out test set with masks. `official_split` keeps the Task 1 cohort and `mgmt_cohort` the Task 2 cohort. Complete = the 4 images and the tumor mask. The source has no age or sex.
 
 | split | participants | samples | complete | age | female | sites | mgmt |
 |---|---|---|---|---|---|---|---|
-| train | 885 | 886 | 749 | n/a | n/a | 25 | methylated 218 / unmethylated 198 |
-| val | 294 | 295 | 249 | n/a | n/a | 23 | methylated 73 / unmethylated 66 |
-| test | 298 | 298 | 251 | n/a | n/a | 23 | methylated 73 / unmethylated 67 |
-| total | 1477 | 1479 | 1249 | n/a | n/a | 26 | methylated 364 / unmethylated 331 |
+| train | 881 | 882 | 749 | n/a | n/a | 25 | methylated 215 / unmethylated 197 |
+| val | 293 | 294 | 249 | n/a | n/a | 23 | methylated 72 / unmethylated 65 |
+| test | 294 | 294 | 251 | n/a | n/a | 22 | methylated 71 / unmethylated 66 |
+| total | 1468 | 1470 | 1249 | n/a | n/a | 26 | methylated 358 / unmethylated 328 |
 
 ## Contents
 
@@ -77,5 +77,5 @@ Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4
 - **Validation segmentations are not included.** We checked all 53 "new" validation cases and one case per source folder. Only the 1,251 training cases have labels.
 - **Subject overlap** (from the crosswalk): UPENN-GBM 447 (TCIA IDs like `UPENN-GBM-00011_11`), UCSF-PDGM 299 (PatientID holds only the number, e.g. `57`), TCGA-GBM 135, TCGA-LGG 108, CPTAC-GBM 39, IvyGAP 34, ACRIN-FMISO-Brain 4. 413 are new institutional cases with no TCIA equivalent: `UPENN-GBM_Additional` 115, `UCSF-PDGM_Additional` 139, and anonymized "Collection N" sites 159. The `_Additional` rows are probably patients *not* in the UPENN-GBM or UCSF-PDGM collections, but the crosswalk can't confirm it. Benchmarks are evaluated within each dataset, so this overlap only correlates scores across datasets.
 - **Same-patient cases:** the crosswalk lists two UCSF-PDGM follow-up exams under their old PatientIDs (138, 315), so it doesn't show that they belong to patients 429 and 433, who also have baseline cases. UCSF-PDGM v5 renamed them (`UCSF-PDGM-0429_FU003d`, `UCSF-PDGM-0433_FU007d`). The tables group them by patient. The anonymized `_Additional` and "Collection N" cases can't be checked for this.
-- 8 of the 9 Task-2-only cases use bare IDs (`00169`) in the crosswalk where the others use `BraTS2021_NNNNN`; the tables normalize them.
+- 8 of the 9 Task-2-only cases use bare IDs (`00169`) in the crosswalk where the others use `BraTS2021_NNNNN`. The tables normalize them, then drop these cases (no NIfTI).
 - The crosswalk's study dates mix Excel dates and m/d/yyyy text; the tables write YYYY-MM-DD.

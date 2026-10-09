@@ -8,17 +8,18 @@ See `brainmarks_smri.utils.tables` for the table layout.
   session_id is the BraTS 2021 case ID (the 8 Task-2-only cases written as bare numbers, '00169',
   are normalized to 'BraTS2021_00169'). participant_id is the case ID of the patient's first
   case: two UCSF-PDGM follow-up cases belong to patients who also have a baseline case
-  (SAME_PATIENT), so 1479 cases are 1477 participants. Other cases are assumed to be distinct
+  (SAME_PATIENT), so 1479 cases are 1477 participants. The 9 Task-2-only cases have no NIfTI
+  and are dropped: 1470 cases, 1468 participants. Other cases are assumed to be distinct
   patients: the real TCIA PatientIDs are unique (checked), but the anonymized '_Additional' and
   'Collection N' cases can't be checked.
 - Images: Task 1 NIfTI (skull-stripped, co-registered, SRI-24 1 mm): T1w, T1c (t1ce), T2w,
   FLAIR, and the tumor mask (labels 1/2/4) for the 1251 Task 1 training cases. The 219
-  validation cases have no mask. The Task-2-only cases exist only as DICOM (not fetched).
+  validation cases have no mask.
 - Overlap: `collection` and `tcia_patient_id` link cases to UPENN-GBM / UCSF-PDGM / TCGA. Evals
   are within-dataset, so this is only for reference.
-- Our split: the official Task 1 validation cases have no masks, so all 1479 cases are split
+- Our split: the official Task 1 validation cases have no masks, so all 1470 cases are split
   60/20/20, stratified by has mask x MGMT label. `official_split` is the Task 1 cohort
-  (train/val; n/a for Task-2-only); `mgmt_cohort` holds the Task 2 cohort.
+  (train/val); `mgmt_cohort` holds the Task 2 cohort.
 - No age or sex in the source (n/a). site = the BraTS institution code.
 - Complete: the 4 images and the tumor mask.
 """
@@ -146,6 +147,8 @@ def main() -> None:
     img = images()
     smp, columns, official = samples()
     assert len(smp) == 1479 and smp.session_id.is_unique and smp.participant_id.nunique() == 1477
+    smp = smp[smp.session_id.isin(img.session_id)].reset_index(drop=True)
+    assert len(smp) == 1470 and smp.participant_id.nunique() == 1468
     masked_cases = img[img.modality == "mask"].session_id
     assert len(masked_cases) == 1251 and set(masked_cases) == set(
         official.index[official == "train"]

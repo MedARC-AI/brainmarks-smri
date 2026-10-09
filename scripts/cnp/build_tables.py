@@ -4,9 +4,8 @@
 
 See `brainmarks_smri.utils.tables` for the table layout.
 
-- 272 participants in participants.tsv, one session each (session_id '1'). 265 have a T1w and
-  262 a raw multi-direction DWI (modality DTI: 4D, with .bval/.bvec next to the NIfTI). The 7
-  without a T1w (fMRI only) are kept in the tables but not complete.
+- 272 participants in participants.tsv, one session each (session_id '1'). The 265 with a T1w are
+  the samples; the 7 without one (fMRI only) are dropped.
 - Single site (UCLA), two 3T Siemens Trio scanners (`scanner_serial`).
 - The per-task availability flags of participants.tsv (fMRI tasks) are left out. The phenotype/
   instruments (52 tables) stay in source/ and are not merged here.
@@ -59,18 +58,13 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
 
 def main() -> None:
     img = tables.bids_images(SOURCE, ROOT)
-    img["modality"] = img.modality.replace({"dwi": "DTI"})  # raw multi-direction DWI series
+    assert set(img.modality) == {"T1w"} and img.participant_id.is_unique and len(img) == 265
     smp, columns = samples()
     assert len(smp) == 272 and smp.participant_id.is_unique
-    assert set(img.modality) == {"T1w", "DTI"}
+    smp = smp[smp.participant_id.isin(img.participant_id)].reset_index(drop=True)
 
     participants = smp.set_index("participant_id")
-    t1w = img[img.modality == "T1w"].participant_id
-    assert t1w.is_unique and len(t1w) == 265
-    complete = pd.Series(
-        participants.index.isin(t1w) & participants.diagnosis.notna().values,
-        index=participants.index,
-    )
+    complete = participants.diagnosis.notna()
     splits = tables.make_splits(participants.diagnosis, complete)
     tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])
 

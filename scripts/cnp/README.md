@@ -1,6 +1,6 @@
 # CNP (LA5c)
 
-UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y) who are healthy controls or have schizophrenia, bipolar disorder or ADHD. We use the T1w (and DWI) scans for 4-way diagnosis classification.
+UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y) who are healthy controls or have schizophrenia, bipolar disorder or ADHD. We use the T1w scans for 4-way diagnosis classification.
 
 - **Homepage:** <https://openneuro.org/datasets/ds000030>
 - **Source:** OpenNeuro [ds000030](https://openneuro.org/datasets/ds000030/versions/1.0.0). Downloaded with `openneuro-py`.
@@ -12,34 +12,34 @@ UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y
 
 ## Samples
 
-One sample per participant. Split 60/20/20, stratified by diagnosis; there is no official split. Complete = T1w and diagnosis: the 7 participants with only fMRI (no T1w in this release) are in the tables but not complete.
+One sample per participant with a T1w (265). The 7 participants with only fMRI are left out. Split 60/20/20, stratified by diagnosis; there is no official split. Complete = diagnosis (all 265).
 
 | split | participants | complete | age | female | diagnosis |
 |---|---|---|---|---|---|
-| train | 163 | 159 | 33.1 ± 9.1 | 45% | ADHD 26 / BIPOLAR 29 / CONTROL 78 / SCHZ 30 |
-| val | 55 | 54 | 32.1 ± 9.1 | 42% | ADHD 9 / BIPOLAR 10 / CONTROL 26 / SCHZ 10 |
-| test | 54 | 52 | 34.8 ± 10.1 | 37% | ADHD 8 / BIPOLAR 10 / CONTROL 26 / SCHZ 10 |
-| total | 272 | 265 | 33.2 ± 9.4 | 43% | ADHD 43 / BIPOLAR 49 / CONTROL 130 / SCHZ 50 |
+| train | 159 | 159 | 32.9 ± 9.2 | 44% | ADHD 25 / BIPOLAR 29 / CONTROL 75 / SCHZ 30 |
+| val | 53 | 53 | 32.7 ± 9.8 | 40% | ADHD 8 / BIPOLAR 10 / CONTROL 25 / SCHZ 10 |
+| test | 53 | 53 | 35.0 ± 9.2 | 40% | ADHD 8 / BIPOLAR 10 / CONTROL 25 / SCHZ 10 |
+| total | 265 | 265 | 33.3 ± 9.3 | 42% | ADHD 41 / BIPOLAR 49 / CONTROL 125 / SCHZ 50 |
 
 ## Contents
 
-`source/`: the structural and diffusion part of the raw BIDS release (1686 files, 13.4 GB):
+`source/`: the structural part of the raw BIDS release (638 files, 3.2 GB):
 
 - `sub-*/anat/`: T1w MPRAGE + JSON for 265 subjects, defaced with `mri_deface`.
-- `sub-*/dwi/`: raw 64-direction DWI (`.nii.gz`, `.bval`, `.bvec`, `.json`) for 262 subjects.
 - `participants.tsv`: 272 subjects with diagnosis, age, sex, per-scan availability flags, scanner serial number (2 Siemens Trio scanners) and a T1w ghost-artifact flag.
 - `phenotype/`: 52 instrument tables + JSON data dictionaries (SCID, BPRS, SANS/SAPS, Hamilton, YMRS, ASRS, WAIS, medication, demographics, ...).
 - `dataset_description.json`, `README`, `CHANGES`.
 
 `tables/` (derived from `source/`):
 
-- `images.tsv`: T1w, and the raw DWI series as modality `DTI` (the `.bval`/`.bvec` sit next to the NIfTI).
+- `images.tsv`: T1w.
 - `samples.tsv` + `samples.json`: diagnosis (target), age, sex, scanner serial and `ghost_artifact`. The fMRI availability flags are left out, and the `phenotype/` instruments are not merged.
 - `splits.tsv`: split, rank and complete per participant.
 
 ## Excluded
 
 - fMRI: `sub-*/func/` and the top-level `task-*_bold.json` (71.7 GB).
+- `sub-*/dwi/`: raw 64-direction DTI for 262 subjects (`.nii.gz`, `.bval`, `.bvec`, `.json`). No task uses it.
 - `sub-*/beh/`: out-of-scanner stop-signal training logs (6 MB).
 - The snapshot has no `derivatives/`.
 

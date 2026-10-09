@@ -27,7 +27,7 @@ import torch.utils.data
 
 from brainmarks_smri.models.base import ImageInput
 
-DATA_ROOT = Path(os.getenv("DATA_ROOT", Path(__file__).resolve().parents[2] / "datasets"))
+DATA_ROOT = os.getenv("DATA_ROOT", str(Path(__file__).resolve().parents[2] / "datasets"))
 CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
 # Derivative files next to each image's mirrored path, see scripts/preprocess.py.
 MASK_SUFFIX = "_mask.nii.gz"
@@ -161,8 +161,8 @@ def abide1(modality: str = "T1w", **kwargs) -> BrainDataset:
 
 @register_dataset
 def adhd200(modality: str = "T1w", **kwargs) -> BrainDataset:
-    """ADHD-200: ADHD diagnosis, T1w. One T1w per participant; Peking_3's carry an `acq-` label."""
-    return BrainDataset("adhd200", modality, desc_pattern=r"(acq-\d_)?run-1", **kwargs)
+    """ADHD-200: ADHD diagnosis, T1w."""
+    return BrainDataset("adhd200", modality, **kwargs)
 
 
 @register_dataset

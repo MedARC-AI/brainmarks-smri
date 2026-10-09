@@ -43,11 +43,11 @@ Ten public structural brain MRI datasets for evaluating sMRI foundation models, 
 
 | Dataset | Participants | Images | Targets | License | Size |
 |---|---|---|---|---|---|
-| [ABIDE I](https://fcon_1000.projects.nitrc.org/indi/abide/abide_I.html) | 1,112 | T1w | autism diagnosis, age, sex | CC BY-NC-SA 3.0 | 7.4 GB |
+| [ABIDE I](https://fcon_1000.projects.nitrc.org/indi/abide/abide_I.html) | 1,102 | T1w | autism diagnosis, age, sex | CC BY-NC-SA 3.0 | 7.4 GB |
 | [ADHD-200](https://fcon_1000.projects.nitrc.org/indi/adhd200/) | 961 | T1w | ADHD diagnosis | CC BY-NC | 9.0 GB |
-| [BraTS 2021](https://www.med.upenn.edu/cbica/brats2021/) | 1,477 | T1w, T1c, T2w, FLAIR, tumor mask | tumor segmentation, MGMT | CC BY 4.0 | 15.8 GB |
-| [CNP](https://openneuro.org/datasets/ds000030) | 272 | T1w, DTI | psychiatric diagnosis (4-way) | CC0 | 13.4 GB |
-| [IXI](https://brain-development.org/ixi-dataset/) | 584 | T1w, T2w, PD, DTI | age | CC BY-SA 3.0 | 17 GB |
+| [BraTS 2021](https://www.med.upenn.edu/cbica/brats2021/) | 1,468 | T1w, T1c, T2w, FLAIR, tumor mask | tumor segmentation, MGMT | CC BY 4.0 | 15.8 GB |
+| [CNP](https://openneuro.org/datasets/ds000030) | 265 | T1w | psychiatric diagnosis (4-way) | CC0 | 3.2 GB |
+| [IXI](https://brain-development.org/ixi-dataset/) | 582 | T1w, T2w, PD | age | CC BY-SA 3.0 | 12.8 GB |
 | [OpenBHB](https://baobablab.github.io/bhb/) | 3,984 | T1w | age (with site debiasing) | CC BY-NC-SA 3.0 | 32 GB |
 | [Pixar](https://openneuro.org/datasets/ds000228) | 155 | T1w | age | CC0 | 1.0 GB |
 | [SOOP](https://openneuro.org/datasets/ds004889) | 1,715 | T1w, FLAIR, DWI, ADC, lesion mask | stroke lesion segmentation, discharge mRS, NIHSS | CC0 | 72 GB |
