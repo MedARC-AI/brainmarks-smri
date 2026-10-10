@@ -22,4 +22,4 @@ fi
 rm "$OUT/curl.cfg"
 write_manifest "$NAME"
 # Check every file against the snapshot's own checksums (git-annex SHA256 / git blob SHA1).
-"${FILES[@]}" verify ds004889 1.1.2 "$OUT/source" "$OUT/manifest.sha256"
+"${FILES[@]}" verify ds004889 1.1.2 "$OUT/source" "$OUT/tables/source.sha256"

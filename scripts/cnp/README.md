@@ -7,7 +7,7 @@ UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y
 - **Version:** snapshot 1.0.0 (2020-04-21), the latest.
 - **DOI:** [10.18112/openneuro.ds000030.v1.0.0](https://doi.org/10.18112/openneuro.ds000030.v1.0.0)
 - **License:** CC0
-- **Citation** (per `HowToAcknowledge`): Poldrack, R. A., Congdon, E., Triplett, W., et al. (2016). A phenome-wide examination of neural and cognitive function. *Scientific Data*, 3, 160110. If using derived data, also: Gorgolewski, K. J., Durnez, J., & Poldrack, R. A. (2017). Preprocessed Consortium for Neuropsychiatric Phenomics dataset. *F1000Research*, 6, 1262.
+- **Citation:** as requested in `HowToAcknowledge`: Poldrack, R. A., Congdon, E., Triplett, W., et al. (2016). A phenome-wide examination of neural and cognitive function. *Scientific Data*, 3, 160110. If using derived data, also: Gorgolewski, K. J., Durnez, J., & Poldrack, R. A. (2017). Preprocessed Consortium for Neuropsychiatric Phenomics dataset. *F1000Research*, 6, 1262.
 - **Code:** [`scripts/cnp/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/cnp) re-downloads `source/` and rebuilds `tables/`.
 
 ## Samples

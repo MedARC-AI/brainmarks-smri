@@ -2,13 +2,15 @@
 
     uv run --extra preprocess scripts/preprocess.py datasets/<name> --jobs 32
 
-Outputs in `derivatives/` inside each dataset folder.
+Writes the masks and affines to `derivatives/` inside the dataset folder, and
+`tables/derivatives.tsv` (paths and QC per image) and `tables/derivatives.sha256`.
 """
 
 import argparse
 import hashlib
 import logging
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -217,6 +219,8 @@ def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path])
         "path": image_row["path"],
         "modality": image_row["modality"],
         "mask_method": image_row["mask_method"],
+        "mask_path": mask_path.relative_to(dataset_dir).as_posix(),
+        "mni_affine_path": aff_path.relative_to(dataset_dir).as_posix(),
         "brain_volume": round(volume, 4),
         "mni_scale": round(scale, 4),
         "template_dice": round(dice, 4),
@@ -246,7 +250,7 @@ def main() -> None:
     dataset_dir = Path(args.dataset_dir).resolve()
     name = dataset_dir.name
 
-    manifest_path = dataset_dir / "derivatives.sha256"
+    manifest_path = dataset_dir / "tables" / "derivatives.sha256"
     if manifest_path.exists():
         logger.info("manifest %s exists for dataset %s; exiting", manifest_path, name)
         sys.exit(0)
@@ -305,9 +309,11 @@ def main() -> None:
                 logger.warning(message + " check: %s", *values, result["warnings"])
 
     derivatives_dir = dataset_dir / "derivatives"
-    qc = pd.DataFrame(results).sort_values("path")
-    qc.to_csv(derivatives_dir / "qc.tsv", sep="\t", index=False, lineterminator="\n")
-    flagged = (qc["warnings"] != "n/a").sum()
+    derivatives_table = pd.DataFrame(results).sort_values("path")
+    derivatives_table.to_csv(
+        dataset_dir / "tables" / "derivatives.tsv", sep="\t", index=False, lineterminator="\n"
+    )
+    flagged = (derivatives_table["warnings"] != "n/a").sum()
     logger.info(
         "done: %d ok (%d with QC warnings), %d failed", len(results), flagged, len(failures)
     )
@@ -317,7 +323,7 @@ def main() -> None:
     # Leftovers from killed runs.
     for tmp_path in derivatives_dir.rglob(".tmp-*"):
         tmp_path.unlink()
-    # Same format and order as `manifest.sha256` (sha256sum, LC_ALL=C sort).
+    # Same format and order as `source.sha256` (sha256sum, LC_ALL=C sort).
     paths = [path.relative_to(dataset_dir).as_posix() for path in derivatives_dir.rglob("*")]
     manifest = []
     for path in sorted(paths, key=str.encode):
@@ -325,10 +331,11 @@ def main() -> None:
             digest = hashlib.sha256((dataset_dir / path).read_bytes()).hexdigest()
             manifest.append(f"{digest}  {path}\n")
     manifest_path.write_text("".join(manifest))
-    tracked_dir = REPO / "scripts" / name
+    tracked_dir = REPO / "scripts" / name / "tables"
     if tracked_dir.is_dir():
         (tracked_dir / "derivatives.sha256").write_text("".join(manifest))
-    logger.info("wrote derivatives.sha256 (%d files)", len(manifest))
+        shutil.copy(dataset_dir / "tables" / "derivatives.tsv", tracked_dir / "derivatives.tsv")
+    logger.info("wrote derivatives.tsv and derivatives.sha256 (%d files)", len(manifest))
 
 
 if __name__ == "__main__":

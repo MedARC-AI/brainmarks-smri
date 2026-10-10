@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Upload datasets/ to the Hugging Face mirror, with README_hf.md as the dataset card.
 # Usage: bash scripts/upload.sh
-# Checks that every dataset matches its tracked README, tables and manifest first.
+# Checks that every dataset matches its tracked README and tables, and its checksums, first.
 # Resumable: re-run the same command after an interruption.
 set -euo pipefail
 source "$(dirname "$0")/lib.sh"
@@ -14,12 +14,7 @@ for dir in "$DATA_ROOT"/*/; do
     echo "checking $name"
     cmp -s "$REPO/scripts/$name/README.md" "$dir/README.md" || die "$name: README.md differs from scripts/$name/"
     diff -r "$REPO/scripts/$name/tables" "$dir/tables" > /dev/null || die "$name: tables/ differ from scripts/$name/tables/"
-    cmp -s "$REPO/scripts/$name/manifest.sha256" "$dir/manifest.sha256" || die "$name: manifest differs from scripts/$name/"
-    (cd "$dir" && sha256sum -c --quiet manifest.sha256) || die "$name: manifest check failed"
-    if [[ -f "$dir/derivatives.sha256" ]]; then
-        cmp -s "$REPO/scripts/$name/derivatives.sha256" "$dir/derivatives.sha256" || die "$name: derivatives manifest differs from scripts/$name/"
-        (cd "$dir" && sha256sum -c --quiet derivatives.sha256) || die "$name: derivatives check failed"
-    fi
+    (cd "$dir" && sha256sum -c --quiet tables/source.sha256 tables/derivatives.sha256) || die "$name: checksum check failed"
 done
 cp "$REPO/README_hf.md" "$DATA_ROOT/README.md"
 

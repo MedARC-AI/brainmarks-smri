@@ -1,7 +1,7 @@
 """List or verify the files of an OpenNeuro snapshot, via the OpenNeuro GraphQL API.
 
     snapshot_files.py curl-config <dataset> <tag> <dir>   # curl -K config for files missing/incomplete in <dir>
-    snapshot_files.py verify <dataset> <tag> <dir> <manifest.sha256>
+    snapshot_files.py verify <dataset> <tag> <dir> <source.sha256>
 
 Why not openneuro-py: for ds004889 OpenNeuro hands out S3 URLs pre-signed for GET only, and
 openneuro-py 2026.9.1 sends a HEAD first, which S3 rejects with 403. The same object

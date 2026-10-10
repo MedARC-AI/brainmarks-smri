@@ -4,7 +4,7 @@ Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: G
 
 - **Homepage:** <https://brain-development.org/ixi-dataset/>
 - **Source:** [brain-development.org/ixi-dataset](https://brain-development.org/ixi-dataset/) (Imperial College London). Plain HTTPS tarballs from `https://biomedic.doc.ic.ac.uk/brain-development/downloads/IXI/`, fetched with `curl -fL -C -`. The page links use `http://`, which redirects to `https://`.
-- **Version:** no versioning and no published checksums. The files have been unchanged since 2014-10-07. Pinned by the server metadata below (retrieved 2026-10-01), the tarball sha256s in `download.sh` and `manifest.sha256`.
+- **Version:** no versioning and no published checksums. The files have been unchanged since 2014-10-07. Pinned by the server metadata below (retrieved 2026-10-01), the tarball sha256s in `download.sh` and `tables/source.sha256`.
 
   | File | Size (bytes) | Last-Modified | ETag |
   |---|---|---|---|

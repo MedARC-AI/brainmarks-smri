@@ -60,20 +60,24 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 
 ```
 <dataset>/
-  README.md          # source, version, license, citation, splits
-  manifest.sha256    # checksums of source/; verify with `sha256sum -c manifest.sha256`
-  source/            # the original release, verbatim
-  derivatives/       # per 3D image: brain mask and affine to MNI152NLin6Asym, mirroring source/
-  derivatives.sha256 # checksums of derivatives/
+  README.md            # source, version, license, citation, splits
+  source/              # the original release, verbatim
+  derivatives/         # per 3D image: brain mask and affine to MNI152NLin6Asym, mirroring source/
+  shards/              # images, their sidecars and derivatives, packed into ~1 GB zip files
   tables/
-    images.tsv       # one row per image: participant_id, session_id, modality, desc, path
-    samples.tsv      # one row per scan session: participant_id, session_id, age, sex, site, targets...
-    samples.json     # column descriptions, levels and units
-    splits.tsv       # one row per participant: participant_id, split, official_split, rank, complete
+    images.tsv         # one row per image: participant_id, session_id, modality, desc, path
+    samples.tsv        # one row per scan session: participant_id, session_id, age, sex, site, targets...
+    samples.json       # column descriptions, levels and units
+    splits.tsv         # one row per participant: participant_id, split, official_split, rank, complete
+    derivatives.tsv    # one row per processed image: path, mask_path, mni_affine_path, QC metrics
+    shards.tsv         # one row per packed file: path, shard
+    source.sha256      # checksums of source/; verify with `sha256sum -c tables/source.sha256`
+    derivatives.sha256 # checksums of derivatives/
 ```
 
-- Paths in `images.tsv` are relative to `<dataset>/`.
-- Derivatives: `<image>_mask.nii.gz` (brain mask on the image grid) and `<image>_mni.txt` (4×4 nibabel-style affine matrix: image to MNI152NLin6Asym).
+- All paths in the tables are relative to `<dataset>/`.
+- Derivatives: a brain mask on the image grid (`<image>_mask.nii.gz`) and a 4×4 nibabel-style affine matrix from the image to MNI152NLin6Asym (`<image>_mni.txt`). `derivatives.tsv` lists them for each image.
+- Each shard holds whole participants. Its files keep their paths, so unzipping the shards in `<dataset>/` restores `source/` and `derivatives/`.
 - Splits are by participant. Official splits are kept where they exist; otherwise the split is 60/20/20, stratified, with a fixed seed.
 - `complete` marks participants with all core images and the primary targets.
 - `rank` orders participants within each split so that the lowest-ranked N form a balanced subset; subsets are nested as N grows.
@@ -103,4 +107,4 @@ Datasets and their derivatives are released under their original licenses. Non-c
 
 ## Reproducing
 
-Every file here can be re-downloaded from its original source and checked against `manifest.sha256`. The download scripts and table-building code are at <https://github.com/MedARC-AI/brainmarks-smri>.
+Every file here can be re-downloaded from its original source and checked against `tables/source.sha256`. The download scripts and table-building code are at <https://github.com/MedARC-AI/brainmarks-smri>.

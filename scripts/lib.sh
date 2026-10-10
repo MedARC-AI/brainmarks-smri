@@ -16,12 +16,13 @@ check_budget() {
 }
 
 # write_manifest <name>: sha256 of every file under datasets/<name>/source/, written to
-# datasets/<name>/manifest.sha256 (check with `cd datasets/<name> && sha256sum -c manifest.sha256`)
-# and copied to scripts/<name>/ so it's tracked in git. A `git diff` there flags any
+# datasets/<name>/tables/source.sha256 (check with `cd datasets/<name> && sha256sum -c tables/source.sha256`)
+# and copied to scripts/<name>/tables/ so it's tracked in git. A `git diff` there flags any
 # change in what a download produces.
 write_manifest() {
     local dir=$DATA_ROOT/$1
-    (cd "$dir" && find source -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > "$dir/manifest.sha256"
-    cp "$dir/manifest.sha256" "$REPO/scripts/$1/manifest.sha256"
+    mkdir -p "$dir/tables" "$REPO/scripts/$1/tables"
+    (cd "$dir" && find source -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > "$dir/tables/source.sha256"
+    cp "$dir/tables/source.sha256" "$REPO/scripts/$1/tables/source.sha256"
     cp "$REPO/scripts/$1/README.md" "$dir/README.md"
 }

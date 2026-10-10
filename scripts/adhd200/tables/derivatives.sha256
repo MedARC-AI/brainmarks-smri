@@ -1919,4 +1919,3 @@ c8ba93bc2880d3b2aa50e96eddc67f6aec6262161020bb3e0750925e18911187  derivatives/Ra
 6a156b761d697e280bc90ad06b00f64cb0fea6c777744bd0573d80b7380d49fd  derivatives/RawDataBIDS/WashU/sub-0015061/ses-1/anat/sub-0015061_ses-1_run-1_T1w_mni.txt
 a68759380c6d3b98e7e294e90ef25f8a7348f3f3fa4b06e9b0809d3d0a376614  derivatives/RawDataBIDS/WashU/sub-0015062/ses-1/anat/sub-0015062_ses-1_run-1_T1w_mask.nii.gz
 7eb9cc94218526dc5bd9aa3237095564c7409c00f1d87d24e034eb5fec9c7ab5  derivatives/RawDataBIDS/WashU/sub-0015062/ses-1/anat/sub-0015062_ses-1_run-1_T1w_mni.txt
-3320708be59d05f2617c61f201d8328bd93bcb2c08df9191022308af35c9e6a4  derivatives/qc.tsv

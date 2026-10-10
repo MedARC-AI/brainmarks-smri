@@ -1,7 +1,8 @@
 """Helpers for the per-dataset `scripts/<name>/build_tables.py` scripts.
 
 Tables go to `datasets/<name>/tables/` with a tracked copy in `scripts/<name>/tables/`, and are
-built only from `source/`. Layout and split conventions: `README_hf.md`.
+built only from `source/`. Other steps write their own files to the same folders (source.sha256,
+derivatives.tsv, derivatives.sha256, shards.tsv). Layout and split conventions: `README_hf.md`.
 
 `modality` vocabulary: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD, DWI (trace / b1000), ADC,
 mask (segmentations; `desc` says which). `desc` marks variants; the main image has none.
@@ -184,8 +185,7 @@ def write(
     assert not missing, f"{len(missing)} image paths missing, e.g. {missing[:3]}"
 
     out = dataset_dir(name) / "tables"
-    shutil.rmtree(out, ignore_errors=True)  # no stale files from earlier builds
-    out.mkdir()
+    out.mkdir(exist_ok=True)
     images.sort_values(["participant_id", "session_id", "modality", "path"]).to_csv(
         out / "images.tsv", **TSV
     )
@@ -194,8 +194,9 @@ def write(
     (out / "samples.json").write_text(json.dumps(columns, indent=2) + "\n")
 
     tracked = REPO / "scripts" / name / "tables"
-    shutil.rmtree(tracked, ignore_errors=True)
-    shutil.copytree(out, tracked)
+    tracked.mkdir(exist_ok=True)
+    for file_name in ["images.tsv", "samples.tsv", "splits.tsv", "samples.json"]:
+        shutil.copy(out / file_name, tracked / file_name)
     shutil.copy(REPO / "scripts" / name / "README.md", dataset_dir(name) / "README.md")
     print(summary_table(samples, splits, list(summary)))
 

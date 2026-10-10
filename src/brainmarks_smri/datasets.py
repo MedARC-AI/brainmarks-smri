@@ -29,9 +29,6 @@ from brainmarks_smri.models.base import ImageInput
 
 DATA_ROOT = os.getenv("DATA_ROOT", str(Path(__file__).resolve().parents[2] / "datasets"))
 CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
-# Derivative files next to each image's mirrored path, see scripts/preprocess.py.
-MASK_SUFFIX = "_mask.nii.gz"
-AFFINE_SUFFIX = "_mni.txt"
 
 logger = logging.getLogger(__name__)
 
@@ -102,6 +99,7 @@ class BrainDataset(torch.utils.data.Dataset):
         images = pd.read_csv(self.root / "tables" / "images.tsv", **read_kwargs)
         samples = pd.read_csv(self.root / "tables" / "samples.tsv", **read_kwargs)
         splits = pd.read_csv(self.root / "tables" / "splits.tsv", **read_kwargs)
+        derivatives = pd.read_csv(self.root / "tables" / "derivatives.tsv", sep="\t")
         samples = samples.merge(splits, on="participant_id")
 
         derivatives_modality = derivatives_modality or modality
@@ -122,15 +120,15 @@ class BrainDataset(torch.utils.data.Dataset):
             rows = rows[ids + ["path"]].rename(columns={"path": f"mask_{desc}_path"})
             samples = samples.merge(rows, on=ids, how="left")
 
-        # source/<dir>/<name>.nii.gz -> derivatives/<dir>/<name>
-        stems = "derivatives/" + samples.pop("derivatives_of").str.removeprefix("source/")
-        stems = stems.str.removesuffix(".gz").str.removesuffix(".nii")
-        samples["brain_mask_path"] = stems + MASK_SUFFIX
-        samples["mni_affine_path"] = stems + AFFINE_SUFFIX
-        exists = samples["mni_affine_path"].map(lambda path: (self.root / path).exists())
-        if not exists.all():
-            logger.warning(f"{self.name}: dropping {(~exists).sum()} samples without derivatives")
-            samples = samples[exists]
+        derivatives = derivatives.rename(
+            columns={"path": "derivatives_of", "mask_path": "brain_mask_path"}
+        )
+        derivatives = derivatives[["derivatives_of", "brain_mask_path", "mni_affine_path"]]
+        num_samples = len(samples)
+        samples = samples.merge(derivatives, on="derivatives_of").drop(columns="derivatives_of")
+        if len(samples) < num_samples:
+            dropped = num_samples - len(samples)
+            logger.warning(f"{self.name}: dropping {dropped} samples without derivatives")
 
         return samples.sort_values(ids).reset_index(drop=True)
 
