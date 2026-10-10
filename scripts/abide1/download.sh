@@ -9,17 +9,18 @@ OUT=$DATA_ROOT/$NAME
 S3=s3://fcp-indi/data/Projects/ABIDE
 
 check_budget $((9 * 10**9))
-# The bucket is the release and has no version tags (images last modified 2016-12-16,
-# sidecards/ 2022-04-13); the manifest is the version record.
+# The bucket is the release and has no version tags (images last modified 2016-12-16);
+# the manifest is the version record.
 # Structural only, from the BIDS form (RawData/ holds the same T1w images in the old layout):
-# per-site metadata, sub-*/anat/ T1w, and per-subject T1w sidecars from sidecards/.
-# Skips rs-fMRI (func/, task-rest_bold.json) and .DS_Store files.
+# per-site metadata and sub-*/anat/ T1w. Skips rs-fMRI (func/, task-rest_bold.json), the 2022
+# per-subject sidecar copies in sidecards/ and .DS_Store files.
 aws s3 sync --no-sign-request --only-show-errors "$S3/RawDataBIDS/" "$OUT/source/RawDataBIDS" \
     --exclude '*' \
     --include '*/dataset_description.json' \
     --include '*/participants.tsv' \
     --include '*/T1w.json' \
-    --include '*/sub-*/anat/*'
+    --include '*/sub-*/anat/*' \
+    --exclude 'sidecards/*'
 # Composite phenotypic file (the "Composite Phenotypic File" on the ABIDE I page) and its
 # legend. Single files, so fetch only if missing. (Syncing ABIDE/ with filters would list
 # the huge Derivatives/ tree.)

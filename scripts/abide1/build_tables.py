@@ -27,11 +27,9 @@ BIDS = SOURCE / "RawDataBIDS"
 
 
 def images() -> pd.DataFrame:
-    """Images of all BIDS site folders (`sidecards/` only holds JSON sidecars)."""
+    """Images of all BIDS site folders."""
     per_site = [
-        tables.bids_images(folder, ROOT)
-        for folder in sorted(BIDS.iterdir())
-        if folder.is_dir() and folder.name != "sidecards"
+        tables.bids_images(folder, ROOT) for folder in sorted(BIDS.iterdir()) if folder.is_dir()
     ]
     return pd.concat(per_site, ignore_index=True)
 
