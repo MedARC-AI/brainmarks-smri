@@ -3,7 +3,7 @@
     uv run --extra preprocess scripts/preprocess.py datasets/<name> --jobs 32
 
 Writes the masks and affines to `derivatives/` inside the dataset folder, and
-`tables/derivatives.tsv` (paths and QC per image) and `tables/derivatives.sha256`.
+`tables/derivatives.tsv` (QC per image) and `tables/derivatives.sha256`.
 """
 
 import argparse
@@ -219,8 +219,6 @@ def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path])
         "path": image_row["path"],
         "modality": image_row["modality"],
         "mask_method": image_row["mask_method"],
-        "mask_path": mask_path.relative_to(dataset_dir).as_posix(),
-        "mni_affine_path": aff_path.relative_to(dataset_dir).as_posix(),
         "brain_volume": round(volume, 4),
         "mni_scale": round(scale, 4),
         "template_dice": round(dice, 4),

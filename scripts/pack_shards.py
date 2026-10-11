@@ -4,8 +4,8 @@
 
 Writes `shards/<name>-NNN.zip` and `tables/shards.tsv` (path, shard) inside the dataset folder, and
 copies shards.tsv to scripts/<name>/tables/. The input files are not changed. Each shard holds whole
-participants, in participant_id order: the images of images.tsv, their .json sidecars, and their
-masks and affines from derivatives.tsv. Members are stored uncompressed under their paths relative
+participants, in participant_id order: the images of images.tsv, their .json sidecars, and the
+masks and affines of the images in derivatives.tsv. Members are stored uncompressed under their paths relative
 to the dataset folder, so unzipping the shards there restores the original files. Every member is
 checked against tables/source.sha256 and tables/derivatives.sha256.
 """
@@ -16,13 +16,23 @@ import logging
 import os
 import shutil
 import zipfile
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[1]
+MASK_SUFFIX = "_mask.nii.gz"
+AFFINE_SUFFIX = "_mni.txt"
 
 logger = logging.getLogger("pack_shards")
+
+
+def derivative_stem(path: str) -> str:
+    """Image `path` from images.tsv -> derivative stem, relative to the dataset directory."""
+    source_path = PurePosixPath(path)
+    assert source_path.parts[0] == "source", path
+    name = source_path.name.removesuffix(".gz").removesuffix(".nii")
+    return str(PurePosixPath("derivatives", *source_path.parent.parts[1:], name))
 
 
 def sidecar_path(path: str) -> str:
@@ -36,11 +46,10 @@ def list_packed_files(dataset_dir: Path) -> pd.DataFrame:
     images = images[["participant_id", "path"]]
     sidecars = images.assign(path=images["path"].map(sidecar_path))
     derivatives = pd.read_csv(tables_dir / "derivatives.tsv", sep="\t", dtype=str)
-    derivatives = derivatives.merge(images, on="path")
-    masks = derivatives[["participant_id", "mask_path"]].rename(columns={"mask_path": "path"})
-    affines = derivatives[["participant_id", "mni_affine_path"]].rename(
-        columns={"mni_affine_path": "path"}
-    )
+    processed_images = images[images["path"].isin(derivatives["path"])]
+    stems = processed_images["path"].map(derivative_stem)
+    masks = processed_images.assign(path=stems + MASK_SUFFIX)
+    affines = processed_images.assign(path=stems + AFFINE_SUFFIX)
 
     files = pd.concat([images, sidecars, masks, affines], ignore_index=True)
     files = files[files["path"].map(lambda path: (dataset_dir / path).exists())]
