@@ -1,20 +1,10 @@
-"""Benchmark datasets.
+"""Benchmark datasets."""
 
-One map-style class over the common on-disk layout (`<root>/<name>/{source,derivatives,tables}`),
-and a registry of one small function per dataset. A dataset holds the sessions that have one image
-modality.
-
-`samples` has one row per sample: the samples.tsv and splits.tsv columns, plus file paths relative
-to the dataset directory: `image_path`, `brain_mask_path`, `mni_affine_path` and, for each
-segmentation mask of the session, `mask_<desc>_path`.
-
-`__getitem__` returns `(image_input, targets)`: the `ImageInput` (after `transform`), and the row's
-values plus the mask images as `mask_<desc>` (after `target_transform`). Images are loaded lazily
-by nibabel; nothing is collated.
-"""
-
+import gzip
+import io
 import logging
 import os
+import zipfile
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -37,6 +27,15 @@ logger = logging.getLogger(__name__)
 
 
 class BrainDataset(torch.utils.data.Dataset):
+    """Torch map-style dataset for the Brainmarks dataset format.
+
+    Samples are of the form (image_input, targets).
+
+    Args:
+        derivatives_modality: use the session's image of this modality for the derivatives.
+        desc_pattern: regex for the input images' desc; by default, images without a desc.
+    """
+
     def __init__(
         self,
         name: str,
@@ -47,9 +46,6 @@ class BrainDataset(torch.utils.data.Dataset):
         transform: Callable[[ImageInput], Any] | None = None,
         target_transform: Callable[[dict[str, Any]], Any] | None = None,
     ):
-        """`derivatives_modality`: use the session's image of this modality for the derivatives.
-        `desc_pattern`: regex for the images' desc; by default, images without a desc.
-        """
         self.name = name
         if root is None:
             root = DATA_ROOT
@@ -68,25 +64,30 @@ class BrainDataset(torch.utils.data.Dataset):
         self.transform = transform
         self.target_transform = target_transform
         self.samples = self.load_samples(modality, derivatives_modality, desc_pattern)
+        shards = pd.read_csv(self.root / "tables" / "shards.tsv", sep="\t")
+        self.shard_of_path = dict(zip(shards["path"], shards["shard"]))
 
     def __len__(self) -> int:
         return len(self.samples)
 
     def __getitem__(self, index: int) -> tuple[Any, Any]:
         row = self.samples.iloc[index]
-        image = nib.load(self.root / row["image_path"])
-        # Some DWI/ADC are stored as 4D with a single volume.
-        if image.ndim == 4 and image.shape[3] == 1:
-            image = nib.funcs.squeeze_image(image)
-        image_input: ImageInput = {
-            "image": image,
-            "brain_mask": nib.load(self.root / row["brain_mask_path"]),
-            "mni_affine": np.loadtxt(self.root / row["mni_affine_path"]),
-        }
-        targets = row.to_dict()
-        for column in self.samples.columns:
-            if column.startswith("mask_") and pd.notna(row[column]):
-                targets[column.removesuffix("_path")] = nib.load(self.root / row[column])
+        shard_path = self.root / self.shard_of_path[row["image_path"]]
+        with zipfile.ZipFile(shard_path) as shard:
+            image = _load_nifti(shard.read(row["image_path"]))
+            # Some DWI/ADC are stored as 4D with a single volume.
+            if image.ndim == 4 and image.shape[3] == 1:
+                image = nib.funcs.squeeze_image(image)
+            image_input: ImageInput = {
+                "image": image,
+                "brain_mask": _load_nifti(shard.read(row["brain_mask_path"])),
+                "mni_affine": np.loadtxt(io.BytesIO(shard.read(row["mni_affine_path"]))),
+            }
+            targets = row.to_dict()
+            for column in self.samples.columns:
+                if column.startswith("mask_") and pd.notna(row[column]):
+                    targets[column.removesuffix("_path")] = _load_nifti(shard.read(row[column]))
+
         if self.transform is not None:
             image_input = self.transform(image_input)
         if self.target_transform is not None:
@@ -136,6 +137,10 @@ class BrainDataset(torch.utils.data.Dataset):
         samples["mni_affine_path"] = stems + AFFINE_SUFFIX
 
         return samples.sort_values(ids).reset_index(drop=True)
+
+
+def _load_nifti(buf: bytes) -> nib.Nifti1Image:
+    return nib.Nifti1Image.from_bytes(gzip.decompress(buf))
 
 
 DATASETS: dict[str, Callable[..., BrainDataset]] = {}
