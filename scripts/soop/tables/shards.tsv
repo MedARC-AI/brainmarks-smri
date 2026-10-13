@@ -30548,3 +30548,12 @@ source/sub-999/dwi/sub-999_rec-ADC_dwi.json	shards/soop-073.zip
 source/sub-999/dwi/sub-999_rec-ADC_dwi.nii.gz	shards/soop-073.zip
 source/sub-999/dwi/sub-999_rec-TRACE_dwi.json	shards/soop-073.zip
 source/sub-999/dwi/sub-999_rec-TRACE_dwi.nii.gz	shards/soop-073.zip
+source/.datalad/config	shards/soop-meta.zip
+source/.gitattributes	shards/soop-meta.zip
+source/CHANGES	shards/soop-meta.zip
+source/README.md	shards/soop-meta.zip
+source/dataset_description.json	shards/soop-meta.zip
+source/dwi.bval	shards/soop-meta.zip
+source/dwi.bvec	shards/soop-meta.zip
+source/participants.json	shards/soop-meta.zip
+source/participants.tsv	shards/soop-meta.zip

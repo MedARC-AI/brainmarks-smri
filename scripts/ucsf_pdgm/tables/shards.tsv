@@ -7514,3 +7514,5 @@ source/UCSF-PDGM-v5/UCSF-PDGM-0541_nifti/UCSF-PDGM-0541_T2_bias.nii.gz	shards/uc
 source/UCSF-PDGM-v5/UCSF-PDGM-0541_nifti/UCSF-PDGM-0541_brain_parenchyma_segmentation.nii.gz	shards/ucsf_pdgm-015.zip
 source/UCSF-PDGM-v5/UCSF-PDGM-0541_nifti/UCSF-PDGM-0541_brain_segmentation.nii.gz	shards/ucsf_pdgm-015.zip
 source/UCSF-PDGM-v5/UCSF-PDGM-0541_nifti/UCSF-PDGM-0541_tumor_segmentation.nii.gz	shards/ucsf_pdgm-015.zip
+source/UCSF-PDGM-metadata_glossary.csv	shards/ucsf_pdgm-meta.zip
+source/UCSF-PDGM-metadata_v5.csv	shards/ucsf_pdgm-meta.zip

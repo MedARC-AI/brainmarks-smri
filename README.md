@@ -15,7 +15,7 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 
 The benchmark uses ten public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
-We plan to host the datasets at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri) and download them automatically. This is still under construction. For now, the benchmark reads from a local `datasets/` folder (or `$DATA_ROOT`). The scripts in `scripts/` show how we downloaded and built each dataset.
+The datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `DATA_ROOT=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `DATA_ROOT` to its folder. The scripts in `scripts/` show how we downloaded and built each dataset.
 
 ## Run
 

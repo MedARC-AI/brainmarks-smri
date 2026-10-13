@@ -7483,3 +7483,13 @@ source/UPENN-GBM/NIfTI-files/images_structural_unstripped/UPENN-GBM-00630_21/UPE
 source/UPENN-GBM/NIfTI-files/images_structural_unstripped/UPENN-GBM-00630_21/UPENN-GBM-00630_21_T1GD_unstripped.nii.gz	shards/upenn_gbm-024.zip
 source/UPENN-GBM/NIfTI-files/images_structural_unstripped/UPENN-GBM-00630_21/UPENN-GBM-00630_21_T1_unstripped.nii.gz	shards/upenn_gbm-024.zip
 source/UPENN-GBM/NIfTI-files/images_structural_unstripped/UPENN-GBM-00630_21/UPENN-GBM-00630_21_T2_unstripped.nii.gz	shards/upenn_gbm-024.zip
+source/UPENN-GBM.sums	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_CaPTk_fe_params.csv	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_CaPTk_radiomic_features_list.csv	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_DownloadManifest20221129-nbia-digest.xlsx	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_DownloadManifest20221129.tcia	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_acquisition.csv	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_clinical_info_v2.1.csv	shards/upenn_gbm-meta.zip
+source/UPENN-GBM_data_availability.csv	shards/upenn_gbm-meta.zip
+source/radiology_mapping.csv	shards/upenn_gbm-meta.zip
+source/radiomic_features_CaPTk.zip	shards/upenn_gbm-meta.zip

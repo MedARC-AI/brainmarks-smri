@@ -5210,3 +5210,8 @@ derivatives/IXI-T2/IXI662-Guys-1120-T2_mni.txt	shards/ixi-012.zip
 source/IXI-PD/IXI662-Guys-1120-PD.nii.gz	shards/ixi-012.zip
 source/IXI-T1/IXI662-Guys-1120-T1.nii.gz	shards/ixi-012.zip
 source/IXI-T2/IXI662-Guys-1120-T2.nii.gz	shards/ixi-012.zip
+source/IXI.xls	shards/ixi-meta.zip
+source/docs/ixi-dataset.html	shards/ixi-meta.zip
+source/docs/scanner-philips-medical-systems-gyroscan-intera-1-5t.html	shards/ixi-meta.zip
+source/docs/scanner-philips-medical-systems-intera-3t.html	shards/ixi-meta.zip
+source/marital.xls	shards/ixi-meta.zip

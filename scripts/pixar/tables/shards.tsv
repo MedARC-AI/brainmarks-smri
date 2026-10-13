@@ -619,3 +619,8 @@ derivatives/sub-pixar155/anat/sub-pixar155_T1w_mask.nii.gz	shards/pixar-000.zip
 derivatives/sub-pixar155/anat/sub-pixar155_T1w_mni.txt	shards/pixar-000.zip
 source/sub-pixar155/anat/sub-pixar155_T1w.json	shards/pixar-000.zip
 source/sub-pixar155/anat/sub-pixar155_T1w.nii.gz	shards/pixar-000.zip
+source/CHANGES	shards/pixar-meta.zip
+source/README	shards/pixar-meta.zip
+source/dataset_description.json	shards/pixar-meta.zip
+source/participants.json	shards/pixar-meta.zip
+source/participants.tsv	shards/pixar-meta.zip

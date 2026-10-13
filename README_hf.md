@@ -37,7 +37,7 @@ configs:
 
 # Brainmarks-sMRI
 
-Ten public structural brain MRI datasets for evaluating sMRI foundation models, with classification, regression and segmentation targets. The images are the original releases, unmodified. Each dataset adds harmonized metadata tables and fixed train/val/test splits.
+Ten public structural brain MRI datasets for evaluating sMRI foundation models, with classification, regression and segmentation targets. The images are the original releases, unmodified, packed into zip shards. Each dataset adds harmonized metadata tables, fixed train/val/test splits, and a brain mask and MNI affine for every image.
 
 ## Datasets
 
@@ -61,9 +61,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 ```
 <dataset>/
   README.md            # source, version, license, citation, splits
-  source/              # the original release, verbatim
-  derivatives/         # per 3D image: brain mask and affine to MNI152NLin6Asym, mirroring source/
-  shards/              # images, their sidecars and derivatives, packed into ~1 GB zip files
+  shards/              # zip files of source/ (the original release) and derivatives/
   tables/
     images.tsv         # one row per image: participant_id, session_id, modality, desc, path
     samples.tsv        # one row per scan session: participant_id, session_id, age, sex, site, targets...
@@ -71,13 +69,14 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
     splits.tsv         # one row per participant: participant_id, split, official_split, rank, complete
     derivatives.tsv    # one row per processed image: path, mask method, QC metrics
     shards.tsv         # one row per packed file: path, shard
-    source.sha256      # checksums of source/; verify with `sha256sum -c tables/source.sha256`
-    derivatives.sha256 # checksums of derivatives/
+    source.sha256      # checksums of the original release (source/)
+    derivatives.sha256 # checksums of the masks and affines (derivatives/)
 ```
 
 - All paths in the tables are relative to `<dataset>/`.
 - Derivatives: a brain mask on the image grid (`<image>_mask.nii.gz`) and a 4×4 nibabel-style affine matrix from the image to MNI152NLin6Asym (`<image>_mni.txt`). `derivatives.tsv` lists the images that have them.
-- Each shard holds whole participants. Its files keep their paths, so unzipping the shards in `<dataset>/` restores `source/` and `derivatives/`.
+- `<dataset>-NNN.zip` shards hold whole participants: their images, JSON sidecars, brain masks and MNI affines, about 1 GB per shard. `<dataset>-meta.zip` holds the rest of the release: participant tables, phenotypes and docs.
+- Files in the shards keep their original paths under `source/` and `derivatives/`. Unzipping all shards in `<dataset>/` restores the full release, which you can check with `sha256sum -c tables/source.sha256 tables/derivatives.sha256`.
 - Splits are by participant. Official splits are kept where they exist; otherwise the split is 60/20/20, stratified, with a fixed seed.
 - `complete` marks participants with all core images and the primary targets.
 - `rank` orders participants within each split so that the lowest-ranked N form a balanced subset; subsets are nested as N grows.
@@ -89,17 +88,29 @@ hf download medarc/brainmarks-smri --repo-type dataset --include "pixar/*" --loc
 ```
 
 ```python
+import gzip
+import zipfile
+
+import nibabel as nib
 import pandas as pd
 
 root = "brainmarks-smri/pixar"
 images = pd.read_csv(f"{root}/tables/images.tsv", sep="\t")
 samples = pd.read_csv(f"{root}/tables/samples.tsv", sep="\t")
 splits = pd.read_csv(f"{root}/tables/splits.tsv", sep="\t")
+shards = pd.read_csv(f"{root}/tables/shards.tsv", sep="\t").set_index("path")["shard"]
 
 # A balanced 50-participant training subset.
 train = splits[(splits.split == "train") & splits.complete]
 train_50 = train.nsmallest(50, "rank").participant_id
+
+# Read one image from its shard.
+path = images["path"][0]
+with zipfile.ZipFile(f"{root}/{shards[path]}") as shard:
+    image = nib.Nifti1Image.from_bytes(gzip.decompress(shard.read(path)))
 ```
+
+To work with plain files instead, unzip the shards: `cd brainmarks-smri/pixar && unzip -q 'shards/*.zip'`.
 
 ## License and citation
 

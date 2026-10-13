@@ -1,12 +1,14 @@
-"""Pack a dataset's images, their sidecars and derivatives into zip shards.
+"""Pack a dataset's source/ and derivatives/ files into zip shards.
 
     uv run scripts/pack_shards.py datasets/<name> [--shard-size-gb 1]
 
 Writes `shards/<name>-NNN.zip` and `tables/shards.tsv` (path, shard) inside the dataset folder, and
 copies shards.tsv to scripts/<name>/tables/. The input files are not changed. Each shard holds whole
 participants, in participant_id order: the images of images.tsv, their .json sidecars, and the
-masks and affines of the images in derivatives.tsv. Members are stored uncompressed under their paths relative
-to the dataset folder, so unzipping the shards there restores the original files. Every member is
+masks and affines of the images in derivatives.tsv. All other files in the checksums (metadata)
+go to `shards/<name>-meta.zip`. Members are stored uncompressed, one participant after another,
+under their paths relative to the dataset folder, so unzipping the shards there restores source/
+and derivatives/. Every member is
 checked against tables/source.sha256 and tables/derivatives.sha256.
 """
 
@@ -39,8 +41,8 @@ def sidecar_path(path: str) -> str:
     return path.removesuffix(".gz").removesuffix(".nii") + ".json"
 
 
-def list_packed_files(dataset_dir: Path) -> pd.DataFrame:
-    """One row per file to pack: participant_id, path, size."""
+def list_participant_files(dataset_dir: Path) -> pd.DataFrame:
+    """One row per file of a participant: participant_id, path, size."""
     tables_dir = dataset_dir / "tables"
     images = pd.read_csv(tables_dir / "images.tsv", sep="\t", dtype=str)
     images = images[["participant_id", "path"]]
@@ -70,7 +72,7 @@ def assign_shards(files: pd.DataFrame, name: str, shard_size: int) -> pd.Series:
 
 def write_shard(shard_path: Path, dataset_dir: Path, member_paths: list[str]) -> None:
     with zipfile.ZipFile(shard_path, "w", compression=zipfile.ZIP_STORED) as shard:
-        for path in sorted(member_paths):
+        for path in member_paths:
             shard.write(dataset_dir / path, arcname=path)
 
 
@@ -105,10 +107,13 @@ def main() -> None:
     expected = read_manifest(dataset_dir / "tables" / "source.sha256")
     expected |= read_manifest(dataset_dir / "tables" / "derivatives.sha256")
 
-    files = list_packed_files(dataset_dir)
+    files = list_participant_files(dataset_dir)
     missing = set(files["path"]) - set(expected)
     assert not missing, f"{len(missing)} files not in the manifests, e.g. {sorted(missing)[:3]}"
     files["shard"] = assign_shards(files, name, int(args.shard_size_gb * 1e9))
+    metadata_paths = sorted(set(expected) - set(files["path"]))
+    metadata = pd.DataFrame({"path": metadata_paths, "shard": f"shards/{name}-meta.zip"})
+    files = pd.concat([files, metadata], ignore_index=True)
     logger.info(
         "%s: %d files, %.1f GB, %d participants -> %d shards",
         name,
@@ -133,10 +138,7 @@ def main() -> None:
     index_path = dataset_dir / "tables" / "shards.tsv"
     files[["path", "shard"]].to_csv(index_path, sep="\t", index=False, lineterminator="\n")
     shutil.copy(index_path, REPO / "scripts" / name / "tables" / "shards.tsv")
-
-    packed = set(files["path"])
-    loose = [path for path in expected if path not in packed]
-    logger.info("done: %d files packed, %d left loose", len(packed), len(loose))
+    logger.info("done: %d files packed, %d of them metadata", len(files), len(metadata))
 
 
 if __name__ == "__main__":
