@@ -129,6 +129,33 @@ def adhd_diagnosis(eval_split: str = "val", max_per_split: int | None = None) ->
 
 
 @register_task
+def oasis_dementia(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+    dataset = create_dataset("oasis", modality="T1w")
+    samples = dataset.samples
+    # CDR 0 vs >= 0.5 (very mild Alzheimer's disease or worse), over 60, where everyone is rated.
+    # Sex predicts the label (71% of CDR 0 are women, 56% of CDR >= 0.5), so keep equal numbers
+    # of each class per sex and split, lowest rank first.
+    samples["impaired"] = (samples["cdr"] >= 0.5).where(samples["cdr"].notna())
+    keep = pd.Series(False, index=samples.index)
+    labeled = samples[samples["impaired"].notna() & (samples["age"] >= 60)]
+    for _, stratum in labeled.groupby(["sex", "split"]):
+        class_counts = stratum["impaired"].value_counts()
+        n_per_class = 0 if len(class_counts) < 2 else class_counts.min()
+        for _, rows in stratum.groupby("impaired"):
+            keep[rows.nsmallest(n_per_class, "rank").index] = True
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="oasis_dementia",
+        type="classification",
+        dataset=dataset,
+        target="impaired",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
 def ixi_age(eval_split: str = "val", max_per_split: int | None = None) -> Task:
     dataset = create_dataset("ixi", modality="T1w")
     keep = dataset.samples["age"].notna()

@@ -60,6 +60,9 @@ SKIP_DESC = {
 }
 # Skip skull-stripping for datasets that are already stripped.
 SKULL_STRIPPED = {"brats2021", "upenn_gbm"}
+# Analyze images take the affine of a reference NIfTI with the same voxel layout, as in
+# brainmarks_smri.datasets: OASIS-1's sagittal MPRAGEs have OASIS-2's.
+ANALYZE_REFERENCES = {"oasis": "source/oasis2/OAS2_RAW_PART1/OAS2_0001_MR1/RAW/mpr-1.nifti.hdr"}
 
 # QC warning ranges (template brain mask Dice, linear scale to MNI, brain volume in litres)
 MIN_DICE = 0.9
@@ -141,7 +144,7 @@ def derivative_stem(path: str) -> str:
     """Image `path` from images.tsv -> derivative stem, relative to the dataset directory."""
     source_path = PurePosixPath(path)
     assert source_path.parts[0] == "source", path
-    name = source_path.name.removesuffix(".gz").removesuffix(".nii")
+    name = source_path.name.removesuffix(".gz").removesuffix(".nii").removesuffix(".hdr")
     return str(PurePosixPath("derivatives", *source_path.parent.parts[1:], name))
 
 
@@ -154,6 +157,11 @@ def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path])
     if not aff_path.exists():
         mask_path.parent.mkdir(parents=True, exist_ok=True)
         image = load_image(dataset_dir / image_row["path"])
+        # Analyze images (Oasis only) have no orientation, so nib.load guesses an axial one; set the true one.
+        if dataset_dir.name in ANALYZE_REFERENCES and not isinstance(image, nib.Nifti1Pair):
+            reference = nib.load(dataset_dir / ANALYZE_REFERENCES[dataset_dir.name])
+            assert image.shape == reference.shape[:3], (image.shape, reference.shape)
+            image = nib.Nifti1Image(image.dataobj, reference.affine)
 
         # Brain mask. SynthStrip if no mask provided / not already stripped.
         if image_row["mask_method"] == "provided":

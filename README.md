@@ -13,7 +13,7 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 
 ## Data
 
-The benchmark uses ten public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
+The benchmark uses eleven public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
 We plan to host the datasets at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri) and download them automatically. This is still under construction. For now, the benchmark reads from a local `datasets/` folder (or `$DATA_ROOT`). The scripts in `scripts/` show how we downloaded and built each dataset.
 
@@ -27,7 +27,7 @@ Each run evaluates one model on one task. The results go to `output/<model>/<tas
 
 | Type | Tasks | Probe | Metric |
 |---|---|---|---|
-| classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS | logistic regression | AUROC |
+| classification | ABIDE autism, ADHD-200, CNP diagnosis, OASIS dementia, UCSF IDH, UPENN 1-year survival, SOOP mRS | logistic regression | AUROC |
 | regression | IXI age, OpenBHB age | ridge | R² |
 | segmentation | BraTS tumor regions (3), SOOP stroke lesion | patch-level logistic regression | Dice |
 
