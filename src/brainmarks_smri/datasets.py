@@ -174,6 +174,12 @@ def adhd200(modality: str = "T1w", **kwargs) -> BrainDataset:
 
 
 @register_dataset
+def atlas(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """ATLAS R2.1: chronic stroke lesion segmentation, skull-stripped T1w. Built on the user side."""
+    return BrainDataset("atlas", modality, **kwargs)
+
+
+@register_dataset
 def brats2021(modality: str = "FLAIR", **kwargs) -> BrainDataset:
     """BraTS 2021: tumor segmentation (training cases only), MGMT. Skull-stripped, co-registered
     T1w, T1c, T2w, FLAIR, so every sequence uses the session's T1w derivatives."""
@@ -187,9 +193,33 @@ def cnp(modality: str = "T1w", **kwargs) -> BrainDataset:
 
 
 @register_dataset
+def fomo26_task4(modality: str = "T2w", **kwargs) -> BrainDataset:
+    """FOMO26 Task 4: trigeminal nerve and vessel segmentation, T2w. Built on the user side."""
+    return BrainDataset("fomo26_task4", modality, **kwargs)
+
+
+@register_dataset
+def fomo26_task5(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """FOMO26 Task 5: polymicrogyria vs control, T1w. Built on the user side."""
+    return BrainDataset("fomo26_task5", modality, **kwargs)
+
+
+@register_dataset
 def ixi(modality: str = "T1w", **kwargs) -> BrainDataset:
     """IXI: age, T1w, T2w, PD."""
     return BrainDataset("ixi", modality, **kwargs)
+
+
+@register_dataset
+def oasis1(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """OASIS-1: dementia (CDR), T1w (the averaged native-space image). Built on the user side."""
+    return BrainDataset("oasis1", modality, **kwargs)
+
+
+@register_dataset
+def oasis2(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """OASIS-2: dementia and conversion, longitudinal T1w (mpr-1). Built on the user side."""
+    return BrainDataset("oasis2", modality, **kwargs)
 
 
 @register_dataset

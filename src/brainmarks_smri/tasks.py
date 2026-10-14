@@ -266,3 +266,57 @@ def soop_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Ta
         # Binary masks; a few use 2 or 3 as the lesion value instead of 1.
         label_values=[1, 2, 3],
     )
+
+
+@register_task
+def atlas_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+    dataset = create_dataset("atlas", modality="T1w")
+    keep = dataset.samples["mask_lesion_path"].notna()
+    train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
+    return Task(
+        name="atlas_lesion",
+        type="segmentation",
+        dataset=dataset,
+        target="mask_lesion",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        label_values=[1],
+    )
+
+
+@register_task
+def oasis1_dementia(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+    dataset = create_dataset("oasis1", modality="T1w")
+    samples = dataset.samples
+    # CDR is only given for first sessions (MR1), mostly 60+.
+    samples["dementia"] = (samples["cdr"] > 0).where(samples["cdr"].notna())
+    keep = (samples["session_id"] == "MR1") & samples["cdr"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="oasis1_dementia",
+        type="classification",
+        dataset=dataset,
+        target="dementia",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def oasis2_dementia(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+    dataset = create_dataset("oasis2", modality="T1w")
+    samples = dataset.samples
+    # CDR > 0 at the first visit only, one scan per participant (converters count as CDR 0).
+    samples["dementia"] = (samples["cdr"] > 0).where(samples["cdr"].notna())
+    keep = (samples["visit"] == 1) & samples["cdr"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="oasis2_dementia",
+        type="classification",
+        dataset=dataset,
+        target="dementia",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )

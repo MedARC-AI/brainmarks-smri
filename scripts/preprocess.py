@@ -59,9 +59,11 @@ DATASET_MODALITIES = {"brats2021": {"T1w"}, "ucsf_pdgm": {"T1w"}, "upenn_gbm": {
 SKIP_DESC = {
     "ucsf_pdgm": {"bias"},
     "upenn_gbm": {"unstripped", "old", "old_unstripped"},
+    "oasis1": {"mpr-1", "mpr-2", "mpr-3", "mpr-4", "t88", "t88_masked"},
+    "oasis2": {"mpr-2", "mpr-3", "mpr-4", "3906-3"},
 }
 # Skip skull-stripping for datasets that are already stripped.
-SKULL_STRIPPED = {"brats2021", "upenn_gbm"}
+SKULL_STRIPPED = {"atlas", "brats2021", "upenn_gbm"}
 
 # QC warning ranges (template brain mask Dice, linear scale to MNI, brain volume in litres)
 MIN_DICE = 0.9
