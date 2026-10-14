@@ -20,8 +20,8 @@
     "Description": "Acquisition site, as coded by the source."
   },
   "scanner_model": {
-    "Description": "Scanner model of the T1w (from its JSON sidecar).",
-    "Source": "sub-*_T1w.json ManufacturersModelName"
+    "Description": "Scanner model (from the FLAIR JSON sidecar).",
+    "Source": "sub-*_FLAIR.json ManufacturersModelName"
   },
   "age_clamped": {
     "Description": "Age was reported as '89+' (age set to 89)."

@@ -4,19 +4,20 @@
 
 See `brainmarks_smri.utils.tables` for the table layout.
 
-- 1715 imaged participants, one session each (session_id '1'): T1w, FLAIR, DWI (rec-TRACE,
-  b1000 trace) and ADC (rec-ADC). Lesion masks from derivatives/lesion_masks/ are modality
-  `mask` with desc `lesion` (combined, 1455), `lesionAcute` (1451) or `lesionChronic` (203).
-- The masks are on the TRACE/ADC grid (space-TRACE); T1w and FLAIR are native high-resolution
-  volumes in a different space.
+- 1715 imaged participants, one session each (session_id '1'): FLAIR, DWI (rec-TRACE,
+  b1000 trace) and ADC (rec-ADC); the T1w is not downloaded. Lesion masks from
+  derivatives/lesion_masks/ are modality `mask` with desc `lesion` (combined, 1455),
+  `lesionAcute` (1451) or `lesionChronic` (203).
+- The masks are on the TRACE/ADC grid (space-TRACE); FLAIR is a native high-resolution volume
+  in a different space.
 - participants.tsv covers 1505 of the 1715; 399 of those rows are n/a in every clinical field.
   Participants without a row are kept with n/a metadata. Ages above 89 are clamped by the
   source ('89+'): age 89 and `age_clamped`.
 - No site is given (single cohort from South Carolina; site n/a). `scanner_model` comes from the
-  T1w sidecars (6 Philips/GE/Siemens models).
+  FLAIR sidecars (6 Philips/GE/Siemens models).
 - The mRS is at discharge, not 90 days. `mrs_poor` = mRS 3-6, as in Neuro-JEPA.
 - No official split: 60/20/20, stratified by mrs_poor x has combined lesion mask.
-- Complete: T1w, FLAIR, DWI, ADC, combined lesion mask and discharge mRS.
+- Complete: FLAIR, DWI, ADC, combined lesion mask and discharge mRS.
 """
 
 import json
@@ -29,7 +30,7 @@ NAME = "soop"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
 DIFFUSION = {"rec-TRACE": "DWI", "rec-ADC": "ADC"}
-CORE = {("T1w", "n/a"), ("FLAIR", "n/a"), ("DWI", "n/a"), ("ADC", "n/a"), ("mask", "lesion")}
+CORE = {("FLAIR", "n/a"), ("DWI", "n/a"), ("ADC", "n/a"), ("mask", "lesion")}
 
 
 def images() -> pd.DataFrame:
@@ -41,13 +42,13 @@ def images() -> pd.DataFrame:
     assert (masks.desc.str.startswith("space-TRACE_desc-")).all()
     masks["desc"] = masks.desc.str.removeprefix("space-TRACE_desc-")
     images = pd.concat([raw, masks], ignore_index=True)
-    assert set(images.modality) == {"T1w", "FLAIR", "DWI", "ADC", "mask"}
+    assert set(images.modality) == {"FLAIR", "DWI", "ADC", "mask"}
     return images
 
 
 def scanner_model(participant_id: str) -> str | None:
-    """ManufacturersModelName from the T1w sidecar (the source names no site or institution)."""
-    sidecar = SOURCE / participant_id / "anat" / f"{participant_id}_T1w.json"
+    """ManufacturersModelName from the FLAIR sidecar (the source names no site or institution)."""
+    sidecar = SOURCE / participant_id / "anat" / f"{participant_id}_FLAIR.json"
     if not sidecar.exists():
         return None
     return json.loads(sidecar.read_text()).get("ManufacturersModelName")
@@ -74,8 +75,8 @@ def samples(participant_ids: list[str]) -> tuple[pd.DataFrame, dict[str, dict]]:
 
     columns = {
         "scanner_model": {
-            "Description": "Scanner model of the T1w (from its JSON sidecar).",
-            "Source": "sub-*_T1w.json ManufacturersModelName",
+            "Description": "Scanner model (from the FLAIR JSON sidecar).",
+            "Source": "sub-*_FLAIR.json ManufacturersModelName",
         },
         "age_clamped": {"Description": "Age was reported as '89+' (age set to 89)."},
         "race": {

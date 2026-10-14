@@ -200,8 +200,8 @@ def openbhb(modality: str = "T1w", **kwargs) -> BrainDataset:
 
 @register_dataset
 def soop(modality: str = "DWI", **kwargs) -> BrainDataset:
-    """SOOP: stroke lesion segmentation (masks on the DWI/ADC grid), discharge mRS, NIHSS. T1w,
-    FLAIR, DWI, ADC are not co-registered (head motion), so each image has its own derivatives."""
+    """SOOP: stroke lesion segmentation (masks on the DWI/ADC grid), discharge mRS, NIHSS. FLAIR,
+    DWI, ADC are not co-registered (head motion), so each image has its own derivatives."""
     return BrainDataset("soop", modality, **kwargs)
 
 

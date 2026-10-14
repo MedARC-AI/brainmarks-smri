@@ -7,10 +7,10 @@ NAME=soop
 OUT=$DATA_ROOT/$NAME
 FILES=(uv run --no-project python "$(dirname "$0")/snapshot_files.py")
 
-check_budget $((80 * 10**9))
-# The whole snapshot is in scope: anat/ (T1w, FLAIR), dwi/ (TRACE + ADC only, no raw
-# multi-direction DWI) and derivatives/lesion_masks/ (the segmentation targets, the only
-# derivative). There is no fMRI.
+check_budget $((30 * 10**9))
+# The whole snapshot except the T1w (no task uses it; 42 GB): anat/ FLAIR, dwi/ (TRACE + ADC
+# only, no raw multi-direction DWI) and derivatives/lesion_masks/ (the segmentation targets,
+# the only derivative). There is no fMRI.
 # openneuro-py fails on this dataset (HEAD on GET-presigned S3 URLs -> 403; see
 # snapshot_files.py), so we list the snapshot via the OpenNeuro API and fetch each pinned
 # S3 object version with curl. Only missing or incomplete files are listed, so re-runs resume.

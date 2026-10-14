@@ -12,7 +12,7 @@ Stroke Outcome Optimization Project: clinical MRI of 1715 patients admitted to a
 
 ## Samples
 
-One sample per imaged participant (1715; only 1106 have clinical data). Split 60/20/20, stratified by poor outcome (discharge mRS 3–6) × has a lesion mask; there is no official split. Complete = T1w, FLAIR, DWI, ADC, the combined lesion mask and discharge mRS (621).
+One sample per imaged participant (1715; only 1106 have clinical data). Split 60/20/20, stratified by poor outcome (discharge mRS 3–6) × has a lesion mask; there is no official split. Complete = FLAIR, DWI, ADC, the combined lesion mask and discharge mRS (621).
 
 | split | participants | complete | age | female | mrs_poor | nihss |
 |---|---|---|---|---|---|---|
@@ -23,22 +23,23 @@ One sample per imaged participant (1715; only 1106 have clinical data). Split 60
 
 ## Contents
 
-`source/`: the complete snapshot (16,838 files, 72 GB):
+`source/`: the snapshot without the T1w (13,408 files, 27 GB):
 
-- 1715 subjects, each with `anat/` T1w + FLAIR and `dwi/` `rec-TRACE_dwi` (b1000 trace) + `rec-ADC_dwi`, all with JSON sidecars. The top-level `dwi.bval`/`dwi.bvec` are BIDS-inherited placeholders. There is no raw multi-direction DWI.
+- 1715 subjects, each with `anat/` FLAIR and `dwi/` `rec-TRACE_dwi` (b1000 trace) + `rec-ADC_dwi`, all with JSON sidecars. The top-level `dwi.bval`/`dwi.bvec` are BIDS-inherited placeholders. There is no raw multi-direction DWI.
 - `derivatives/lesion_masks/`: segmentation targets in TRACE (DWI) space. `desc-lesion_mask` (combined) covers 1455 subjects, `desc-lesionAcute_mask` 1451 and `desc-lesionChronic_mask` 203.
 - `participants.tsv` (+ `participants.json`): sex, age (clamped to 89), race, `acuteischaemicstroke`, `priorstroke`, `bmi`, `nihss`, `gs_rankin_6isdeath` (**discharge** mRS, 0–6 where 6 is death) and `etiology` (TOAST class, added in 1.1.1/1.1.2).
 - `README.md`, `CHANGES`, `dataset_description.json`.
 
 `tables/` (derived from `source/`):
 
-- `images.tsv`: T1w, FLAIR, DWI (`rec-TRACE`) and ADC (`rec-ADC`), and the lesion masks as modality `mask` with desc `lesion` (combined), `lesionAcute` or `lesionChronic`. The masks are on the DWI/ADC grid (6 mm slices); T1w and FLAIR are native high-resolution volumes in another space.
-- `samples.tsv` + `samples.json`: discharge mRS (`mrs_discharge`, and `mrs_poor` = 3–6), NIHSS, etiology (TOAST), age (clamped at 89, `age_clamped`), sex, race, prior stroke, BMI, and the scanner model from the T1w sidecars. The source names no site, so `site` is n/a.
+- `images.tsv`: FLAIR, DWI (`rec-TRACE`) and ADC (`rec-ADC`), and the lesion masks as modality `mask` with desc `lesion` (combined), `lesionAcute` or `lesionChronic`. The masks are on the DWI/ADC grid (6 mm slices); FLAIR is a native high-resolution volume in another space.
+- `samples.tsv` + `samples.json`: discharge mRS (`mrs_discharge`, and `mrs_poor` = 3–6), NIHSS, etiology (TOAST), age (clamped at 89, `age_clamped`), sex, race, prior stroke, BMI, and the scanner model from the FLAIR sidecars. The source names no site, so `site` is n/a.
 - `splits.tsv`: split, rank and complete per participant.
 
 ## Excluded
 
-- Nothing. The snapshot has no fMRI, other modalities or non-target derivatives.
+- The T1w images and their sidecars (`anat/*_T1w.*`, 3430 files, 42 GB): no task uses them. For T1w stroke lesion segmentation, see [ATLAS](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/atlas).
+- The snapshot has no fMRI, other modalities or non-target derivatives.
 
 ## Notes
 

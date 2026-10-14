@@ -10,8 +10,11 @@ version is public, so we fetch `...?versionId=<v>` without the signature.
 verify checks every file against the snapshot's own checksums: the SHA256 in the git-annex
 key (`SHA256E-s<size>--<sha256>`) for annexed files, the git blob SHA1 for the rest. It
 also flags missing and extra files.
+
+Files matching EXCLUDE are left out of both.
 """
 
+import fnmatch
 import hashlib
 import json
 import sys
@@ -23,6 +26,7 @@ QUERY = (
     '{ snapshot(datasetId: "%s", tag: "%s") '
     "{ files(recursive: true) { id filename size urls annexed directory } } }"
 )
+EXCLUDE = "sub-*/anat/*_T1w.*"
 
 
 def snapshot_files(dataset, tag):
@@ -33,7 +37,7 @@ def snapshot_files(dataset, tag):
     )
     with urllib.request.urlopen(req, timeout=300) as r:
         files = json.load(r)["data"]["snapshot"]["files"]
-    return [f for f in files if not f["directory"]]
+    return [f for f in files if not f["directory"] and not fnmatch.fnmatch(f["filename"], EXCLUDE)]
 
 
 def unsigned_url(url):
