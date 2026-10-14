@@ -14,8 +14,8 @@ task_categories:
 size_categories:
   - 10K<n<100K
 extra_gated_prompt: >-
-  This collection redistributes 10 public datasets, each under its own license:
-  CC0 (Pixar, CNP, SOOP); CC BY 4.0 + the TCIA Data Usage Policy (UCSF-PDGM,
+  This collection redistributes 9 public datasets, each under its own license:
+  CC0 (CNP, SOOP); CC BY 4.0 + the TCIA Data Usage Policy (UCSF-PDGM,
   UPENN-GBM, BraTS 2021); CC BY-SA 3.0 (IXI); CC BY-NC-SA 3.0 (ABIDE I, OpenBHB);
   CC BY-NC (ADHD-200). OpenBHB additionally asks users to accept the most
   restrictive data usage agreement of its source cohorts. Each dataset's README
@@ -29,7 +29,6 @@ configs:
   - {config_name: cnp, data_files: cnp/tables/samples.tsv}
   - {config_name: ixi, data_files: ixi/tables/samples.tsv}
   - {config_name: openbhb, data_files: openbhb/tables/samples.tsv}
-  - {config_name: pixar, data_files: pixar/tables/samples.tsv}
   - {config_name: soop, data_files: soop/tables/samples.tsv}
   - {config_name: ucsf_pdgm, data_files: ucsf_pdgm/tables/samples.tsv}
   - {config_name: upenn_gbm, data_files: upenn_gbm/tables/samples.tsv}
@@ -37,7 +36,7 @@ configs:
 
 # Brainmarks-sMRI
 
-Ten public structural brain MRI datasets for evaluating sMRI foundation models, with classification, regression and segmentation targets. The images are the original releases, unmodified, packed into zip shards. Each dataset adds harmonized metadata tables, fixed train/val/test splits, and a brain mask and MNI affine for every image.
+Nine public structural brain MRI datasets for evaluating sMRI foundation models, with classification, regression and segmentation targets. The images are the original releases, unmodified, packed into zip shards. Each dataset adds harmonized metadata tables, fixed train/val/test splits, and a brain mask and MNI affine for every image.
 
 ## Datasets
 
@@ -49,7 +48,6 @@ Ten public structural brain MRI datasets for evaluating sMRI foundation models, 
 | [CNP](https://openneuro.org/datasets/ds000030) | 265 | T1w | psychiatric diagnosis (4-way) | CC0 | 3.2 GB |
 | [IXI](https://brain-development.org/ixi-dataset/) | 582 | T1w, T2w, PD | age | CC BY-SA 3.0 | 12.8 GB |
 | [OpenBHB](https://baobablab.github.io/bhb/) | 3,984 | T1w | age (with site debiasing) | CC BY-NC-SA 3.0 | 32 GB |
-| [Pixar](https://openneuro.org/datasets/ds000228) | 155 | T1w | age | CC0 | 1.0 GB |
 | [SOOP](https://openneuro.org/datasets/ds004889) | 1,715 | FLAIR, DWI, ADC, lesion mask | stroke lesion segmentation, discharge mRS, NIHSS | CC0 | 27 GB |
 | [UCSF-PDGM](https://www.cancerimagingarchive.net/collection/ucsf-pdgm/) | 495 | T1w, T1c, T2w, FLAIR, DWI, ADC, tumor mask | IDH, MGMT, 1p/19q, grade, survival, tumor segmentation | CC BY 4.0 | 15.9 GB |
 | [UPENN-GBM](https://www.cancerimagingarchive.net/collection/upenn-gbm/) | 630 | T1w, T1c, T2w, FLAIR, tumor mask | survival, IDH1, MGMT, tumor segmentation | CC BY 4.0 | 25.3 GB |
@@ -84,7 +82,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 ## Usage
 
 ```sh
-hf download medarc/brainmarks-smri --repo-type dataset --include "pixar/*" --local-dir brainmarks-smri
+hf download medarc/brainmarks-smri --repo-type dataset --include "cnp/*" --local-dir brainmarks-smri
 ```
 
 ```python
@@ -94,7 +92,7 @@ import zipfile
 import nibabel as nib
 import pandas as pd
 
-root = "brainmarks-smri/pixar"
+root = "brainmarks-smri/cnp"
 images = pd.read_csv(f"{root}/tables/images.tsv", sep="\t")
 samples = pd.read_csv(f"{root}/tables/samples.tsv", sep="\t")
 splits = pd.read_csv(f"{root}/tables/splits.tsv", sep="\t")
@@ -110,7 +108,7 @@ with zipfile.ZipFile(f"{root}/{shards[path]}") as shard:
     image = nib.Nifti1Image.from_bytes(gzip.decompress(shard.read(path)))
 ```
 
-To work with plain files instead, unzip the shards: `cd brainmarks-smri/pixar && unzip -q 'shards/*.zip'`.
+To work with plain files instead, unzip the shards: `cd brainmarks-smri/cnp && unzip -q 'shards/*.zip'`.
 
 ## License and citation
 
