@@ -1,0 +1,26 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Not in the source (all n/a).",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Not in the source (all n/a)."
+  },
+  "site": {
+    "Description": "Not in the source (all n/a)."
+  },
+  "pmg": {
+    "Description": "Polymicrogyria or control.",
+    "Source": "labels/<sub>/ses_01/labels.txt",
+    "Levels": {
+      "control": "0",
+      "polymicrogyria": "1"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Not in the release (all n/a).",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Not in the release (all n/a)."
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "days_post_stroke": {
+    "Description": "Days from stroke onset to the scan, as released (some half days, one negative).",
+    "Source": "DAYS_POST_STROKE",
+    "Units": "days"
+  },
+  "chronicity": {
+    "Description": "Chronicity code as released (only 1 or missing in R2.1; undocumented).",
+    "Source": "CHRONICITY"
+  }
+}

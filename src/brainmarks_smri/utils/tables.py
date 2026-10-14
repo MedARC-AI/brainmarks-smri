@@ -157,6 +157,7 @@ def write(
     columns: dict[str, dict],
     splits: pd.DataFrame,
     summary: list[str] = (),
+    track_samples: bool = True,
 ) -> None:
     """Validate the tables and write them to datasets/<name>/tables/ and scripts/<name>/tables/.
 
@@ -164,6 +165,7 @@ def write(
     (counts, age, sex, site and the `summary` target columns by split) for the README.
 
     `columns` documents the dataset-specific samples.tsv columns (the common ones are added).
+    `track_samples=False` keeps samples.tsv out of scripts/<name>/tables/ (data under a DUA).
     """
     images = images[IMAGE_COLUMNS]
     columns = {**{c: COMMON[c] for c in COMMON if c in samples}, **columns}
@@ -195,7 +197,10 @@ def write(
 
     tracked = REPO / "scripts" / name / "tables"
     tracked.mkdir(exist_ok=True)
-    for file_name in ["images.tsv", "samples.tsv", "splits.tsv", "samples.json"]:
+    tracked_files = ["images.tsv", "samples.tsv", "splits.tsv", "samples.json"]
+    if not track_samples:
+        tracked_files.remove("samples.tsv")
+    for file_name in tracked_files:
         shutil.copy(out / file_name, tracked / file_name)
     shutil.copy(REPO / "scripts" / name / "README.md", dataset_dir(name) / "README.md")
     print(summary_table(samples, splits, list(summary)))
