@@ -1,0 +1,101 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "release": {
+    "Description": "Release the image comes from.",
+    "Levels": {
+      "oasis1": "OASIS-1 (cross-sectional)",
+      "oasis2": "OASIS-2 (longitudinal)"
+    }
+  },
+  "source_session": {
+    "Description": "Session ID in the release, e.g. OAS1_0001_MR1."
+  },
+  "oasis2_session": {
+    "Description": "OASIS-2 session ID of this session (OASIS-1 participants: the identical OASIS-2 session, matched by voxel correlation). n/a = not in OASIS-2."
+  },
+  "cdr": {
+    "Description": "Clinical Dementia Rating, global score. All participants with CDR > 0 were diagnosed with probable Alzheimer's disease. Rated for everyone aged 60+, and for 37 younger OASIS-1 participants.",
+    "Source": "CDR",
+    "Levels": {
+      "0": "none",
+      "0.5": "very mild / questionable",
+      "1": "mild",
+      "2": "moderate"
+    }
+  },
+  "mmse": {
+    "Description": "Mini-Mental State Examination score.",
+    "Source": "MMSE",
+    "Units": "0-30"
+  },
+  "educ_level": {
+    "Description": "Education (OASIS-1 code). n/a for OASIS-2-only participants.",
+    "Source": "Educ",
+    "Levels": {
+      "1": "less than high school",
+      "2": "high school graduate",
+      "3": "some college",
+      "4": "college graduate",
+      "5": "beyond college"
+    }
+  },
+  "educ_years": {
+    "Description": "Years of education (OASIS-2). n/a for participants not in OASIS-2.",
+    "Source": "EDUC",
+    "Units": "years"
+  },
+  "ses": {
+    "Description": "Socioeconomic status, Hollingshead index (1 highest, 5 lowest).",
+    "Source": "SES"
+  },
+  "etiv": {
+    "Description": "Estimated total intracranial volume.",
+    "Source": "eTIV",
+    "Units": "cm^3"
+  },
+  "nwbv": {
+    "Description": "Normalized whole-brain volume.",
+    "Source": "nWBV"
+  },
+  "asf": {
+    "Description": "Atlas scaling factor (to the 711-2C atlas).",
+    "Source": "ASF"
+  },
+  "oasis2_group": {
+    "Description": "OASIS-2 group over all visits. n/a = not in OASIS-2.",
+    "Source": "Group",
+    "Levels": {
+      "Nondemented": "nondemented at every visit",
+      "Demented": "demented at the first visit and after",
+      "Converted": "nondemented at the first visit, demented later"
+    }
+  },
+  "cdr_later": {
+    "Description": "Worst CDR at the OASIS-2 visits after this session. n/a = no later visit.",
+    "Source": "CDR"
+  },
+  "later_days": {
+    "Description": "Days from this session to the last later OASIS-2 visit.",
+    "Source": "MR Delay",
+    "Units": "days"
+  }
+}

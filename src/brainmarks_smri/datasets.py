@@ -32,6 +32,10 @@ CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir(
 # Derivative files next to each image's mirrored path, see scripts/preprocess.py.
 MASK_SUFFIX = "_mask.nii.gz"
 AFFINE_SUFFIX = "_mni.txt"
+# Analyze 7.5 headers have no orientation, and nib.load guesses an axial one. A dataset's Analyze
+# images take the affine of a reference NIfTI with the same voxel layout: OASIS-1's sagittal
+# MPRAGEs have OASIS-2's (the scans in both releases are voxel-identical).
+ANALYZE_REFERENCES = {"oasis": "source/oasis2/OAS2_RAW_PART1/OAS2_0001_MR1/RAW/mpr-1.nifti.hdr"}
 
 logger = logging.getLogger(__name__)
 
@@ -75,6 +79,11 @@ class BrainDataset(torch.utils.data.Dataset):
     def __getitem__(self, index: int) -> tuple[Any, Any]:
         row = self.samples.iloc[index]
         image = nib.load(self.root / row["image_path"])
+        # Analyze images have no orientation, so nib.load guesses an axial one; set the true one.
+        if self.name in ANALYZE_REFERENCES and not isinstance(image, nib.Nifti1Pair):
+            reference = nib.load(self.root / ANALYZE_REFERENCES[self.name])
+            assert image.shape == reference.shape, (image.shape, reference.shape)
+            image = nib.Nifti1Image(image.dataobj, reference.affine)
         # Some DWI/ADC are stored as 4D with a single volume.
         if image.ndim == 4 and image.shape[3] == 1:
             image = nib.funcs.squeeze_image(image)
@@ -122,9 +131,9 @@ class BrainDataset(torch.utils.data.Dataset):
             rows = rows[ids + ["path"]].rename(columns={"path": f"mask_{desc}_path"})
             samples = samples.merge(rows, on=ids, how="left")
 
-        # source/<dir>/<name>.nii.gz -> derivatives/<dir>/<name>
+        # source/<dir>/<name>.nii.gz (or Analyze <name>.hdr) -> derivatives/<dir>/<name>
         stems = "derivatives/" + samples.pop("derivatives_of").str.removeprefix("source/")
-        stems = stems.str.removesuffix(".gz").str.removesuffix(".nii")
+        stems = stems.str.removesuffix(".gz").str.removesuffix(".nii").str.removesuffix(".hdr")
         samples["brain_mask_path"] = stems + MASK_SUFFIX
         samples["mni_affine_path"] = stems + AFFINE_SUFFIX
         exists = samples["mni_affine_path"].map(lambda path: (self.root / path).exists())
@@ -182,6 +191,13 @@ def cnp(modality: str = "T1w", **kwargs) -> BrainDataset:
 def ixi(modality: str = "T1w", **kwargs) -> BrainDataset:
     """IXI: age, T1w, T2w, PD."""
     return BrainDataset("ixi", modality, **kwargs)
+
+
+@register_dataset
+def oasis(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """OASIS-1 + OASIS-2: dementia (CDR), MMSE, age. One raw T1w per participant; OASIS-1's are
+    Analyze, given the affine of an OASIS-2 scan (ANALYZE_REFERENCES)."""
+    return BrainDataset("oasis", modality, **kwargs)
 
 
 @register_dataset
