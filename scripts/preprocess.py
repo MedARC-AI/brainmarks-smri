@@ -11,45 +11,20 @@ import hashlib
 import logging
 import os
 import shutil
-import subprocess
 import sys
-import tempfile
 import time
 import traceback
-import urllib.request
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from fnmatch import fnmatch
 from pathlib import Path, PurePosixPath
 
-import ants
 import nibabel as nib
 import numpy as np
 import pandas as pd
-import platformdirs
-from scipy import ndimage
 
-CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
+from brainmarks_smri.utils import preprocessing
+
 REPO = Path(__file__).resolve().parents[1]
-
-FREESURFER_COMMIT = "cf4bccf24875a47245b4df9fc9372d0f1c3d784f"
-SYNTHSTRIP_SCRIPT = (
-    f"https://raw.githubusercontent.com/freesurfer/freesurfer/{FREESURFER_COMMIT}/mri_synthstrip/mri_synthstrip",
-    "291c253ab2f7c0cbcb84afa769ae10909549537e727db5b92d268754b7cc7871",
-)
-SYNTHSTRIP_WEIGHTS = (
-    "https://surfer.nmr.mgh.harvard.edu/docs/synthstrip/requirements/synthstrip.1.pt",
-    "37417f802196186441aae3e7f385d94f8a98c64a88acaeaa2723af995c653e33",
-)
-TEMPLATE = (
-    "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym/tpl-MNI152NLin6Asym_res-01_desc-brain_T1w.nii.gz",
-    "72f8edc99d7e696da7717db20b73897d8da5909d7f30b1c9a7e2a79e9f64ff2f",
-)
-TEMPLATE_MASK = (
-    "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym/tpl-MNI152NLin6Asym_res-01_desc-brain_mask.nii.gz",
-    "6d540075dac093fa5070a929dc5ea52795d54cc9ab57fe1272086dc70314b428",
-)
-# ANTs treats seed 0 as "no seed".
-ANTS_SEED = 1
 
 # Included image modalities. 4D DWI and DTI are skipped.
 MODALITIES = {"T1w", "T1c", "T2w", "FLAIR", "PD", "DWI", "ADC"}
@@ -68,6 +43,9 @@ SKULL_STRIPPED = {"atlas", "brats2021", "upenn_gbm"}
 # Skull-stripped images whose background is noise and speckles, not zeros.
 NOISY_BACKGROUND = {"atlas": "source/Training_Raw/R029/*"}
 
+# ANTs treats seed 0 as "no seed".
+ANTS_SEED = 1
+
 # QC warning ranges (template brain mask Dice, linear scale to MNI, brain volume in litres)
 MIN_DICE = 0.9
 SCALE_RANGE = (0.9, 1.4)
@@ -80,70 +58,6 @@ AFFINE_SUFFIX = "_mni.txt"
 logger = logging.getLogger("preprocess")
 
 
-def fetch(url: str, sha256: str) -> Path:
-    path = CACHE_DIR / "preprocess" / url.rsplit("/", 1)[1]
-    if not path.exists():
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp_path = path.with_name(f".tmp-{os.getpid()}-{path.name}")
-        urllib.request.urlretrieve(url, tmp_path)
-        digest = hashlib.sha256(tmp_path.read_bytes()).hexdigest()
-        if digest != sha256:
-            raise RuntimeError(f"{url}: sha256 {digest} != {sha256}")
-        os.replace(tmp_path, path)
-    return path
-
-
-def load_image(path: Path) -> nib.Nifti1Image:
-    image = nib.load(path)
-    # Some DWI/ADC are stored as 4D with a single volume.
-    if image.ndim == 4 and image.shape[3] == 1:
-        image = image.slicer[..., 0]
-    assert image.ndim == 3, image.shape
-    return image
-
-
-def synthstrip(image: nib.Nifti1Image, files: dict[str, Path]) -> np.ndarray:
-    with tempfile.TemporaryDirectory() as tmp:
-        nib.save(image, f"{tmp}/image.nii")
-        command = [
-            sys.executable, files["synthstrip_script"],
-            "-i", f"{tmp}/image.nii",
-            "-m", f"{tmp}/mask.nii",
-            "--model", files["synthstrip_weights"],
-        ]  # fmt: skip
-        result = subprocess.run(command, capture_output=True, text=True)
-        if result.returncode != 0:
-            raise RuntimeError(f"SynthStrip exit {result.returncode}: {result.stderr[-2000:]}")
-        return np.asanyarray(nib.load(f"{tmp}/mask.nii").dataobj) > 0
-
-
-def to_ants(data: np.ndarray, affine: np.ndarray) -> ants.ANTsImage:
-    """nibabel array + RAS affine -> ANTs image (LPS), so both agree on world coordinates."""
-    lps_affine = np.diag([-1.0, -1.0, 1.0, 1.0]) @ affine
-    spacing = np.linalg.norm(lps_affine[:3, :3], axis=0)
-    return ants.from_numpy(
-        data.astype(np.float32),
-        origin=lps_affine[:3, 3].tolist(),
-        spacing=spacing.tolist(),
-        direction=lps_affine[:3, :3] / spacing,
-    )
-
-
-def ants_to_ras_affine(parameters: np.ndarray, center: np.ndarray) -> np.ndarray:
-    """ANTs registration transform to nibabel-style RAS affine."""
-    parameters = np.asarray(parameters, dtype=np.float64)
-    center = np.asarray(center, dtype=np.float64)
-    matrix = parameters[:9].reshape(3, 3)
-    translation = parameters[9:]
-
-    template_to_image_lps = np.eye(4)
-    template_to_image_lps[:3, :3] = matrix
-    template_to_image_lps[:3, 3] = translation + center - matrix @ center
-    lps = np.diag([-1.0, -1.0, 1.0, 1.0])
-    template_to_image_ras = lps @ template_to_image_lps @ lps
-    return np.linalg.inv(template_to_image_ras)
-
-
 def derivative_stem(path: str) -> str:
     """Image `path` from images.tsv -> derivative stem, relative to the dataset directory."""
     source_path = PurePosixPath(path)
@@ -152,99 +66,62 @@ def derivative_stem(path: str) -> str:
     return str(PurePosixPath("derivatives", *source_path.parent.parts[1:], name))
 
 
-def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path]) -> dict:
+def preprocess_image(image_row: dict, dataset_dir: Path) -> dict:
+    """Write the mask and MNI affine of one image (unless done) and return its QC."""
     stem = dataset_dir / derivative_stem(image_row["path"])
     mask_path = Path(f"{stem}{MASK_SUFFIX}")
-    aff_path = Path(f"{stem}{AFFINE_SUFFIX}")
+    affine_path = Path(f"{stem}{AFFINE_SUFFIX}")
 
-    # The transform is written last, so its presence marks a finished image.
-    if not aff_path.exists():
-        mask_path.parent.mkdir(parents=True, exist_ok=True)
-        image = load_image(dataset_dir / image_row["path"])
+    # Both outputs are saved after both succeed, the affine last: it marks a finished image.
+    if not affine_path.exists():
+        image = nib.squeeze_image(nib.load(dataset_dir / image_row["path"]))
+        assert image.ndim == 3, image.shape
 
-        # Brain mask. SynthStrip if no mask provided / not already stripped.
         if image_row["mask_method"] == "provided":
-            brain_mask = nib.load(dataset_dir / image_row["provided_mask"])
-            assert np.allclose(brain_mask.affine, image.affine) and brain_mask.shape == image.shape
-            mask = np.asanyarray(brain_mask.dataobj) > 0
+            provided = nib.load(dataset_dir / image_row["provided_mask"])
+            assert np.allclose(provided.affine, image.affine) and provided.shape == image.shape
+            mask = preprocessing.mask_image_like(np.asanyarray(provided.dataobj) > 0, image)
         elif image_row["mask_method"] == "nonzero":
-            mask = np.asanyarray(image.dataobj) != 0
+            mask = preprocessing.mask_image_like(np.asanyarray(image.dataobj) != 0, image)
         elif image_row["mask_method"] == "threshold":
-            data = np.asanyarray(image.dataobj)
-            foreground = data > 1e-3 * np.percentile(data[data != 0], 99)
-            labels, _ = ndimage.label(foreground)
-            largest = labels == np.bincount(labels.ravel())[1:].argmax() + 1
-            mask = ndimage.binary_fill_holes(largest)
+            mask = preprocessing.threshold_mask(image)
         else:
-            mask = synthstrip(image, files)
-        header = image.header.copy()
-        header.set_data_dtype(np.uint8)
-        tmp_mask_path = mask_path.with_name(f".tmp-{mask_path.name}")
-        nib.save(nib.Nifti1Image(mask.astype(np.uint8), image.affine, header), tmp_mask_path)
-        os.replace(tmp_mask_path, mask_path)
+            mask = preprocessing.synthstrip(image)
+        mni_affine = preprocessing.mni_affine_registration(image, mask, seed=ANTS_SEED)
 
-        # ANTs 12-DOF registration to MNI template with Mattes MI.
-        template = nib.load(files["template"])
-        masked_data = image.get_fdata(dtype=np.float32) * mask
-        ants.config._random_seed = ANTS_SEED
-        with tempfile.TemporaryDirectory() as tmp:
-            registration = ants.registration(
-                fixed=to_ants(template.get_fdata(dtype=np.float32), template.affine),
-                moving=to_ants(masked_data, image.affine),
-                type_of_transform="Affine",
-                aff_metric="mattes",
-                outprefix=f"{tmp}/",
-            )
-            transform = ants.read_transform(registration["fwdtransforms"][0])
-        mni_affine = ants_to_ras_affine(transform.parameters, transform.fixed_parameters)
-        tmp_aff_path = aff_path.with_name(f".tmp-{aff_path.name}")
-        np.savetxt(tmp_aff_path, mni_affine, fmt="%.10f")
-        os.replace(tmp_aff_path, aff_path)
+        mask_path.parent.mkdir(parents=True, exist_ok=True)
+        tmp_mask_path = mask_path.with_name(f".tmp-{mask_path.name}")
+        nib.save(mask, tmp_mask_path)
+        os.replace(tmp_mask_path, mask_path)
+        tmp_affine_path = affine_path.with_name(f".tmp-{affine_path.name}")
+        np.savetxt(tmp_affine_path, mni_affine, fmt="%.10f")
+        os.replace(tmp_affine_path, affine_path)
 
     # QC from the outputs, so re-runs report finished images too.
-    mask_image = nib.load(mask_path)
-    mask = np.asanyarray(mask_image.dataobj) > 0
-    mni_affine = np.loadtxt(aff_path)
-    template_mask = nib.load(files["template_mask"])
-    template_to_mask_voxels = (
-        np.linalg.inv(mask_image.affine) @ np.linalg.inv(mni_affine) @ template_mask.affine
-    )
-    mask_in_template = ndimage.affine_transform(
-        mask.astype(np.float32), template_to_mask_voxels, order=1, output_shape=template_mask.shape
-    )
-    mask_in_template = mask_in_template > 0.5
-    template_brain = np.asanyarray(template_mask.dataobj) > 0
-    overlap = (mask_in_template & template_brain).sum()
-    dice = 2 * overlap / (mask_in_template.sum() + template_brain.sum())
-    scale = np.linalg.det(mni_affine[:3, :3]) ** (1 / 3)
-    volume = mask.sum() * np.prod(mask_image.header.get_zooms()[:3]) / 1e6
-
+    qc = preprocessing.mni_affine_qc(nib.load(mask_path), np.loadtxt(affine_path))
     warnings = []
-    if dice < MIN_DICE:
+    if qc["template_dice"] < MIN_DICE:
         warnings.append("dice")
-    if not SCALE_RANGE[0] <= scale <= SCALE_RANGE[1]:
+    if not SCALE_RANGE[0] <= qc["mni_scale"] <= SCALE_RANGE[1]:
         warnings.append("scale")
-    if not VOLUME_RANGE[0] <= volume <= VOLUME_RANGE[1]:
+    if not VOLUME_RANGE[0] <= qc["brain_volume"] <= VOLUME_RANGE[1]:
         warnings.append("volume")
+    return {**qc, "warnings": ",".join(warnings) or "n/a"}
+
+
+def run_safely(image_row: dict, dataset_dir: Path) -> dict:
+    start = time.time()
+    try:
+        qc = preprocess_image(image_row, dataset_dir)
+    except Exception:
+        return {"path": image_row["path"], "error": traceback.format_exc()}
     return {
         "path": image_row["path"],
         "modality": image_row["modality"],
         "mask_method": image_row["mask_method"],
-        "brain_volume": round(volume, 4),
-        "mni_scale": round(scale, 4),
-        "template_dice": round(dice, 4),
-        "warnings": ",".join(warnings) or "n/a",
+        **qc,
+        "seconds": time.time() - start,
     }
-
-
-def run_safely(image_row: dict, dataset_dir: Path, files: dict[str, Path]) -> dict:
-    start = time.time()
-    try:
-        result = preprocess_image(image_row, dataset_dir, files)
-    except Exception:
-        return {"path": image_row["path"], "error": traceback.format_exc()}
-    result["seconds"] = time.time() - start
-    return result
 
 
 def main() -> None:
@@ -288,18 +165,12 @@ def main() -> None:
             image_row["mask_method"] = "synthstrip"
     image_rows = image_rows[: args.limit]
 
-    files = {
-        "synthstrip_script": fetch(*SYNTHSTRIP_SCRIPT),
-        "synthstrip_weights": fetch(*SYNTHSTRIP_WEIGHTS),
-        "template": fetch(*TEMPLATE),
-        "template_mask": fetch(*TEMPLATE_MASK),
-    }
     logger.info("%s: %d images, %d jobs", name, len(image_rows), args.jobs)
 
     results = []
     failures = []
     with ProcessPoolExecutor(args.jobs) as pool:
-        futures = [pool.submit(run_safely, row, dataset_dir, files) for row in image_rows]
+        futures = [pool.submit(run_safely, row, dataset_dir) for row in image_rows]
         for count, future in enumerate(as_completed(futures), start=1):
             result = future.result()
             if "error" in result:
