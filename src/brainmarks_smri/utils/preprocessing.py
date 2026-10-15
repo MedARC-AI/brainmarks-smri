@@ -31,7 +31,8 @@ def cached_download(url: str, cache_dir: Path) -> Path:
     path = cache_dir / url.rsplit("/", 1)[1]
     if not path.exists():
         path.parent.mkdir(parents=True, exist_ok=True)
-        tmp_path = path.with_name(f".tmp-{os.getpid()}-{path.name}")
+        fd, tmp_path = tempfile.mkstemp(dir=path.parent, prefix=f".tmp-{path.name}-")
+        os.close(fd)
         urllib.request.urlretrieve(url, tmp_path)
         os.replace(tmp_path, path)
     return path
