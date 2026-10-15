@@ -1,0 +1,69 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "cdr": {
+    "Description": "Clinical Dementia Rating (MR1 sessions; n/a for most under 60).",
+    "Source": "CDR",
+    "Levels": {
+      "0": "no dementia",
+      "0.5": "very mild",
+      "1": "mild",
+      "2": "moderate"
+    }
+  },
+  "mmse": {
+    "Description": "Mini-Mental State Examination score, 0-30.",
+    "Source": "MMSE"
+  },
+  "education": {
+    "Description": "Education level.",
+    "Source": "Educ",
+    "Levels": {
+      "1": "less than high school",
+      "2": "high school graduate",
+      "3": "some college",
+      "4": "college graduate",
+      "5": "beyond college"
+    }
+  },
+  "ses": {
+    "Description": "Socioeconomic status (Hollingshead index), 1 (highest) to 5 (lowest).",
+    "Source": "SES"
+  },
+  "etiv": {
+    "Description": "Estimated total intracranial volume.",
+    "Source": "eTIV",
+    "Units": "cm^3"
+  },
+  "nwbv": {
+    "Description": "Normalized whole-brain volume (fraction of eTIV).",
+    "Source": "nWBV"
+  },
+  "asf": {
+    "Description": "Atlas scaling factor (to the 711-2C atlas).",
+    "Source": "ASF"
+  },
+  "rescan_delay": {
+    "Description": "Days between MR1 and this MR2 rescan (n/a for MR1).",
+    "Source": "Delay",
+    "Units": "days"
+  }
+}

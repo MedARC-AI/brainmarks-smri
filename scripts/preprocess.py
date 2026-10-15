@@ -18,6 +18,7 @@ import time
 import traceback
 import urllib.request
 from concurrent.futures import ProcessPoolExecutor, as_completed
+from fnmatch import fnmatch
 from pathlib import Path, PurePosixPath
 
 import ants
@@ -59,11 +60,13 @@ DATASET_MODALITIES = {"brats2021": {"T1w"}, "ucsf_pdgm": {"T1w"}, "upenn_gbm": {
 SKIP_DESC = {
     "ucsf_pdgm": {"bias"},
     "upenn_gbm": {"unstripped", "old", "old_unstripped"},
-    "oasis1": {"mpr-1", "mpr-2", "mpr-3", "mpr-4", "t88", "t88_masked"},
+    "oasis1": {"mpr-1", "mpr-2", "mpr-3", "mpr-4", "mpr-5", "mpr-6", "t88", "t88_masked"},
     "oasis2": {"mpr-2", "mpr-3", "mpr-4", "3906-3"},
 }
 # Skip skull-stripping for datasets that are already stripped.
 SKULL_STRIPPED = {"atlas", "brats2021", "upenn_gbm"}
+# Skull-stripped images whose background is noise and speckles, not zeros.
+NOISY_BACKGROUND = {"atlas": "source/Training_Raw/R029/*"}
 
 # QC warning ranges (template brain mask Dice, linear scale to MNI, brain volume in litres)
 MIN_DICE = 0.9
@@ -166,6 +169,12 @@ def preprocess_image(image_row: dict, dataset_dir: Path, files: dict[str, Path])
             mask = np.asanyarray(brain_mask.dataobj) > 0
         elif image_row["mask_method"] == "nonzero":
             mask = np.asanyarray(image.dataobj) != 0
+        elif image_row["mask_method"] == "threshold":
+            data = np.asanyarray(image.dataobj)
+            foreground = data > 1e-3 * np.percentile(data[data != 0], 99)
+            labels, _ = ndimage.label(foreground)
+            largest = labels == np.bincount(labels.ravel())[1:].argmax() + 1
+            mask = ndimage.binary_fill_holes(largest)
         else:
             mask = synthstrip(image, files)
         header = image.header.copy()
@@ -271,6 +280,8 @@ def main() -> None:
         if provided_mask:
             image_row["mask_method"] = "provided"
             image_row["provided_mask"] = provided_mask
+        elif fnmatch(image_row["path"], NOISY_BACKGROUND.get(name, "")):
+            image_row["mask_method"] = "threshold"
         elif name in SKULL_STRIPPED:
             image_row["mask_method"] = "nonzero"
         else:

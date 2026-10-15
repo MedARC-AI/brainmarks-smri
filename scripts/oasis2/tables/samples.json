@@ -1,0 +1,76 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "group": {
+    "Description": "Diagnosis course over the study (same for all visits).",
+    "Source": "Group",
+    "Levels": {
+      "nondemented": "nondemented at every visit",
+      "demented": "demented at the first visit",
+      "converted": "nondemented at the first visit, demented later"
+    }
+  },
+  "visit": {
+    "Description": "Visit number, 1-5.",
+    "Source": "Visit"
+  },
+  "mr_delay": {
+    "Description": "Days since the first visit.",
+    "Source": "MR Delay",
+    "Units": "days"
+  },
+  "cdr": {
+    "Description": "Clinical Dementia Rating at this visit.",
+    "Source": "CDR",
+    "Levels": {
+      "0": "no dementia",
+      "0.5": "very mild",
+      "1": "mild",
+      "2": "moderate"
+    }
+  },
+  "mmse": {
+    "Description": "Mini-Mental State Examination score, 0-30.",
+    "Source": "MMSE"
+  },
+  "education_years": {
+    "Description": "Years of education.",
+    "Source": "EDUC",
+    "Units": "years"
+  },
+  "ses": {
+    "Description": "Socioeconomic status (Hollingshead index), 1 (highest) to 5 (lowest).",
+    "Source": "SES"
+  },
+  "etiv": {
+    "Description": "Estimated total intracranial volume.",
+    "Source": "eTIV",
+    "Units": "cm^3"
+  },
+  "nwbv": {
+    "Description": "Normalized whole-brain volume (fraction of eTIV).",
+    "Source": "nWBV"
+  },
+  "asf": {
+    "Description": "Atlas scaling factor (to the 711-2C atlas).",
+    "Source": "ASF"
+  }
+}

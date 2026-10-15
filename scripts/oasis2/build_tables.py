@@ -11,7 +11,7 @@ See `brainmarks_smri.utils.tables` for the table layout.
   has an extra run, desc '3906-3'. OAS2_0081_MR2/RAW/353-4-375.ima.gz (Siemens IMA) is left out.
 - Single site (Washington University, 1.5T Siemens Vision).
 - group (Nondemented / Demented / Converted) is per participant; CDR and MMSE per visit.
-- No official split: 60/20/20 by participant, stratified by group.
+- No val/test: the set is small, so every participant is in `train` (evaluate with k-fold CV).
 - Complete: main T1w in every session.
 """
 
@@ -117,7 +117,8 @@ def main() -> None:
     participants = smp.assign(has_main=has_main).groupby("participant_id")
     complete = participants.has_main.all()
     group = participants.group.first()
-    splits = tables.make_splits(group, complete)
+    split = pd.Series("train", index=group.index)
+    splits = tables.make_splits(group, complete, split=split)
     tables.write(NAME, img, smp, columns, splits, summary=["group", "cdr"], track_samples=False)
 
 
