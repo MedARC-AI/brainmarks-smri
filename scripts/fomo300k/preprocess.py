@@ -131,9 +131,9 @@ def preprocess_session(session: str, out_dir: Path) -> dict:
             names = sorted(name for name in archive.namelist() if name.endswith(".nii.gz"))
             for name in names:
                 stem = session_dir.parent / name.removesuffix(".nii.gz")
-                counts["images"] += 1
                 if Path(f"{stem}_info.json").exists():
                     continue
+                counts["images"] += 1
                 image_name = f"{Path(session).parent}/{name}"
                 try:
                     image = nib.Nifti1Image.from_bytes(gzip.decompress(archive.read(name)))
