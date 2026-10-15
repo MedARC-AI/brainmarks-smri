@@ -23,6 +23,7 @@ uv.lock
 
 # Local datasets
 /datasets
+/pretraining
 
 # Local scratch/tmp
 .scratch
