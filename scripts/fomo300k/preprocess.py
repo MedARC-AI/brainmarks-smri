@@ -159,7 +159,11 @@ def preprocess_session(session: str, out_dir: Path) -> dict:
 def make_thumbnails(image: nib.Nifti1Image, vmin: float, vmax: float) -> dict[str, Image.Image]:
     data = image.get_fdata(dtype=np.float32)
     mask = data != 0
-    centre = np.argwhere(mask).mean(axis=0).astype(int)
+    brain_voxels = np.argwhere(mask)
+    if len(brain_voxels) > 0:
+        centre = brain_voxels.mean(axis=0).astype(int)
+    else:
+        centre = np.array(data.shape) // 2
 
     data = np.clip((data - vmin) / (vmax - vmin), 0, 1)
     data = np.where(mask, data, 0.5)
