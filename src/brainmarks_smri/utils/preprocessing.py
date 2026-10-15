@@ -155,3 +155,38 @@ def mni_affine_qc(mask: nib.Nifti1Image, mni_affine: np.ndarray) -> dict:
         "mni_scale": round(scale, 4),
         "template_dice": round(dice, 4),
     }
+
+
+def rigid_from_affine(affine: np.ndarray, anchor: np.ndarray) -> np.ndarray:
+    """Rigid part of `affine`: the rotation from its polar decomposition, mapping `anchor` where
+    `affine` does."""
+    u, _, vt = np.linalg.svd(affine[:3, :3])
+    rotation = u @ vt
+    rigid = np.eye(4)
+    rigid[:3, :3] = rotation
+    rigid[:3, 3] = nib.affines.apply_affine(affine, anchor) - rotation @ anchor
+    return rigid
+
+
+def resample_to_template(
+    image: nib.Nifti1Image,
+    template: nib.Nifti1Image,
+    affine: np.ndarray,
+    order: int = 1,
+    anti_aliasing: bool = True,
+) -> nib.Nifti1Image:
+    """Image resampled onto the template grid; `affine` maps image world mm to template world mm.
+
+    With `anti_aliasing`, image axes finer than the template spacing are Gaussian smoothed first.
+    """
+    data = image.get_fdata(dtype=np.float32)
+    if anti_aliasing:
+        factors = min(template.header.get_zooms()[:3]) / np.array(image.header.get_zooms()[:3])
+        sigmas = np.maximum(0, (factors - 1) / 2)
+        if sigmas.any():
+            data = ndimage.gaussian_filter(data, sigmas)
+    template_to_image_voxels = np.linalg.inv(image.affine) @ np.linalg.inv(affine) @ template.affine
+    data = ndimage.affine_transform(
+        data, template_to_image_voxels, order=order, output_shape=template.shape
+    )
+    return nib.Nifti1Image(data, template.affine)

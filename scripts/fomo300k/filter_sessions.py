@@ -1,6 +1,6 @@
 """Exclude FOMO300K collections that overlap with any of the evaluation datasets.
 
-    uv run python scripts/filter_fomo300k.py
+    uv run python scripts/fomo300k/filter_sessions.py
 
 Reads only the root mapping.tsv at the pinned revision (gated: needs HF_TOKEN with access).
 """
@@ -13,7 +13,7 @@ from huggingface_hub import hf_hub_download
 
 REPO_ID = "FOMO-MRI/FOMO300K"
 REVISION = "0ea0b15cfcc08a96b7b9fd43d952cec3fdb7cfc7"
-OUT = Path(__file__).parent / "fomo300k_filtered_sessions.txt"
+OUT = Path(__file__).parent / "filtered_sessions.txt"
 
 # FOMO collection -> the eval datasets it shares subjects with.
 EXCLUDED = {
