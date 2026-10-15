@@ -116,7 +116,6 @@ def preprocess_session(session: str, out_dir: Path) -> dict:
         return {"images": 0, "failed": 0, "warned": 0, "skipped": 1}
 
     counts = {"images": 0, "failed": 0, "warned": 0, "skipped": 0}
-    failed = []
     with tempfile.TemporaryDirectory() as tmp:
         try:
             zip_path = hf_hub_download(
@@ -140,7 +139,6 @@ def preprocess_session(session: str, out_dir: Path) -> dict:
                     image = nib.Nifti1Image.from_bytes(gzip.decompress(archive.read(name)))
                     info = preprocess_image(image, stem)
                 except Exception:
-                    failed.append(name)
                     counts["failed"] += 1
                     logger.error("%s failed:\n%s", image_name, traceback.format_exc())
                     continue
@@ -152,8 +150,9 @@ def preprocess_session(session: str, out_dir: Path) -> dict:
                         info["mni_scale"], info["template_dice"],
                     )  # fmt: skip
 
-    session_dir.mkdir(parents=True, exist_ok=True)
-    session_json.write_text(json.dumps({"images": len(names), "failed": failed}))
+    if counts["failed"] == 0:
+        session_dir.mkdir(parents=True, exist_ok=True)
+        session_json.write_text(json.dumps({"images": len(names)}))
     return counts
 
 
