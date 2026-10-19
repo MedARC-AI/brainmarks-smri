@@ -4,13 +4,14 @@
     uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --shard 0
     uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --index
 
-Shards hold whole participants, cut into equal parts by estimated size. Per image: the encoded
-image `<stem>.npz` (`brainmarks_smri.utils.sparse_image`, from the source zip on the hub and the
-saved mask and MNI affine) and every derivative file, plus each session's `session.json`. Members
-are stored uncompressed under their paths relative to the dataset folder, so unzipping the shards
-there restores derivatives/. `--shard` writes `shards/fomo300k-NNN.zip` (skipped if it exists) and
-its member index; `--index` merges the member indexes into `tables/shards.parquet`
-(path, shard, offset, size, sha256), where `offset` is the start of the member's data.
+Shards hold whole participants, cut into equal parts by estimated size. Per image: `<stem>.npz`
+(the source image from the hub, masked with the saved mask, cropped to the brain, encoded with
+`encode_sparse_npz` plus an `mni_affine` field) and every derivative file, plus each session's
+`session.json`. Members are stored uncompressed under their paths relative to the dataset folder,
+so unzipping the shards there restores derivatives/. `--shard` writes `shards/fomo300k-NNN.zip`
+(skipped if it exists) and its member index; `--index` merges the member indexes into
+`tables/shards.parquet` (path, shard, offset, size, sha256), where `offset` is the start of the
+member's data.
 """
 
 import argparse
@@ -29,7 +30,8 @@ import numpy as np
 import pandas as pd
 from huggingface_hub import hf_hub_download
 
-from brainmarks_smri.utils.sparse_image import encode_image
+from brainmarks_smri.utils import preprocessing
+from brainmarks_smri.utils.encoding import encode_sparse_npz
 
 REPO_ID = "FOMO-MRI/FOMO300K"
 REVISION = "0ea0b15cfcc08a96b7b9fd43d952cec3fdb7cfc7"
@@ -107,7 +109,11 @@ def pack_shard(dataset_dir: Path, images: pd.DataFrame, shard: int) -> None:
                         image = nib.squeeze_image(nib.Nifti1Image.from_bytes(image_bytes))
                         mask = nib.load(dataset_dir / f"{stem}_mask.nii.gz")
                         mni_affine = np.loadtxt(dataset_dir / f"{stem}_mni.txt")
-                        encoded = encode_image(image, mask, mni_affine)
+                        mask_data = np.asanyarray(mask.dataobj) > 0
+                        masked_data = image.get_fdata(dtype=np.float32) * mask_data
+                        masked = nib.Nifti1Image(masked_data, image.affine)
+                        cropped, _ = preprocessing.crop_image(masked)
+                        encoded = encode_sparse_npz(cropped, mni_affine=mni_affine)
                         add_member(shard_zip, members, f"{stem}.npz", encoded)
                         for suffix in DERIVATIVE_SUFFIXES:
                             add_file(shard_zip, members, dataset_dir, f"{stem}{suffix}")

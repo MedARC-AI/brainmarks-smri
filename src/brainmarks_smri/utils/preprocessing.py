@@ -45,6 +45,15 @@ def mask_image_like(mask: np.ndarray, image: nib.Nifti1Image) -> nib.Nifti1Image
     return nib.Nifti1Image(mask.astype(np.uint8), image.affine, header)
 
 
+def crop_image(image: nib.Nifti1Image) -> tuple[nib.Nifti1Image, tuple[slice, ...]]:
+    """Image cropped to the bounding box of its nonzero voxels, and the crop."""
+    nonzero = np.argwhere(np.asanyarray(image.dataobj) != 0)
+    start = nonzero.min(axis=0)
+    stop = nonzero.max(axis=0) + 1
+    crop = tuple(slice(a, b) for a, b in zip(start, stop))
+    return image.slicer[crop], crop
+
+
 def synthstrip(image: nib.Nifti1Image) -> nib.Nifti1Image:
     """SynthStrip brain mask."""
     script = cached_download(SYNTHSTRIP_SCRIPT_URL, CACHE_DIR)
