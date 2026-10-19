@@ -63,7 +63,6 @@ def preprocess_image(image: nib.Nifti1Image, stem: Path) -> dict:
     )
     preproc_data = preproc.get_fdata(dtype=np.float32) * (preproc_mask.get_fdata() > 0)
     preproc = nib.Nifti1Image(preproc_data, template.affine)
-    preproc.set_data_dtype(np.int16)
 
     brain_values = data[mask_data]
     quantiles = np.quantile(brain_values, QUANTILES)
@@ -98,7 +97,6 @@ def preprocess_image(image: nib.Nifti1Image, stem: Path) -> dict:
     stem.parent.mkdir(parents=True, exist_ok=True)
     nib.save(mask, f"{stem}_mask.nii.gz")
     np.savetxt(f"{stem}_mni.txt", mni_affine, fmt="%.10f")
-    nib.save(preproc, f"{stem}_preproc.nii.gz")
     for view, thumbnail in thumbnails.items():
         thumbnail.save(f"{stem}_{view}.jpg", quality=JPEG_QUALITY)
     info_path = Path(f"{stem}_info.json")
