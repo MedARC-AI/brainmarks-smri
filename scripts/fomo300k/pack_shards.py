@@ -1,17 +1,7 @@
 """Pack the preprocessed FOMO300K into zip shards, one shard per call.
 
-    uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --count
-    uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --shard 0
-    uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --index
-
-Shards hold whole participants, cut into equal parts by estimated size. Per image: `<stem>.npz`
-(the source image from the hub, masked with the saved mask, cropped to the brain, encoded with
-`encode_sparse_npz` plus an `mni_affine` field) and every derivative file, plus each session's
-`session.json`. Members are stored uncompressed under their paths relative to the dataset folder,
-so unzipping the shards there restores derivatives/. `--shard` writes `shards/fomo300k-NNN.zip`
-(skipped if it exists) and its member index; `--index` merges the member indexes into
-`tables/shards.parquet` (path, shard, offset, size, sha256), where `offset` is the start of the
-member's data.
+uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --shard 0
+uv run scripts/fomo300k/pack_shards.py datasets/fomo300k --index
 """
 
 import argparse
@@ -42,17 +32,16 @@ INDEX_PARTS_DIR = ".shard-index"
 logger = logging.getLogger("pack_shards")
 
 
-def assign_shards(images: pd.DataFrame, shard_size: int) -> pd.Series:
-    """Shard index per image: whole participants, cut into equal parts of about `shard_size`."""
+def assign_shards(images: pd.DataFrame, num_shards: int) -> pd.Series:
+    """Shard index per image: whole sessions cut into equal parts."""
     spacing = np.array(images["spacing"].tolist(), dtype=float)
     encoded_bytes = images["brain_volume"] * 1e6 / spacing.prod(axis=1) * 2
-    participant = images["collection"] + "/" + images["subject"]
-    participant_bytes = encoded_bytes.groupby(participant, sort=True).sum()
-    num_shards = max(1, round(participant_bytes.sum() / shard_size))
-    bytes_before = participant_bytes.cumsum() - participant_bytes
-    shard_index = bytes_before * num_shards // participant_bytes.sum()
-    shard_index = shard_index.rank(method="dense").astype(int) - 1
-    return participant.map(shard_index)
+    session = images["collection"] + "/" + images["subject"] + "/" + images["session"]
+    session_bytes = encoded_bytes.groupby(session, sort=True).sum()
+    bytes_before = session_bytes.cumsum() - session_bytes
+    shard_index = (bytes_before * num_shards // session_bytes.sum()).astype(int)
+    assert shard_index.nunique() == num_shards, "empty shards: a session is bigger than a shard"
+    return session.map(shard_index)
 
 
 def derivative_stem(path: str) -> str:
@@ -82,7 +71,7 @@ def add_file(shard_zip: zipfile.ZipFile, members: list, dataset_dir: Path, path:
 
 
 def pack_shard(dataset_dir: Path, images: pd.DataFrame, shard: int) -> None:
-    shard_name = f"shards/{NAME}-{shard:03d}.zip"
+    shard_name = f"shards/{NAME}-{shard:04d}.zip"
     shard_path = dataset_dir / shard_name
     if shard_path.exists():
         logger.info("%s exists, skipping", shard_name)
@@ -136,7 +125,7 @@ def pack_shard(dataset_dir: Path, images: pd.DataFrame, shard: int) -> None:
             shard_file.seek(offset)
             assert hashlib.sha256(shard_file.read(size)).hexdigest() == sha256, path
 
-    index_part = dataset_dir / INDEX_PARTS_DIR / f"{NAME}-{shard:03d}.parquet"
+    index_part = dataset_dir / INDEX_PARTS_DIR / f"{NAME}-{shard:04d}.parquet"
     index_part.parent.mkdir(exist_ok=True)
     index[["path", "shard", "offset", "size", "sha256"]].to_parquet(index_part, index=False)
     os.replace(tmp_path, shard_path)
@@ -152,8 +141,8 @@ def pack_shard(dataset_dir: Path, images: pd.DataFrame, shard: int) -> None:
 def merge_index(dataset_dir: Path, num_shards: int) -> None:
     parts = []
     for shard in range(num_shards):
-        shard_path = dataset_dir / "shards" / f"{NAME}-{shard:03d}.zip"
-        index_part = dataset_dir / INDEX_PARTS_DIR / f"{NAME}-{shard:03d}.parquet"
+        shard_path = dataset_dir / "shards" / f"{NAME}-{shard:04d}.zip"
+        index_part = dataset_dir / INDEX_PARTS_DIR / f"{NAME}-{shard:04d}.parquet"
         assert shard_path.exists() and index_part.exists(), f"shard {shard} is not packed"
         parts.append(pd.read_parquet(index_part))
     index = pd.concat(parts, ignore_index=True)
@@ -165,21 +154,17 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("dataset_dir", type=Path, help="e.g. datasets/fomo300k")
     action = parser.add_mutually_exclusive_group()
-    action.add_argument("--count", action="store_true", help="print the number of shards")
     action.add_argument("--shard", type=int, default=os.getenv("SLURM_ARRAY_TASK_ID"))
     action.add_argument("--index", action="store_true", help="merge the shard member indexes")
-    parser.add_argument("--shard-size-gb", type=float, default=1.0)
+    parser.add_argument("--num-shards", type=int, default=1000)
     args = parser.parse_args()
     logging.basicConfig(format="%(asctime)s %(levelname)s %(message)s", level=logging.INFO)
     logging.getLogger("httpx2").setLevel(logging.WARNING)
 
     images = pd.read_parquet(args.dataset_dir / "tables" / "images.parquet")
-    images["shard"] = assign_shards(images, int(args.shard_size_gb * 1e9))
-    num_shards = images["shard"].max() + 1
-    if args.count:
-        print(num_shards)
-    elif args.index:
-        merge_index(args.dataset_dir, num_shards)
+    images["shard"] = assign_shards(images, args.num_shards)
+    if args.index:
+        merge_index(args.dataset_dir, args.num_shards)
     else:
         assert args.shard is not None, "--shard or SLURM_ARRAY_TASK_ID"
         pack_shard(args.dataset_dir, images[images["shard"] == int(args.shard)], int(args.shard))
