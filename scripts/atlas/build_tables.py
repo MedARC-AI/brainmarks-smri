@@ -2,7 +2,7 @@
 
     uv run python scripts/atlas/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 955 chronic stroke patients from 33 sites (R001..R052), one session each (session_id '1').
 - Images: the skull-stripped native-space T1w and the manual lesion mask on the same grid.
@@ -81,7 +81,8 @@ def main() -> None:
     train_val = tables.stratified_split(participants.site[in_train], {"train": 0.8, "val": 0.2})
     split = pd.concat([train_val, official[~in_train]]).reindex(participants.index)
     splits = tables.make_splits(participants.site, complete, official=official, split=split)
-    tables.write(NAME, img, smp, columns, splits, summary=["days_post_stroke"], track_samples=False)
+    tables.write(NAME, img, smp, columns, splits, track_samples=False)
+    print(tables.summary_table(smp, splits, ["days_post_stroke"]))
 
 
 if __name__ == "__main__":

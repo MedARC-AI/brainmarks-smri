@@ -24,5 +24,4 @@ write_manifest() {
     mkdir -p "$dir/tables" "$REPO/scripts/$1/tables"
     (cd "$dir" && find source -type f -print0 | LC_ALL=C sort -z | xargs -0 sha256sum) > "$dir/tables/source.sha256"
     cp "$dir/tables/source.sha256" "$REPO/scripts/$1/tables/source.sha256"
-    cp "$REPO/scripts/$1/README.md" "$dir/README.md"
 }

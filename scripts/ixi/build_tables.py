@@ -2,7 +2,7 @@
 
     uv run python scripts/ixi/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - Images: one folder per extracted tarball (source/IXI-T1/ etc.), one NIfTI per participant.
 - Participants: everyone with at least one image (582; 1 has no T1). participant_id is `IXI<id>`
@@ -178,7 +178,8 @@ def main() -> None:
     age_bin = pd.cut(participants.age, AGE_BINS, right=False).astype(str)
     strata = participants.site + "_" + age_bin
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=[])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits))
 
 
 if __name__ == "__main__":

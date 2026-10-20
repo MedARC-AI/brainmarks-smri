@@ -2,7 +2,7 @@
 
     uv run python scripts/cnp/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 272 participants in participants.tsv, one session each (session_id '1'). The 265 with a T1w are
   the samples; the 7 without one (fMRI only) are dropped.
@@ -66,7 +66,8 @@ def main() -> None:
     participants = smp.set_index("participant_id")
     complete = participants.diagnosis.notna()
     splits = tables.make_splits(participants.diagnosis, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["diagnosis"]))
 
 
 if __name__ == "__main__":

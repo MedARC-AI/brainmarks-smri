@@ -2,7 +2,7 @@
 
     uv run python scripts/oasis1/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 416 participants (OAS1_0001 ..), one session (MR1) each, plus a rescan (MR2) for 20 of them:
   436 sessions. Clinical data from oasis_cross-sectional.xlsx (the reliability sheet repeats its
@@ -128,7 +128,8 @@ def main() -> None:
     complete = first.cdr.notna()
     cdr_group = first.cdr.map({0: "0", 0.5: "0.5", 1: ">=1", 2: ">=1"})
     splits = tables.make_splits(cdr_group, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["cdr"], track_samples=False)
+    tables.write(NAME, img, smp, columns, splits, track_samples=False)
+    print(tables.summary_table(smp, splits, ["cdr"]))
 
 
 if __name__ == "__main__":

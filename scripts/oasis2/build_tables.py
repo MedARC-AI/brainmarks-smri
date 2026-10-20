@@ -2,7 +2,7 @@
 
     uv run python scripts/oasis2/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 150 participants (OAS2_0001 ..), 2-5 visits each (session_id MR1 .. MR5): 373 sessions.
   Clinical data per visit from oasis_longitudinal_demographics.xlsx. All right-handed (not kept).
@@ -119,7 +119,8 @@ def main() -> None:
     group = participants.group.first()
     split = pd.Series("train", index=group.index)
     splits = tables.make_splits(group, complete, split=split)
-    tables.write(NAME, img, smp, columns, splits, summary=["group", "cdr"], track_samples=False)
+    tables.write(NAME, img, smp, columns, splits, track_samples=False)
+    print(tables.summary_table(smp, splits, ["group", "cdr"]))
 
 
 if __name__ == "__main__":

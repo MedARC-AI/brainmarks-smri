@@ -2,7 +2,7 @@
 
     uv run python scripts/openbhb/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 3984 healthy participants (public part), one session each (the BIDS ses-1), one original
   T1w each in {train,val}/rawdata/. participant_id gets the BIDS `sub-` prefix.
@@ -114,7 +114,8 @@ def main() -> None:
     )
     complete = participants.age.notna()
     splits = tables.make_splits(participants.site, complete, official=official, split=split)
-    tables.write(NAME, images, smp, columns, splits, summary=[])
+    tables.write(NAME, images, smp, columns, splits)
+    print(tables.summary_table(smp, splits))
 
 
 if __name__ == "__main__":

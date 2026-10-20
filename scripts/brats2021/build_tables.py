@@ -2,7 +2,7 @@
 
     uv run python scripts/brats2021/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - Samples: the 1479 cases of the BraTS<->TCIA crosswalk (metadata/BraTS2021_MappingToTCIA.xlsx).
   session_id is the BraTS 2021 case ID (the 8 Task-2-only cases written as bare numbers, '00169',
@@ -166,7 +166,8 @@ def main() -> None:
     complete = participants.complete.all()
     strata = first.has_mask.map({True: "mask", False: "nomask"}) + "_" + first.mgmt.fillna("n/a")
     splits = tables.make_splits(strata, complete, official=first.official)
-    tables.write(NAME, img, smp, columns, splits, summary=["mgmt"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["mgmt"]))
 
 
 if __name__ == "__main__":

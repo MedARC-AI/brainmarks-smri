@@ -2,7 +2,7 @@
 
     uv run python scripts/fomo26_task5/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 48 children (sub_01 .. sub_48: 24 controls, then 24 polymicrogyria), one session each
   (session_id '1'), one T1w (the organizers' conversion of the PPMR slices).
@@ -60,7 +60,8 @@ def main() -> None:
     complete = pd.Series(True, index=participants.index)
     split = pd.Series("train", index=participants.index)
     splits = tables.make_splits(participants.pmg, complete, split=split)
-    tables.write(NAME, img, smp, columns, splits, summary=["pmg"], track_samples=False)
+    tables.write(NAME, img, smp, columns, splits, track_samples=False)
+    print(tables.summary_table(smp, splits, ["pmg"]))
 
 
 if __name__ == "__main__":

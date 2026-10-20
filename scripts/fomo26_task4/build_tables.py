@@ -2,7 +2,7 @@
 
     uv run python scripts/fomo26_task4/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 40 trigeminal neuralgia patients (sub-01 .. sub-40), one session each (session_id '1').
 - Images: T2w and the nerve/vessel mask (labels 1, 2) on the same grid.
@@ -56,6 +56,7 @@ def main() -> None:
     split = pd.Series("train", index=participants.index)
     splits = tables.make_splits(strata, complete, split=split)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
+    print(tables.summary_table(smp, splits))
 
 
 if __name__ == "__main__":

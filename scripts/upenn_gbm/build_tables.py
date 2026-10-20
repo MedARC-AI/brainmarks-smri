@@ -2,7 +2,7 @@
 
     uv run python scripts/upenn_gbm/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - Sessions: scan IDs `UPENN-GBM-NNNNN_11` (pre-operative baseline, 611) and `_21` (follow-up,
   60; 41 of them have a baseline here) become participant `UPENN-GBM-NNNNN` with session
@@ -171,7 +171,8 @@ def main() -> None:
     complete = has_core & os_known
     strata = "corrected-" + has_corrected.astype(str) + "_os-" + os_known.astype(str)
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["idh1", "mgmt", "os_event"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["idh1", "mgmt", "os_event"]))
 
 
 if __name__ == "__main__":

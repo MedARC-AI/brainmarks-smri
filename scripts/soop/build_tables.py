@@ -2,7 +2,7 @@
 
     uv run python scripts/soop/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 1715 imaged participants, one session each (session_id '1'): FLAIR, DWI (rec-TRACE,
   b1000 trace) and ADC (rec-ADC); the T1w is not downloaded. Lesion masks from
@@ -139,7 +139,8 @@ def main() -> None:
     complete = have.map(lambda h: CORE <= h) & participants.mrs_discharge.notna()
     strata = participants.mrs_poor.astype(str) + "_mask-" + has_mask.astype(str)
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["mrs_poor", "nihss"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["mrs_poor", "nihss"]))
 
 
 if __name__ == "__main__":

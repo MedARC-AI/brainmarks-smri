@@ -2,7 +2,7 @@
 
     uv run python scripts/abide1/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - 1112 participants (Phenotypic_V1_0b.csv), one session each (session_id '1'). The 1102 with a
   T1w are the samples; 10 UCLA participants have only rs-fMRI and are dropped.
@@ -131,7 +131,8 @@ def main() -> None:
     complete = participants.diagnosis.notna()
     strata = participants.diagnosis + "_" + participants.site
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["diagnosis"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["diagnosis"]))
 
 
 if __name__ == "__main__":

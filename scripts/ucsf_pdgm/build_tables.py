@@ -2,7 +2,7 @@
 
     uv run python scripts/ucsf_pdgm/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - Sessions: 501 exams of 495 patients. The 6 follow-up exams (e.g. `UCSF-PDGM-0433_FU007d`)
   become session `FU007d` of participant `UCSF-PDGM-0433`; every other exam is session `baseline`.
@@ -179,7 +179,8 @@ def main() -> None:
     strata = baseline.idh + "_" + baseline.who_grade.astype(str)
 
     splits = tables.make_splits(strata, complete)
-    tables.write(NAME, img, smp, columns, splits, summary=["idh", "who_grade", "mgmt", "os_event"])
+    tables.write(NAME, img, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["idh", "who_grade", "mgmt", "os_event"]))
 
 
 if __name__ == "__main__":

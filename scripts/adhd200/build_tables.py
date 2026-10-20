@@ -2,7 +2,7 @@
 
     uv run python scripts/adhd200/build_tables.py
 
-See `brainmarks_smri.utils.tables` for the table layout.
+Table layout: `README_hf.md`.
 
 - Participants: the per-site RawDataBIDS/<site>/participants.tsv files (read as latin-1), one
   session each: the BIDS session of the T1w ('1', except 9 WashU participants in ses-2/3/4).
@@ -188,7 +188,8 @@ def main() -> None:
         index=participants.index,
     )
     splits = tables.make_splits(strata, complete, official=official, split=split)
-    tables.write(NAME, images, smp, columns, splits, summary=["adhd"])
+    tables.write(NAME, images, smp, columns, splits)
+    print(tables.summary_table(smp, splits, ["adhd"]))
 
 
 if __name__ == "__main__":

@@ -1,8 +1,4 @@
-"""Helpers for the per-dataset `scripts/<name>/build_tables.py` scripts.
-
-Tables go to `datasets/<name>/tables/` with a tracked copy in `scripts/<name>/tables/`, and are
-built only from `source/`. Other steps write their own files to the same folders (source.sha256,
-derivatives.tsv, derivatives.sha256, shards.tsv). Layout and split conventions: `README_hf.md`.
+"""Helpers for the `scripts/<name>/build_tables.py` scripts. Table layout: `README_hf.md`.
 
 `modality` vocabulary: T1w, T1c (contrast-enhanced T1), T2w, FLAIR, PD, DWI (trace / b1000), ADC,
 mask (segmentations; `desc` says which). `desc` marks variants; the main image has none.
@@ -11,6 +7,7 @@ mask (segmentations; `desc` says which). `desc` marks variants; the main image h
 import json
 import os
 import shutil
+from collections.abc import Sequence
 from pathlib import Path
 
 import numpy as np
@@ -21,7 +18,7 @@ DATA_ROOT = Path(os.environ.get("DATA_ROOT", REPO / "datasets"))
 SEED = 0
 FRACTIONS = {"train": 0.6, "val": 0.2, "test": 0.2}
 IMAGE_COLUMNS = ["participant_id", "session_id", "modality", "desc", "path"]
-COMMON = {
+COMMON_COLUMNS = {
     "participant_id": {
         "Description": "Person identifier (as in the source, normalized where noted)."
     },
@@ -48,17 +45,11 @@ def bids_images(root: Path, base: Path) -> pd.DataFrame:
     for path in sorted(root.glob("sub-*/**/*.nii.gz")):
         entities = path.name.removesuffix(".nii.gz").split("_")
         suffix = entities.pop()
-        labels = dict(e.split("-", 1) for e in entities)
-        desc = "_".join(e for e in entities if not e.startswith(("sub-", "ses-")))
-        rows.append(
-            (
-                f"sub-{labels['sub']}",
-                labels.get("ses", "1"),
-                suffix,
-                desc or None,
-                str(path.relative_to(base)),
-            )
-        )
+        labels = dict(entity.split("-", 1) for entity in entities)
+        desc = "_".join(entity for entity in entities if not entity.startswith(("sub-", "ses-")))
+        participant_id = f"sub-{labels['sub']}"
+        session_id = labels.get("ses", "1")
+        rows.append((participant_id, session_id, suffix, desc or None, str(path.relative_to(base))))
     return pd.DataFrame(rows, columns=IMAGE_COLUMNS)
 
 
@@ -76,9 +67,9 @@ def stratified_split(
     stratum the participants are shuffled and cut by `fractions`; the largest remainders get the
     leftover participants, so split sizes stay close to the target overall.
     """
+    assert strata.index.is_unique
     rng = np.random.default_rng(seed)
     split = pd.Series(index=strata.index, dtype=object)
-    assert strata.index.is_unique
     for _, group in strata.groupby(stratum_keys(strata)):  # groupby sorts the keys
         ids = list(rng.permutation(sorted(group.index)))
         exact = np.array(list(fractions.values())) * len(ids)
@@ -87,8 +78,8 @@ def stratified_split(
         # largest remainders first; equal remainders (e.g. val vs test) in random order
         order = rng.permutation(len(counts))
         by_remainder = order[np.argsort(-(exact - counts)[order], kind="stable")]
-        for i in by_remainder[:leftover]:
-            counts[i] += 1
+        for index in by_remainder[:leftover]:
+            counts[index] += 1
         start = 0
         for name, count in zip(fractions, counts):
             split[ids[start : start + count]] = name
@@ -106,10 +97,8 @@ def interleaved_rank(split: pd.Series, strata: pd.Series, seed: int = SEED) -> p
     """
     rng = np.random.default_rng(seed + 1)
     position = pd.Series(np.nan, index=split.index)
-    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)}).groupby(
-        ["split", "stratum"]
-    )
-    for _, group in groups:
+    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)})
+    for _, group in groups.groupby(["split", "stratum"]):
         ids = rng.permutation(sorted(group.index))
         position[ids] = (np.arange(len(ids)) + rng.uniform()) / len(ids)
     rank = pd.Series(0, index=split.index, dtype=int)
@@ -128,26 +117,45 @@ def make_splits(
     """splits.tsv rows from per-participant strata and completeness (both indexed by participant_id).
 
     By default the split is a stratified 60/20/20; pass `split` to use a dataset-specific one.
+    The strata also balance the rank.
     """
     if split is None:
         split = stratified_split(strata)
+    if official is None:
+        official = pd.Series(pd.NA, index=split.index)
     return pd.DataFrame(
         {
             "participant_id": split.index,
             "split": split.values,
-            "official_split": official.reindex(split.index).values
-            if official is not None
-            else pd.NA,
+            "official_split": official.reindex(split.index).values,
             "rank": interleaved_rank(split, strata).values,
             "complete": complete.reindex(split.index).values,
         }
     )
 
 
-def mini_split(splits: pd.DataFrame, split: str, n: int) -> pd.DataFrame:
-    """The n complete participants of `split` with the lowest rank (nested in n, balanced)."""
-    rows = splits[(splits.split == split) & splits.complete]
-    return rows.nsmallest(n, "rank")
+def check_tables(
+    name: str,
+    images: pd.DataFrame,
+    samples: pd.DataFrame,
+    columns: dict[str, dict],
+    splits: pd.DataFrame,
+) -> None:
+    """Assert that the tables are consistent with each other and with the files on disk."""
+    keys = ["participant_id", "session_id"]
+    assert not samples.duplicated(keys).any(), "duplicate sessions"
+    assert not splits.participant_id.duplicated().any(), "duplicate participants in splits"
+    assert set(samples.participant_id) == set(splits.participant_id), "samples/splits mismatch"
+    image_sessions = set(images[keys].itertuples(index=False))
+    sample_sessions = set(samples[keys].itertuples(index=False))
+    unknown = sorted(image_sessions - sample_sessions)
+    assert not unknown, f"{len(unknown)} image sessions without a samples row, e.g. {unknown[:3]}"
+    assert splits.split.isin(list(FRACTIONS)).all(), "unknown split"
+    assert splits.complete.dtype == bool, "complete must be boolean"
+    undocumented = set(columns) ^ set(samples.columns)
+    assert list(columns) == list(samples.columns), f"undocumented or missing: {undocumented}"
+    missing = [path for path in images.path if not (dataset_dir(name) / path).exists()]
+    assert not missing, f"{len(missing)} image paths missing, e.g. {missing[:3]}"
 
 
 def write(
@@ -156,54 +164,33 @@ def write(
     samples: pd.DataFrame,
     columns: dict[str, dict],
     splits: pd.DataFrame,
-    summary: list[str] = (),
     track_samples: bool = True,
 ) -> None:
-    """Validate the tables and write them to datasets/<name>/tables/ and scripts/<name>/tables/.
-
-    Also refreshes the README copy in datasets/<name>/ and prints a markdown summary table
-    (counts, age, sex, site and the `summary` target columns by split) for the README.
+    """Check the tables and write them to datasets/<name>/tables/ and scripts/<name>/tables/.
 
     `columns` documents the dataset-specific samples.tsv columns (the common ones are added).
-    `track_samples=False` keeps samples.tsv out of scripts/<name>/tables/ (data under a DUA).
+    `track_samples=False` keeps samples.tsv out of scripts/<name>/tables/ (manual datasets).
     """
     images = images[IMAGE_COLUMNS]
-    columns = {**{c: COMMON[c] for c in COMMON if c in samples}, **columns}
+    common = {column: COMMON_COLUMNS[column] for column in COMMON_COLUMNS if column in samples}
+    columns = {**common, **columns}
+    check_tables(name, images, samples, columns, splits)
 
-    assert not samples.duplicated(["participant_id", "session_id"]).any(), "duplicate sessions"
-    assert not splits.participant_id.duplicated().any(), "duplicate participants in splits"
-    assert set(samples.participant_id) == set(splits.participant_id), "samples/splits mismatch"
-    keys = ["participant_id", "session_id"]
-    unknown = set(images[keys].itertuples(index=False)) - set(samples[keys].itertuples(index=False))
-    assert not unknown, (
-        f"{len(unknown)} image sessions without a samples row, e.g. {sorted(unknown)[:3]}"
-    )
-    assert splits.split.isin(list(FRACTIONS)).all(), "unknown split"
-    assert splits.complete.dtype == bool, "complete must be boolean"
-    assert list(columns) == list(samples.columns), (
-        f"undocumented or missing columns: {set(columns) ^ set(samples.columns)}"
-    )
-    missing = [p for p in images.path if not (dataset_dir(name) / p).exists()]
-    assert not missing, f"{len(missing)} image paths missing, e.g. {missing[:3]}"
+    out_dir = dataset_dir(name) / "tables"
+    out_dir.mkdir(exist_ok=True)
+    images = images.sort_values(["participant_id", "session_id", "modality", "path"])
+    images.to_csv(out_dir / "images.tsv", **TSV)
+    samples.sort_values(["participant_id", "session_id"]).to_csv(out_dir / "samples.tsv", **TSV)
+    splits.sort_values("participant_id").to_csv(out_dir / "splits.tsv", **TSV)
+    (out_dir / "samples.json").write_text(json.dumps(columns, indent=2) + "\n")
 
-    out = dataset_dir(name) / "tables"
-    out.mkdir(exist_ok=True)
-    images.sort_values(["participant_id", "session_id", "modality", "path"]).to_csv(
-        out / "images.tsv", **TSV
-    )
-    samples.sort_values(["participant_id", "session_id"]).to_csv(out / "samples.tsv", **TSV)
-    splits.sort_values("participant_id").to_csv(out / "splits.tsv", **TSV)
-    (out / "samples.json").write_text(json.dumps(columns, indent=2) + "\n")
-
-    tracked = REPO / "scripts" / name / "tables"
-    tracked.mkdir(exist_ok=True)
-    tracked_files = ["images.tsv", "samples.tsv", "splits.tsv", "samples.json"]
-    if not track_samples:
-        tracked_files.remove("samples.tsv")
+    tracked_dir = REPO / "scripts" / name / "tables"
+    tracked_dir.mkdir(exist_ok=True)
+    tracked_files = ["images.tsv", "splits.tsv", "samples.json"]
+    if track_samples:
+        tracked_files.append("samples.tsv")
     for file_name in tracked_files:
-        shutil.copy(out / file_name, tracked / file_name)
-    shutil.copy(REPO / "scripts" / name / "README.md", dataset_dir(name) / "README.md")
-    print(summary_table(samples, splits, list(summary)))
+        shutil.copy(out_dir / file_name, tracked_dir / file_name)
 
 
 def describe(values: pd.Series) -> str:
@@ -218,37 +205,32 @@ def describe(values: pd.Series) -> str:
     return " / ".join(f"{level} {count}" for level, count in counts.items())
 
 
-def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: list[str]) -> str:
+def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: Sequence[str] = ()) -> str:
     """Markdown table of the samples by split (rows) for the dataset README."""
     merged = samples.merge(splits, on="participant_id", validate="many_to_one")
     multi_session = len(samples) > samples.participant_id.nunique()
     multi_site = merged.site.nunique() > 1
-    header = [
-        "split",
-        "participants",
-        *(["samples"] if multi_session else []),
-        "complete",
-        "age",
-        "female",
-        *(["sites"] if multi_site else []),
-        *targets,
-    ]
-    rows = []
+    header = ["split", "participants"]
+    if multi_session:
+        header.append("samples")
+    header += ["complete", "age", "female"]
+    if multi_site:
+        header.append("sites")
+    header += list(targets)
+
+    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
     for name in [*FRACTIONS, "total"]:
         part = merged if name == "total" else merged[merged.split == name]
         people = part.drop_duplicates("participant_id")
         sex = part.sex.dropna()
-        row = [
-            name,
-            str(len(people)),
-            *([str(len(part))] if multi_session else []),
-            str(int(people.complete.sum())),
-            describe(part.age),
-            f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a",
-            *([str(part.site.nunique())] if multi_site else []),
-            *(describe(part[t]) for t in targets),
-        ]
-        rows.append(row)
-    lines = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
-    lines += ["| " + " | ".join(row) + " |" for row in rows]
+        row = [name, str(len(people))]
+        if multi_session:
+            row.append(str(len(part)))
+        row.append(str(int(people.complete.sum())))
+        row.append(describe(part.age))
+        row.append(f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a")
+        if multi_site:
+            row.append(str(part.site.nunique()))
+        row += [describe(part[target]) for target in targets]
+        lines.append("| " + " | ".join(row) + " |")
     return "\n".join(lines)
