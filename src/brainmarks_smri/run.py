@@ -25,6 +25,8 @@ PROBES = {
     "classification": probes.probe_classification,
     "regression": probes.probe_regression,
     "segmentation": probes.probe_segmentation,
+    "classification_kfold": probes.probe_classification_kfold,
+    "segmentation_kfold": probes.probe_segmentation_kfold,
 }
 
 logger = logging.getLogger("brainmarks_smri")
@@ -64,7 +66,11 @@ def main():
     device = cfg.device or ("cuda" if torch.cuda.is_available() else "cpu")
     model = create_model(args.model, **cfg.model_kwargs).to(device).eval()
     task = create_task(args.task, max_per_split=cfg.max_per_split)
-    task.dataset.transform = getattr(model, "transform", None)
+    model_transform = getattr(model, "transform", None)
+    if task.transform is None:
+        task.dataset.transform = model_transform
+    else:
+        task.dataset.transform = lambda sample: model_transform(task.transform(sample))
 
     start = time.perf_counter()
     result = PROBES[task.type](model, task, cfg.batch_size, cfg.num_workers)

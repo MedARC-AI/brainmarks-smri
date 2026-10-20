@@ -1,6 +1,6 @@
 """Linear probes on frozen embeddings: embed the task's samples, fit on train, score eval.
 
-The task dataset's `transform` must be the model's transform.
+The task dataset's `transform` must be the model's transform (after the task's, if any).
 """
 
 import logging
@@ -15,7 +15,7 @@ import torch.nn.functional as F
 from einops import rearrange
 from sklearn.linear_model import LogisticRegressionCV, RidgeCV
 from sklearn.metrics import balanced_accuracy_score, mean_absolute_error, r2_score
-from sklearn.model_selection import GroupShuffleSplit
+from sklearn.model_selection import GroupKFold, GroupShuffleSplit
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from torch import Tensor
@@ -40,6 +40,8 @@ SEGMENTATION_ALPHAS = (1e1, 1e2, 1e3, 1e4, 1e5)
 SEGMENTATION_THRESHOLDS = torch.logspace(-3, -0.1, 30)
 # fraction of training participants held out to tune the segmentation penalty and threshold
 HOLDOUT_FRACTION = 0.2
+# inner CV of the k-fold segmentation probe, over participants
+INNER_FOLDS = 5
 MAX_NEGATIVE_RATIO = 10.0
 # Logit for voxels without a prediction (dropped tokens, outside the model input): sigmoid ~ 2e-9.
 BACKGROUND_LOGIT = -20.0
@@ -157,7 +159,9 @@ def probe_segmentation(
     logger.info(f"fit segmentation probe in {time.perf_counter() - fit_start:.0f}s")
 
     subject_metrics = {"dice": [], "voxel_auroc": [], "average_precision": []}
-    predictions = segmentation_predictions(model, task, classifier, batch_size, num_workers)
+    predictions = segmentation_predictions(
+        model, task, task.eval_ids, classifier, batch_size, num_workers
+    )
     for probabilities, target, brain in predictions:
         predicted = probabilities >= classifier.threshold_
         subject_metrics["dice"].append(dice(predicted, target))
@@ -189,6 +193,144 @@ def probe_segmentation(
             # best CV Dice over thresholds, per alpha
             "cv_dice": classifier.cv_dice_.max(dim=1).values.tolist(),
         },
+        "metrics": metrics,
+        "eval_samples": eval_samples,
+    }
+
+
+def probe_classification_kfold(
+    model: Model, task: Task, batch_size: int, num_workers: int
+) -> dict[str, Any]:
+    samples = task.dataset.samples
+    class_index = {value: ii for ii, value in enumerate(task.classes)}
+    values = samples[task.target].iloc[task.train_ids]
+    labels = np.array([class_index[value] for value in values])
+    n_folds = int(task.folds.max()) + 1
+
+    features = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
+    probabilities = np.zeros((len(labels), len(task.classes)))
+    fold_Cs = []
+    fit_start = time.perf_counter()
+    for fold in range(n_folds):
+        in_fold = task.folds == fold
+        # predict_proba columns are the classes seen in training
+        n_train_classes = len(np.unique(labels[~in_fold]))
+        assert n_train_classes == len(task.classes), f"{task.name}: a class is missing from fold"
+        classifier = make_pipeline(
+            StandardScaler(),
+            LogisticRegressionCV(
+                Cs=LOGISTIC_CS,
+                l1_ratios=(0.0,),
+                scoring="neg_log_loss",
+                # so that argmax is a sensible decision for balanced accuracy
+                class_weight="balanced",
+                max_iter=1000,
+                use_legacy_attributes=False,
+            ),
+        )
+        classifier.fit(features[~in_fold], labels[~in_fold])
+        probabilities[in_fold] = classifier.predict_proba(features[in_fold])
+        fold_Cs.append(float(classifier[-1].C_))
+    logger.info(
+        f"fit {n_folds} logistic regression probes in {time.perf_counter() - fit_start:.0f}s"
+    )
+    predictions = probabilities.argmax(axis=1)
+
+    metrics = {
+        "auroc": auroc(labels, probabilities),
+        "auroc_ci": bootstrap_ci(auroc, labels, probabilities, seed=SEED),
+        "balanced_accuracy": float(balanced_accuracy_score(labels, predictions)),
+        "balanced_accuracy_ci": bootstrap_ci(
+            balanced_accuracy_score, labels, predictions, seed=SEED
+        ),
+    }
+    eval_samples = samples.iloc[task.train_ids][["participant_id", "session_id", task.target]]
+    eval_samples = eval_samples.to_dict("records")
+    for record, fold, record_probabilities in zip(eval_samples, task.folds, probabilities):
+        record["fold"] = int(fold)
+        record["probabilities"] = dict(zip(task.classes, record_probabilities.tolist()))
+    return {
+        "classes": task.classes,
+        "n_samples": len(task.train_ids),
+        "n_folds": n_folds,
+        "hyperparameters": {"C": fold_Cs},
+        "metrics": metrics,
+        "eval_samples": eval_samples,
+    }
+
+
+def probe_segmentation_kfold(
+    model: Model, task: Task, batch_size: int, num_workers: int
+) -> dict[str, Any]:
+    samples = task.dataset.samples
+    device = next(model.parameters()).device
+    participants = samples["participant_id"].iloc[task.train_ids].to_numpy()
+    n_folds = int(task.folds.max()) + 1
+
+    features, labels, groups = segmentation_patches(
+        model, task, task.train_ids, batch_size, num_workers
+    )
+    features = features.to(device)
+    labels = labels.to(device)
+
+    subject_metrics = {
+        "dice": np.zeros(len(task.train_ids)),
+        "voxel_auroc": np.zeros(len(task.train_ids)),
+        "average_precision": np.zeros(len(task.train_ids)),
+    }
+    fold_hyperparameters = {"alpha": [], "threshold": [], "cv_dice": []}
+    for fold in range(n_folds):
+        in_fold = task.folds == fold
+        train_rows = ~np.isin(groups, participants[in_fold])
+        train_rows_device = torch.as_tensor(train_rows, device=device)
+        classifier = TorchLogisticRegressionCV(
+            alphas=SEGMENTATION_ALPHAS,
+            thresholds=SEGMENTATION_THRESHOLDS,
+            cv=GroupKFold(n_splits=INNER_FOLDS),
+            max_negative_ratio=MAX_NEGATIVE_RATIO,
+            seed=SEED,
+        )
+        fit_start = time.perf_counter()
+        classifier.fit(features[train_rows_device], labels[train_rows_device], groups[train_rows])
+        logger.info(
+            f"fold {fold}: fit segmentation probe in {time.perf_counter() - fit_start:.0f}s"
+        )
+        fold_hyperparameters["alpha"].append(classifier.alpha_)
+        fold_hyperparameters["threshold"].append(classifier.threshold_)
+        # best CV Dice over thresholds, per alpha
+        fold_hyperparameters["cv_dice"].append(classifier.cv_dice_.max(dim=1).values.tolist())
+
+        predictions = segmentation_predictions(
+            model, task, task.train_ids[in_fold], classifier, batch_size, num_workers
+        )
+        for position, (probabilities, target, brain) in zip(np.flatnonzero(in_fold), predictions):
+            predicted = probabilities >= classifier.threshold_
+            subject_metrics["dice"][position] = dice(predicted, target)
+            # ranking metrics within the brain, where the background is not trivial
+            brain_probabilities = probabilities[brain]
+            brain_target = target[brain]
+            subject_metrics["voxel_auroc"][position] = voxel_auroc(
+                brain_probabilities, brain_target
+            )
+            subject_metrics["average_precision"][position] = average_precision(
+                brain_probabilities, brain_target
+            )
+    metrics = {}
+    for name, values in subject_metrics.items():
+        metrics[name] = float(np.nanmean(values))
+        metrics[f"{name}_ci"] = bootstrap_ci(np.nanmean, values, seed=SEED)
+
+    eval_samples = samples.iloc[task.train_ids][["participant_id", "session_id"]]
+    eval_samples = eval_samples.to_dict("records")
+    for ii, record in enumerate(eval_samples):
+        record["fold"] = int(task.folds[ii])
+        for name, values in subject_metrics.items():
+            record[name] = float(values[ii])
+    return {
+        "label_values": task.label_values,
+        "n_samples": len(task.train_ids),
+        "n_folds": n_folds,
+        "hyperparameters": fold_hyperparameters,
         "metrics": metrics,
         "eval_samples": eval_samples,
     }
@@ -277,15 +419,14 @@ def segmentation_patches(
 def segmentation_predictions(
     model: Model,
     task: Task,
+    ids: np.ndarray,
     classifier: TorchLogisticRegressionCV,
     batch_size: int,
     num_workers: int,
 ) -> Iterator[tuple[Tensor, Tensor, Tensor]]:
-    """Yield `(probabilities, target, brain mask)` on the label image grid for each eval sample."""
+    """Yield `(probabilities, target, brain mask)` on the label image grid for each sample."""
     px, py, pz = model.patch_size
-    embeddings = compute_embeddings(
-        model, task, task.eval_ids, batch_size, num_workers, return_dense=True
-    )
+    embeddings = compute_embeddings(model, task, ids, batch_size, num_workers, return_dense=True)
     for output, targets in embeddings:
         dense = output["dense_embedding"]  # (X, Y, Z, D)
         grid_shape = dense.shape[:3]
@@ -305,7 +446,7 @@ def segmentation_predictions(
         probabilities = torch.sigmoid(logits)
 
         target = label_mask(label_image, task.label_values, logits.device)
-        brain_image = nib.load(task.dataset.root / targets["brain_mask_path"])
+        brain_image = targets["brain_mask"]
         assert brain_image.shape == label_image.shape, f"{task.name}: brain mask not on label grid"
         brain = torch.as_tensor(np.asanyarray(brain_image.dataobj) > 0, device=logits.device)
         yield probabilities, target, brain

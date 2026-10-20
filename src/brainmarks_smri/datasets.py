@@ -78,12 +78,14 @@ class BrainDataset(torch.utils.data.Dataset):
             # Some DWI/ADC are stored as 4D with a single volume.
             if image.ndim == 4 and image.shape[3] == 1:
                 image = nib.funcs.squeeze_image(image)
+            brain_mask = _load_nifti(shard.read(row["brain_mask_path"]))
             image_input: ImageInput = {
                 "image": image,
-                "brain_mask": _load_nifti(shard.read(row["brain_mask_path"])),
+                "brain_mask": brain_mask,
                 "mni_affine": np.loadtxt(io.BytesIO(shard.read(row["mni_affine_path"]))),
             }
             targets = row.to_dict()
+            targets["brain_mask"] = brain_mask
             for column in self.samples.columns:
                 if column.startswith("mask_") and pd.notna(row[column]):
                     targets[column.removesuffix("_path")] = _load_nifti(shard.read(row[column]))
