@@ -1,28 +1,33 @@
 #!/usr/bin/env bash
-# Upload the packed datasets to the Hugging Face mirror, with README_hf.md as the dataset card.
+# Upload the datasets to the Hugging Face mirror, with README_hf.md as the dataset card.
 # Usage: bash scripts/upload.sh
-# Checks every dataset first: README and tables match scripts/<name>/, checksums, shard list.
-# Uploads per dataset README.md, tables/ and shards/. Resumable: re-run the same command after an interruption.
+# Hosted datasets: README.md, tables/ and shards/. Other eval datasets: README.md and the tables
+# tracked in scripts/<name>/tables/ (no samples.tsv). FOMO300K: README.md, tables/ and shards/.
+# Resumable: re-run the same command after an interruption.
 set -euo pipefail
 source "$(dirname "$0")/lib.sh"
 
 REPO_ID=medarc/brainmarks-smri
 HF=(uvx --from huggingface_hub@2.1.1 hf)
+HOSTED=(abide1 adhd200 brats2021 cnp ixi openbhb soop ucsf_pdgm upenn_gbm)
+NOT_REDISTRIBUTED=(atlas fomo26_task4 fomo26_task5 oasis1 oasis2)
 
-for dir in "$DATA_ROOT"/*/; do
-    name=$(basename "$dir")
-    echo "checking $name"
-    cmp -s "$REPO/scripts/$name/README.md" "$dir/README.md" || die "$name: README.md differs from scripts/$name/"
-    diff -r "$REPO/scripts/$name/tables" "$dir/tables" > /dev/null || die "$name: tables/ differ from scripts/$name/tables/"
-    (cd "$dir" && sha256sum -c --quiet tables/source.sha256 tables/derivatives.sha256) || die "$name: checksum check failed"
-    diff <(cd "$dir" && tail -n +2 tables/shards.tsv | cut -f2 | sort -u) <(cd "$dir" && ls shards/*.zip) > /dev/null ||
+for name in "${HOSTED[@]}"; do
+    diff <(tail -n +2 "$DATA_ROOT/$name/tables/shards.tsv" | cut -f2 | sort -u) \
+        <(cd "$DATA_ROOT/$name" && ls shards/*.zip) > /dev/null ||
         die "$name: shards/ does not match tables/shards.tsv"
 done
-cp "$REPO/README_hf.md" "$DATA_ROOT/README.md"
 
 # Public repo, gated (automatic approval) before any data goes up.
 "${HF[@]}" repos create "$REPO_ID" --repo-type dataset --exist-ok
 "${HF[@]}" repos settings "$REPO_ID" --repo-type dataset --gated auto
-"${HF[@]}" upload "$REPO_ID" "$DATA_ROOT" . --repo-type dataset \
-    --include README.md --include "*/README.md" --include "*/tables/*" --include "*/shards/*" \
-    --exclude "*/source/*" --exclude "*/derivatives/*"
+"${HF[@]}" upload "$REPO_ID" "$REPO/README_hf.md" README.md --repo-type dataset
+
+for name in "${HOSTED[@]}" "${NOT_REDISTRIBUTED[@]}" fomo300k; do
+    "${HF[@]}" upload "$REPO_ID" "$REPO/scripts/$name" "$name" --repo-type dataset \
+        --include README.md --include summary.png --include "tables/*"
+done
+for name in "${HOSTED[@]}" fomo300k; do
+    "${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/$name/shards" "$name/shards" --repo-type dataset
+done
+"${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/fomo300k/tables" fomo300k/tables --repo-type dataset

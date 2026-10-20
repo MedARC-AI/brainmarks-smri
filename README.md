@@ -13,9 +13,21 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 
 ## Data
 
-The benchmark uses nine public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
+The benchmark uses public datasets in three tiers, by how they can be shared. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
-The datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `DATA_ROOT=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `DATA_ROOT` to its folder. The scripts in `scripts/` show how we downloaded and built each dataset.
+- **Hosted**: nine datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `DATA_ROOT=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `DATA_ROOT` to its folder.
+- **Build-it-yourself** (OASIS-1, OASIS-2, FOMO26 Tasks 4 and 5) and **manual** (ATLAS, which needs an access application): these may not be redistributed, so you build them in your local `DATA_ROOT` (default `datasets/`). Each one's README explains how to get access.
+
+```sh
+bash scripts/oasis1/download.sh
+uv run python scripts/oasis1/build_tables.py
+uv run --all-extras scripts/preprocess.py datasets/oasis1 --jobs 32
+uv run scripts/pack_shards.py datasets/oasis1
+```
+
+Our tables are tracked in `scripts/<name>/tables/` (without `samples.tsv`), so `git diff` shows whether your build matches ours.
+
+The hub also has [FOMO300K](scripts/fomo300k/README.md) for pretraining, without the collections that share subjects with the evaluation datasets. The scripts in `scripts/` show how we downloaded and built each dataset.
 
 ## Run
 
@@ -27,9 +39,9 @@ Each run evaluates one model on one task. The results go to `output/<model>/<tas
 
 | Type | Tasks | Probe | Metric |
 |---|---|---|---|
-| classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS | logistic regression | AUROC |
+| classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS, OASIS-1 dementia | logistic regression | AUROC |
 | regression | IXI age, OpenBHB age | ridge | R² |
-| segmentation | BraTS tumor regions (3), SOOP stroke lesion | patch-level logistic regression | Dice |
+| segmentation | BraTS tumor regions (3), SOOP stroke lesion, ATLAS stroke lesion | patch-level logistic regression | Dice |
 
 Probe hyperparameters are tuned by cross-validation on the train split. Scores are reported on the val split. By default, each split is capped at 300 samples.
 
@@ -50,4 +62,4 @@ def my_model() -> MyModel:  # name, embed_dim, patch_size
 
 ## License
 
-The code is MIT licensed. Each dataset keeps its original license. Three of them are non-commercial. Please cite the sources listed in each dataset's README.
+The code is MIT licensed. Each dataset keeps its original license. Several are for non-commercial use only. Please cite the sources listed in each dataset's README.
