@@ -6,7 +6,7 @@ Anatomical Tracings of Lesions After Stroke: T1w MRIs of chronic stroke patients
 - **Source:** INDI S3 (`s3://fcp-indi/data/Projects/INDI/ATLAS/R2.1/`), downloaded with `curl`. The archive is encrypted with `openssl`. To get the key, accept the terms of use and fill in the Google form on the homepage. Each user must apply for their own key.
 - **Version:** R2.1, minimally processed (`atlas21_training_raw.tar.gz`, 2026-04-22). The same 955 scans as R2.0, now with the masks of the 300 test scans.
 - **DOI:** [10.1038/s41597-022-01401-7](https://doi.org/10.1038/s41597-022-01401-7) (R2.0 data descriptor)
-- **License:** ATLAS terms of use, accepted with the key request. Manual dataset: you download and build it yourself, and our mirror has only this README and the tables.
+- **License:** ATLAS terms of use, accepted with the key request.
 - **Citation:** Liew, S.-L., Lo, B. P., Donnelly, M. R., et al. (2022). A large, curated, open-source stroke neuroimaging dataset to improve lesion segmentation algorithms. *Scientific Data*, 9, 320.
 - **Code:** [`scripts/atlas/`](https://github.com/MedARC-AI/brainmarks-smri/tree/main/scripts/atlas) downloads `source/` and builds `tables/`, `derivatives/` and `shards/`.
 
@@ -32,7 +32,7 @@ One sample per participant (955), each with a T1w and a lesion mask. The officia
 `tables/` (derived from `source/`):
 
 - `images.tsv`: T1w and lesion mask.
-- `samples.tsv` + `samples.json`: site, days post stroke and chronicity. Not on our mirror.
+- `samples.tsv` + `samples.json`: site, days post stroke and chronicity.
 - `splits.tsv`: split, official split, rank and complete per participant.
 
 ## Excluded
