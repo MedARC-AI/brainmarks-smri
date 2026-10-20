@@ -32,7 +32,7 @@ neurojepa = [
 ]
 neurovfm = [
     "SimpleITK>=2.4",
-    "neurovfm @ git+https://github.com/clane9/neurovfm.git@ed3af2dfa1d54433f33432ebd677db6ba10a9e96",
+    "neurovfm @ git+https://github.com/clane9/neurovfm.git@e7563dc34f43027d973a4958a94a68d45e985c9d",
 ]
 walnut = [
     "walnut-fomo26 @ https://github.com/MedARC-AI/walnut-fomo26/archive/173de005bf055390056aa609a3c58401ed0bdc11.tar.gz",
