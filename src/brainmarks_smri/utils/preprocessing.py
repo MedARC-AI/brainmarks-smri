@@ -47,10 +47,13 @@ def mask_image_like(mask: np.ndarray, image: nib.Nifti1Image) -> nib.Nifti1Image
 
 def crop_image(image: nib.Nifti1Image) -> tuple[nib.Nifti1Image, tuple[slice, ...]]:
     """Image cropped to the bounding box of its nonzero voxels, and the crop."""
-    nonzero = np.argwhere(np.asanyarray(image.dataobj) != 0)
-    start = nonzero.min(axis=0)
-    stop = nonzero.max(axis=0) + 1
-    crop = tuple(slice(a, b) for a, b in zip(start, stop))
+    nonzero = np.asanyarray(image.dataobj) != 0
+    crop = []
+    for axis in range(nonzero.ndim):
+        other_axes = tuple(other for other in range(nonzero.ndim) if other != axis)
+        indices = np.flatnonzero(nonzero.any(axis=other_axes))
+        crop.append(slice(indices[0], indices[-1] + 1))
+    crop = tuple(crop)
     return image.slicer[crop], crop
 
 
