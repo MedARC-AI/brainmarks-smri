@@ -13,10 +13,10 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 
 ## Data
 
-The benchmark uses public datasets in three tiers, by how they can be shared. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
+The benchmark uses public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
 - **Hosted**: nine datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `DATA_ROOT=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `DATA_ROOT` to its folder.
-- **Build-it-yourself** (OASIS-1, OASIS-2, FOMO26 Tasks 4 and 5) and **manual** (ATLAS, which needs an access application): these may not be redistributed, so you build them in your local `DATA_ROOT` (default `datasets/`). Each one's README explains how to get access.
+- **Manual**: you build ATLAS, OASIS-1, OASIS-2 and FOMO26 Tasks 4 and 5 yourself in your local `DATA_ROOT` (default `datasets/`), because their licenses don't allow redistribution. Each one's README explains how to get access.
 
 ```sh
 bash scripts/oasis1/download.sh

@@ -16,6 +16,7 @@ TOP = 15
 def barh(ax: plt.Axes, counts: pd.Series, title: str) -> None:
     ax.barh(counts.index[::-1].astype(str), counts.values[::-1])
     ax.set_title(title)
+    ax.locator_params(axis="x", nbins=4)
 
 
 def main() -> None:
@@ -39,6 +40,7 @@ def main() -> None:
     barh(axes[0, 0], sequences, "Images by sequence")
 
     collections = subjects["collection"].str.removeprefix("PT030_OpenNeuro/").value_counts()
+    collections.index = [name if len(name) <= 16 else name[:15] + "…" for name in collections.index]
     barh(axes[0, 1], collections[:TOP], f"Subjects, top {TOP} of {len(collections)} collections")
 
     axes[0, 2].hist(sessions["age"].dropna(), bins=np.arange(0, 101, 4))

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Upload the datasets to the Hugging Face mirror, with README_hf.md as the dataset card.
 # Usage: bash scripts/upload.sh
-# Hosted datasets: README.md, tables/ and shards/. Other eval datasets: README.md and the tables
+# Hosted datasets: README.md, tables/ and shards/. Manual datasets: README.md and the tables
 # tracked in scripts/<name>/tables/ (no samples.tsv). FOMO300K: README.md, tables/ and shards/.
 # Resumable: re-run the same command after an interruption.
 set -euo pipefail
@@ -10,7 +10,7 @@ source "$(dirname "$0")/lib.sh"
 REPO_ID=medarc/brainmarks-smri
 HF=(uvx --from huggingface_hub@2.1.1 hf)
 HOSTED=(abide1 adhd200 brats2021 cnp ixi openbhb soop ucsf_pdgm upenn_gbm)
-NOT_REDISTRIBUTED=(atlas fomo26_task4 fomo26_task5 oasis1 oasis2)
+MANUAL=(atlas fomo26_task4 fomo26_task5 oasis1 oasis2)
 
 for name in "${HOSTED[@]}"; do
     diff <(tail -n +2 "$DATA_ROOT/$name/tables/shards.tsv" | cut -f2 | sort -u) \
@@ -23,7 +23,7 @@ done
 "${HF[@]}" repos settings "$REPO_ID" --repo-type dataset --gated auto
 "${HF[@]}" upload "$REPO_ID" "$REPO/README_hf.md" README.md --repo-type dataset
 
-for name in "${HOSTED[@]}" "${NOT_REDISTRIBUTED[@]}" fomo300k; do
+for name in "${HOSTED[@]}" "${MANUAL[@]}" fomo300k; do
     "${HF[@]}" upload "$REPO_ID" "$REPO/scripts/$name" "$name" --repo-type dataset \
         --include README.md --include summary.png --include "tables/*"
 done

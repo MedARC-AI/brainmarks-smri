@@ -43,11 +43,10 @@ configs:
 
 Public structural brain MRI datasets for building and evaluating sMRI foundation models: evaluation datasets with classification, regression and segmentation targets, and a large pretraining set. Code and benchmark: <https://github.com/MedARC-AI/brainmarks-smri>.
 
-We sort the datasets into three tiers by how they can be shared:
+The datasets come in two kinds:
 
-- **Hosted**: open datasets whose licenses allow redistribution. The full data is here.
-- **Build-it-yourself**: open datasets that may not be redistributed. Each user downloads them from the source and builds them with our scripts. Only the README and the tables without `samples.tsv` are here.
-- **Manual**: datasets that need an access application. You apply to the source, then build them as above.
+- **Hosted**: the full data is here.
+- **Manual**: you download the data from its source and build the dataset with our scripts. Only the README and the tables (without `samples.tsv`) are here. Their licenses don't allow redistribution.
 
 ## Evaluation datasets
 
@@ -67,7 +66,7 @@ Each evaluation dataset has harmonized metadata tables, fixed train/val/test spl
 | [UCSF-PDGM](https://www.cancerimagingarchive.net/collection/ucsf-pdgm/) | 495 | T1w, T1c, T2w, FLAIR, DWI, ADC, tumor mask | IDH, MGMT, 1p/19q, grade, survival, tumor segmentation | CC BY 4.0 | 15.9 GB |
 | [UPENN-GBM](https://www.cancerimagingarchive.net/collection/upenn-gbm/) | 630 | T1w, T1c, T2w, FLAIR, tumor mask | survival, IDH1, MGMT, tumor segmentation | CC BY 4.0 | 25.3 GB |
 
-### Build-it-yourself and manual
+### Manual
 
 | Dataset | Participants | Images | Targets | Access | Size |
 |---|---|---|---|---|---|
@@ -75,7 +74,7 @@ Each evaluation dataset has harmonized metadata tables, fixed train/val/test spl
 | [OASIS-2](https://sites.wustl.edu/oasisbrains/home/oasis-2/) | 150 | T1w, longitudinal | dementia, conversion | accept the OASIS terms | 20 GB |
 | [FOMO26 Task 4](https://fomo26.github.io/) | 40 | T2w, nerve and vessel mask | trigeminal nerve and vessel segmentation | download link from the organizers | 2.2 GB |
 | [FOMO26 Task 5](https://fomo26.github.io/) | 48 | T1w | polymicrogyria | download link from the organizers | 1.1 GB |
-| [ATLAS R2.1](https://fcon_1000.projects.nitrc.org/indi/retro/atlas.html) (manual) | 955 | T1w, lesion mask | stroke lesion segmentation | apply for a decryption key | 2.9 GB |
+| [ATLAS R2.1](https://fcon_1000.projects.nitrc.org/indi/retro/atlas.html) | 955 | T1w, lesion mask | stroke lesion segmentation | apply for a decryption key | 2.9 GB |
 
 Each dataset folder's `README.md` has its source, version, license, citation, and split details.
 
@@ -100,7 +99,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 - Derivatives: a brain mask on the image grid (`<image>_mask.nii.gz`) and a 4×4 nibabel-style affine matrix from the image to MNI152NLin6Asym (`<image>_mni.txt`). `derivatives.tsv` lists the images that have them.
 - `<dataset>-NNN.zip` shards hold whole participants: their images, JSON sidecars, brain masks and MNI affines, about 1 GB per shard. `<dataset>-meta.zip` holds the rest of the release: participant tables, phenotypes and docs.
 - Files in the shards keep their original paths under `source/` and `derivatives/`. Unzipping all shards in `<dataset>/` restores the full release, which you can check with `sha256sum -c tables/source.sha256 tables/derivatives.sha256`.
-- For the build-it-yourself and manual datasets, the checksums let you check your own build against ours.
+- For the manual datasets, the checksums let you check your own build against ours.
 - Splits are by participant. Official splits are kept where they exist; otherwise the split is 60/20/20, stratified, with a fixed seed. The smallest datasets have only a train split, for k-fold cross-validation.
 - `complete` marks participants with all core images and the primary targets.
 - `rank` orders participants within each split so that the lowest-ranked N form a balanced subset; subsets are nested as N grows.
