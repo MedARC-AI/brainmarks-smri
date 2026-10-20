@@ -1,15 +1,6 @@
 """Pack a dataset's source/ and derivatives/ files into zip shards.
 
-    uv run scripts/pack_shards.py datasets/<name> [--shard-size-gb 1]
-
-Writes `shards/<name>-NNN.zip` and `tables/shards.tsv` (path, shard) inside the dataset folder, and
-copies shards.tsv to scripts/<name>/tables/. The input files are not changed. Each shard holds whole
-participants, in participant_id order: the images of images.tsv, their .json sidecars, and the
-masks and affines of the images in derivatives.tsv. All other files in the checksums (metadata)
-go to `shards/<name>-meta.zip`. Members are stored uncompressed, one participant after another,
-under their paths relative to the dataset folder, so unzipping the shards there restores source/
-and derivatives/. Every member is
-checked against tables/source.sha256 and tables/derivatives.sha256.
+uv run scripts/pack_shards.py datasets/<name> [--shard-size-gb 1]
 """
 
 import argparse
