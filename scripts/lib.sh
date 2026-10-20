@@ -1,7 +1,7 @@
 # Shared helpers for the dataset download scripts. Source from scripts/<name>/download.sh.
 
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-DATA_ROOT=${DATA_ROOT:-$REPO/datasets}
+DATA_ROOT=${BRAINMARKS_SMRI_DATA:-$REPO/datasets}
 
 die() { echo "error: $*" >&2; exit 1; }
 

@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 
 REPO = Path(__file__).resolve().parents[3]
-DATA_ROOT = Path(os.environ.get("DATA_ROOT", REPO / "datasets"))
+DATA_ROOT = Path(os.environ.get("BRAINMARKS_SMRI_DATA", REPO / "datasets"))
 SEED = 0
 FRACTIONS = {"train": 0.6, "val": 0.2, "test": 0.2}
 IMAGE_COLUMNS = ["participant_id", "session_id", "modality", "desc", "path"]

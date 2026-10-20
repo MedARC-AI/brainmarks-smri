@@ -17,7 +17,7 @@ import torch.utils.data
 
 from brainmarks_smri.models.base import ImageInput
 
-DATA_ROOT = os.getenv("DATA_ROOT", str(Path(__file__).resolve().parents[2] / "datasets"))
+DATA_ROOT = os.getenv("BRAINMARKS_SMRI_DATA", str(Path(__file__).resolve().parents[2] / "datasets"))
 CACHE_DIR = Path(os.getenv("BRAINMARKS_SMRI_CACHE", platformdirs.user_cache_dir("brainmarks_smri")))
 # Derivative files next to each image's mirrored path, see scripts/preprocess.py.
 MASK_SUFFIX = "_mask.nii.gz"
