@@ -42,8 +42,12 @@ Each run evaluates one model on one task. The results go to `output/<model>/<tas
 | classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS, OASIS-1 dementia | logistic regression | AUROC |
 | regression | IXI age, OpenBHB age | ridge | R² |
 | segmentation | BraTS tumor regions (3), SOOP stroke lesion, ATLAS stroke lesion | patch-level logistic regression | Dice |
+| classification, k-fold | OASIS-2 dementia, OASIS-2 conversion, FOMO26 polymicrogyria | logistic regression | AUROC |
+| segmentation, k-fold | FOMO26 trigeminal nerve, FOMO26 vessels | patch-level logistic regression | AP |
 
 Probe hyperparameters are tuned by cross-validation on the train split. Scores are reported on the val split. By default, each split is capped at 300 samples.
+
+The small datasets have no val split. Their tasks use 5-fold cross-validation, and the pooled out-of-fold predictions are scored once.
 
 ## Add a model
 
