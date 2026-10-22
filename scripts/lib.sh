@@ -9,7 +9,7 @@ die() { echo "error: $*" >&2; exit 1; }
 # or the volume past 98% full.
 check_budget() {
     local need=$1 used total vol_used
-    used=$(du -sb "$DATA_ROOT" | cut -f1)
+    used=$(du -sb "$DATA_ROOT/" | cut -f1)
     (( used + need <= 10**12 )) || die "budget: datasets/ would exceed 1 TB"
     read -r total vol_used < <(df -B1 --output=size,used "$DATA_ROOT" | tail -1)
     (( (vol_used + need) * 100 <= total * 98 )) || die "budget: volume would exceed 98% full"

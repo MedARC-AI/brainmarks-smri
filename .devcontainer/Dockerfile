@@ -1,19 +1,20 @@
-FROM mcr.microsoft.com/devcontainers/base:bookworm
+FROM mcr.microsoft.com/devcontainers/base:noble
 
 ARG TZ=UTC
 ENV TZ="$TZ" DEVCONTAINER=true
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates curl git iproute2 iptables jq less procps ruby tmux unzip \
+    time screen vim \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# AWS CLI v2 (anonymous S3 access to fcp-indi, openneuro.org).
+# AWS CLI v2.
 RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o /tmp/awscliv2.zip \
   && unzip -q /tmp/awscliv2.zip -d /tmp \
   && /tmp/aws/install \
   && rm -rf /tmp/aws /tmp/awscliv2.zip
 
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+COPY --from=ghcr.io/astral-sh/uv:0.9.24 /uv /uvx /usr/local/bin/
 
 # IBM Aspera CLI, for TCIA releases distributed only as Aspera Faspex packages.
 RUN gem install --no-document aspera-cli -v 4.27.3
