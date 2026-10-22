@@ -64,6 +64,8 @@ def my_model() -> MyModel:  # name, embed_dim, patch_size
 #   global_embedding (D,), and for segmentation dense_embedding (X, Y, Z, D) + dense_affine
 ```
 
+A model outside this package registers itself the same way. Pass its module in `imports`, e.g. `python -m brainmarks_smri my_model ixi_age --overrides 'imports=[my_package.model]' model_kwargs.checkpoint=ckpt.pth`.
+
 ## License
 
 The code is MIT licensed. Each dataset keeps its original license. Several are for non-commercial use only. Please cite the sources listed in each dataset's README.

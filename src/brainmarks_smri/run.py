@@ -5,6 +5,7 @@ python -m brainmarks_smri neurojepa abide_diagnosis --overrides max_per_split=50
 
 import argparse
 import datetime
+import importlib
 import json
 import logging
 import time
@@ -61,6 +62,10 @@ def main():
     logger.info(f"git: {git_info()}")
     logger.info(f"cwd git: {git_info(Path.cwd())}")
     logger.info(f"config:\n{OmegaConf.to_yaml(cfg)}")
+
+    # external models register themselves on import
+    for module in cfg.imports:
+        importlib.import_module(module)
 
     random_seed(cfg.seed)
     device = cfg.device or ("cuda" if torch.cuda.is_available() else "cpu")

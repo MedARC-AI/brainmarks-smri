@@ -3,6 +3,8 @@ output_dir: output
 name: null
 
 model_kwargs: {}
+# modules to import before creating the model, e.g. to register external models
+imports: []
 
 # max samples per split, null for full splits
 max_per_split: 300
