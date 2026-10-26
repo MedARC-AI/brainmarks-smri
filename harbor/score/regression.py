@@ -27,11 +27,14 @@ predictions = predictions[np.isfinite(predictions)].reindex(labels.index)
 coverage = predictions.notna().mean()
 predictions = predictions.fillna(train_mean)
 
-reward = {
+metrics = {
     "r2": r2_score(labels, predictions),
     "mae": mean_absolute_error(labels, predictions),
     "coverage": coverage,
 }
-reward = {key: float(value) for key, value in reward.items()}
-print(reward)
+metrics = {key: float(value) for key, value in metrics.items()}
+print(metrics)
+Path("/logs/verifier/metrics.json").write_text(json.dumps(metrics))
+# Rewards are higher-is-better.
+reward = {key: metrics[key] for key in ["r2", "coverage"]}
 Path("/logs/verifier/reward.json").write_text(json.dumps(reward))

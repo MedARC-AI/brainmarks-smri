@@ -29,10 +29,13 @@ for label_path in sorted(labels_dir.glob("*.nii.gz")):
     total = predicted.sum() + target.sum()
     dices.append(1.0 if total == 0 else 2 * (predicted & target).sum() / total)
 
-reward = {
+metrics = {
     "dice": np.mean(dices),
     "coverage": n_valid / len(dices),
 }
-reward = {key: float(value) for key, value in reward.items()}
-print(reward)
+metrics = {key: float(value) for key, value in metrics.items()}
+print(metrics)
+Path("/logs/verifier/metrics.json").write_text(json.dumps(metrics))
+# Rewards are higher-is-better.
+reward = {key: metrics[key] for key in ["dice", "coverage"]}
 Path("/logs/verifier/reward.json").write_text(json.dumps(reward))
