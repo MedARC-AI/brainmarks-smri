@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.13-slim
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl procps \
@@ -14,6 +14,8 @@ RUN pip install --no-cache-dir \
     matplotlib==3.11.2
 
 ENV MPLBACKEND=Agg
+# nproc and os.cpu_count() report the host's CPUs; match the cpus limit in task.toml.
+ENV OMP_NUM_THREADS=4 PYTHON_CPU_COUNT=4
 
 RUN useradd --create-home agent && mkdir /output && chown agent:agent /output
 

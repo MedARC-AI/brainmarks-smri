@@ -14,6 +14,8 @@ Write `/output/predictions.csv` with columns `subject` and `dementia`, one row p
 
 Predictions are scored by AUROC. A missing or invalid prediction counts as the fraction of training subjects with dementia.
 
+For reference, a linear probe on features from a pretrained brain MRI foundation model (not available here) reaches an AUROC of 0.86 on these test subjects. Try to use your coding, reasoning, and native vision abilities to match it.
+
 ## Setup
 
-You have 1 hour, 4 CPUs, 16 GB of RAM, no GPU and no internet access. Python 3.12 has numpy, scipy, pandas, scikit-learn, scikit-image, nibabel and matplotlib installed.
+You have 1 hour, 4 CPUs, 16 GB of RAM, no GPU and no internet access. Python 3.13 has numpy, scipy, pandas, scikit-learn, scikit-image, nibabel and matplotlib installed.

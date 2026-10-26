@@ -14,6 +14,8 @@ Write `/output/predictions/<subject>.nii.gz` for each test subject: a mask with 
 
 Predictions are scored by Dice per subject, averaged over test subjects. A missing or invalid mask counts as empty.
 
+For reference, a linear probe on features from a pretrained brain MRI foundation model (not available here) reaches a mean Dice of 0.90 on these test subjects. Try to use your coding, reasoning, and native vision abilities to match it.
+
 ## Setup
 
-You have 1 hour, 4 CPUs, 16 GB of RAM, no GPU and no internet access. Python 3.12 has numpy, scipy, pandas, scikit-learn, scikit-image, nibabel and matplotlib installed.
+You have 1 hour, 4 CPUs, 16 GB of RAM, no GPU and no internet access. Python 3.13 has numpy, scipy, pandas, scikit-learn, scikit-image, nibabel and matplotlib installed.
