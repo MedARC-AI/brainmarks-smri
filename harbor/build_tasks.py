@@ -12,7 +12,7 @@ import nibabel as nib
 import numpy as np
 
 from brainmarks_smri.datasets import DATA_ROOT, BrainDataset
-from brainmarks_smri.tasks import create_task
+from brainmarks_smri.tasks import Task, create_task
 
 HARBOR_DIR = Path(__file__).resolve().parent
 SEED = 0
@@ -26,12 +26,28 @@ def write_image(dataset: BrainDataset, index: int, path: Path) -> None:
     nib.save(nib.Nifti1Image(image.get_fdata() * brain, image.affine, dtype=np.int16), path)
 
 
-def build_global(name: str, out_dir: Path, max_train: int, max_test: int, workers: int) -> None:
+def write_image_and_mask(
+    dataset: BrainDataset,
+    index: int,
+    target: str,
+    label_values: list[int],
+    image_path: Path,
+    mask_path: Path,
+) -> None:
+    """The image as in `write_image`, and the 0/1 mask of `label_values` on its grid."""
+    image_input, targets = dataset[index]
+    image = image_input["image"]
+    brain = np.asanyarray(image_input["brain_mask"].dataobj) > 0
+    nib.save(nib.Nifti1Image(image.get_fdata() * brain, image.affine, dtype=np.int16), image_path)
+    mask = np.isin(np.asanyarray(targets[target].dataobj), label_values)
+    assert mask.shape == image.shape, f"{mask_path}: mask not on the image grid"
+    nib.save(nib.Nifti1Image(mask.astype(np.uint8), image.affine), mask_path)
+
+
+def build_global(task: Task, out_dir: Path, workers: int) -> None:
     """Classification and regression tasks, with one label per subject."""
-    task = create_task(name, max_per_split={"train": max_train, "val": max_test})
-    assert task.type in SCORERS, f"{name}: no Harbor scorer for {task.type}"
     # Classification labels are 0/1, with 1 for the positive class (the last of task.classes).
-    assert task.type != "classification" or len(task.classes) == 2, f"{name}: not binary"
+    assert task.type != "classification" or len(task.classes) == 2, f"{task.name}: not binary"
     samples = task.dataset.samples
 
     rng = np.random.default_rng(SEED)
@@ -65,14 +81,67 @@ def build_global(name: str, out_dir: Path, max_train: int, max_test: int, worker
             future.result()
 
     shutil.copy(HARBOR_DIR / "score" / SCORERS[task.type], out_dir / "tests" / "score.py")
-    instruction = (HARBOR_DIR / name / "instruction.md").read_text()
+    instruction = (HARBOR_DIR / task.name / "instruction.md").read_text()
     (out_dir / "instruction.md").write_text(instruction)
     title = instruction.splitlines()[0].removeprefix("# ")
     config = (HARBOR_DIR / "task-template" / "task.toml").read_text()
-    (out_dir / "task.toml").write_text(config.format(name=name, description=title))
+    (out_dir / "task.toml").write_text(config.format(name=task.name, description=title))
 
 
-SCORERS = {"classification": "classification.py", "regression": "regression.py"}
+def build_segmentation(task: Task, out_dir: Path, workers: int) -> None:
+    """Segmentation tasks, with one 0/1 mask per subject."""
+    rng = np.random.default_rng(SEED)
+    ids = rng.permutation(np.concatenate([task.train_ids, task.eval_ids]))
+    subject_of_id = {index: f"sub-{number:04d}" for number, index in enumerate(ids, start=1)}
+
+    shutil.copytree(HARBOR_DIR / "task-template", out_dir)
+    jobs = []
+    for split, split_ids, masks_dir in [
+        ("train", task.train_ids, out_dir / "environment" / "data" / "train" / "labels"),
+        ("test", task.eval_ids, out_dir / "tests" / "labels"),
+    ]:
+        images_dir = out_dir / "environment" / "data" / split / "images"
+        images_dir.mkdir(parents=True)
+        masks_dir.mkdir(parents=True)
+        for index in split_ids:
+            file_name = f"{subject_of_id[index]}.nii.gz"
+            jobs.append((index, images_dir / file_name, masks_dir / file_name))
+
+    with ProcessPoolExecutor(workers) as pool:
+        futures = [
+            pool.submit(
+                write_image_and_mask,
+                task.dataset,
+                index,
+                task.target,
+                task.label_values,
+                image_path,
+                mask_path,
+            )
+            for index, image_path, mask_path in jobs
+        ]
+        for future in futures:
+            future.result()
+    shutil.copytree(out_dir / "tests" / "labels", out_dir / "solution" / "output" / "predictions")
+
+    shutil.copy(HARBOR_DIR / "score" / SCORERS[task.type], out_dir / "tests" / "score.py")
+    instruction = (HARBOR_DIR / task.name / "instruction.md").read_text()
+    (out_dir / "instruction.md").write_text(instruction)
+    title = instruction.splitlines()[0].removeprefix("# ")
+    config = (HARBOR_DIR / "task-template" / "task.toml").read_text()
+    (out_dir / "task.toml").write_text(config.format(name=task.name, description=title))
+
+
+SCORERS = {
+    "classification": "classification.py",
+    "regression": "regression.py",
+    "segmentation": "segmentation.py",
+}
+BUILDERS = {
+    "classification": build_global,
+    "regression": build_global,
+    "segmentation": build_segmentation,
+}
 # Tasks with a Harbor instruction.
 TASKS = sorted(path.parent.name for path in HARBOR_DIR.glob("*/instruction.md"))
 
@@ -93,7 +162,9 @@ def main():
     if out_dir.exists():
         assert args.overwrite, f"{out_dir} exists, pass --overwrite"
         shutil.rmtree(out_dir)
-    build_global(args.task, out_dir, args.max_train, args.max_test, args.workers)
+    task = create_task(args.task, max_per_split={"train": args.max_train, "val": args.max_test})
+    assert task.type in BUILDERS, f"{task.name}: no Harbor builder for {task.type}"
+    BUILDERS[task.type](task, out_dir, args.workers)
     print(f"wrote {out_dir}")
 
 
