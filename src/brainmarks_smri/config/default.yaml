@@ -6,7 +6,7 @@ model_kwargs: {}
 # modules to import before creating the model, e.g. to register external models
 imports: []
 
-# max samples per split, null for full splits
+# max samples per split, null for full splits; or per split, e.g. {train: 300, val: 50}
 max_per_split: 300
 batch_size: 8
 num_workers: 8

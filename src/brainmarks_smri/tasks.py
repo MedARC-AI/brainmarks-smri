@@ -5,7 +5,7 @@ handles its own special cases inside. `eval_split` is val by default; the CLI ne
 Small datasets are all train and use k-fold types: the task assigns the folds.
 """
 
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from typing import Literal
 
@@ -19,6 +19,8 @@ from brainmarks_smri.models.base import ImageInput
 
 N_FOLDS = 5
 FOLD_SEED = 0
+# One size for all splits, or a size per split name, e.g. {train: 300, val: 50}.
+MaxPerSplit = int | Mapping[str, int] | None
 
 
 @dataclass
@@ -66,33 +68,35 @@ def list_tasks() -> list[str]:
 
 
 def split_ids(
-    samples: pd.DataFrame, keep: pd.Series, eval_split: str, max_per_split: int | None
+    samples: pd.DataFrame, keep: pd.Series, eval_split: str, max_per_split: MaxPerSplit
 ) -> tuple[np.ndarray, np.ndarray]:
     """Train and `eval_split` ids among the `keep` samples.
 
     `max_per_split`: the lowest-rank samples per split (nested, balanced mini-splits). Taken after
-    `keep`, so mini-splits are full.
+    `keep`, so mini-splits are full. One size for all splits, or a size per split name.
     """
     assert eval_split in ("val", "test"), eval_split
     ids = []
     for split in ("train", eval_split):
         selected = samples[keep & (samples["split"] == split)]
-        if max_per_split is not None:
-            selected = selected.nsmallest(max_per_split, "rank")
+        size = max_per_split.get(split) if isinstance(max_per_split, Mapping) else max_per_split
+        if size is not None:
+            selected = selected.nsmallest(size, "rank")
         ids.append(np.sort(selected.index.to_numpy()))
     return ids[0], ids[1]
 
 
 def kfold_ids(
-    samples: pd.DataFrame, keep: pd.Series, stratify_by: str | None, max_per_split: int | None
+    samples: pd.DataFrame, keep: pd.Series, stratify_by: str | None, max_per_split: MaxPerSplit
 ) -> tuple[np.ndarray, np.ndarray]:
     """The `keep` train samples and their folds, stratified on `stratify_by` if given.
 
     `max_per_split`: the lowest-rank samples, as in `split_ids`.
     """
     selected = samples[keep & (samples["split"] == "train")]
-    if max_per_split is not None:
-        selected = selected.nsmallest(max_per_split, "rank")
+    size = max_per_split.get("train") if isinstance(max_per_split, Mapping) else max_per_split
+    if size is not None:
+        selected = selected.nsmallest(size, "rank")
     assert not selected["participant_id"].duplicated().any(), "k-fold needs one sample per person"
     ids = np.sort(selected.index.to_numpy())
 
@@ -109,7 +113,7 @@ def kfold_ids(
 
 
 @register_task
-def abide_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def abide_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("abide1", modality="T1w")
     keep = dataset.samples["diagnosis"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -125,7 +129,7 @@ def abide_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -
 
 
 @register_task
-def cnp_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def cnp_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("cnp", modality="T1w")
     samples = dataset.samples
     # 3-way as in Neuro-JEPA: schizophrenia and bipolar disorder are one class.
@@ -146,7 +150,7 @@ def cnp_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> 
 
 
 @register_task
-def adhd_diagnosis(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def adhd_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("adhd200", modality="T1w")
     samples = dataset.samples
     # Site and sex predict the label (WashU is all controls; most ADHD are male), so keep equal
@@ -172,7 +176,7 @@ def adhd_diagnosis(eval_split: str = "val", max_per_split: int | None = None) ->
 
 
 @register_task
-def ixi_age(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def ixi_age(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("ixi", modality="T1w")
     keep = dataset.samples["age"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -191,7 +195,7 @@ def brats_region(
     modality: str,
     label_values: list[int],
     eval_split: str,
-    max_per_split: int | None,
+    max_per_split: MaxPerSplit,
 ) -> Task:
     dataset = create_dataset("brats2021", modality=modality)
     # Only the official training cases have masks.
@@ -211,22 +215,22 @@ def brats_region(
 # The BraTS challenge regions, from labels 1 (necrotic core), 2 (edema), 4 (enhancing tumor).
 # Whole tumor is mostly edema, brightest on FLAIR; core and enhancing are defined on T1c.
 @register_task
-def brats_whole_tumor(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def brats_whole_tumor(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     return brats_region("brats_whole_tumor", "FLAIR", [1, 2, 4], eval_split, max_per_split)
 
 
 @register_task
-def brats_tumor_core(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def brats_tumor_core(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     return brats_region("brats_tumor_core", "T1c", [1, 4], eval_split, max_per_split)
 
 
 @register_task
-def brats_enhancing_tumor(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def brats_enhancing_tumor(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     return brats_region("brats_enhancing_tumor", "T1c", [4], eval_split, max_per_split)
 
 
 @register_task
-def openbhb_age(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def openbhb_age(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("openbhb", modality="T1w")
     keep = dataset.samples["age"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -241,7 +245,7 @@ def openbhb_age(eval_split: str = "val", max_per_split: int | None = None) -> Ta
 
 
 @register_task
-def ucsf_idh(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def ucsf_idh(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("ucsf_pdgm", modality="FLAIR")
     keep = dataset.samples["idh"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -257,7 +261,7 @@ def ucsf_idh(eval_split: str = "val", max_per_split: int | None = None) -> Task:
 
 
 @register_task
-def upenn_survival_1y(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def upenn_survival_1y(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("upenn_gbm", modality="FLAIR")
     samples = dataset.samples
     # Death within a year of surgery. Follow-up scans measure survival from the scan, so only
@@ -279,7 +283,7 @@ def upenn_survival_1y(eval_split: str = "val", max_per_split: int | None = None)
 
 
 @register_task
-def soop_mrs_poor(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def soop_mrs_poor(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("soop", modality="FLAIR")
     keep = dataset.samples["mrs_poor"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -295,7 +299,7 @@ def soop_mrs_poor(eval_split: str = "val", max_per_split: int | None = None) -> 
 
 
 @register_task
-def soop_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def soop_lesion(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("soop", modality="DWI")
     keep = dataset.samples["mask_lesionAcute_path"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -312,7 +316,7 @@ def soop_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Ta
 
 
 @register_task
-def atlas_lesion(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def atlas_lesion(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("atlas", modality="T1w")
     keep = dataset.samples["mask_lesion_path"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -328,7 +332,7 @@ def atlas_lesion(eval_split: str = "val", max_per_split: int | None = None) -> T
 
 
 @register_task
-def oasis1_dementia(eval_split: str = "val", max_per_split: int | None = None) -> Task:
+def oasis1_dementia(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("oasis1", modality="T1w")
     samples = dataset.samples
     # CDR is only given for first sessions (MR1), mostly 60+.
@@ -347,7 +351,7 @@ def oasis1_dementia(eval_split: str = "val", max_per_split: int | None = None) -
 
 
 @register_task
-def oasis2_dementia(max_per_split: int | None = None) -> Task:
+def oasis2_dementia(max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("oasis2", modality="T1w")
     samples = dataset.samples
     # CDR > 0 at the first visit only, one scan per participant (converters count as CDR 0).
@@ -366,7 +370,7 @@ def oasis2_dementia(max_per_split: int | None = None) -> Task:
 
 
 @register_task
-def oasis2_conversion(max_per_split: int | None = None) -> Task:
+def oasis2_conversion(max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("oasis2", modality="T1w")
     samples = dataset.samples
     # Nondemented at the first visit: later converted to dementia vs stayed nondemented.
@@ -409,7 +413,7 @@ def strip_and_crop_ap(sample: ImageInput) -> ImageInput:
 
 
 @register_task
-def fomo26_task5_pmg(max_per_split: int | None = None) -> Task:
+def fomo26_task5_pmg(max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("fomo26_task5", modality="T1w")
     keep = dataset.samples["pmg"].notna()
     ids, folds = kfold_ids(dataset.samples, keep, "pmg", max_per_split)
@@ -425,7 +429,7 @@ def fomo26_task5_pmg(max_per_split: int | None = None) -> Task:
     )
 
 
-def fomo26_task4_region(name: str, label_values: list[int], max_per_split: int | None) -> Task:
+def fomo26_task4_region(name: str, label_values: list[int], max_per_split: MaxPerSplit) -> Task:
     dataset = create_dataset("fomo26_task4", modality="T2w")
     keep = dataset.samples["mask_trigeminal_path"].notna()
     ids, folds = kfold_ids(dataset.samples, keep, None, max_per_split)
@@ -441,10 +445,10 @@ def fomo26_task4_region(name: str, label_values: list[int], max_per_split: int |
 
 
 @register_task
-def fomo26_task4_nerve(max_per_split: int | None = None) -> Task:
+def fomo26_task4_nerve(max_per_split: MaxPerSplit = None) -> Task:
     return fomo26_task4_region("fomo26_task4_nerve", [1], max_per_split)
 
 
 @register_task
-def fomo26_task4_vessel(max_per_split: int | None = None) -> Task:
+def fomo26_task4_vessel(max_per_split: MaxPerSplit = None) -> Task:
     return fomo26_task4_region("fomo26_task4_vessel", [2], max_per_split)
