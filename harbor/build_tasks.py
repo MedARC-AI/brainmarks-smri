@@ -30,6 +30,8 @@ def build_global(name: str, out_dir: Path, max_train: int, max_test: int, worker
     """Classification and regression tasks, with one label per subject."""
     task = create_task(name, max_per_split={"train": max_train, "val": max_test})
     assert task.type in SCORERS, f"{name}: no Harbor scorer for {task.type}"
+    # Classification labels are 0/1, with 1 for the positive class (the last of task.classes).
+    assert task.type != "classification" or len(task.classes) == 2, f"{name}: not binary"
     samples = task.dataset.samples
 
     rng = np.random.default_rng(SEED)
@@ -45,6 +47,8 @@ def build_global(name: str, out_dir: Path, max_train: int, max_test: int, worker
             jobs.append((index, images_dir / f"{subject_of_id[index]}.nii.gz"))
 
         labels = samples.loc[split_ids, [task.target]]
+        if task.type == "classification":
+            labels[task.target] = (labels[task.target] == task.classes[-1]).astype(int)
         labels.insert(0, "subject", [subject_of_id[index] for index in split_ids])
         labels = labels.sort_values("subject")
         if split == "train":
@@ -68,7 +72,7 @@ def build_global(name: str, out_dir: Path, max_train: int, max_test: int, worker
     (out_dir / "task.toml").write_text(config.format(name=name, description=title))
 
 
-SCORERS = {"regression": "regression.py"}
+SCORERS = {"classification": "classification.py", "regression": "regression.py"}
 # Tasks with a Harbor instruction.
 TASKS = sorted(path.parent.name for path in HARBOR_DIR.glob("*/instruction.md"))
 
