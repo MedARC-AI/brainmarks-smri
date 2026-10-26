@@ -1,9 +1,6 @@
 """Build Harbor tasks into $BRAINMARKS_SMRI_DATA/harbor/<task>/.
 
 python harbor/build_tasks.py ixi_age --max-train 300 --max-test 100
-
-The sandbox test split is the benchmark val split. Build and run the tasks on a host with Docker:
-harbor run -p <task dir> -a oracle
 """
 
 import argparse
@@ -22,17 +19,17 @@ SEED = 0
 
 
 def write_image(dataset: BrainDataset, index: int, path: Path) -> None:
-    """Skull-stripped int16 image on the original grid, with a fresh header."""
+    """Skull-stripped image on the original grid, int16 on disk, with a fresh header."""
     image_input, _ = dataset[index]
     image = image_input["image"]
     brain = np.asanyarray(image_input["brain_mask"].dataobj) > 0
-    data = np.round(image.get_fdata() * brain)
-    assert np.abs(data).max() <= np.iinfo(np.int16).max, f"{path}: out of int16 range"
-    nib.save(nib.Nifti1Image(data.astype(np.int16), image.affine), path)
+    nib.save(nib.Nifti1Image(image.get_fdata() * brain, image.affine, dtype=np.int16), path)
 
 
-def build_ixi_age(out_dir: Path, max_train: int, max_test: int, workers: int) -> None:
-    task = create_task("ixi_age", max_per_split={"train": max_train, "val": max_test})
+def build_global(name: str, out_dir: Path, max_train: int, max_test: int, workers: int) -> None:
+    """Classification and regression tasks, with one label per subject."""
+    task = create_task(name, max_per_split={"train": max_train, "val": max_test})
+    assert task.type in SCORERS, f"{name}: no Harbor scorer for {task.type}"
     samples = task.dataset.samples
 
     rng = np.random.default_rng(SEED)
@@ -47,7 +44,7 @@ def build_ixi_age(out_dir: Path, max_train: int, max_test: int, workers: int) ->
         for index in split_ids:
             jobs.append((index, images_dir / f"{subject_of_id[index]}.nii.gz"))
 
-        labels = samples.loc[split_ids, ["age"]].round(2)
+        labels = samples.loc[split_ids, [task.target]]
         labels.insert(0, "subject", [subject_of_id[index] for index in split_ids])
         labels = labels.sort_values("subject")
         if split == "train":
@@ -63,23 +60,24 @@ def build_ixi_age(out_dir: Path, max_train: int, max_test: int, workers: int) ->
         for future in futures:
             future.result()
 
-    shutil.copy(HARBOR_DIR / "ixi_age" / "score.py", out_dir / "tests" / "score.py")
-    instruction = (HARBOR_DIR / "ixi_age" / "instruction.md").read_text()
-    instruction = instruction.format(n_train=len(task.train_ids), n_test=len(task.eval_ids))
+    shutil.copy(HARBOR_DIR / "score" / SCORERS[task.type], out_dir / "tests" / "score.py")
+    instruction = (HARBOR_DIR / name / "instruction.md").read_text()
     (out_dir / "instruction.md").write_text(instruction)
+    title = instruction.splitlines()[0].removeprefix("# ")
     config = (HARBOR_DIR / "task-template" / "task.toml").read_text()
-    config = config.format(name="ixi_age", description="Brain age from T1-weighted MRI (IXI).")
-    (out_dir / "task.toml").write_text(config)
+    (out_dir / "task.toml").write_text(config.format(name=name, description=title))
 
 
-BUILDERS = {"ixi_age": build_ixi_age}
+SCORERS = {"regression": "regression.py"}
+# Tasks with a Harbor instruction.
+TASKS = sorted(path.parent.name for path in HARBOR_DIR.glob("*/instruction.md"))
 
 
 def main():
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("task", choices=sorted(BUILDERS))
+    parser.add_argument("task", choices=TASKS)
     parser.add_argument("--max-train", type=int, default=300)
     parser.add_argument("--max-test", type=int, default=100)
     parser.add_argument("--workers", type=int, default=8)
@@ -91,7 +89,7 @@ def main():
     if out_dir.exists():
         assert args.overwrite, f"{out_dir} exists, pass --overwrite"
         shutil.rmtree(out_dir)
-    BUILDERS[args.task](out_dir, args.max_train, args.max_test, args.workers)
+    build_global(args.task, out_dir, args.max_train, args.max_test, args.workers)
     print(f"wrote {out_dir}")
 
 

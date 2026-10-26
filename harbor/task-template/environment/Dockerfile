@@ -11,7 +11,6 @@ RUN pip install --no-cache-dir \
     scikit-learn==1.9.1 \
     scikit-image==0.26.0 \
     nibabel==5.4.2 \
-    nilearn==0.14.1 \
     matplotlib==3.11.2
 
 ENV MPLBACKEND=Agg
