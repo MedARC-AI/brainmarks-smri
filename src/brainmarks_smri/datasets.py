@@ -164,6 +164,13 @@ def list_datasets() -> list[str]:
 
 
 @register_dataset
+def a4learn(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """A4/LEARN: preclinical AD (amyloid, cognitive decline, treatment arm), T1w at bl, wk84 and
+    wk240. Built on the user side."""
+    return BrainDataset("a4learn", modality, **kwargs)
+
+
+@register_dataset
 def abide1(modality: str = "T1w", **kwargs) -> BrainDataset:
     """ABIDE I: autism diagnosis, T1w."""
     return BrainDataset("abide1", modality, **kwargs)
@@ -173,6 +180,13 @@ def abide1(modality: str = "T1w", **kwargs) -> BrainDataset:
 def adhd200(modality: str = "T1w", **kwargs) -> BrainDataset:
     """ADHD-200: ADHD diagnosis, T1w."""
     return BrainDataset("adhd200", modality, **kwargs)
+
+
+@register_dataset
+def adni(modality: str = "T1w", **kwargs) -> BrainDataset:
+    """ADNI: AD diagnosis, progression and biomarkers, T1w and FLAIR at y0, y2 and y4. Built on
+    the user side."""
+    return BrainDataset("adni", modality, **kwargs)
 
 
 @register_dataset

@@ -12,8 +12,9 @@ Table layout: `README_hf.md`.
 - Targets come from ADNIMERGE2 0.1.1, matched to the scan date by participant and the nearest
   record within a window: diagnosis 180 days; cognitive scores 90 days; amyloid and tau PET, CSF
   and plasma 1 year; FreeSurfer and WMH 60 days. Missing codes (negative values) -> n/a.
-- Progression: years from the scan to the first dementia diagnosis, and years of diagnostic
-  follow-up after the scan, so tasks can set their own horizon (e.g. pMCI vs sMCI at 3 years).
+- Progression: years from the scan to the first later dementia diagnosis, to the first later MCI
+  or dementia diagnosis, and years of diagnostic follow-up, so tasks can set their own horizon
+  (e.g. pMCI vs sMCI at 3 years, stable CN).
 - FreeSurfer 7 (UCSFFSX7): subcortical volumes, cortical volumes and mean cortical thickness.
   Most rows are not yet QC'd (fs_status 'partial').
 - No official split: 60/20/20 by participant, stratified by y0 diagnosis x enrolling protocol.
@@ -124,10 +125,14 @@ def diagnosis(sessions: pd.DataFrame) -> pd.DataFrame:
     after = merged[merged.years > 0]
     followup = after.groupby(["ptid", "session_id"]).years.max().rename("dx_followup_years")
     dementia = after[after.DIAGNOSIS == "Dementia"].groupby(["ptid", "session_id"]).years.min()
+    impaired = after[after.DIAGNOSIS.isin(["MCI", "Dementia"])]
+    impairment = impaired.groupby(["ptid", "session_id"]).years.min()
     sessions = sessions.join(followup, on=["ptid", "session_id"])
     sessions = sessions.join(dementia.rename("years_to_dementia"), on=["ptid", "session_id"])
+    sessions = sessions.join(impairment.rename("years_to_impairment"), on=["ptid", "session_id"])
     sessions["dx_followup_years"] = sessions.dx_followup_years.round(2)
     sessions["years_to_dementia"] = sessions.years_to_dementia.round(2)
+    sessions["years_to_impairment"] = sessions.years_to_impairment.round(2)
     return sessions
 
 
@@ -332,6 +337,11 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
         },
         "years_to_dementia": {
             "Description": "Years from the scan to the first later dementia diagnosis (n/a: none).",
+            "Source": "DXSUM",
+            "Units": "years",
+        },
+        "years_to_impairment": {
+            "Description": "Years from the scan to the first later MCI or dementia diagnosis (n/a: none).",
             "Source": "DXSUM",
             "Units": "years",
         },

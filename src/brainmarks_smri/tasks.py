@@ -452,3 +452,251 @@ def fomo26_task4_nerve(max_per_split: MaxPerSplit = None) -> Task:
 @register_task
 def fomo26_task4_vessel(max_per_split: MaxPerSplit = None) -> Task:
     return fomo26_task4_region("fomo26_task4_vessel", [2], max_per_split)
+
+
+def adni_primary(samples: pd.DataFrame) -> pd.Series:
+    """The main ADNI cohort: y0 scans of participants enrolled in ADNIGO onward, all at 3 T.
+    ADNI1 (1.5 T, different protocol) is left for dedicated tasks."""
+    return (
+        (samples["session_id"] == "y0")
+        & (samples["protocol"] != "ADNI1")
+        & (samples["field_strength"] == 3.0)
+    )
+
+
+@register_task
+def adni_ad(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # Dementia vs stable CN: CN with no later MCI or dementia diagnosis over at least 3 years.
+    dementia = samples["dx"] == "Dementia"
+    stable_cn = (
+        (samples["dx"] == "CN")
+        & samples["years_to_impairment"].isna()
+        & (samples["dx_followup_years"] >= 3)
+    )
+    samples["dementia"] = dementia.where(dementia | stable_cn)
+    keep = adni_primary(samples) & samples["dementia"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_ad",
+        type="classification",
+        dataset=dataset,
+        target="dementia",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def adni_pmci(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # MCI at y0: dementia within 3 years (progressive) vs none over at least 3 years (stable).
+    progressive = samples["years_to_dementia"] <= 3
+    stable = ~progressive & (samples["dx_followup_years"] >= 3)
+    samples["progressive"] = progressive.where(progressive | stable)
+    keep = adni_primary(samples) & (samples["dx"] == "MCI") & samples["progressive"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_pmci",
+        type="classification",
+        dataset=dataset,
+        target="progressive",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def adni_amyloid_cn(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # Amyloid PET status (UC Berkeley threshold) of cognitively normal participants.
+    status = samples["amyloid_status"]
+    samples["amyloid_positive"] = (status == 1).where(status.notna())
+    keep = adni_primary(samples) & (samples["dx"] == "CN") & status.notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_amyloid_cn",
+        type="classification",
+        dataset=dataset,
+        target="amyloid_positive",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+# Flortaucipir temporal meta-ROI SUVR (inferior cerebellar reference) from which a scan is tau
+# positive: the Youden cutoff of Guo et al. 2020 (Alzheimers Res Ther 12:97) on ADNI, UC Berkeley
+# processing. Their conservative alternative (mean + 2 SD of amyloid-negative CU) is 1.34.
+TAU_POSITIVE_SUVR = 1.25
+
+
+@register_task
+def adni_tau(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # Tau PET came with ADNI3, so many participants have it only at y2 or y4: take each one's
+    # first session with flortaucipir PET (other tracers have other SUVR scales).
+    suvr = samples["tau_meta_temporal_suvr"]
+    samples["tau_positive"] = (suvr >= TAU_POSITIVE_SUVR).where(suvr.notna())
+    eligible = (
+        (samples["protocol"] != "ADNI1")
+        & (samples["field_strength"] == 3.0)
+        & (samples["tau_tracer"] == "FTP")
+        & suvr.notna()
+    )
+    first = samples[eligible].sort_values("session_id").groupby("participant_id").head(1)
+    keep = samples.index.isin(first.index)
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_tau",
+        type="classification",
+        dataset=dataset,
+        target="tau_positive",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def adni_wmh(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="FLAIR")
+    samples = dataset.samples
+    # Log white matter hyperintensity volume (UC Davis, from FLAIR); the raw volume is very skewed.
+    samples["log_wmh_volume"] = np.log(samples["wmh_volume"])
+    keep = adni_primary(samples) & samples["wmh_volume"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_wmh",
+        type="regression",
+        dataset=dataset,
+        target="log_wmh_volume",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def adni_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # Log plasma pTau217 (Fujirebio), all diagnoses; the raw values are very skewed.
+    samples["log_plasma_ptau217"] = np.log(samples["plasma_ptau217"])
+    keep = adni_primary(samples) & samples["plasma_ptau217"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_ptau217",
+        type="regression",
+        dataset=dataset,
+        target="log_plasma_ptau217",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def adni_hippocampus(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adni", modality="T1w")
+    samples = dataset.samples
+    # FreeSurfer 7 left + right hippocampal volume per 1000 of intracranial volume.
+    hippocampus = samples["fs_vol_left_hippocampus"] + samples["fs_vol_right_hippocampus"]
+    samples["hippocampus_icv"] = 1000 * hippocampus / samples["fs_ctxvol_icv"]
+    keep = adni_primary(samples) & samples["hippocampus_icv"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="adni_hippocampus",
+        type="regression",
+        dataset=dataset,
+        target="hippocampus_icv",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def a4_amyloid(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # A4 enrolled cognitively normal people with elevated amyloid, LEARN those without.
+    samples["amyloid_elevated"] = samples["group"] == "A4"
+    keep = (samples["session_id"] == "bl") & samples["group"].isin(["A4", "LEARN"])
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4_amyloid",
+        type="classification",
+        dataset=dataset,
+        target="amyloid_elevated",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def a4_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # Log plasma pTau217 (Lilly) at baseline, A4 and LEARN; the raw values are very skewed.
+    samples["log_plasma_ptau217"] = np.log(samples["plasma_ptau217"])
+    keep = (
+        (samples["session_id"] == "bl")
+        & samples["group"].isin(["A4", "LEARN"])
+        & samples["plasma_ptau217"].notna()
+    )
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4_ptau217",
+        type="regression",
+        dataset=dataset,
+        target="log_plasma_ptau217",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def a4_pacc_decline(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # From the baseline scan of A4 (amyloid-elevated) participants: a PACC change by week 240
+    # below the 5th percentile of LEARN (amyloid not elevated), i.e. decline beyond normal aging.
+    baseline = samples["session_id"] == "bl"
+    change = samples["pacc_change_wk240"]
+    learn = baseline & (samples["group"] == "LEARN")
+    cutoff = change[learn].quantile(0.05)
+    samples["pacc_decline"] = (change < cutoff).where(change.notna())
+    keep = baseline & (samples["group"] == "A4") & change.notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4_pacc_decline",
+        type="classification",
+        dataset=dataset,
+        target="pacc_decline",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def a4_treatment(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # Solanezumab vs placebo from the week 240 scan. Expected at chance: the drug showed no effect.
+    keep = (samples["session_id"] == "wk240") & samples["treatment"].notna()
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4_treatment",
+        type="classification",
+        dataset=dataset,
+        target="treatment",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+        classes=["Placebo", "Solanezumab"],
+    )

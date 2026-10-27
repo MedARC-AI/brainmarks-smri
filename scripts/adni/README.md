@@ -32,7 +32,7 @@ One sample per participant and session: y0 (the first visit with a usable T1w), 
 `tables/` (derived from `source/`):
 
 - `images.tsv`: T1w, T1w `acq-3T` and FLAIR per session.
-- `samples.tsv` + `samples.json`: demographics, APOE, diagnosis, years to dementia and diagnostic follow-up, cognitive scores, amyloid PET (status, Centiloid), tau PET, CSF, plasma, WMH and FreeSurfer 7 volumes and thickness. Each is matched to the scan by the nearest record within a window (180 days for diagnosis, 90 days for cognition, 1 year for PET, CSF and plasma, 60 days for MRI measures).
+- `samples.tsv` + `samples.json`: demographics, APOE, diagnosis, years to dementia and to MCI or dementia, diagnostic follow-up, cognitive scores, amyloid PET (status, Centiloid), tau PET, CSF, plasma, WMH and FreeSurfer 7 volumes and thickness. Each is matched to the scan by the nearest record within a window (180 days for diagnosis, 90 days for cognition, 1 year for PET, CSF and plasma, 60 days for MRI measures).
 - `splits.tsv`: split, rank and complete per participant.
 
 ## Image choice

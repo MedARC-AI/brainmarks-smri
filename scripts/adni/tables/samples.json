@@ -94,6 +94,11 @@
     "Source": "DXSUM",
     "Units": "years"
   },
+  "years_to_impairment": {
+    "Description": "Years from the scan to the first later MCI or dementia diagnosis (n/a: none).",
+    "Source": "DXSUM",
+    "Units": "years"
+  },
   "cdr_global": {
     "Description": "Clinical Dementia Rating, global score (0, 0.5, 1, 2, 3). Within 90 days of the scan.",
     "Source": "ADQS CDGLOBAL"
