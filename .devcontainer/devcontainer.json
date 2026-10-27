@@ -17,7 +17,8 @@
   "mounts": [
     "source=brain-datasets-claude-config,target=/home/vscode/.claude,type=volume",
     "source=brain-datasets-history,target=/home/vscode/.history,type=volume",
-    "source=/data/brainmarks-smri,target=/data/brainmarks-smri,type=bind"
+    "source=/data/brainmarks-smri,target=/data/brainmarks-smri,type=bind",
+    "source=/data/smri-datasets,target=/data/smri-datasets,type=bind,readonly"
   ],
   "containerEnv": {
     "CLAUDE_CONFIG_DIR": "/home/vscode/.claude",
