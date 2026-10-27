@@ -264,7 +264,6 @@ sub-003S4354	y4	FLAIR	n/a	source/sub-003S4354/ses-y4/anat/sub-003S4354_ses-y4_FL
 sub-003S4354	y4	T1w	n/a	source/sub-003S4354/ses-y4/anat/sub-003S4354_ses-y4_T1w.nii.gz
 sub-003S4373	y0	FLAIR	n/a	source/sub-003S4373/ses-y0/anat/sub-003S4373_ses-y0_FLAIR.nii.gz
 sub-003S4373	y0	T1w	n/a	source/sub-003S4373/ses-y0/anat/sub-003S4373_ses-y0_T1w.nii.gz
-sub-003S4441	y0	FLAIR	n/a	source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_FLAIR.nii.gz
 sub-003S4441	y0	T1w	n/a	source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_T1w.nii.gz
 sub-003S4441	y2	FLAIR	n/a	source/sub-003S4441/ses-y2/anat/sub-003S4441_ses-y2_FLAIR.nii.gz
 sub-003S4441	y2	T1w	n/a	source/sub-003S4441/ses-y2/anat/sub-003S4441_ses-y2_T1w.nii.gz
@@ -3438,7 +3437,6 @@ sub-035S4464	y2	FLAIR	n/a	source/sub-035S4464/ses-y2/anat/sub-035S4464_ses-y2_FL
 sub-035S4464	y2	T1w	n/a	source/sub-035S4464/ses-y2/anat/sub-035S4464_ses-y2_T1w.nii.gz
 sub-035S4464	y4	FLAIR	n/a	source/sub-035S4464/ses-y4/anat/sub-035S4464_ses-y4_FLAIR.nii.gz
 sub-035S4464	y4	T1w	n/a	source/sub-035S4464/ses-y4/anat/sub-035S4464_ses-y4_T1w.nii.gz
-sub-035S4582	y0	FLAIR	n/a	source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_FLAIR.nii.gz
 sub-035S4582	y0	T1w	n/a	source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_T1w.nii.gz
 sub-035S4582	y2	FLAIR	n/a	source/sub-035S4582/ses-y2/anat/sub-035S4582_ses-y2_FLAIR.nii.gz
 sub-035S4582	y2	T1w	n/a	source/sub-035S4582/ses-y2/anat/sub-035S4582_ses-y2_T1w.nii.gz
@@ -4401,7 +4399,6 @@ sub-053S4813	y0	FLAIR	n/a	source/sub-053S4813/ses-y0/anat/sub-053S4813_ses-y0_FL
 sub-053S4813	y0	T1w	n/a	source/sub-053S4813/ses-y0/anat/sub-053S4813_ses-y0_T1w.nii.gz
 sub-053S4813	y2	FLAIR	n/a	source/sub-053S4813/ses-y2/anat/sub-053S4813_ses-y2_FLAIR.nii.gz
 sub-053S4813	y2	T1w	n/a	source/sub-053S4813/ses-y2/anat/sub-053S4813_ses-y2_T1w.nii.gz
-sub-053S4813	y4	FLAIR	n/a	source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_FLAIR.nii.gz
 sub-053S4813	y4	T1w	n/a	source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_T1w.nii.gz
 sub-053S5070	y0	FLAIR	n/a	source/sub-053S5070/ses-y0/anat/sub-053S5070_ses-y0_FLAIR.nii.gz
 sub-053S5070	y0	T1w	n/a	source/sub-053S5070/ses-y0/anat/sub-053S5070_ses-y0_T1w.nii.gz
@@ -4413,7 +4410,6 @@ sub-053S5208	y0	FLAIR	n/a	source/sub-053S5208/ses-y0/anat/sub-053S5208_ses-y0_FL
 sub-053S5208	y0	T1w	n/a	source/sub-053S5208/ses-y0/anat/sub-053S5208_ses-y0_T1w.nii.gz
 sub-053S5272	y0	FLAIR	n/a	source/sub-053S5272/ses-y0/anat/sub-053S5272_ses-y0_FLAIR.nii.gz
 sub-053S5272	y0	T1w	n/a	source/sub-053S5272/ses-y0/anat/sub-053S5272_ses-y0_T1w.nii.gz
-sub-053S5272	y2	FLAIR	n/a	source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_FLAIR.nii.gz
 sub-053S5272	y2	T1w	n/a	source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_T1w.nii.gz
 sub-053S5287	y0	FLAIR	n/a	source/sub-053S5287/ses-y0/anat/sub-053S5287_ses-y0_FLAIR.nii.gz
 sub-053S5287	y0	T1w	n/a	source/sub-053S5287/ses-y0/anat/sub-053S5287_ses-y0_T1w.nii.gz

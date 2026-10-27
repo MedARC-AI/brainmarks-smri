@@ -16,16 +16,16 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 
 | split | participants | samples | complete | age | female | session_id | group | screening_amyloid_read |
 |---|---|---|---|---|---|---|---|---|
-| train | 1072 | 2342 | 1070 | 73.7 ± 5.0 | 58% | bl 1072 / wk240 672 / wk84 598 | A4 1790 / LEARN 500 / SF 52 | 0 506 / 1 1836 |
-| val | 357 | 763 | 357 | 73.0 ± 4.7 | 63% | bl 357 / wk240 216 / wk84 190 | A4 576 / LEARN 169 / SF 18 | 0 169 / 1 594 |
-| test | 357 | 765 | 357 | 73.6 ± 5.2 | 60% | bl 357 / wk240 217 / wk84 191 | A4 584 / LEARN 164 / SF 17 | 0 164 / 1 601 |
-| total | 1786 | 3870 | 1784 | 73.5 ± 5.0 | 59% | bl 1786 / wk240 1105 / wk84 979 | A4 2950 / LEARN 833 / SF 87 | 0 839 / 1 3031 |
+| train | 1065 | 2336 | 1065 | 73.6 ± 5.0 | 59% | bl 1065 / wk240 681 / wk84 590 | A4 1783 / LEARN 501 / SF 52 | 0 505 / 1 1831 |
+| val | 354 | 747 | 353 | 73.4 ± 4.9 | 60% | bl 354 / wk240 204 / wk84 189 | A4 567 / LEARN 163 / SF 17 | 0 163 / 1 584 |
+| test | 354 | 753 | 354 | 73.7 ± 5.1 | 59% | bl 354 / wk240 212 / wk84 187 | A4 578 / LEARN 158 / SF 17 | 0 159 / 1 594 |
+| total | 1773 | 3836 | 1772 | 73.5 ± 5.0 | 60% | bl 1773 / wk240 1097 / wk84 966 | A4 2928 / LEARN 822 / SF 86 | 0 827 / 1 3009 |
 
 ## Contents
 
 `source/` (43 GB):
 
-- `ImageData/<A4|LEARN|SF>_MR_T1_<BID>_<VISCODE>.nii.gz` + `.json`: the T1w of each session (3,870), as distributed (3 T sagittal accelerated MPRAGE, 1.2 mm).
+- `ImageData/<A4|LEARN|SF>_MR_T1_<BID>_<VISCODE>.nii.gz` + `.json`: the T1w of each session (3,836), as distributed (3 T sagittal accelerated MPRAGE, 1.2 mm).
 - `selected_images.tsv`: participant, session, BID, visit code and file of every image.
 - `Clinical/Derived Data/`: participant info, visits, PACC, cognitive scores (ADQS), disposition. `Clinical/External Data/`: amyloid and tau PET SUVRs, PET visual reads, plasma biomarkers, MRI reads, WMH and regional volumes.
 
@@ -41,6 +41,7 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 
 ## Notes
 
+- 36 images are left out as unusable: 35 whose intensity scaling puts the background far below zero (about -60,000 to -160,000), and one blank image. Baseline comes from visits 004, 006 or 009 only. 13 participants have no usable image left.
 - A4 participants all have a positive screening amyloid read, LEARN participants a negative one, so `group` is also the amyloid eligibility label.
 - 178 people were rescreened under a new BID (`PREVBID`); none has images under both.
 - Dates are days from consent; 5 LEARN wk240 sessions have no date in any table (age n/a).

@@ -7,7 +7,8 @@ dcm2niix JSON sidecar, and `<out>/image_dates.tsv` (acquisition date per image I
 the zips are never unpacked whole. Existing outputs are skipped.
 
 dcm2niix writes a second, resampled copy (`_Eq_1`) when the slice spacing is uneven; we keep
-that one, since the plain output cannot represent the spacing. Any other extra output is an error.
+that one, since the plain output cannot represent the spacing. Any other extra output, a missing
+sidecar or a 4D image (stacked acquisitions) is an error.
 """
 
 import argparse
@@ -19,6 +20,7 @@ import zipfile
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
+import nibabel as nib
 import pandas as pd
 
 SERIES_DIR = re.compile(r"ADNI/[^/]+/[^/]+/(\d{4}-\d{2}-\d{2})_[^/]*/(I\d+)/")
@@ -59,6 +61,8 @@ def convert_series(archive: zipfile.ZipFile, members: list[str], out_stem: Path)
             text=True,
         )
         outputs = sorted(path.name for path in nifti_dir.iterdir())
+        if "image.nii.gz" in outputs and len(nib.load(nifti_dir / "image.nii.gz").shape) != 3:
+            return f"failed: 4D output {nib.load(nifti_dir / 'image.nii.gz').shape}"
         if outputs == ["image.json", "image.nii.gz"]:
             stem = "image"
         elif outputs == ["image.json", "image.nii.gz", "image_Eq_1.nii.gz"]:

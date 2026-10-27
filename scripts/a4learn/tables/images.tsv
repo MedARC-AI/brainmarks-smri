@@ -55,7 +55,6 @@ sub-B11128201	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11128201_004.nii.gz
 sub-B11128201	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B11128201_027.nii.gz
 sub-B11180690	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11180690_004.nii.gz
 sub-B11180690	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B11180690_066.nii.gz
-sub-B11180690	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B11180690_027.nii.gz
 sub-B11187381	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B11187381_006.nii.gz
 sub-B11217281	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11217281_004.nii.gz
 sub-B11238033	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11238033_004.nii.gz
@@ -75,7 +74,6 @@ sub-B11678939	bl	T1w	n/a	source/ImageData/SF_MR_T1_B11678939_004.nii.gz
 sub-B11687376	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11687376_004.nii.gz
 sub-B11714080	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11714080_004.nii.gz
 sub-B11714080	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B11714080_066.nii.gz
-sub-B11714080	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B11714080_027.nii.gz
 sub-B11767120	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B11767120_006.nii.gz
 sub-B11799473	bl	T1w	n/a	source/ImageData/A4_MR_T1_B11799473_004.nii.gz
 sub-B11799473	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B11799473_066.nii.gz
@@ -267,7 +265,6 @@ sub-B17148421	bl	T1w	n/a	source/ImageData/A4_MR_T1_B17148421_004.nii.gz
 sub-B17148421	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B17148421_066.nii.gz
 sub-B17148421	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B17148421_027.nii.gz
 sub-B17183859	bl	T1w	n/a	source/ImageData/A4_MR_T1_B17183859_004.nii.gz
-sub-B17183859	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B17183859_066.nii.gz
 sub-B17183859	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B17183859_027.nii.gz
 sub-B17249362	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B17249362_006.nii.gz
 sub-B17249362	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B17249362_066.nii.gz
@@ -398,7 +395,6 @@ sub-B19458654	bl	T1w	n/a	source/ImageData/A4_MR_T1_B19458654_004.nii.gz
 sub-B19458654	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B19458654_066.nii.gz
 sub-B19458654	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B19458654_027.nii.gz
 sub-B19547692	bl	T1w	n/a	source/ImageData/A4_MR_T1_B19547692_004.nii.gz
-sub-B19547692	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B19547692_066.nii.gz
 sub-B19547692	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B19547692_027.nii.gz
 sub-B19621685	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B19621685_006.nii.gz
 sub-B19621685	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B19621685_066.nii.gz
@@ -439,11 +435,8 @@ sub-B20603725	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B20603725_066.nii.gz
 sub-B20615169	bl	T1w	n/a	source/ImageData/A4_MR_T1_B20615169_004.nii.gz
 sub-B20615169	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B20615169_066.nii.gz
 sub-B20615169	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B20615169_027.nii.gz
-sub-B20658632	bl	T1w	n/a	source/ImageData/A4_MR_T1_B20658632_027.nii.gz
 sub-B20685017	bl	T1w	n/a	source/ImageData/A4_MR_T1_B20685017_004.nii.gz
-sub-B20685017	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B20685017_066.nii.gz
 sub-B20685017	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B20685017_027.nii.gz
-sub-B20715085	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B20715085_006.nii.gz
 sub-B20930557	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B20930557_006.nii.gz
 sub-B20962603	bl	T1w	n/a	source/ImageData/A4_MR_T1_B20962603_004.nii.gz
 sub-B20962603	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B20962603_027.nii.gz
@@ -527,7 +520,6 @@ sub-B22404074	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B22404074_027.nii.gz
 sub-B22414325	bl	T1w	n/a	source/ImageData/A4_MR_T1_B22414325_004.nii.gz
 sub-B22414325	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B22414325_066.nii.gz
 sub-B22414325	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B22414325_027.nii.gz
-sub-B22485102	bl	T1w	n/a	source/ImageData/SF_MR_T1_B22485102_006.nii.gz
 sub-B22508775	bl	T1w	n/a	source/ImageData/SF_MR_T1_B22508775_004.nii.gz
 sub-B22518678	bl	T1w	n/a	source/ImageData/A4_MR_T1_B22518678_004.nii.gz
 sub-B22625566	bl	T1w	n/a	source/ImageData/A4_MR_T1_B22625566_004.nii.gz
@@ -759,7 +751,6 @@ sub-B28449108	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B28449108_027.nii.gz
 sub-B28491011	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B28491011_006.nii.gz
 sub-B28564263	bl	T1w	n/a	source/ImageData/A4_MR_T1_B28564263_004.nii.gz
 sub-B28636048	bl	T1w	n/a	source/ImageData/A4_MR_T1_B28636048_004.nii.gz
-sub-B28645650	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B28645650_006.nii.gz
 sub-B28768413	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B28768413_006.nii.gz
 sub-B28777488	bl	T1w	n/a	source/ImageData/A4_MR_T1_B28777488_004.nii.gz
 sub-B28823760	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B28823760_006.nii.gz
@@ -784,7 +775,6 @@ sub-B29273925	bl	T1w	n/a	source/ImageData/A4_MR_T1_B29273925_004.nii.gz
 sub-B29273925	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B29273925_066.nii.gz
 sub-B29273925	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B29273925_027.nii.gz
 sub-B29387613	bl	T1w	n/a	source/ImageData/A4_MR_T1_B29387613_004.nii.gz
-sub-B29568436	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B29568436_006.nii.gz
 sub-B29614158	bl	T1w	n/a	source/ImageData/A4_MR_T1_B29614158_004.nii.gz
 sub-B29614158	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B29614158_066.nii.gz
 sub-B29614158	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B29614158_027.nii.gz
@@ -839,7 +829,6 @@ sub-B30893217	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B30893217_006.nii.gz
 sub-B30893217	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B30893217_066.nii.gz
 sub-B30904648	bl	T1w	n/a	source/ImageData/A4_MR_T1_B30904648_004.nii.gz
 sub-B30904648	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B30904648_066.nii.gz
-sub-B30904648	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B30904648_027.nii.gz
 sub-B31016622	bl	T1w	n/a	source/ImageData/A4_MR_T1_B31016622_004.nii.gz
 sub-B31016622	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B31016622_066.nii.gz
 sub-B31016622	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B31016622_027.nii.gz
@@ -1057,7 +1046,6 @@ sub-B35732045	bl	T1w	n/a	source/ImageData/A4_MR_T1_B35732045_004.nii.gz
 sub-B35753314	bl	T1w	n/a	source/ImageData/A4_MR_T1_B35753314_004.nii.gz
 sub-B35777262	bl	T1w	n/a	source/ImageData/A4_MR_T1_B35777262_004.nii.gz
 sub-B35832977	bl	T1w	n/a	source/ImageData/SF_MR_T1_B35832977_004.nii.gz
-sub-B35900517	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B35900517_006.nii.gz
 sub-B35952795	bl	T1w	n/a	source/ImageData/A4_MR_T1_B35952795_004.nii.gz
 sub-B35952795	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B35952795_066.nii.gz
 sub-B35952795	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B35952795_027.nii.gz
@@ -1091,7 +1079,6 @@ sub-B36578792	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B36578792_027.nii.gz
 sub-B36601785	bl	T1w	n/a	source/ImageData/A4_MR_T1_B36601785_004.nii.gz
 sub-B36601785	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B36601785_066.nii.gz
 sub-B36601785	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B36601785_027.nii.gz
-sub-B36702787	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B36702787_006.nii.gz
 sub-B36788109	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B36788109_006.nii.gz
 sub-B36788109	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B36788109_066.nii.gz
 sub-B36993592	bl	T1w	n/a	source/ImageData/A4_MR_T1_B36993592_004.nii.gz
@@ -1109,7 +1096,6 @@ sub-B37190120	bl	T1w	n/a	source/ImageData/A4_MR_T1_B37190120_004.nii.gz
 sub-B37190120	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B37190120_066.nii.gz
 sub-B37190120	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B37190120_027.nii.gz
 sub-B37234681	bl	T1w	n/a	source/ImageData/A4_MR_T1_B37234681_004.nii.gz
-sub-B37234681	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B37234681_027.nii.gz
 sub-B37244237	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B37244237_006.nii.gz
 sub-B37255095	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B37255095_006.nii.gz
 sub-B37283468	bl	T1w	n/a	source/ImageData/SF_MR_T1_B37283468_004.nii.gz
@@ -1299,7 +1285,6 @@ sub-B42002720	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B42002720_066.nii.gz
 sub-B42074365	bl	T1w	n/a	source/ImageData/A4_MR_T1_B42074365_004.nii.gz
 sub-B42074365	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B42074365_066.nii.gz
 sub-B42120973	bl	T1w	n/a	source/ImageData/SF_MR_T1_B42120973_004.nii.gz
-sub-B42157834	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B42157834_006.nii.gz
 sub-B42198167	bl	T1w	n/a	source/ImageData/A4_MR_T1_B42198167_004.nii.gz
 sub-B42198167	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B42198167_027.nii.gz
 sub-B42439180	bl	T1w	n/a	source/ImageData/A4_MR_T1_B42439180_004.nii.gz
@@ -1470,11 +1455,8 @@ sub-B46833538	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B46833538_006.nii.gz
 sub-B46880175	bl	T1w	n/a	source/ImageData/A4_MR_T1_B46880175_004.nii.gz
 sub-B46880175	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B46880175_066.nii.gz
 sub-B46880175	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B46880175_027.nii.gz
-sub-B46883668	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B46883668_006.nii.gz
 sub-B46918356	bl	T1w	n/a	source/ImageData/A4_MR_T1_B46918356_004.nii.gz
 sub-B46920242	bl	T1w	n/a	source/ImageData/A4_MR_T1_B46920242_004.nii.gz
-sub-B46920242	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B46920242_066.nii.gz
-sub-B46920242	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B46920242_027.nii.gz
 sub-B46992838	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B46992838_006.nii.gz
 sub-B47009500	bl	T1w	n/a	source/ImageData/A4_MR_T1_B47009500_004.nii.gz
 sub-B47009500	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B47009500_066.nii.gz
@@ -1560,7 +1542,6 @@ sub-B49120183	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B49120183_006.nii.gz
 sub-B49144285	bl	T1w	n/a	source/ImageData/SF_MR_T1_B49144285_004.nii.gz
 sub-B49156238	bl	T1w	n/a	source/ImageData/A4_MR_T1_B49156238_004.nii.gz
 sub-B49156238	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B49156238_066.nii.gz
-sub-B49156238	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B49156238_027.nii.gz
 sub-B49159212	bl	T1w	n/a	source/ImageData/A4_MR_T1_B49159212_004.nii.gz
 sub-B49159212	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B49159212_066.nii.gz
 sub-B49159212	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B49159212_027.nii.gz
@@ -1820,7 +1801,6 @@ sub-B54283837	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B54283837_006.nii.gz
 sub-B54283837	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B54283837_066.nii.gz
 sub-B54288722	bl	T1w	n/a	source/ImageData/A4_MR_T1_B54288722_004.nii.gz
 sub-B54288722	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B54288722_066.nii.gz
-sub-B54288722	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B54288722_027.nii.gz
 sub-B54461290	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B54461290_006.nii.gz
 sub-B54527454	bl	T1w	n/a	source/ImageData/A4_MR_T1_B54527454_004.nii.gz
 sub-B54527454	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B54527454_066.nii.gz
@@ -1863,7 +1843,6 @@ sub-B55493963	bl	T1w	n/a	source/ImageData/A4_MR_T1_B55493963_004.nii.gz
 sub-B55493963	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B55493963_066.nii.gz
 sub-B55493963	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B55493963_027.nii.gz
 sub-B55630269	bl	T1w	n/a	source/ImageData/A4_MR_T1_B55630269_004.nii.gz
-sub-B55630269	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B55630269_066.nii.gz
 sub-B55630269	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B55630269_027.nii.gz
 sub-B55648549	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B55648549_006.nii.gz
 sub-B55648549	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B55648549_066.nii.gz
@@ -1931,7 +1910,6 @@ sub-B57167760	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B57167760_066.nii.gz
 sub-B57281425	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B57281425_006.nii.gz
 sub-B57281425	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B57281425_066.nii.gz
 sub-B57296708	bl	T1w	n/a	source/ImageData/A4_MR_T1_B57296708_004.nii.gz
-sub-B57296708	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B57296708_027.nii.gz
 sub-B57376075	bl	T1w	n/a	source/ImageData/A4_MR_T1_B57376075_004.nii.gz
 sub-B57376075	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B57376075_066.nii.gz
 sub-B57376075	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B57376075_027.nii.gz
@@ -2063,8 +2041,7 @@ sub-B59784979	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B59784979_027.nii.gz
 sub-B59825023	bl	T1w	n/a	source/ImageData/A4_MR_T1_B59825023_004.nii.gz
 sub-B59928554	bl	T1w	n/a	source/ImageData/A4_MR_T1_B59928554_004.nii.gz
 sub-B60039223	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B60039223_006.nii.gz
-sub-B60039657	bl	T1w	n/a	source/ImageData/A4_MR_T1_B60039657_004.nii.gz
-sub-B60039657	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B60039657_027.nii.gz
+sub-B60039657	bl	T1w	n/a	source/ImageData/A4_MR_T1_B60039657_009.nii.gz
 sub-B60182380	bl	T1w	n/a	source/ImageData/A4_MR_T1_B60182380_004.nii.gz
 sub-B60182380	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B60182380_027.nii.gz
 sub-B60198076	bl	T1w	n/a	source/ImageData/SF_MR_T1_B60198076_004.nii.gz
@@ -2190,7 +2167,7 @@ sub-B63109495	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63109495_027.nii.gz
 sub-B63119473	bl	T1w	n/a	source/ImageData/A4_MR_T1_B63119473_004.nii.gz
 sub-B63119473	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63119473_027.nii.gz
 sub-B63124745	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B63124745_006.nii.gz
-sub-B63182965	bl	T1w	n/a	source/ImageData/A4_MR_T1_B63182965_004.nii.gz
+sub-B63182965	bl	T1w	n/a	source/ImageData/A4_MR_T1_B63182965_009.nii.gz
 sub-B63182965	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B63182965_066.nii.gz
 sub-B63182965	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63182965_027.nii.gz
 sub-B63210032	bl	T1w	n/a	source/ImageData/SF_MR_T1_B63210032_004.nii.gz
@@ -2207,7 +2184,6 @@ sub-B63469275	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63469275_027.nii.gz
 sub-B63496119	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B63496119_006.nii.gz
 sub-B63496119	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B63496119_066.nii.gz
 sub-B63595805	bl	T1w	n/a	source/ImageData/A4_MR_T1_B63595805_004.nii.gz
-sub-B63595805	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B63595805_066.nii.gz
 sub-B63595805	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63595805_027.nii.gz
 sub-B63693427	bl	T1w	n/a	source/ImageData/A4_MR_T1_B63693427_004.nii.gz
 sub-B63693427	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B63693427_027.nii.gz
@@ -2293,7 +2269,6 @@ sub-B65702961	bl	T1w	n/a	source/ImageData/A4_MR_T1_B65702961_004.nii.gz
 sub-B65702961	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B65702961_066.nii.gz
 sub-B65702961	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B65702961_027.nii.gz
 sub-B65723979	bl	T1w	n/a	source/ImageData/A4_MR_T1_B65723979_004.nii.gz
-sub-B65723979	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B65723979_066.nii.gz
 sub-B65723979	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B65723979_027.nii.gz
 sub-B65739342	bl	T1w	n/a	source/ImageData/A4_MR_T1_B65739342_004.nii.gz
 sub-B65750960	bl	T1w	n/a	source/ImageData/A4_MR_T1_B65750960_004.nii.gz
@@ -2427,7 +2402,6 @@ sub-B68025092	bl	T1w	n/a	source/ImageData/A4_MR_T1_B68025092_004.nii.gz
 sub-B68025092	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B68025092_066.nii.gz
 sub-B68025092	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B68025092_027.nii.gz
 sub-B68058577	bl	T1w	n/a	source/ImageData/A4_MR_T1_B68058577_004.nii.gz
-sub-B68058577	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B68058577_027.nii.gz
 sub-B68173715	bl	T1w	n/a	source/ImageData/A4_MR_T1_B68173715_004.nii.gz
 sub-B68173715	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B68173715_066.nii.gz
 sub-B68173715	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B68173715_027.nii.gz
@@ -2494,7 +2468,6 @@ sub-B69611774	bl	T1w	n/a	source/ImageData/A4_MR_T1_B69611774_004.nii.gz
 sub-B69611774	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B69611774_066.nii.gz
 sub-B69611774	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B69611774_027.nii.gz
 sub-B69617870	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B69617870_006.nii.gz
-sub-B69617870	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B69617870_066.nii.gz
 sub-B69622702	bl	T1w	n/a	source/ImageData/A4_MR_T1_B69622702_004.nii.gz
 sub-B69622702	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B69622702_066.nii.gz
 sub-B69622702	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B69622702_027.nii.gz
@@ -2794,7 +2767,6 @@ sub-B77529617	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B77529617_066.nii.gz
 sub-B77529617	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B77529617_027.nii.gz
 sub-B77576075	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B77576075_006.nii.gz
 sub-B77576075	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B77576075_066.nii.gz
-sub-B77596233	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B77596233_006.nii.gz
 sub-B77613221	bl	T1w	n/a	source/ImageData/A4_MR_T1_B77613221_004.nii.gz
 sub-B77613221	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B77613221_066.nii.gz
 sub-B77613221	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B77613221_027.nii.gz
@@ -2891,7 +2863,6 @@ sub-B80463083	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B80463083_066.nii.gz
 sub-B80463083	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B80463083_027.nii.gz
 sub-B80467260	bl	T1w	n/a	source/ImageData/A4_MR_T1_B80467260_004.nii.gz
 sub-B80467260	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B80467260_066.nii.gz
-sub-B80467260	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B80467260_027.nii.gz
 sub-B80483861	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B80483861_006.nii.gz
 sub-B80549529	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B80549529_006.nii.gz
 sub-B80557526	bl	T1w	n/a	source/ImageData/A4_MR_T1_B80557526_004.nii.gz
@@ -3142,7 +3113,6 @@ sub-B85876120	bl	T1w	n/a	source/ImageData/A4_MR_T1_B85876120_004.nii.gz
 sub-B85876120	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B85876120_027.nii.gz
 sub-B85877142	bl	T1w	n/a	source/ImageData/A4_MR_T1_B85877142_004.nii.gz
 sub-B85877142	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B85877142_066.nii.gz
-sub-B85877142	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B85877142_027.nii.gz
 sub-B85931695	bl	T1w	n/a	source/ImageData/A4_MR_T1_B85931695_004.nii.gz
 sub-B85931695	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B85931695_066.nii.gz
 sub-B85931695	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B85931695_027.nii.gz
@@ -3312,7 +3282,6 @@ sub-B89266154	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B89266154_066.nii.gz
 sub-B89285582	bl	T1w	n/a	source/ImageData/A4_MR_T1_B89285582_004.nii.gz
 sub-B89285582	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B89285582_027.nii.gz
 sub-B89319327	bl	T1w	n/a	source/ImageData/SF_MR_T1_B89319327_004.nii.gz
-sub-B89365069	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B89365069_006.nii.gz
 sub-B89436253	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B89436253_006.nii.gz
 sub-B89436253	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B89436253_066.nii.gz
 sub-B89493033	bl	T1w	n/a	source/ImageData/A4_MR_T1_B89493033_004.nii.gz
@@ -3449,8 +3418,6 @@ sub-B92108999	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B92108999_006.nii.gz
 sub-B92108999	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B92108999_066.nii.gz
 sub-B92117437	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B92117437_006.nii.gz
 sub-B92117437	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B92117437_066.nii.gz
-sub-B92202894	bl	T1w	n/a	source/ImageData/A4_MR_T1_B92202894_009.nii.gz
-sub-B92202894	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B92202894_027.nii.gz
 sub-B92314486	bl	T1w	n/a	source/ImageData/A4_MR_T1_B92314486_004.nii.gz
 sub-B92314486	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B92314486_066.nii.gz
 sub-B92314486	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B92314486_027.nii.gz
@@ -3501,7 +3468,6 @@ sub-B93333535	bl	T1w	n/a	source/ImageData/A4_MR_T1_B93333535_004.nii.gz
 sub-B93484307	bl	T1w	n/a	source/ImageData/A4_MR_T1_B93484307_004.nii.gz
 sub-B93484307	wk240	T1w	n/a	source/ImageData/A4_MR_T1_B93484307_066.nii.gz
 sub-B93484307	wk84	T1w	n/a	source/ImageData/A4_MR_T1_B93484307_027.nii.gz
-sub-B93549418	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B93549418_006.nii.gz
 sub-B93567258	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B93567258_006.nii.gz
 sub-B93584950	bl	T1w	n/a	source/ImageData/LEARN_MR_T1_B93584950_006.nii.gz
 sub-B93584950	wk240	T1w	n/a	source/ImageData/LEARN_MR_T1_B93584950_066.nii.gz

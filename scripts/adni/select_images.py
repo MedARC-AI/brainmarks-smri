@@ -7,7 +7,7 @@ Writes scripts/adni/selected_images.tsv: the LONI image IDs to download from IDA
 Scan dates are left out (they are DUA data); convert.py reads them from the zips.
 
 - Inputs: the series in the IDA zips (`ADNI/<PTID>/<description>/<datetime>/I<image id>/*.dcm`),
-  one DICOM header per T1w series, and the Mayo QC tables in ADNIMERGE2 (MRIQC, MRIMPRANK,
+  one DICOM header per series, and the Mayo QC tables in ADNIMERGE2 (MRIQC, MRIMPRANK,
   MAYOADIRL_MRI_QUALITY_ADNI3).
 - Visits: T1w scans of a participant within 60 days of each other. Sessions: y0 = the first
   visit with a usable T1w; y2 and y4 = the usable visit nearest 2 and 4 years after y0, within
@@ -17,8 +17,8 @@ Scan dates are left out (they are DUA data); convert.py reads them from the zips
   Mayo's selected series, then the best MRIMPRANK rank; prefer accelerated (as in ADNI3/4);
   prefer the protocol scan over its "repeat"; then the later series (a rescan); then the lowest
   image ID. Visits with both 1.5 T and 3 T also keep the best 3 T scan (desc `acq-3T`).
-- FLAIR: the FLAIR series nearest the visit (within 60 days); prefer Mayo's selected series, drop
-  Mayo quality 4, then the later series, then the lowest image ID.
+- FLAIR: the FLAIR series nearest the visit (within 60 days); drop Mayo quality 4 and coverage
+  under 140 mm; prefer Mayo's selected series, then the later series, then the lowest image ID.
 """
 
 import io
@@ -44,8 +44,9 @@ VISIT_GAP_DAYS = 60
 SESSION_YEARS = {"y2": 2.0, "y4": 4.0}
 SESSION_WINDOW_YEARS = 0.5
 MIN_COVERAGE_MM = 140
-# Series that fail to convert (dcm2niix finds no consistent slice geometry).
-EXCLUDE = {"I820315"}
+# Series that fail to convert: no consistent slice geometry (I820315), or two volumes stacked
+# into one 4D image (I277122, I41449).
+EXCLUDE = {"I820315", "I277122", "I41449"}
 
 
 def list_series(zip_dir: Path) -> pd.DataFrame:
@@ -211,7 +212,12 @@ def pick_t1w(t1w: pd.DataFrame, sessions: pd.DataFrame) -> pd.DataFrame:
 
 
 def pick_flair(flair: pd.DataFrame, sessions: pd.DataFrame) -> pd.DataFrame:
-    flair = flair[(flair.mayo_quality != 4) & ~flair.image_id.isin(EXCLUDE)].copy()
+    usable = (
+        (flair.mayo_quality != 4)
+        & (flair.coverage_mm >= MIN_COVERAGE_MM)
+        & ~flair.image_id.isin(EXCLUDE)
+    )
+    flair = flair[usable].copy()
     candidates = sessions.merge(flair, on="ptid", suffixes=("_visit", ""))
     candidates["gap_days"] = (candidates.date - candidates.date_visit).dt.days.abs()
     candidates = candidates[candidates.gap_days <= VISIT_GAP_DAYS]
@@ -229,8 +235,8 @@ def main() -> None:
     series = list_series(zip_dir).merge(mayo_qc(tarball), on="image_id", how="left")
     print(f"{len(series)} T1w/FLAIR series in the zips:", series.modality.value_counts().to_dict())
 
-    t1w = read_headers(series[series.modality == "T1w"], zip_dir)
-    t1w = rank_t1w(add_visits(t1w))
+    series = read_headers(series, zip_dir)
+    t1w = rank_t1w(add_visits(series[series.modality == "T1w"]))
     sessions = pick_sessions(t1w)
     picks = pd.concat(
         [pick_t1w(t1w, sessions), pick_flair(series[series.modality == "FLAIR"], sessions)]

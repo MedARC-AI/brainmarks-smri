@@ -76,7 +76,7 @@ Each evaluation dataset has harmonized metadata tables, fixed train/val/test spl
 | [FOMO26 Task 5](https://fomo26.github.io/) | 48 | T1w | polymicrogyria | download link from the organizers | 1.1 GB |
 | [ATLAS R2.1](https://fcon_1000.projects.nitrc.org/indi/retro/atlas.html) | 955 | T1w, lesion mask | stroke lesion segmentation | apply for a decryption key | 2.9 GB |
 | [ADNI](https://adni.loni.usc.edu/) | 3,070 | T1w, FLAIR, longitudinal | diagnosis, conversion, cognition, amyloid and tau PET, CSF, plasma, FreeSurfer volumes | apply for ADNI data access (LONI IDA) | 65 GB |
-| [A4/LEARN](https://www.a4studydata.org/) | 1,786 | T1w, longitudinal | amyloid, tau PET, plasma pTau217, cognition (PACC), treatment arm | apply for A4 data access (LONI IDA) | 43 GB |
+| [A4/LEARN](https://www.a4studydata.org/) | 1,773 | T1w, longitudinal | amyloid, tau PET, plasma pTau217, cognition (PACC), treatment arm | apply for A4 data access (LONI IDA) | 43 GB |
 
 Each dataset folder's `README.md` has its source, version, license, citation, and split details.
 

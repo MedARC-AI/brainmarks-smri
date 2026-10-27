@@ -25,7 +25,7 @@ One sample per participant and session: y0 (the first visit with a usable T1w), 
 
 `source/` (65 GB):
 
-- `sub-<PTID>/ses-<y0|y2|y4>/anat/`: per session one T1w, an `acq-3T` T1w at ADNI1 visits that also have a 3 T scan (240), and FLAIR (ADNIGO onward), each with its `dcm2niix` JSON sidecar. 8,582 images.
+- `sub-<PTID>/ses-<y0|y2|y4>/anat/`: per session one T1w, an `acq-3T` T1w at ADNI1 visits that also have a 3 T scan (240), and FLAIR (ADNIGO onward), each with its `dcm2niix` JSON sidecar. 8,578 images.
 - `selected_images.tsv`: the LONI image ID, series description and field strength of every image. `image_dates.tsv`: the acquisition date of each image.
 - `ADNIMERGE2/`: the extracted R package; the tables are `data/*.rda` (readable with `pyreadr`).
 
@@ -37,7 +37,7 @@ One sample per participant and session: y0 (the first visit with a usable T1w), 
 
 ## Image choice
 
-Many visits have several T1w scans. Per visit, we drop scans that ADNI's Mayo QC rates unusable, distortion-uncorrected copies (`_ND`), scans covering under 140 mm, and one series that `dcm2niix` cannot convert (I820315). Then we prefer, in order: 1.5 T (the ADNI1 protocol; later phases are 3 T), the series Mayo selected or ranked best (MAYOADIRL_MRI_QUALITY_ADNI3, MRIMPRANK), accelerated scans (as in ADNI3 and 4), the protocol scan over its repeat, the later series (a rescan), and the lowest image ID. FLAIR: the series nearest the visit, preferring Mayo's selection.
+Many visits have several T1w scans. Per visit, we drop scans that ADNI's Mayo QC rates unusable, distortion-uncorrected copies (`_ND`), scans covering under 140 mm, and three series that `dcm2niix` cannot convert to one 3D image (I820315, I277122, I41449). Then we prefer, in order: 1.5 T (the ADNI1 protocol; later phases are 3 T), the series Mayo selected or ranked best (MAYOADIRL_MRI_QUALITY_ADNI3, MRIMPRANK), accelerated scans (as in ADNI3 and 4), the protocol scan over its repeat, the later series (a rescan), and the lowest image ID. FLAIR: the series nearest the visit, preferring Mayo's selection; we drop Mayo quality 4 and series covering under 140 mm (axial series with missing slices).
 
 ## Excluded
 
@@ -48,5 +48,5 @@ Many visits have several T1w scans. Per visit, we drop scans that ADNI's Mayo QC
 - ADNI1 is 1.5 T and has no FLAIR or amyloid PET. ADNI4 is almost all y0.
 - A few y4 scans were acquired under the next phase's protocol (ADNI1 to ADNI2, ADNI2 to 3, ADNI3 to 4).
 - Most FreeSurfer 7 rows are not yet QC'd by UCSF (`fs_status` partial).
-- For 5 series with uneven slice spacing, `dcm2niix` writes a resampled copy (`Eq_1`), which we keep.
+- For 2 series with uneven slice spacing, `dcm2niix` writes a resampled copy (`Eq_1`), which we keep.
 - `dcm2niix` output depends on its version: `source.sha256` matches only with v1.0.20260724.

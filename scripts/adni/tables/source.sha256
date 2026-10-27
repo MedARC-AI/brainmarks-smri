@@ -561,8 +561,8 @@ a27ce764f80f0ef6833a75b07b517263d6c510c2d9a17906c897218cedab669b  source/ADNIMER
 779c252da03fb1fe1d8aa200e530e6865eea4a58a222b18184bd629664065b7a  source/ADNIMERGE2/vignettes/ADNIMERGE2-PACC.Rmd
 17b14e48efe108346a7a0627cd21209d57f419f45febdff6cd855d959a60af2f  source/ADNIMERGE2/vignettes/ADNIMERGE2-Package-Building.Rmd
 0832a9b018a3ecea6b5a315b02234b8c3bea6489f555e3bf0a7dea8b7832fd41  source/ADNIMERGE2/vignettes/ADNIMERGE2.Rmd
-ae64683c4235207cab1b5a79b01cd2bb48634aa491f81e041e3cc8ebfb61ea3a  source/image_dates.tsv
-21692d51c6f25647c34213015d7f2957f00e7aeb46d4ac3d53c83083a0d3b2dd  source/selected_images.tsv
+e86a40958ca56cf595c416b32baf0856cf8eb4c37d3bb490afd28cf7ee8279e5  source/image_dates.tsv
+6d8361c8c9b341343a5019543bb2fbe4139d048bae0c30050c7803fb3752069c  source/selected_images.tsv
 b2a3829ff650672fcf9fe4f9ef63b5691ded72b08a376a54c630a92e27376d79  source/sub-002S0295/ses-y0/anat/sub-002S0295_ses-y0_T1w.json
 3257f3b6487d2a224dcde1e444bce2060bfaa00fdc91471cdacb05f60c3568fe  source/sub-002S0295/ses-y0/anat/sub-002S0295_ses-y0_T1w.nii.gz
 c1d00439fd22461929e7a6b70d59e92935471f9f0025f89af17cf691131eeed7  source/sub-002S0295/ses-y2/anat/sub-002S0295_ses-y2_T1w.json
@@ -1093,8 +1093,6 @@ bb6aff5a5a1edf8d9624b363d6f3bc6759f5615b75c31f2a871558aff486bb35  source/sub-003
 f613a1aaf86ae0819b1ca6716a9c840db5381ad7dee5ccaac6ee99c6f376b935  source/sub-003S4373/ses-y0/anat/sub-003S4373_ses-y0_FLAIR.nii.gz
 e46171f1f9fb04b0ddc2f6f28322bf6a16b99b9ce2d121f1c1a4b416bcfc6ea3  source/sub-003S4373/ses-y0/anat/sub-003S4373_ses-y0_T1w.json
 dc72c280edbd3515090e3a06a1235b28a9b4ecca0e5a18bf45b069064c8b777c  source/sub-003S4373/ses-y0/anat/sub-003S4373_ses-y0_T1w.nii.gz
-436b26f7d414113fee324f686f45a11cd37429ae654823e3aad4dd37d6cd08f2  source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_FLAIR.json
-5929e44bd166bd56d703aeb27b1cb665e4abe9f2733f4ffc93844390a0980a27  source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_FLAIR.nii.gz
 51714189883fa6c7a409ffe85db26c2123cdc7d8be1165d305d7d8f3c9e74492  source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_T1w.json
 6f202f95b40c0caa30c8541ce05a7f4a8fd46e1e8ee94215ec07031652aeea77  source/sub-003S4441/ses-y0/anat/sub-003S4441_ses-y0_T1w.nii.gz
 646e2ad4922b0a33967422a62215fda692b51b2e0113ef99ebe2eb4df5c299a3  source/sub-003S4441/ses-y2/anat/sub-003S4441_ses-y2_FLAIR.json
@@ -7441,8 +7439,6 @@ bdf7360840ea5b1fb1e5cdacce23d65d8b0e6bf368642471f0ef72502291412a  source/sub-035
 b21c3bdb36b34b8aecd1defb28721440c33ff0d8bae30dcfd42ccd518a593ff9  source/sub-035S4464/ses-y4/anat/sub-035S4464_ses-y4_FLAIR.nii.gz
 aad493f9aed7f854a0fb7434c22faf5079fd1a5f4c1615cee75b674f2f1fd762  source/sub-035S4464/ses-y4/anat/sub-035S4464_ses-y4_T1w.json
 26b11dcb4a362d7d44dd37cb721d9787addc0f05c35026334a1f308a57a5efc5  source/sub-035S4464/ses-y4/anat/sub-035S4464_ses-y4_T1w.nii.gz
-4da72e6f9e450251cac4ad2bca3921d3e6bf243ab22f2e4176738f0cf321ef7c  source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_FLAIR.json
-376e9a7610397abd882e3b20e6fe12685e32706cfc591a1032647ebf45b5a375  source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_FLAIR.nii.gz
 47eae65f880fd0cf04048d77350be9c12fc00aab415eb9086104c36e477a347d  source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_T1w.json
 074a93ce96317be1344ea25f3d8b1e0590ac5e5ac08ceab2b88cf2c3b5d7d890  source/sub-035S4582/ses-y0/anat/sub-035S4582_ses-y0_T1w.nii.gz
 f15739e0f4bb4aab9be62a7b0cc7c61907884872ba8816990776dc988fd208ac  source/sub-035S4582/ses-y2/anat/sub-035S4582_ses-y2_FLAIR.json
@@ -9347,8 +9343,8 @@ a7e254620c44c7ea7e8c02f73752c59a3c43fc67701bdeef0c94f3ec948c645f  source/sub-053
 8fa53fc992ffb27f757eaa075c486520ceae02a9f41fb39fa71d191858d794a7  source/sub-053S4578/ses-y2/anat/sub-053S4578_ses-y2_FLAIR.nii.gz
 8fcc9cefc10e415a3a0a85ae8acf1876ddf3e1db61cc7fc7fc2f9036e08a37bd  source/sub-053S4578/ses-y2/anat/sub-053S4578_ses-y2_T1w.json
 5a0de57b917ea41f582d17fdf6981786158ab6b17b76c07e2e9308fca56f1663  source/sub-053S4578/ses-y2/anat/sub-053S4578_ses-y2_T1w.nii.gz
-534b256c7cae1674ceac3aee98a96cca29ec19a4689ec58d43c47a7ee8f7a9a4  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_FLAIR.json
-812cfdfd8714dbf62b0421a62437a3c6a923e794cc94255d815dda1e63e7cbc6  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_FLAIR.nii.gz
+5f0b90e324e05259b3dd8f80ff3d387ee9a68d1b4a2e120ddca8dd6e3492f588  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_FLAIR.json
+87ff539c648dd493c00ac552c02cfa8df9549933a59a9e2fa8d6fc2c10e36086  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_FLAIR.nii.gz
 cf671b00d25d6e82dbcf4c629cf82b8bef75bf61389df0d530f19d319610c9d3  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_T1w.json
 1671bebc0d891bbf65fff4f564eed1198a737a04931e1a3d52fd6975bf74a2d7  source/sub-053S4578/ses-y4/anat/sub-053S4578_ses-y4_T1w.nii.gz
 4973237e88a25d92cd8468fc39fe864bd7948aad2b914b6bf1cb5610e7a6db14  source/sub-053S4661/ses-y0/anat/sub-053S4661_ses-y0_FLAIR.json
@@ -9367,8 +9363,6 @@ ea911f1d263a9a6f014f25f305b0ec5651e92e2772630c48f55e2fb959bd9ce4  source/sub-053
 d3370ced9fe05a735cee72ee025a5fdfa4ed976e49f9dd4eb063f4c5e230979a  source/sub-053S4813/ses-y2/anat/sub-053S4813_ses-y2_FLAIR.nii.gz
 7aee8c66e9fdef008f903c54df04a2b8944e971546b01e7322a4868bbdf505b2  source/sub-053S4813/ses-y2/anat/sub-053S4813_ses-y2_T1w.json
 e58f42dbbf6116dd26a00189b00bda53bcb5522f22fdd7336c64f9f101aeb2a0  source/sub-053S4813/ses-y2/anat/sub-053S4813_ses-y2_T1w.nii.gz
-669a42e9bc954ad1000764657ad23fd1d7ed51eabb2bf66a23dac079bebcfa02  source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_FLAIR.json
-e8e38ee94d5bc4be51fc9f7c6d5fe43c4c603bb56f1d1def222c4d5a00741441  source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_FLAIR.nii.gz
 b34511e3ed7139cf17db8345eae94c46f7c49cdc07786254dfc331e86f376ee3  source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_T1w.json
 ff54ab448bdcf59d3afcbbf74e29fafb3b492f397ccbe2e142cfcb4007374c7e  source/sub-053S4813/ses-y4/anat/sub-053S4813_ses-y4_T1w.nii.gz
 b60b29a4a338837688241b6f612cdd94d5aafcb0286d9bb2776c2de5b4e27f53  source/sub-053S5070/ses-y0/anat/sub-053S5070_ses-y0_FLAIR.json
@@ -9391,8 +9385,6 @@ f4ace3b749dc54fc4a3dab39f6943830e2dacf240f4682a4b5f59f5c1f1fd914  source/sub-053
 657ce1b7587e6d8889e470c7218cbee8c42cdb76366ca92229e78346c89115a1  source/sub-053S5272/ses-y0/anat/sub-053S5272_ses-y0_FLAIR.nii.gz
 8150a076bee5f0dc1abc78fa33934dc735b484eea20410d8eb88338107047297  source/sub-053S5272/ses-y0/anat/sub-053S5272_ses-y0_T1w.json
 8907f9852fc7a9da2180a9d5c3e0a552d4ff3c614af71813a5bd5db1494d7ebf  source/sub-053S5272/ses-y0/anat/sub-053S5272_ses-y0_T1w.nii.gz
-9b9f9a4a1c69fdf737251a169fceb4cf17413e94c49c14e29792c47c07d27368  source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_FLAIR.json
-45434ba6633bd8e185cde0d7087f25d5996a1e17ccc186e05b3c1182d8a41cab  source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_FLAIR.nii.gz
 0c8aecb5cdf4b0306b97c6b67756dc043bfce5be6ae2248fddc1eff51a217f3e  source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_T1w.json
 ac40f4c4d243a373f28725a2d4429527b4bc09d24fc381baf1247ad7253b0172  source/sub-053S5272/ses-y2/anat/sub-053S5272_ses-y2_T1w.nii.gz
 0e856835732a54b29d8740337a0ae0c8f8ea364f5dc6e34b15a5e68c39847f82  source/sub-053S5287/ses-y0/anat/sub-053S5287_ses-y0_FLAIR.json
@@ -10311,8 +10303,8 @@ d3ca3210fdb915c659456a61723febf12f49504a9a5131513abfe7f64610dcc9  source/sub-072
 024ac3ce65b29eeeee3a096fd11c4f3a40a10403bfded4c23b5941445bed82ad  source/sub-072S2083/ses-y2/anat/sub-072S2083_ses-y2_FLAIR.nii.gz
 fb477b94d003adf06e1ba064e3c9735caec2b82406fce2fa57960e9b8e18ee22  source/sub-072S2083/ses-y2/anat/sub-072S2083_ses-y2_T1w.json
 05c06a79823442e5e0decc6350efeb926d8e45cb89e5a8c62b5e7486112b4bcb  source/sub-072S2083/ses-y2/anat/sub-072S2083_ses-y2_T1w.nii.gz
-f4d48dd7bc92a465be1178dcbc545fa6bc9e45bb919016526daa277606932fd5  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_FLAIR.json
-6ba097911145220f6a11b8eb5733013bef52571bc256dc391f1f1748781d4ad2  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_FLAIR.nii.gz
+d2323f5ca961124b1575e6ea3e683674b5640ebe71a8892b93e57ed0bf405c93  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_FLAIR.json
+f088bfab4cb60f12e26bb4efae909f1652d98d704eb91cb5b0e6008112f3119f  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_FLAIR.nii.gz
 ccb48eb2f27090c83ce0db8e9a9278be125421158b4267661c63b6b930b9c69f  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_T1w.json
 912fcb430841b89b719e1ed7ab57dde3b68cd500b38904e6990754c4ac794e06  source/sub-072S2083/ses-y4/anat/sub-072S2083_ses-y4_T1w.nii.gz
 14f4e40d3d89c1ac373c86860d7e5d964133458c6dd86ae9339d4ea50390dc49  source/sub-072S2093/ses-y0/anat/sub-072S2093_ses-y0_FLAIR.json
@@ -11283,8 +11275,8 @@ f244117b7112e6b3f74d6a72c23c81d46d47f3816bfbbe10920fc9472d791f87  source/sub-094
 0a8bc33b4a1f03a0cf054737e5121718bf47920027627958a03e6d19ed76ab04  source/sub-094S1188/ses-y2/anat/sub-094S1188_ses-y2_T1w.nii.gz
 c9bb8b11fdbd01d2a7f20319b452acd9540beef5dcbdfb0f050446e81cac6a20  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_T1w.json
 b4d52834a858d13b879d52159100721e9c38a7a76a619fa014fc23669e9e4765  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_T1w.nii.gz
-0326f37852891a92c44b30f51d110361b281a5b70d96276d1694b10633b3943e  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_acq-3T_T1w.json
-f95426e7e0ad32e15da571ef54ec404ff5cc352ae799a43e53a7bff39fc24e2c  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_acq-3T_T1w.nii.gz
+7cbca11e6d3c51e0e2edad299cf608b28b8e1153cbcc5587e12c387aee784d6d  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_acq-3T_T1w.json
+61f5d45508412d279ccd142a8e79efaebf1015e60e9aabee8e0bbab4a479bac6  source/sub-094S1241/ses-y0/anat/sub-094S1241_ses-y0_acq-3T_T1w.nii.gz
 02a6dd252041f538c9b31f4284fcb298bb625c9529b7dce8e9afd7d8347c07db  source/sub-094S1241/ses-y2/anat/sub-094S1241_ses-y2_T1w.json
 3b68b32f9a6a16c323d1e60f01ab4928f836f4964b7d2bc4d8839d8cc4b21a64  source/sub-094S1241/ses-y2/anat/sub-094S1241_ses-y2_T1w.nii.gz
 81b832f0a633dbc3fb30b785c14782bc6284b018987c6030b835ba97fe75605d  source/sub-094S1267/ses-y0/anat/sub-094S1267_ses-y0_T1w.json
@@ -13441,8 +13433,8 @@ f8c348e177fd05add9bdb6fadb7a90bae657c745c2263f76108620c8980bb40a  source/sub-126
 4d1f98a2214c2a4cdcd647265df3f0a4e9c043e7a2d3ba8773e06e375f4981ff  source/sub-126S4896/ses-y2/anat/sub-126S4896_ses-y2_FLAIR.nii.gz
 bf506b0f8bb593328cc275721f294e43feb16e557103645538a2dbd2bc932060  source/sub-126S4896/ses-y2/anat/sub-126S4896_ses-y2_T1w.json
 03370a27f5f54e716dab84cce0784bf2b9a07a2a8a96de666c86262bbd3fc2ff  source/sub-126S4896/ses-y2/anat/sub-126S4896_ses-y2_T1w.nii.gz
-eabd6cd95f9583c5e3c508f61c6715f0dde66a0396dc67a65b5511360d8014b1  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_FLAIR.json
-9bdbb33605adb56c81e4923cc38f805ab3d771cb84725fa42638cb91dcd4fe69  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_FLAIR.nii.gz
+1cb8449aa701f12da275e4ac8c6db9ba2b2e987840449032d9307597e5e017e8  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_FLAIR.json
+39a724f5527b57278f450f6358718940702fdeb25dc2ce8d22eda09705b5b9f1  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_FLAIR.nii.gz
 48ae7c1557f57dfcea7a004a1a9cb66e5853ad969b65da13229b6c8908b5763b  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_T1w.json
 39a7cc75812e60cb4e34d3fbc805606eb6374f3db20074e533644c7c752ead38  source/sub-126S4896/ses-y4/anat/sub-126S4896_ses-y4_T1w.nii.gz
 20417e9ed91e44a008a926c026a853ebbddf9e441f8a1fc03cb8de099df4eed6  source/sub-126S5214/ses-y0/anat/sub-126S5214_ses-y0_FLAIR.json
