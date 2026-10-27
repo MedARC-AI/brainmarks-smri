@@ -3,7 +3,7 @@
 The Anti-Amyloid Treatment in Asymptomatic Alzheimer's (A4) study and its companion LEARN study: cognitively normal adults aged 65-85 at 67 sites in the US, Canada, Australia and Japan (2014-2023). A4 randomized 1,169 people with elevated brain amyloid to solanezumab or placebo for 4.5 years; LEARN followed 538 people without elevated amyloid. We use T1w MRI at screening, week 84 and week 240, with amyloid and tau PET, plasma pTau217, cognition (PACC) and treatment arm as targets.
 
 - **Homepage:** <https://www.a4studydata.org/>
-- **Source:** LONI Image and Data Archive (IDA, <https://ida.loni.usc.edu/>), after an approved A4 data access application. The T1 images come as de-faced NIfTI with JSON sidecars in zips (`ImageData - T1 - NN of 16.zip`), the clinical data as `Clinical.zip`, and the documentation (data dictionaries, guides, methods) separately.
+- **Source:** LONI Image and Data Archive (IDA, <https://ida.loni.usc.edu/>), after an approved A4 data access application. The T1 images come as de-faced NIfTI with JSON sidecars in zips (`ImageData - T1 - NN of 16.zip`), the clinical data as `Clinical.zip`.
 - **Version:** final study data (tranche 2; images released fall 2024), downloaded 2026-06-18. IDA does not version the release: `source.sha256` pins the files.
 - **DOI:** none.
 - **License:** A4 Data Use Agreement: research use only, no redistribution.
@@ -27,7 +27,7 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 
 - `ImageData/<A4|LEARN|SF>_MR_T1_<BID>_<VISCODE>.nii.gz` + `.json`: the T1w of each session (3,870), as distributed (3 T sagittal accelerated MPRAGE, 1.2 mm).
 - `selected_images.tsv`: participant, session, BID, visit code and file of every image.
-- `Clinical/Derived Data/`: participant info, visits, PACC, cognitive scores (ADQS), disposition. `Clinical/External Data/`: amyloid and tau PET SUVRs, PET visual reads, plasma biomarkers, MRI reads, WMH and regional volumes. `Clinical/Documents/`: data dictionaries, the data primer and FAQ, and the methods of each measure.
+- `Clinical/Derived Data/`: participant info, visits, PACC, cognitive scores (ADQS), disposition. `Clinical/External Data/`: amyloid and tau PET SUVRs, PET visual reads, plasma biomarkers, MRI reads, WMH and regional volumes.
 
 `tables/` (derived from `source/`):
 
@@ -44,5 +44,5 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 - A4 participants all have a positive screening amyloid read, LEARN participants a negative one, so `group` is also the amyloid eligibility label.
 - 178 people were rescreened under a new BID (`PREVBID`); none has images under both.
 - Dates are days from consent; 5 LEARN wk240 sessions have no date in any table (age n/a).
-- Sex, race and ethnicity codes are mapped with the A4 data dictionary. Site IDs are not shared.
+- Sex, race and ethnicity codes are mapped with the A4 data dictionary (`derived_datadic.csv`, in the A4 documentation on IDA). Site IDs are not shared.
 - Most participants have pTau217, and about 400 have tau PET.

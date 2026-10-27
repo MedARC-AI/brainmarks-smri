@@ -12,8 +12,8 @@ Table layout: `README_hf.md`.
 - Dates are days from consent. 5 LEARN wk240 sessions have no date in any table (age n/a). Visit-level targets come from the same visit (MRI volumes, WMH,
   MRI reads) or the nearest record: cognition within 90 days, PET and plasma within 1 year.
 - PACC change: from the A4 analysis dataset (ADQS QSCHANGE) at week 240, per participant.
-- Codes (SEX, RACE, ETHNIC) are mapped with the A4 data dictionary (Clinical/Documents). Site IDs
-  are not shared.
+- Codes (SEX, RACE, ETHNIC) are mapped with the A4 data dictionary (derived_datadic.csv, part of the
+  A4 documentation on IDA). Site IDs are not shared.
 - No official split: 60/20/20 by participant, stratified by group (A4 placebo, A4 solanezumab,
   LEARN, SF). Complete: bl T1w and amyloid PET SUVR.
 """
@@ -30,7 +30,7 @@ SOURCE = ROOT / "source"
 DERIVED = SOURCE / "Clinical" / "Derived Data"
 EXTERNAL = SOURCE / "Clinical" / "External Data"
 
-# SUBJINFO codes, from Documents/Data Dictionaries/derived_datadic.csv
+# SUBJINFO codes, from the A4 data dictionary (derived_datadic.csv)
 SEX = {1: "F", 2: "M"}
 RACE = {
     1: "White",
