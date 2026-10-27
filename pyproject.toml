@@ -9,6 +9,7 @@ description = "Benchmark for structural brain MRI foundation models"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "dcm2niix==1.0.20260724",
     "einops",
     "huggingface-hub",
     "nibabel",
@@ -19,6 +20,8 @@ dependencies = [
     "pillow",
     "platformdirs",
     "pyarrow",
+    "pydicom",
+    "pyreadr",
     "requests",
     "scikit-learn",
     "scipy",

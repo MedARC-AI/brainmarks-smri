@@ -10,7 +10,7 @@ source "$(dirname "$0")/lib.sh"
 REPO_ID=medarc/brainmarks-smri
 HF=(uvx --from huggingface_hub@2.1.1 hf)
 HOSTED=(abide1 adhd200 brats2021 cnp ixi openbhb soop ucsf_pdgm upenn_gbm)
-MANUAL=(atlas fomo26_task4 fomo26_task5 oasis1 oasis2)
+MANUAL=(a4learn adni atlas fomo26_task4 fomo26_task5 oasis1 oasis2)
 
 for name in "${HOSTED[@]}"; do
     diff <(tail -n +2 "$DATA_ROOT/$name/tables/shards.tsv" | cut -f2 | sort -u) \

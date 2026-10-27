@@ -1,0 +1,1210 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "site": {
+    "Description": "Acquisition site, as coded by the source."
+  },
+  "ptid": {
+    "Description": "ADNI participant ID (PTID: site_S_number).",
+    "Source": "PTID"
+  },
+  "scan_date": {
+    "Description": "Date of the main T1w scan.",
+    "Source": "IDA acquisition date"
+  },
+  "years_from_y0": {
+    "Description": "Years from the y0 scan to this scan.",
+    "Units": "years"
+  },
+  "phase": {
+    "Description": "ADNI phase protocol the scan was acquired under (n/a: not listed).",
+    "Source": "MRIQC MRIProtocolPhase"
+  },
+  "field_strength": {
+    "Description": "Field strength of the main T1w.",
+    "Units": "T"
+  },
+  "t1w_series": {
+    "Description": "IDA series description of the main T1w."
+  },
+  "manufacturer": {
+    "Description": "Scanner manufacturer of the main T1w.",
+    "Source": "DICOM Manufacturer"
+  },
+  "education": {
+    "Description": "Years of education.",
+    "Source": "PTDEMOG PTEDUCAT",
+    "Units": "years"
+  },
+  "ethnicity": {
+    "Description": "Ethnicity, as reported.",
+    "Source": "PTDEMOG PTETHCAT"
+  },
+  "race": {
+    "Description": "Race, as reported.",
+    "Source": "PTDEMOG PTRACCAT"
+  },
+  "handedness": {
+    "Description": "Handedness.",
+    "Source": "PTDEMOG PTHAND"
+  },
+  "apoe_genotype": {
+    "Description": "APOE genotype.",
+    "Source": "APOERES GENOTYPE"
+  },
+  "apoe4": {
+    "Description": "Number of APOE e4 alleles (0-2).",
+    "Source": "APOERES GENOTYPE"
+  },
+  "protocol": {
+    "Description": "ADNI phase the participant enrolled in.",
+    "Source": "DXSUM ORIGPROT"
+  },
+  "dx": {
+    "Description": "Clinical diagnosis within 180 days of the scan.",
+    "Source": "DXSUM DIAGNOSIS",
+    "Levels": {
+      "CN": "cognitively normal",
+      "MCI": "mild cognitive impairment",
+      "Dementia": "dementia"
+    }
+  },
+  "dx_followup_years": {
+    "Description": "Years from the scan to the last later diagnosis (n/a: none).",
+    "Source": "DXSUM",
+    "Units": "years"
+  },
+  "years_to_dementia": {
+    "Description": "Years from the scan to the first later dementia diagnosis (n/a: none).",
+    "Source": "DXSUM",
+    "Units": "years"
+  },
+  "cdr_global": {
+    "Description": "Clinical Dementia Rating, global score (0, 0.5, 1, 2, 3). Within 90 days of the scan.",
+    "Source": "ADQS CDGLOBAL"
+  },
+  "cdr_sb": {
+    "Description": "Clinical Dementia Rating, sum of boxes (0-18). Within 90 days of the scan.",
+    "Source": "ADQS CDRSB"
+  },
+  "mmse": {
+    "Description": "Mini-Mental State Examination (0-30). Within 90 days of the scan.",
+    "Source": "ADQS MMSCORE"
+  },
+  "adas11": {
+    "Description": "ADAS-Cog 11-item total (0-70, higher is worse). Within 90 days of the scan.",
+    "Source": "ADQS ADASTT11"
+  },
+  "adas13": {
+    "Description": "ADAS-Cog 13-item total (0-85, higher is worse). Within 90 days of the scan.",
+    "Source": "ADQS ADASTT13"
+  },
+  "moca": {
+    "Description": "Montreal Cognitive Assessment (0-30). Within 90 days of the scan.",
+    "Source": "ADQS MOCA"
+  },
+  "faq": {
+    "Description": "Functional Activities Questionnaire total (0-30, higher is worse). Within 90 days of the scan.",
+    "Source": "ADQS FAQTOTAL"
+  },
+  "mpacc_digit": {
+    "Description": "Modified Preclinical Alzheimer Cognitive Composite (digit). Within 90 days of the scan.",
+    "Source": "ADQS MPACCDIGIT"
+  },
+  "mpacc_trailsb": {
+    "Description": "Modified PACC with Trails B in place of digit symbol. Within 90 days of the scan.",
+    "Source": "ADQS MPACCTRAILSB"
+  },
+  "ravlt_immediate": {
+    "Description": "RAVLT immediate recall, sum of 5 trials. Within 90 days of the scan.",
+    "Source": "ADQS RAVLTIMM"
+  },
+  "ravlt_learning": {
+    "Description": "RAVLT learning (trial 5 - trial 1). Within 90 days of the scan.",
+    "Source": "ADQS RAVLTLRN"
+  },
+  "ravlt_forgetting": {
+    "Description": "RAVLT forgetting (trial 5 - delayed). Within 90 days of the scan.",
+    "Source": "ADQS RAVLTFG"
+  },
+  "ravlt_perc_forgetting": {
+    "Description": "RAVLT percent forgetting. Within 90 days of the scan.",
+    "Source": "ADQS RAVLTFGP"
+  },
+  "logical_memory_delayed": {
+    "Description": "Logical Memory delayed recall. Within 90 days of the scan.",
+    "Source": "ADQS LDELTOTL"
+  },
+  "logical_memory_immediate": {
+    "Description": "Logical Memory immediate recall. Within 90 days of the scan.",
+    "Source": "ADQS LIMMTOTL"
+  },
+  "digit_symbol": {
+    "Description": "Digit Symbol Substitution score. Within 90 days of the scan.",
+    "Source": "ADQS DIGITSCR"
+  },
+  "trails_b": {
+    "Description": "Trail Making Test part B time (seconds). Within 90 days of the scan.",
+    "Source": "ADQS TRABSCOR"
+  },
+  "gds": {
+    "Description": "Geriatric Depression Scale (0-15). Within 90 days of the scan.",
+    "Source": "ADQS GDTOTAL"
+  },
+  "npiq": {
+    "Description": "Neuropsychiatric Inventory Questionnaire total. Within 90 days of the scan.",
+    "Source": "ADQS NPIQTOTL"
+  },
+  "ecog_participant": {
+    "Description": "Everyday Cognition, participant report, total. Within 90 days of the scan.",
+    "Source": "ADQS ECOGPTTT"
+  },
+  "ecog_partner": {
+    "Description": "Everyday Cognition, study partner report, total. Within 90 days of the scan.",
+    "Source": "ADQS ECOGSPTT"
+  },
+  "amyloid_status": {
+    "Description": "Amyloid PET positivity (UC Berkeley cortical summary threshold), within 1 year.",
+    "Source": "UCBERKELEY_AMY_6MM AMYLOID_STATUS",
+    "Levels": {
+      "0": "negative",
+      "1": "positive"
+    }
+  },
+  "centiloid": {
+    "Description": "Amyloid PET Centiloid, within 1 year.",
+    "Source": "UCBERKELEY_AMY_6MM CENTILOIDS"
+  },
+  "amyloid_suvr": {
+    "Description": "Amyloid PET cortical summary SUVR (whole cerebellum reference), within 1 year.",
+    "Source": "UCBERKELEY_AMY_6MM SUMMARY_SUVR"
+  },
+  "amyloid_tracer": {
+    "Description": "Amyloid PET tracer.",
+    "Source": "UCBERKELEY_AMY_6MM TRACER",
+    "Levels": {
+      "FBP": "florbetapir",
+      "FBB": "florbetaben",
+      "NAV": "NAV4694"
+    }
+  },
+  "tau_meta_temporal_suvr": {
+    "Description": "Tau PET meta-temporal SUVR (inferior cerebellum reference), within 1 year.",
+    "Source": "UCBERKELEY_TAU_6MM META_TEMPORAL_SUVR"
+  },
+  "tau_entorhinal_suvr": {
+    "Description": "Tau PET entorhinal SUVR, within 1 year.",
+    "Source": "UCBERKELEY_TAU_6MM CTX_ENTORHINAL_SUVR"
+  },
+  "tau_tracer": {
+    "Description": "Tau PET tracer.",
+    "Source": "UCBERKELEY_TAU_6MM TRACER",
+    "Levels": {
+      "FTP": "flortaucipir",
+      "MK6240": "MK-6240",
+      "PI2620": "PI-2620"
+    }
+  },
+  "csf_abeta40": {
+    "Description": "CSF Abeta40 (Roche Elecsys), within 1 year.",
+    "Source": "UPENNBIOMK_ROCHE_ELECSYS ABETA40",
+    "Units": "pg/mL"
+  },
+  "csf_abeta42": {
+    "Description": "CSF Abeta42 (Roche Elecsys), within 1 year.",
+    "Source": "UPENNBIOMK_ROCHE_ELECSYS ABETA42",
+    "Units": "pg/mL"
+  },
+  "csf_tau": {
+    "Description": "CSF total tau (Roche Elecsys), within 1 year.",
+    "Source": "UPENNBIOMK_ROCHE_ELECSYS TAU",
+    "Units": "pg/mL"
+  },
+  "csf_ptau181": {
+    "Description": "CSF pTau181 (Roche Elecsys), within 1 year.",
+    "Source": "UPENNBIOMK_ROCHE_ELECSYS PTAU",
+    "Units": "pg/mL"
+  },
+  "plasma_ptau217": {
+    "Description": "Plasma pTau217 (Fujirebio), within 1 year.",
+    "Source": "UPENN_PLASMA_FUJIREBIO_QUANTERIX pT217_F",
+    "Units": "pg/mL"
+  },
+  "plasma_ab42_ab40": {
+    "Description": "Plasma Abeta42/40 ratio (Fujirebio), within 1 year.",
+    "Source": "UPENN_PLASMA_FUJIREBIO_QUANTERIX AB42_AB40_F"
+  },
+  "plasma_nfl": {
+    "Description": "Plasma neurofilament light (Quanterix), within 1 year.",
+    "Source": "UPENN_PLASMA_FUJIREBIO_QUANTERIX NfL_Q",
+    "Units": "pg/mL"
+  },
+  "plasma_gfap": {
+    "Description": "Plasma GFAP (Quanterix), within 1 year.",
+    "Source": "UPENN_PLASMA_FUJIREBIO_QUANTERIX GFAP_Q",
+    "Units": "pg/mL"
+  },
+  "wmh_volume": {
+    "Description": "White matter hyperintensity volume (UC Davis), within 60 days.",
+    "Source": "UCD_WMH TOTAL_WMH",
+    "Units": "cm^3"
+  },
+  "fs_qc": {
+    "Description": "FreeSurfer overall QC rating (n/a: not rated).",
+    "Source": "UCSFFSX7 OVERALLQC"
+  },
+  "fs_status": {
+    "Description": "FreeSurfer row status: 'complete' = QC'd and final, 'partial' = no QC.",
+    "Source": "UCSFFSX7 STATUS"
+  },
+  "fs_vol_right_pallidum": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightPallidum.",
+    "Source": "UCSFFSX7 ST101SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_paracentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightParacentral.",
+    "Source": "UCSFFSX7 ST102CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_paracentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightParacentral.",
+    "Source": "UCSFFSX7 ST102TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_parahippocampal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightParahippocampal.",
+    "Source": "UCSFFSX7 ST103CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_parahippocampal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightParahippocampal.",
+    "Source": "UCSFFSX7 ST103TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_pars_opercularis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightParsOpercularis.",
+    "Source": "UCSFFSX7 ST104CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_pars_opercularis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightParsOpercularis.",
+    "Source": "UCSFFSX7 ST104TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_pars_orbitalis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightParsOrbitalis.",
+    "Source": "UCSFFSX7 ST105CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_pars_orbitalis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightParsOrbitalis.",
+    "Source": "UCSFFSX7 ST105TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_pars_triangularis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightParsTriangularis.",
+    "Source": "UCSFFSX7 ST106CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_pars_triangularis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightParsTriangularis.",
+    "Source": "UCSFFSX7 ST106TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_pericalcarine": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightPericalcarine.",
+    "Source": "UCSFFSX7 ST107CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_pericalcarine": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightPericalcarine.",
+    "Source": "UCSFFSX7 ST107TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_postcentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightPostcentral.",
+    "Source": "UCSFFSX7 ST108CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_postcentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightPostcentral.",
+    "Source": "UCSFFSX7 ST108TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_posterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightPosteriorCingulate.",
+    "Source": "UCSFFSX7 ST109CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_posterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightPosteriorCingulate.",
+    "Source": "UCSFFSX7 ST109TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_icv": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of Icv.",
+    "Source": "UCSFFSX7 ST10CV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_precentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightPrecentral.",
+    "Source": "UCSFFSX7 ST110CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_precentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightPrecentral.",
+    "Source": "UCSFFSX7 ST110TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_precuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightPrecuneus.",
+    "Source": "UCSFFSX7 ST111CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_precuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightPrecuneus.",
+    "Source": "UCSFFSX7 ST111TA",
+    "Units": "mm"
+  },
+  "fs_vol_right_putamen": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightPutamen.",
+    "Source": "UCSFFSX7 ST112SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_rostral_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightRostralAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST113CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_rostral_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightRostralAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST113TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_rostral_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightRostralMiddleFrontal.",
+    "Source": "UCSFFSX7 ST114CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_rostral_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightRostralMiddleFrontal.",
+    "Source": "UCSFFSX7 ST114TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_superior_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightSuperiorFrontal.",
+    "Source": "UCSFFSX7 ST115CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_superior_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightSuperiorFrontal.",
+    "Source": "UCSFFSX7 ST115TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_superior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightSuperiorParietal.",
+    "Source": "UCSFFSX7 ST116CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_superior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightSuperiorParietal.",
+    "Source": "UCSFFSX7 ST116TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_superior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightSuperiorTemporal.",
+    "Source": "UCSFFSX7 ST117CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_superior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightSuperiorTemporal.",
+    "Source": "UCSFFSX7 ST117TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_supramarginal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightSupramarginal.",
+    "Source": "UCSFFSX7 ST118CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_supramarginal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightSupramarginal.",
+    "Source": "UCSFFSX7 ST118TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_temporal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightTemporalPole.",
+    "Source": "UCSFFSX7 ST119CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_temporal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightTemporalPole.",
+    "Source": "UCSFFSX7 ST119TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_accumbens_area": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftAccumbensArea.",
+    "Source": "UCSFFSX7 ST11SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_thalamus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightThalamus.",
+    "Source": "UCSFFSX7 ST120SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_transverse_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightTransverseTemporal.",
+    "Source": "UCSFFSX7 ST121CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_transverse_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightTransverseTemporal.",
+    "Source": "UCSFFSX7 ST121TA",
+    "Units": "mm"
+  },
+  "fs_vol_right_ventral_d_c": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightVentralDC.",
+    "Source": "UCSFFSX7 ST124SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_vessel": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightVessel.",
+    "Source": "UCSFFSX7 ST125SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_third_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of ThirdVentricle.",
+    "Source": "UCSFFSX7 ST127SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_w_m_hypo_intensities": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of WMHypoIntensities.",
+    "Source": "UCSFFSX7 ST128SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_insula": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftInsula.",
+    "Source": "UCSFFSX7 ST129CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_insula": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftInsula.",
+    "Source": "UCSFFSX7 ST129TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_amygdala": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftAmygdala.",
+    "Source": "UCSFFSX7 ST12SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_insula": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightInsula.",
+    "Source": "UCSFFSX7 ST130CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_insula": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightInsula.",
+    "Source": "UCSFFSX7 ST130TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_bankssts": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftBankssts.",
+    "Source": "UCSFFSX7 ST13CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_bankssts": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftBankssts.",
+    "Source": "UCSFFSX7 ST13TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_caudal_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftCaudalAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST14CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_caudal_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftCaudalAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST14TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_caudal_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftCaudalMiddleFrontal.",
+    "Source": "UCSFFSX7 ST15CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_caudal_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftCaudalMiddleFrontal.",
+    "Source": "UCSFFSX7 ST15TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_caudate": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftCaudate.",
+    "Source": "UCSFFSX7 ST16SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_cerebellum_cortex": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftCerebellumCortex.",
+    "Source": "UCSFFSX7 ST17SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_cerebellum_w_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftCerebellumWM.",
+    "Source": "UCSFFSX7 ST18SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_brainstem": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of Brainstem.",
+    "Source": "UCSFFSX7 ST1SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_choroid_plexus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftChoroidPlexus.",
+    "Source": "UCSFFSX7 ST21SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_cuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftCuneus.",
+    "Source": "UCSFFSX7 ST23CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_cuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftCuneus.",
+    "Source": "UCSFFSX7 ST23TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_entorhinal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftEntorhinal.",
+    "Source": "UCSFFSX7 ST24CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_entorhinal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftEntorhinal.",
+    "Source": "UCSFFSX7 ST24TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_frontal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftFrontalPole.",
+    "Source": "UCSFFSX7 ST25CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_frontal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftFrontalPole.",
+    "Source": "UCSFFSX7 ST25TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_fusiform": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftFusiform.",
+    "Source": "UCSFFSX7 ST26CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_fusiform": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftFusiform.",
+    "Source": "UCSFFSX7 ST26TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_hippocampus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftHippocampus.",
+    "Source": "UCSFFSX7 ST29SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_corpus_callosum_anterior": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorpusCallosumAnterior.",
+    "Source": "UCSFFSX7 ST2SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_inferior_lateral_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftInferiorLateralVentricle.",
+    "Source": "UCSFFSX7 ST30SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_inferior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftInferiorParietal.",
+    "Source": "UCSFFSX7 ST31CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_inferior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftInferiorParietal.",
+    "Source": "UCSFFSX7 ST31TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_inferior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftInferiorTemporal.",
+    "Source": "UCSFFSX7 ST32CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_inferior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftInferiorTemporal.",
+    "Source": "UCSFFSX7 ST32TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_isthmus_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftIsthmusCingulate.",
+    "Source": "UCSFFSX7 ST34CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_isthmus_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftIsthmusCingulate.",
+    "Source": "UCSFFSX7 ST34TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_lateral_occipital": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftLateralOccipital.",
+    "Source": "UCSFFSX7 ST35CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_lateral_occipital": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftLateralOccipital.",
+    "Source": "UCSFFSX7 ST35TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_lateral_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftLateralOrbitofrontal.",
+    "Source": "UCSFFSX7 ST36CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_lateral_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftLateralOrbitofrontal.",
+    "Source": "UCSFFSX7 ST36TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_lateral_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftLateralVentricle.",
+    "Source": "UCSFFSX7 ST37SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_lingual": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftLingual.",
+    "Source": "UCSFFSX7 ST38CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_lingual": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftLingual.",
+    "Source": "UCSFFSX7 ST38TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_medial_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftMedialOrbitofrontal.",
+    "Source": "UCSFFSX7 ST39CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_medial_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftMedialOrbitofrontal.",
+    "Source": "UCSFFSX7 ST39TA",
+    "Units": "mm"
+  },
+  "fs_vol_corpus_callosum_central": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorpusCallosumCentral.",
+    "Source": "UCSFFSX7 ST3SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_middle_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftMiddleTemporal.",
+    "Source": "UCSFFSX7 ST40CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_middle_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftMiddleTemporal.",
+    "Source": "UCSFFSX7 ST40TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_pallidum": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftPallidum.",
+    "Source": "UCSFFSX7 ST42SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_paracentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftParacentral.",
+    "Source": "UCSFFSX7 ST43CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_paracentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftParacentral.",
+    "Source": "UCSFFSX7 ST43TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_parahippocampal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftParahippocampal.",
+    "Source": "UCSFFSX7 ST44CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_parahippocampal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftParahippocampal.",
+    "Source": "UCSFFSX7 ST44TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_pars_opercularis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftParsOpercularis.",
+    "Source": "UCSFFSX7 ST45CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_pars_opercularis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftParsOpercularis.",
+    "Source": "UCSFFSX7 ST45TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_pars_orbitalis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftParsOrbitalis.",
+    "Source": "UCSFFSX7 ST46CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_pars_orbitalis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftParsOrbitalis.",
+    "Source": "UCSFFSX7 ST46TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_pars_triangularis": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftParsTriangularis.",
+    "Source": "UCSFFSX7 ST47CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_pars_triangularis": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftParsTriangularis.",
+    "Source": "UCSFFSX7 ST47TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_pericalcarine": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftPericalcarine.",
+    "Source": "UCSFFSX7 ST48CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_pericalcarine": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftPericalcarine.",
+    "Source": "UCSFFSX7 ST48TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_postcentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftPostcentral.",
+    "Source": "UCSFFSX7 ST49CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_postcentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftPostcentral.",
+    "Source": "UCSFFSX7 ST49TA",
+    "Units": "mm"
+  },
+  "fs_vol_corpus_callosum_mid_anterior": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorpusCallosumMidAnterior.",
+    "Source": "UCSFFSX7 ST4SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_posterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftPosteriorCingulate.",
+    "Source": "UCSFFSX7 ST50CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_posterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftPosteriorCingulate.",
+    "Source": "UCSFFSX7 ST50TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_precentral": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftPrecentral.",
+    "Source": "UCSFFSX7 ST51CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_precentral": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftPrecentral.",
+    "Source": "UCSFFSX7 ST51TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_precuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftPrecuneus.",
+    "Source": "UCSFFSX7 ST52CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_precuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftPrecuneus.",
+    "Source": "UCSFFSX7 ST52TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_putamen": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftPutamen.",
+    "Source": "UCSFFSX7 ST53SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_rostral_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftRostralAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST54CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_rostral_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftRostralAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST54TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_rostral_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftRostralMiddleFrontal.",
+    "Source": "UCSFFSX7 ST55CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_rostral_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftRostralMiddleFrontal.",
+    "Source": "UCSFFSX7 ST55TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_superior_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftSuperiorFrontal.",
+    "Source": "UCSFFSX7 ST56CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_superior_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftSuperiorFrontal.",
+    "Source": "UCSFFSX7 ST56TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_superior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftSuperiorParietal.",
+    "Source": "UCSFFSX7 ST57CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_superior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftSuperiorParietal.",
+    "Source": "UCSFFSX7 ST57TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_superior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftSuperiorTemporal.",
+    "Source": "UCSFFSX7 ST58CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_superior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftSuperiorTemporal.",
+    "Source": "UCSFFSX7 ST58TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_left_supramarginal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftSupramarginal.",
+    "Source": "UCSFFSX7 ST59CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_supramarginal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftSupramarginal.",
+    "Source": "UCSFFSX7 ST59TA",
+    "Units": "mm"
+  },
+  "fs_vol_corpus_callosum_mid_posterior": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorpusCallosumMidPosterior.",
+    "Source": "UCSFFSX7 ST5SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_temporal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftTemporalPole.",
+    "Source": "UCSFFSX7 ST60CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_temporal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftTemporalPole.",
+    "Source": "UCSFFSX7 ST60TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_thalamus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftThalamus.",
+    "Source": "UCSFFSX7 ST61SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_left_transverse_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of LeftTransverseTemporal.",
+    "Source": "UCSFFSX7 ST62CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_left_transverse_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of LeftTransverseTemporal.",
+    "Source": "UCSFFSX7 ST62TA",
+    "Units": "mm"
+  },
+  "fs_vol_left_ventral_d_c": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftVentralDC.",
+    "Source": "UCSFFSX7 ST65SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_vessel": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftVessel.",
+    "Source": "UCSFFSX7 ST66SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_non_w_m_hypo_intensities": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of NonWMHypoIntensities.",
+    "Source": "UCSFFSX7 ST68SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_optic_chiasm": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of OpticChiasm.",
+    "Source": "UCSFFSX7 ST69SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_corpus_callosum_posterior": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorpusCallosumPosterior.",
+    "Source": "UCSFFSX7 ST6SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_accumbens_area": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightAccumbensArea.",
+    "Source": "UCSFFSX7 ST70SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_amygdala": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightAmygdala.",
+    "Source": "UCSFFSX7 ST71SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_bankssts": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightBankssts.",
+    "Source": "UCSFFSX7 ST72CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_bankssts": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightBankssts.",
+    "Source": "UCSFFSX7 ST72TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_caudal_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightCaudalAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST73CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_caudal_anterior_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightCaudalAnteriorCingulate.",
+    "Source": "UCSFFSX7 ST73TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_caudal_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightCaudalMiddleFrontal.",
+    "Source": "UCSFFSX7 ST74CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_caudal_middle_frontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightCaudalMiddleFrontal.",
+    "Source": "UCSFFSX7 ST74TA",
+    "Units": "mm"
+  },
+  "fs_vol_right_caudate": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightCaudate.",
+    "Source": "UCSFFSX7 ST75SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_cerebellum_cortex": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightCerebellumCortex.",
+    "Source": "UCSFFSX7 ST76SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_cerebellum_w_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightCerebellumWM.",
+    "Source": "UCSFFSX7 ST77SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_csf": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of Csf.",
+    "Source": "UCSFFSX7 ST7SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_choroid_plexus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightChoroidPlexus.",
+    "Source": "UCSFFSX7 ST80SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_cuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightCuneus.",
+    "Source": "UCSFFSX7 ST82CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_cuneus": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightCuneus.",
+    "Source": "UCSFFSX7 ST82TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_entorhinal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightEntorhinal.",
+    "Source": "UCSFFSX7 ST83CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_entorhinal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightEntorhinal.",
+    "Source": "UCSFFSX7 ST83TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_frontal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightFrontalPole.",
+    "Source": "UCSFFSX7 ST84CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_frontal_pole": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightFrontalPole.",
+    "Source": "UCSFFSX7 ST84TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_fusiform": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightFusiform.",
+    "Source": "UCSFFSX7 ST85CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_fusiform": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightFusiform.",
+    "Source": "UCSFFSX7 ST85TA",
+    "Units": "mm"
+  },
+  "fs_vol_right_hippocampus": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightHippocampus.",
+    "Source": "UCSFFSX7 ST88SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_inferior_lateral_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightInferiorLateralVentricle.",
+    "Source": "UCSFFSX7 ST89SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_fifth_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of FifthVentricle.",
+    "Source": "UCSFFSX7 ST8SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_inferior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightInferiorParietal.",
+    "Source": "UCSFFSX7 ST90CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_inferior_parietal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightInferiorParietal.",
+    "Source": "UCSFFSX7 ST90TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_inferior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightInferiorTemporal.",
+    "Source": "UCSFFSX7 ST91CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_inferior_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightInferiorTemporal.",
+    "Source": "UCSFFSX7 ST91TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_isthmus_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightIsthmusCingulate.",
+    "Source": "UCSFFSX7 ST93CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_isthmus_cingulate": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightIsthmusCingulate.",
+    "Source": "UCSFFSX7 ST93TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_lateral_occipital": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightLateralOccipital.",
+    "Source": "UCSFFSX7 ST94CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_lateral_occipital": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightLateralOccipital.",
+    "Source": "UCSFFSX7 ST94TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_lateral_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightLateralOrbitofrontal.",
+    "Source": "UCSFFSX7 ST95CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_lateral_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightLateralOrbitofrontal.",
+    "Source": "UCSFFSX7 ST95TA",
+    "Units": "mm"
+  },
+  "fs_vol_right_lateral_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightLateralVentricle.",
+    "Source": "UCSFFSX7 ST96SV",
+    "Units": "mm^3"
+  },
+  "fs_ctxvol_right_lingual": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightLingual.",
+    "Source": "UCSFFSX7 ST97CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_lingual": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightLingual.",
+    "Source": "UCSFFSX7 ST97TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_medial_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightMedialOrbitofrontal.",
+    "Source": "UCSFFSX7 ST98CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_medial_orbitofrontal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightMedialOrbitofrontal.",
+    "Source": "UCSFFSX7 ST98TA",
+    "Units": "mm"
+  },
+  "fs_ctxvol_right_middle_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Cortical Volume (aparc.stats) of RightMiddleTemporal.",
+    "Source": "UCSFFSX7 ST99CV",
+    "Units": "mm^3"
+  },
+  "fs_thick_right_middle_temporal": {
+    "Description": "FreeSurfer 7 (UCSF): Thickness Average (aparc.stats) of RightMiddleTemporal.",
+    "Source": "UCSFFSX7 ST99TA",
+    "Units": "mm"
+  },
+  "fs_vol_fourth_ventricle": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of FourthVentricle.",
+    "Source": "UCSFFSX7 ST9SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_cortical_g_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftCorticalGM.",
+    "Source": "UCSFFSX7 ST147SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_cortical_g_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightCorticalGM.",
+    "Source": "UCSFFSX7 ST148SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_cortical_g_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorticalGM.",
+    "Source": "UCSFFSX7 ST149SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_left_cortical_w_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of LeftCorticalWM.",
+    "Source": "UCSFFSX7 ST150SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_right_cortical_w_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of RightCorticalWM.",
+    "Source": "UCSFFSX7 ST151SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_cortical_w_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of CorticalWM.",
+    "Source": "UCSFFSX7 ST152SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_subcortical_g_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of SubcorticalGM.",
+    "Source": "UCSFFSX7 ST153SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_total_g_m": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of TotalGM.",
+    "Source": "UCSFFSX7 ST154SV",
+    "Units": "mm^3"
+  },
+  "fs_vol_supra_tentorial": {
+    "Description": "FreeSurfer 7 (UCSF): Subcortical Volume (aseg.stats) of SupraTentorial.",
+    "Source": "UCSFFSX7 ST155SV",
+    "Units": "mm^3"
+  }
+}

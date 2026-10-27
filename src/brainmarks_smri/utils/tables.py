@@ -209,7 +209,7 @@ def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: Sequence
     """Markdown table of the samples by split (rows) for the dataset README."""
     merged = samples.merge(splits, on="participant_id", validate="many_to_one")
     multi_session = len(samples) > samples.participant_id.nunique()
-    multi_site = merged.site.nunique() > 1
+    multi_site = "site" in merged and merged.site.nunique() > 1
     header = ["split", "participants"]
     if multi_session:
         header.append("samples")

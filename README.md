@@ -16,7 +16,7 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 The benchmark uses public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
 - **Hosted**: nine datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `BRAINMARKS_SMRI_DATA=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `BRAINMARKS_SMRI_DATA` to its folder.
-- **Manual**: you build ATLAS, OASIS-1, OASIS-2 and FOMO26 Tasks 4 and 5 yourself in your local `BRAINMARKS_SMRI_DATA` folder (default `datasets/`), because their licenses don't allow redistribution. Each one's README explains how to get access.
+- **Manual**: you build ADNI, A4/LEARN, ATLAS, OASIS-1, OASIS-2 and FOMO26 Tasks 4 and 5 yourself in your local `BRAINMARKS_SMRI_DATA` folder (default `datasets/`), because their licenses don't allow redistribution. Each one's README explains how to get access.
 
 ```sh
 bash scripts/oasis1/download.sh

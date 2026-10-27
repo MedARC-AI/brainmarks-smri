@@ -1,0 +1,376 @@
+{
+  "participant_id": {
+    "Description": "Person identifier (as in the source, normalized where noted)."
+  },
+  "session_id": {
+    "Description": "Scan session identifier within the participant."
+  },
+  "age": {
+    "Description": "Age at scan.",
+    "Units": "years"
+  },
+  "sex": {
+    "Description": "Sex.",
+    "Levels": {
+      "M": "male",
+      "F": "female"
+    }
+  },
+  "bid": {
+    "Description": "A4 participant ID (BID).",
+    "Source": "BID"
+  },
+  "viscode": {
+    "Description": "A4 visit code of the MRI.",
+    "Source": "VISCODE"
+  },
+  "scan_day": {
+    "Description": "Day of the MRI, from consent.",
+    "Source": "imaging_MRI_reads STUDYDATE_DAYS_CONSENT, else SV SVSTDTC_DAYS_CONSENT",
+    "Units": "days"
+  },
+  "days_from_randomization": {
+    "Description": "Day of the MRI, from randomization (A4) or baseline (LEARN).",
+    "Source": "imaging_MRI_reads STUDYDATE_DAYS_T0, else SV SVSTDTC_DAYS_T0",
+    "Units": "days"
+  },
+  "group": {
+    "Description": "Substudy.",
+    "Source": "SUBJINFO SUBSTUDY",
+    "Levels": {
+      "A4": "amyloid elevated, randomized",
+      "LEARN": "amyloid not elevated, observational",
+      "SF": "screen-fail"
+    }
+  },
+  "treatment": {
+    "Description": "Randomized treatment (A4 only).",
+    "Source": "SUBJINFO TX",
+    "Levels": {
+      "Placebo": "placebo",
+      "Solanezumab": "solanezumab"
+    }
+  },
+  "education": {
+    "Description": "Years of education.",
+    "Source": "SUBJINFO EDCCNTU",
+    "Units": "years"
+  },
+  "race": {
+    "Description": "Race (n/a: unknown or not reported).",
+    "Source": "SUBJINFO RACE"
+  },
+  "ethnicity": {
+    "Description": "Ethnicity (n/a: unknown or not reported).",
+    "Source": "SUBJINFO ETHNIC"
+  },
+  "apoe_genotype": {
+    "Description": "APOE genotype.",
+    "Source": "SUBJINFO APOEGN"
+  },
+  "apoe4": {
+    "Description": "Number of APOE e4 alleles (0-2).",
+    "Source": "SUBJINFO APOEGN"
+  },
+  "screening_centiloid": {
+    "Description": "Florbetapir Centiloid at screening (per participant).",
+    "Source": "SUBJINFO AMYLCENT"
+  },
+  "screening_amyloid_read": {
+    "Description": "Florbetapir visual read at screening (per participant).",
+    "Source": "imaging_PET_VA overall_score",
+    "Levels": {
+      "0": "negative",
+      "1": "positive"
+    }
+  },
+  "screening_amyloid_suvr": {
+    "Description": "Florbetapir cortical SUVR (cerebellar reference) at screening (per participant).",
+    "Source": "SUBJINFO SUVRCER"
+  },
+  "pacc": {
+    "Description": "Preclinical Alzheimer Cognitive Composite (z-score sum). Within 90 days of the MRI.",
+    "Source": "ADQS PACC"
+  },
+  "mmse": {
+    "Description": "Mini-Mental State Examination (0-30). Within 90 days of the MRI.",
+    "Source": "ADQS MMSE"
+  },
+  "fcsrt96": {
+    "Description": "Free and Cued Selective Reminding Test (0-96). Within 90 days of the MRI.",
+    "Source": "ADQS FCSRT96"
+  },
+  "logical_memory_delayed": {
+    "Description": "Logical Memory delayed paragraph recall (0-25). Within 90 days of the MRI.",
+    "Source": "ADQS LMIIa"
+  },
+  "digit_symbol": {
+    "Description": "Digit Symbol Substitution score. Within 90 days of the MRI.",
+    "Source": "ADQS DIGIT"
+  },
+  "cfi": {
+    "Description": "Cognitive Function Index, participant + partner. Within 90 days of the MRI.",
+    "Source": "ADQS CFITOTAL"
+  },
+  "adl": {
+    "Description": "ADCS Activities of Daily Living (prevention), participant + partner. Within 90 days of the MRI.",
+    "Source": "ADQS ADLTOTAL"
+  },
+  "cdr_global": {
+    "Description": "Clinical Dementia Rating, global score. Within 90 days of the MRI.",
+    "Source": "ADQS CDGLOBAL"
+  },
+  "cdr_sb": {
+    "Description": "Clinical Dementia Rating, sum of boxes. Within 90 days of the MRI.",
+    "Source": "ADQS CDRSB, CDSOB"
+  },
+  "pacc_change_wk240": {
+    "Description": "PACC change from baseline at week 240 (per participant).",
+    "Source": "ADQS PACC QSCHANGE at visit 066"
+  },
+  "amyloid_suvr": {
+    "Description": "Florbetapir composite SUVR (cerebellar reference), within 1 year of the MRI.",
+    "Source": "imaging_SUVR_amyloid Composite_Summary suvr_cer"
+  },
+  "tau_mubada_suvr": {
+    "Description": "Flortaucipir MUBADA SUVR (PERSI reference), within 1 year.",
+    "Source": "imaging_SUVR_tau 'MUBADA Mask' suvr_persi"
+  },
+  "tau_early_suvr": {
+    "Description": "Flortaucipir early-tau region SUVR (PERSI reference), within 1 year.",
+    "Source": "imaging_SUVR_tau EarlyTau_VOI suvr_persi"
+  },
+  "tau_entorhinal_suvr": {
+    "Description": "Flortaucipir entorhinal SUVR, mean of left and right (PERSI reference), within 1 year.",
+    "Source": "imaging_SUVR_tau entorhinal_{lh,rh}_VOI suvr_persi"
+  },
+  "plasma_ptau217": {
+    "Description": "Plasma pTau217 (Lilly), within 1 year of the MRI.",
+    "Source": "biomarker_pTau217 ORRES",
+    "Units": "U/mL"
+  },
+  "vol_left_cortical_gray_matter": {
+    "Description": "Volume of LeftCorticalGrayMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftCorticalGrayMatter"
+  },
+  "vol_right_cortical_gray_matter": {
+    "Description": "Volume of RightCorticalGrayMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightCorticalGrayMatter"
+  },
+  "vol_left_lateral_ventricle": {
+    "Description": "Volume of LeftLateralVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftLateralVentricle"
+  },
+  "vol_right_lateral_ventricle": {
+    "Description": "Volume of RightLateralVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightLateralVentricle"
+  },
+  "vol_left_inferior_lateral_ventricle": {
+    "Description": "Volume of LeftInferiorLateralVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftInferiorLateralVentricle"
+  },
+  "vol_right_inferior_lateral_ventricle": {
+    "Description": "Volume of RightInferiorLateralVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightInferiorLateralVentricle"
+  },
+  "vol_left_thalamus": {
+    "Description": "Volume of LeftThalamus (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftThalamus"
+  },
+  "vol_right_thalamus": {
+    "Description": "Volume of RightThalamus (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightThalamus"
+  },
+  "vol_left_caudate": {
+    "Description": "Volume of LeftCaudate (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftCaudate"
+  },
+  "vol_right_caudate": {
+    "Description": "Volume of RightCaudate (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightCaudate"
+  },
+  "vol_left_putamen": {
+    "Description": "Volume of LeftPutamen (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftPutamen"
+  },
+  "vol_right_putamen": {
+    "Description": "Volume of RightPutamen (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightPutamen"
+  },
+  "vol_left_pallidum": {
+    "Description": "Volume of LeftPallidum (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftPallidum"
+  },
+  "vol_right_pallidum": {
+    "Description": "Volume of RightPallidum (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightPallidum"
+  },
+  "vol_left_hippocampus": {
+    "Description": "Volume of LeftHippocampus (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftHippocampus"
+  },
+  "vol_right_hippocampus": {
+    "Description": "Volume of RightHippocampus (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightHippocampus"
+  },
+  "vol_left_amygdala": {
+    "Description": "Volume of LeftAmygdala (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftAmygdala"
+  },
+  "vol_right_amygdala": {
+    "Description": "Volume of RightAmygdala (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightAmygdala"
+  },
+  "vol_left_ventral_diencephalon": {
+    "Description": "Volume of LeftVentralDiencephalon (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftVentralDiencephalon"
+  },
+  "vol_right_ventral_diencephalon": {
+    "Description": "Volume of RightVentralDiencephalon (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightVentralDiencephalon"
+  },
+  "vol_left_cerebellar_white_matter": {
+    "Description": "Volume of LeftCerebellarWhiteMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftCerebellarWhiteMatter"
+  },
+  "vol_right_cerebellar_white_matter": {
+    "Description": "Volume of RightCerebellarWhiteMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightCerebellarWhiteMatter"
+  },
+  "vol_left_cerebellar_gray_matter": {
+    "Description": "Volume of LeftCerebellarGrayMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftCerebellarGrayMatter"
+  },
+  "vol_right_cerebellar_gray_matter": {
+    "Description": "Volume of RightCerebellarGrayMatter (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightCerebellarGrayMatter"
+  },
+  "vol_left_w_m_hypo": {
+    "Description": "Volume of LeftWMHypo (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftWMHypo"
+  },
+  "vol_right_w_m_hypo": {
+    "Description": "Volume of RightWMHypo (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightWMHypo"
+  },
+  "vol_left_entorhinal": {
+    "Description": "Volume of LeftEntorhinal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftEntorhinal"
+  },
+  "vol_right_entorhinal": {
+    "Description": "Volume of RightEntorhinal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightEntorhinal"
+  },
+  "vol_left_fusiform": {
+    "Description": "Volume of LeftFusiform (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftFusiform"
+  },
+  "vol_right_fusiform": {
+    "Description": "Volume of RightFusiform (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightFusiform"
+  },
+  "vol_left_inferiorparietal": {
+    "Description": "Volume of LeftInferiorparietal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftInferiorparietal"
+  },
+  "vol_right_inferiorparietal": {
+    "Description": "Volume of RightInferiorparietal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightInferiorparietal"
+  },
+  "vol_left_inferiortemporal": {
+    "Description": "Volume of LeftInferiortemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftInferiortemporal"
+  },
+  "vol_right_inferiortemporal": {
+    "Description": "Volume of RightInferiortemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightInferiortemporal"
+  },
+  "vol_left_middletemporal": {
+    "Description": "Volume of LeftMiddletemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftMiddletemporal"
+  },
+  "vol_right_middletemporal": {
+    "Description": "Volume of RightMiddletemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightMiddletemporal"
+  },
+  "vol_left_parahippocampal": {
+    "Description": "Volume of LeftParahippocampal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftParahippocampal"
+  },
+  "vol_right_parahippocampal": {
+    "Description": "Volume of RightParahippocampal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightParahippocampal"
+  },
+  "vol_left_superiorfrontal": {
+    "Description": "Volume of LeftSuperiorfrontal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftSuperiorfrontal"
+  },
+  "vol_right_superiorfrontal": {
+    "Description": "Volume of RightSuperiorfrontal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightSuperiorfrontal"
+  },
+  "vol_left_superiorparietal": {
+    "Description": "Volume of LeftSuperiorparietal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftSuperiorparietal"
+  },
+  "vol_right_superiorparietal": {
+    "Description": "Volume of RightSuperiorparietal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightSuperiorparietal"
+  },
+  "vol_left_superiortemporal": {
+    "Description": "Volume of LeftSuperiortemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftSuperiortemporal"
+  },
+  "vol_right_superiortemporal": {
+    "Description": "Volume of RightSuperiortemporal (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightSuperiortemporal"
+  },
+  "vol_left_temporalpole": {
+    "Description": "Volume of LeftTemporalpole (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri LeftTemporalpole"
+  },
+  "vol_right_temporalpole": {
+    "Description": "Volume of RightTemporalpole (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri RightTemporalpole"
+  },
+  "vol_3rd_ventricle": {
+    "Description": "Volume of 3rdVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri 3rdVentricle"
+  },
+  "vol_4th_ventricle": {
+    "Description": "Volume of 4thVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri 4thVentricle"
+  },
+  "vol_5th_ventricle": {
+    "Description": "Volume of 5thVentricle (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri 5thVentricle"
+  },
+  "vol_brainstem": {
+    "Description": "Volume of Brainstem (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri Brainstem"
+  },
+  "vol_forebrain_parenchyma": {
+    "Description": "Volume of ForebrainParenchyma (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri ForebrainParenchyma"
+  },
+  "vol_intra_cranial_volume": {
+    "Description": "Volume of IntraCranialVolume (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri IntraCranialVolume"
+  },
+  "vol_h_o_c": {
+    "Description": "Volume of HOC (A4 volumetric MRI, same visit).",
+    "Source": "imaging_volumetric_mri HOC"
+  },
+  "wmh_corrected": {
+    "Description": "White matter hyperintensity volume, ICV-corrected (QC pass, same visit).",
+    "Source": "imaging_FLAIR_WMH_QC WMH_corrected"
+  },
+  "microhemorrhages": {
+    "Description": "Number of microhemorrhages on the MRI read (same visit).",
+    "Source": "imaging_MRI_reads 'Total #MCH'"
+  },
+  "superficial_siderosis": {
+    "Description": "Number of superficial siderosis areas on the MRI read (same visit).",
+    "Source": "imaging_MRI_reads 'Total #SS'"
+  }
+}
