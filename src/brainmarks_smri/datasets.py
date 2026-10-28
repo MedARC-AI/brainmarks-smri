@@ -106,7 +106,8 @@ class BrainDataset(torch.utils.data.Dataset):
         samples = pd.read_csv(self.root / "tables" / "samples.tsv", **read_kwargs)
         splits = pd.read_csv(self.root / "tables" / "splits.tsv", **read_kwargs)
         derivatives = pd.read_csv(self.root / "tables" / "derivatives.tsv", sep="\t")
-        samples = samples.merge(splits, on="participant_id")
+        # copy consolidates the frame: read_csv gives one block per column (pandas 3)
+        samples = samples.merge(splits, on="participant_id").copy()
 
         derivatives_modality = derivatives_modality or modality
         if desc_pattern is None:

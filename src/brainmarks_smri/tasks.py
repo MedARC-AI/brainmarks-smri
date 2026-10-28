@@ -511,22 +511,19 @@ def adni_pmci(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Tas
 
 
 @register_task
-def adni_amyloid_cn(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+def adni_amyloid(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("adni", modality="T1w")
     samples = dataset.samples
-    # Amyloid PET status (UC Berkeley threshold) of cognitively normal participants.
-    status = samples["amyloid_status"]
-    samples["amyloid_positive"] = (status == 1).where(status.notna())
-    keep = adni_primary(samples) & (samples["dx"] == "CN") & status.notna()
+    # Amyloid PET Centiloid (UC Berkeley), all diagnoses.
+    keep = adni_primary(samples) & samples["centiloid"].notna()
     train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
     return Task(
-        name="adni_amyloid_cn",
-        type="classification",
+        name="adni_amyloid",
+        type="regression",
         dataset=dataset,
-        target="amyloid_positive",
+        target="centiloid",
         train_ids=train_ids,
         eval_ids=eval_ids,
-        classes=[False, True],
     )
 
 
@@ -620,18 +617,39 @@ def adni_hippocampus(eval_split: str = "val", max_per_split: MaxPerSplit = None)
 
 
 @register_task
-def a4_amyloid(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+def a4learn_amyloid(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # Florbetapir Centiloid at screening, from the baseline scan of A4 and LEARN.
+    keep = (
+        (samples["session_id"] == "bl")
+        & samples["group"].isin(["A4", "LEARN"])
+        & samples["screening_centiloid"].notna()
+    )
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4learn_amyloid",
+        type="regression",
+        dataset=dataset,
+        target="screening_centiloid",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def a4learn_cohort(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("a4learn", modality="T1w")
     samples = dataset.samples
     # A4 enrolled cognitively normal people with elevated amyloid, LEARN those without.
-    samples["amyloid_elevated"] = samples["group"] == "A4"
+    samples["a4"] = samples["group"] == "A4"
     keep = (samples["session_id"] == "bl") & samples["group"].isin(["A4", "LEARN"])
     train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
     return Task(
-        name="a4_amyloid",
+        name="a4learn_cohort",
         type="classification",
         dataset=dataset,
-        target="amyloid_elevated",
+        target="a4",
         train_ids=train_ids,
         eval_ids=eval_ids,
         classes=[False, True],
@@ -639,7 +657,7 @@ def a4_amyloid(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Ta
 
 
 @register_task
-def a4_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+def a4learn_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("a4learn", modality="T1w")
     samples = dataset.samples
     # Log plasma pTau217 (Lilly) at baseline, A4 and LEARN; the raw values are very skewed.
@@ -651,7 +669,7 @@ def a4_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Ta
     )
     train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
     return Task(
-        name="a4_ptau217",
+        name="a4learn_ptau217",
         type="regression",
         dataset=dataset,
         target="log_plasma_ptau217",
@@ -661,7 +679,31 @@ def a4_ptau217(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Ta
 
 
 @register_task
-def a4_pacc_decline(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+def a4learn_hippocampus(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("a4learn", modality="T1w")
+    samples = dataset.samples
+    # Left + right hippocampal volume per 1000 of intracranial volume at baseline (A4 only;
+    # LEARN has no volumes).
+    hippocampus = samples["vol_left_hippocampus"] + samples["vol_right_hippocampus"]
+    samples["hippocampus_icv"] = 1000 * hippocampus / samples["vol_intra_cranial_volume"]
+    keep = (
+        (samples["session_id"] == "bl")
+        & (samples["group"] == "A4")
+        & samples["hippocampus_icv"].notna()
+    )
+    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
+    return Task(
+        name="a4learn_hippocampus",
+        type="regression",
+        dataset=dataset,
+        target="hippocampus_icv",
+        train_ids=train_ids,
+        eval_ids=eval_ids,
+    )
+
+
+@register_task
+def a4learn_pacc_decline(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("a4learn", modality="T1w")
     samples = dataset.samples
     # From the baseline scan of A4 (amyloid-elevated) participants: a PACC change by week 240
@@ -671,32 +713,26 @@ def a4_pacc_decline(eval_split: str = "val", max_per_split: MaxPerSplit = None) 
     learn = baseline & (samples["group"] == "LEARN")
     cutoff = change[learn].quantile(0.05)
     samples["pacc_decline"] = (change < cutoff).where(change.notna())
-    keep = baseline & (samples["group"] == "A4") & change.notna()
+    # Older participants decline more often (age alone: AUROC 0.65), so keep the split's decliner
+    # rate in every age fifth, dropping the excess class lowest rank first.
+    candidates = samples[baseline & (samples["group"] == "A4") & change.notna()]
+    age_fifth = pd.qcut(candidates["age"], 5, labels=False)
+    keep = pd.Series(False, index=samples.index)
+    for _, split_rows in candidates.groupby("split"):
+        rate = split_rows["pacc_decline"].astype(bool).mean()
+        for _, stratum in split_rows.groupby(age_fifth):
+            declined = stratum["pacc_decline"].astype(bool)
+            n_declined = min(declined.sum(), round((~declined).sum() * rate / (1 - rate)))
+            n_stable = min((~declined).sum(), round(declined.sum() * (1 - rate) / rate))
+            keep[stratum[declined].nsmallest(n_declined, "rank").index] = True
+            keep[stratum[~declined].nsmallest(n_stable, "rank").index] = True
     train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
     return Task(
-        name="a4_pacc_decline",
+        name="a4learn_pacc_decline",
         type="classification",
         dataset=dataset,
         target="pacc_decline",
         train_ids=train_ids,
         eval_ids=eval_ids,
         classes=[False, True],
-    )
-
-
-@register_task
-def a4_treatment(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
-    dataset = create_dataset("a4learn", modality="T1w")
-    samples = dataset.samples
-    # Solanezumab vs placebo from the week 240 scan. Expected at chance: the drug showed no effect.
-    keep = (samples["session_id"] == "wk240") & samples["treatment"].notna()
-    train_ids, eval_ids = split_ids(samples, keep, eval_split, max_per_split)
-    return Task(
-        name="a4_treatment",
-        type="classification",
-        dataset=dataset,
-        target="treatment",
-        train_ids=train_ids,
-        eval_ids=eval_ids,
-        classes=["Placebo", "Solanezumab"],
     )
