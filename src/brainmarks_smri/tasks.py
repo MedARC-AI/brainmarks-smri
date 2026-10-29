@@ -197,7 +197,9 @@ def brats_region(
     eval_split: str,
     max_per_split: MaxPerSplit,
 ) -> Task:
-    dataset = create_dataset("brats2021", modality=modality)
+    dataset = create_dataset(
+        "brats2021", modality=modality, mask_target="mask_tumor", label_values=label_values
+    )
     # Only the official training cases have masks.
     keep = dataset.samples["mask_tumor_path"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
@@ -300,7 +302,10 @@ def soop_mrs_poor(eval_split: str = "val", max_per_split: MaxPerSplit = None) ->
 
 @register_task
 def soop_lesion(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
-    dataset = create_dataset("soop", modality="DWI")
+    # Binary masks; a few use 2 or 3 as the lesion value instead of 1.
+    dataset = create_dataset(
+        "soop", modality="DWI", mask_target="mask_lesionAcute", label_values=[1, 2, 3]
+    )
     keep = dataset.samples["mask_lesionAcute_path"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
     return Task(
@@ -310,14 +315,13 @@ def soop_lesion(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> T
         target="mask_lesionAcute",
         train_ids=train_ids,
         eval_ids=eval_ids,
-        # Binary masks; a few use 2 or 3 as the lesion value instead of 1.
         label_values=[1, 2, 3],
     )
 
 
 @register_task
 def atlas_lesion(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
-    dataset = create_dataset("atlas", modality="T1w")
+    dataset = create_dataset("atlas", modality="T1w", mask_target="mask_lesion", label_values=[1])
     keep = dataset.samples["mask_lesion_path"].notna()
     train_ids, eval_ids = split_ids(dataset.samples, keep, eval_split, max_per_split)
     return Task(
@@ -430,7 +434,9 @@ def fomo26_task5_pmg(max_per_split: MaxPerSplit = None) -> Task:
 
 
 def fomo26_task4_region(name: str, label_values: list[int], max_per_split: MaxPerSplit) -> Task:
-    dataset = create_dataset("fomo26_task4", modality="T2w")
+    dataset = create_dataset(
+        "fomo26_task4", modality="T2w", mask_target="mask_trigeminal", label_values=label_values
+    )
     keep = dataset.samples["mask_trigeminal_path"].notna()
     ids, folds = kfold_ids(dataset.samples, keep, None, max_per_split)
     return Task(

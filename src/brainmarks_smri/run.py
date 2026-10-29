@@ -1,6 +1,6 @@
-"""Run one model on one benchmark task; writes `<output_dir>/<name>/<task>.json`.
+"""Run one model on benchmark tasks; writes `<output_dir>/<name>/<task>.json` per task.
 
-python -m brainmarks_smri neurojepa abide_diagnosis --overrides max_per_split=50
+python -m brainmarks_smri neurojepa abide_diagnosis ixi_age --overrides max_per_split=50
 """
 
 import argparse
@@ -8,17 +8,19 @@ import datetime
 import importlib
 import json
 import logging
+import sys
 import time
 from importlib import resources
 from pathlib import Path
 
 import numpy as np
 import torch
-from omegaconf import OmegaConf
+from omegaconf import DictConfig, OmegaConf
 
 from brainmarks_smri import probes
 from brainmarks_smri.utils.misc import git_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
+from brainmarks_smri.models.base import Model
 from brainmarks_smri.tasks import create_task, list_tasks
 
 DEFAULT_CONFIG = resources.files("brainmarks_smri") / "config" / "default.yaml"
@@ -38,7 +40,7 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("model")
-    parser.add_argument("task", choices=list_tasks())
+    parser.add_argument("tasks", nargs="+", choices=list_tasks(), metavar="task")
     parser.add_argument("--config", type=Path, help="yaml merged over the default config")
     parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. max_per_split=50")
     args = parser.parse_args()
@@ -52,11 +54,16 @@ def main():
     setup_logging(logging.getLogger())
 
     name = cfg.name or args.model
-    path = Path(cfg.output_dir) / name / f"{args.task}.json"
-    if path.exists() and not cfg.overwrite:
-        logger.info(f"{path} exists, skipping")
+    tasks = []
+    for task_name in args.tasks:
+        path = Path(cfg.output_dir) / name / f"{task_name}.json"
+        if path.exists() and not cfg.overwrite:
+            logger.info(f"{path} exists, skipping")
+        else:
+            tasks.append(task_name)
+    if not tasks:
         return
-    logger.info(f"evaluating {args.model} on {args.task}")
+    logger.info(f"evaluating {args.model} on {', '.join(tasks)}")
     logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
     logger.info(f"cwd: {Path.cwd()}")
     logger.info(f"git: {git_info()}")
@@ -70,7 +77,23 @@ def main():
     random_seed(cfg.seed)
     device = cfg.device or ("cuda" if torch.cuda.is_available() else "cpu")
     model = create_model(args.model, **cfg.model_kwargs).to(device).eval()
-    task = create_task(args.task, max_per_split=cfg.max_per_split)
+
+    failed = []
+    for task_name in tasks:
+        try:
+            run_task(model, args.model, name, task_name, cfg)
+        except Exception:
+            logger.exception(f"{name} {task_name} failed")
+            failed.append(task_name)
+    if failed:
+        logger.error(f"failed: {', '.join(failed)}")
+        sys.exit(1)
+
+
+def run_task(model: Model, model_name: str, name: str, task_name: str, cfg: DictConfig) -> None:
+    logger.info(f"evaluating {model_name} on {task_name}")
+    random_seed(cfg.seed)
+    task = create_task(task_name, max_per_split=cfg.max_per_split)
     model_transform = getattr(model, "transform", None)
     if task.transform is None:
         task.dataset.transform = model_transform
@@ -81,9 +104,9 @@ def main():
     result = PROBES[task.type](model, task, cfg.batch_size, cfg.num_workers)
     elapsed = time.perf_counter() - start
     result = {
-        "model": args.model,
+        "model": model_name,
         "name": name,
-        "task": args.task,
+        "task": task_name,
         "type": task.type,
         "dataset": task.dataset.name,
         "config": OmegaConf.to_container(cfg),
@@ -95,9 +118,10 @@ def main():
         "seconds": elapsed,
         **result,
     }
+    path = Path(cfg.output_dir) / name / f"{task_name}.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(result, indent=1))
     rounded_metrics = {
         metric: np.round(value, 4).tolist() for metric, value in result["metrics"].items()
     }
-    logger.info(f"done {name} {args.task} in {elapsed:.0f}s\n{json.dumps(rounded_metrics)}")
+    logger.info(f"done {name} {task_name} in {elapsed:.0f}s\n{json.dumps(rounded_metrics)}")

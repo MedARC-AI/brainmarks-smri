@@ -4,11 +4,11 @@ The task dataset's `transform` must be the model's transform (after the task's, 
 """
 
 import logging
+import math
 import time
 from collections.abc import Iterator
 from typing import Any
 
-import nibabel as nib
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -346,6 +346,8 @@ def compute_embeddings(
     log_every: int = 20,
 ) -> Iterator[tuple[EmbeddingOutput, dict[str, Any]]]:
     """Yield `(embedding output, targets)` for each sample of `task.dataset` in `ids`."""
+    # smaller batches for small passes, so that every worker gets one
+    batch_size = min(batch_size, math.ceil(len(ids) / max(num_workers, 1)))
     loader = DataLoader(
         Subset(task.dataset, ids),
         batch_size=batch_size,
@@ -355,9 +357,12 @@ def compute_embeddings(
         multiprocessing_context="fork" if num_workers > 0 else None,
     )
     n_done = 0
+    loader_seconds = 0.0
     model_seconds = 0.0
     start = time.perf_counter()
+    loader_start = time.perf_counter()
     for batch_id, batch in enumerate(loader):
+        loader_seconds += time.perf_counter() - loader_start
         image_inputs = [image_input for image_input, _ in batch]
         targets = [sample_targets for _, sample_targets in batch]
         batch_start = time.perf_counter()
@@ -367,11 +372,14 @@ def compute_embeddings(
         n_done += len(batch)
         if (batch_id + 1) % log_every == 0 or batch_id + 1 == len(loader):
             elapsed = time.perf_counter() - start
+            # the rest of the elapsed time is the caller's, between yields
             logger.info(
                 f"embedded {n_done}/{len(ids)} in {elapsed:.0f}s "
-                f"({n_done / elapsed:.2f} samples/s, model {model_seconds:.0f}s)"
+                f"({n_done / elapsed:.2f} samples/s, data {loader_seconds:.0f}s, "
+                f"model {model_seconds:.0f}s)"
             )
         yield from zip(outputs, targets)
+        loader_start = time.perf_counter()
 
 
 def global_embeddings(
@@ -402,9 +410,8 @@ def segmentation_patches(
         else:
             kept = torch.ones(grid_shape, dtype=torch.bool, device=dense.device)
 
-        label_image = targets[task.target]
-        mask = label_mask(label_image, task.label_values, dense.device)
-        input_to_label = np.linalg.inv(label_image.affine) @ output["dense_affine"]
+        mask = targets[task.target].to(dense.device)
+        input_to_label = np.linalg.inv(targets["affine"]) @ output["dense_affine"]
         mask = resample(mask[None].float(), input_to_label, input_shape, "nearest")[0] > 0.5
         patch_labels = rearrange(
             mask, "(x px) (y py) (z pz) -> x y z (px py pz)", px=px, py=py, pz=pz
@@ -437,27 +444,16 @@ def segmentation_predictions(
             logits[~output["dense_mask"].to(logits.device)] = BACKGROUND_LOGIT
         logits = rearrange(logits, "x y z (px py pz) -> (x px) (y py) (z pz)", px=px, py=py, pz=pz)
 
-        label_image = targets[task.target]
-        label_to_input = np.linalg.inv(output["dense_affine"]) @ label_image.affine
+        target = targets[task.target].to(logits.device)
+        label_to_input = np.linalg.inv(output["dense_affine"]) @ targets["affine"]
         # shifted so that voxels outside the model input grid get BACKGROUND_LOGIT
         shifted = logits[None] - BACKGROUND_LOGIT
-        logits = resample(shifted, label_to_input, label_image.shape, "bilinear")[0]
+        logits = resample(shifted, label_to_input, target.shape, "bilinear")[0]
         logits = logits + BACKGROUND_LOGIT
         probabilities = torch.sigmoid(logits)
 
-        target = label_mask(label_image, task.label_values, logits.device)
-        brain_image = targets["brain_mask"]
-        assert brain_image.shape == label_image.shape, f"{task.name}: brain mask not on label grid"
-        brain = torch.as_tensor(np.asanyarray(brain_image.dataobj) > 0, device=logits.device)
+        brain = targets["brain_mask"].to(logits.device)
         yield probabilities, target, brain
-
-
-def label_mask(
-    label_image: nib.Nifti1Image, label_values: list[int], device: torch.device
-) -> Tensor:
-    """Bool mask of the voxels with one of `label_values`."""
-    mask = np.isin(np.asanyarray(label_image.dataobj), label_values)
-    return torch.as_tensor(mask, device=device)
 
 
 def resample(volume: Tensor, matrix: np.ndarray, output_shape: tuple, mode: str) -> Tensor:

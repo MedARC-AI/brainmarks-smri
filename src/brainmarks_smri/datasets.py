@@ -34,6 +34,9 @@ class BrainDataset(torch.utils.data.Dataset):
     Args:
         derivatives_modality: use the session's image of this modality for the derivatives.
         desc_pattern: regex for the input images' desc; by default, images without a desc.
+        mask_target: a mask key, e.g. "mask_tumor", added to the targets as a bool tensor with the
+            brain mask and the image affine.
+        label_values: the mask labels that count as the target region; by default, any nonzero.
     """
 
     def __init__(
@@ -44,7 +47,8 @@ class BrainDataset(torch.utils.data.Dataset):
         derivatives_modality: str | None = None,
         desc_pattern: str | None = None,
         transform: Callable[[ImageInput], Any] | None = None,
-        target_transform: Callable[[dict[str, Any]], Any] | None = None,
+        mask_target: str | None = None,
+        label_values: list[int] | None = None,
     ):
         self.name = name
         if root is None:
@@ -62,7 +66,8 @@ class BrainDataset(torch.utils.data.Dataset):
             )
         self.root = Path(root) / self.name
         self.transform = transform
-        self.target_transform = target_transform
+        self.mask_target = mask_target
+        self.label_values = label_values
         self.samples = self.load_samples(modality, derivatives_modality, desc_pattern)
         shards = pd.read_csv(self.root / "tables" / "shards.tsv", sep="\t")
         self.shard_of_path = dict(zip(shards["path"], shards["shard"]))
@@ -85,15 +90,21 @@ class BrainDataset(torch.utils.data.Dataset):
                 "mni_affine": np.loadtxt(io.BytesIO(shard.read(row["mni_affine_path"]))),
             }
             targets = row.to_dict()
-            targets["brain_mask"] = brain_mask
-            for column in self.samples.columns:
-                if column.startswith("mask_") and pd.notna(row[column]):
-                    targets[column.removesuffix("_path")] = _load_nifti(shard.read(row[column]))
+            if self.mask_target is not None:
+                label_image = _load_nifti(shard.read(row[f"{self.mask_target}_path"]))
+                assert label_image.shape == image.shape, f"{self.name}: mask not on image grid"
+                assert brain_mask.shape == image.shape, f"{self.name}: brain mask not on image grid"
+                labels = np.asanyarray(label_image.dataobj)
+                if self.label_values is None:
+                    label_mask = labels > 0
+                else:
+                    label_mask = np.isin(labels, self.label_values)
+                targets[self.mask_target] = torch.from_numpy(label_mask)
+                targets["brain_mask"] = torch.from_numpy(np.asanyarray(brain_mask.dataobj) > 0)
+                targets["affine"] = image.affine
 
         if self.transform is not None:
             image_input = self.transform(image_input)
-        if self.target_transform is not None:
-            targets = self.target_transform(targets)
         return image_input, targets
 
     def load_samples(
