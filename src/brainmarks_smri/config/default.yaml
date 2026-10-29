@@ -9,7 +9,7 @@ imports: []
 # max samples per split, null for full splits; or per split, e.g. {train: 300, val: 50}
 max_per_split: 300
 batch_size: 8
-num_workers: 8
+num_workers: 16
 device: null  # cuda if available
 seed: 0
 overwrite: false

@@ -12,6 +12,7 @@ dependencies = [
     "dcm2niix==1.0.20260724",
     "einops",
     "huggingface-hub",
+    "isal",
     "nibabel",
     "numpy",
     "omegaconf",

@@ -1,6 +1,5 @@
 """Benchmark datasets."""
 
-import gzip
 import io
 import logging
 import os
@@ -14,6 +13,7 @@ import numpy as np
 import pandas as pd
 import platformdirs
 import torch.utils.data
+from isal import igzip as gzip
 
 from brainmarks_smri.models.base import ImageInput
 
