@@ -52,18 +52,17 @@ logger = logging.getLogger(__name__)
 def probe_classification(
     model: Model, task: Task, batch_size: int, num_workers: int
 ) -> dict[str, Any]:
-    samples = task.dataset.samples
+    ids = np.concatenate([task.train_ids, task.eval_ids])
+    embeddings, targets = global_embeddings(model, task, ids, batch_size, num_workers)
     class_index = {value: ii for ii, value in enumerate(task.classes)}
-    train_values = samples[task.target].iloc[task.train_ids]
-    eval_values = samples[task.target].iloc[task.eval_ids]
-    train_labels = np.array([class_index[value] for value in train_values])
-    eval_labels = np.array([class_index[value] for value in eval_values])
+    labels = np.array([class_index[sample_targets[task.target]] for sample_targets in targets])
+    n_train = len(task.train_ids)
+    train_labels = labels[:n_train]
+    eval_labels = labels[n_train:]
     # predict_proba columns are the classes seen in training
     n_train_classes = len(np.unique(train_labels))
     assert n_train_classes == len(task.classes), f"{task.name}: a class is missing from train"
 
-    train_features = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
-    eval_features = global_embeddings(model, task, task.eval_ids, batch_size, num_workers)
     classifier = make_pipeline(
         StandardScaler(),
         LogisticRegressionCV(
@@ -77,9 +76,9 @@ def probe_classification(
         ),
     )
     fit_start = time.perf_counter()
-    classifier.fit(train_features, train_labels)
+    classifier.fit(embeddings[:n_train], train_labels)
     logger.info(f"fit logistic regression probe in {time.perf_counter() - fit_start:.0f}s")
-    probabilities = classifier.predict_proba(eval_features)
+    probabilities = classifier.predict_proba(embeddings[n_train:])
     predictions = probabilities.argmax(axis=1)
 
     metrics = {
@@ -90,10 +89,11 @@ def probe_classification(
             balanced_accuracy_score, eval_labels, predictions, seed=SEED
         ),
     }
-    eval_samples = samples.iloc[task.eval_ids][["participant_id", "session_id", task.target]]
-    eval_samples = eval_samples.to_dict("records")
-    for record, record_probabilities in zip(eval_samples, probabilities):
-        record["probabilities"] = dict(zip(task.classes, record_probabilities.tolist()))
+    eval_samples = []
+    for sample_targets, sample_probabilities in zip(targets[n_train:], probabilities):
+        record = {key: sample_targets[key] for key in ("participant_id", "session_id", task.target)}
+        record["probabilities"] = dict(zip(task.classes, sample_probabilities.tolist()))
+        eval_samples.append(record)
     return {
         "classes": task.classes,
         "n_train": len(task.train_ids),
@@ -105,30 +105,31 @@ def probe_classification(
 
 
 def probe_regression(model: Model, task: Task, batch_size: int, num_workers: int) -> dict[str, Any]:
-    samples = task.dataset.samples
-    train_targets = samples[task.target].iloc[task.train_ids].to_numpy(dtype=float)
-    eval_targets = samples[task.target].iloc[task.eval_ids].to_numpy(dtype=float)
+    ids = np.concatenate([task.train_ids, task.eval_ids])
+    embeddings, targets = global_embeddings(model, task, ids, batch_size, num_workers)
+    values = np.array([sample_targets[task.target] for sample_targets in targets], dtype=float)
+    n_train = len(task.train_ids)
+    eval_values = values[n_train:]
 
-    train_features = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
-    eval_features = global_embeddings(model, task, task.eval_ids, batch_size, num_workers)
     regressor = make_pipeline(StandardScaler(), RidgeCV(alphas=RIDGE_ALPHAS))
     fit_start = time.perf_counter()
-    regressor.fit(train_features, train_targets)
+    regressor.fit(embeddings[:n_train], values[:n_train])
     logger.info(f"fit ridge regression probe in {time.perf_counter() - fit_start:.0f}s")
-    predictions = regressor.predict(eval_features)
+    predictions = regressor.predict(embeddings[n_train:])
 
     metrics = {
-        "mae": float(mean_absolute_error(eval_targets, predictions)),
-        "mae_ci": bootstrap_ci(mean_absolute_error, eval_targets, predictions, seed=SEED),
-        "r": pearson_r(eval_targets, predictions),
-        "r_ci": bootstrap_ci(pearson_r, eval_targets, predictions, seed=SEED),
-        "r2": float(r2_score(eval_targets, predictions)),
-        "r2_ci": bootstrap_ci(r2_score, eval_targets, predictions, seed=SEED),
+        "mae": float(mean_absolute_error(eval_values, predictions)),
+        "mae_ci": bootstrap_ci(mean_absolute_error, eval_values, predictions, seed=SEED),
+        "r": pearson_r(eval_values, predictions),
+        "r_ci": bootstrap_ci(pearson_r, eval_values, predictions, seed=SEED),
+        "r2": float(r2_score(eval_values, predictions)),
+        "r2_ci": bootstrap_ci(r2_score, eval_values, predictions, seed=SEED),
     }
-    eval_samples = samples.iloc[task.eval_ids][["participant_id", "session_id", task.target]]
-    eval_samples = eval_samples.to_dict("records")
-    for record, prediction in zip(eval_samples, predictions):
+    eval_samples = []
+    for sample_targets, prediction in zip(targets[n_train:], predictions):
+        record = {key: sample_targets[key] for key in ("participant_id", "session_id", task.target)}
         record["prediction"] = float(prediction)
+        eval_samples.append(record)
     return {
         "n_train": len(task.train_ids),
         "n_eval": len(task.eval_ids),
@@ -141,12 +142,15 @@ def probe_regression(model: Model, task: Task, batch_size: int, num_workers: int
 def probe_segmentation(
     model: Model, task: Task, batch_size: int, num_workers: int
 ) -> dict[str, Any]:
-    samples = task.dataset.samples
     device = next(model.parameters()).device
-
-    features, labels, groups = segmentation_patches(
-        model, task, task.train_ids, batch_size, num_workers
+    ids = np.concatenate([task.train_ids, task.eval_ids])
+    features, labels, groups, samples = segmentation_embeddings(
+        model, task, ids, batch_size, num_workers
     )
+    n_train = len(task.train_ids)
+    # train samples come first
+    n_train_rows = samples[n_train - 1]["token_rows"].stop
+
     classifier = TorchLogisticRegressionCV(
         alphas=SEGMENTATION_ALPHAS,
         thresholds=SEGMENTATION_THRESHOLDS,
@@ -155,14 +159,21 @@ def probe_segmentation(
         seed=SEED,
     )
     fit_start = time.perf_counter()
-    classifier.fit(features.to(device), labels.to(device), groups)
+    classifier.fit(
+        features[:n_train_rows].to(device),
+        labels[:n_train_rows].to(device),
+        groups[:n_train_rows],
+    )
     logger.info(f"fit segmentation probe in {time.perf_counter() - fit_start:.0f}s")
 
     subject_metrics = {"dice": [], "voxel_auroc": [], "average_precision": []}
-    predictions = segmentation_predictions(
-        model, task, task.eval_ids, classifier, batch_size, num_workers
-    )
-    for probabilities, target, brain in predictions:
+    for sample in samples[n_train:]:
+        sample_features = features[sample["token_rows"]].to(device)
+        probabilities = segmentation_probabilities(
+            classifier, sample_features, sample, model.patch_size
+        )
+        target = sample[task.target].to(device)
+        brain = sample["brain_mask"].to(device)
         predicted = probabilities >= classifier.threshold_
         subject_metrics["dice"].append(dice(predicted, target))
         # ranking metrics within the brain, where the background is not trivial
@@ -178,11 +189,12 @@ def probe_segmentation(
         metrics[name] = float(np.nanmean(values))
         metrics[f"{name}_ci"] = bootstrap_ci(np.nanmean, values, seed=SEED)
 
-    eval_samples = samples.iloc[task.eval_ids][["participant_id", "session_id"]]
-    eval_samples = eval_samples.to_dict("records")
-    for ii, record in enumerate(eval_samples):
+    eval_samples = []
+    for ii, sample in enumerate(samples[n_train:]):
+        record = {key: sample[key] for key in ("participant_id", "session_id")}
         for name, values in subject_metrics.items():
             record[name] = float(values[ii])
+        eval_samples.append(record)
     return {
         "label_values": task.label_values,
         "n_train": len(task.train_ids),
@@ -201,13 +213,11 @@ def probe_segmentation(
 def probe_classification_kfold(
     model: Model, task: Task, batch_size: int, num_workers: int
 ) -> dict[str, Any]:
-    samples = task.dataset.samples
+    embeddings, targets = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
     class_index = {value: ii for ii, value in enumerate(task.classes)}
-    values = samples[task.target].iloc[task.train_ids]
-    labels = np.array([class_index[value] for value in values])
+    labels = np.array([class_index[sample_targets[task.target]] for sample_targets in targets])
     n_folds = int(task.folds.max()) + 1
 
-    features = global_embeddings(model, task, task.train_ids, batch_size, num_workers)
     probabilities = np.zeros((len(labels), len(task.classes)))
     fold_Cs = []
     fit_start = time.perf_counter()
@@ -228,8 +238,8 @@ def probe_classification_kfold(
                 use_legacy_attributes=False,
             ),
         )
-        classifier.fit(features[~in_fold], labels[~in_fold])
-        probabilities[in_fold] = classifier.predict_proba(features[in_fold])
+        classifier.fit(embeddings[~in_fold], labels[~in_fold])
+        probabilities[in_fold] = classifier.predict_proba(embeddings[in_fold])
         fold_Cs.append(float(classifier[-1].C_))
     logger.info(
         f"fit {n_folds} logistic regression probes in {time.perf_counter() - fit_start:.0f}s"
@@ -244,11 +254,12 @@ def probe_classification_kfold(
             balanced_accuracy_score, labels, predictions, seed=SEED
         ),
     }
-    eval_samples = samples.iloc[task.train_ids][["participant_id", "session_id", task.target]]
-    eval_samples = eval_samples.to_dict("records")
-    for record, fold, record_probabilities in zip(eval_samples, task.folds, probabilities):
+    eval_samples = []
+    for sample_targets, fold, sample_probabilities in zip(targets, task.folds, probabilities):
+        record = {key: sample_targets[key] for key in ("participant_id", "session_id", task.target)}
         record["fold"] = int(fold)
-        record["probabilities"] = dict(zip(task.classes, record_probabilities.tolist()))
+        record["probabilities"] = dict(zip(task.classes, sample_probabilities.tolist()))
+        eval_samples.append(record)
     return {
         "classes": task.classes,
         "n_samples": len(task.train_ids),
@@ -262,21 +273,19 @@ def probe_classification_kfold(
 def probe_segmentation_kfold(
     model: Model, task: Task, batch_size: int, num_workers: int
 ) -> dict[str, Any]:
-    samples = task.dataset.samples
     device = next(model.parameters()).device
-    participants = samples["participant_id"].iloc[task.train_ids].to_numpy()
-    n_folds = int(task.folds.max()) + 1
-
-    features, labels, groups = segmentation_patches(
+    features, labels, groups, samples = segmentation_embeddings(
         model, task, task.train_ids, batch_size, num_workers
     )
     features = features.to(device)
     labels = labels.to(device)
+    participants = np.array([sample["participant_id"] for sample in samples])
+    n_folds = int(task.folds.max()) + 1
 
     subject_metrics = {
-        "dice": np.zeros(len(task.train_ids)),
-        "voxel_auroc": np.zeros(len(task.train_ids)),
-        "average_precision": np.zeros(len(task.train_ids)),
+        "dice": np.zeros(len(samples)),
+        "voxel_auroc": np.zeros(len(samples)),
+        "average_precision": np.zeros(len(samples)),
     }
     fold_hyperparameters = {"alpha": [], "threshold": [], "cv_dice": []}
     for fold in range(n_folds):
@@ -300,10 +309,13 @@ def probe_segmentation_kfold(
         # best CV Dice over thresholds, per alpha
         fold_hyperparameters["cv_dice"].append(classifier.cv_dice_.max(dim=1).values.tolist())
 
-        predictions = segmentation_predictions(
-            model, task, task.train_ids[in_fold], classifier, batch_size, num_workers
-        )
-        for position, (probabilities, target, brain) in zip(np.flatnonzero(in_fold), predictions):
+        for position in np.flatnonzero(in_fold):
+            sample = samples[position]
+            probabilities = segmentation_probabilities(
+                classifier, features[sample["token_rows"]], sample, model.patch_size
+            )
+            target = sample[task.target].to(device)
+            brain = sample["brain_mask"].to(device)
             predicted = probabilities >= classifier.threshold_
             subject_metrics["dice"][position] = dice(predicted, target)
             # ranking metrics within the brain, where the background is not trivial
@@ -320,12 +332,13 @@ def probe_segmentation_kfold(
         metrics[name] = float(np.nanmean(values))
         metrics[f"{name}_ci"] = bootstrap_ci(np.nanmean, values, seed=SEED)
 
-    eval_samples = samples.iloc[task.train_ids][["participant_id", "session_id"]]
-    eval_samples = eval_samples.to_dict("records")
-    for ii, record in enumerate(eval_samples):
+    eval_samples = []
+    for ii, sample in enumerate(samples):
+        record = {key: sample[key] for key in ("participant_id", "session_id")}
         record["fold"] = int(task.folds[ii])
         for name, values in subject_metrics.items():
             record[name] = float(values[ii])
+        eval_samples.append(record)
     return {
         "label_values": task.label_values,
         "n_samples": len(task.train_ids),
@@ -384,21 +397,26 @@ def compute_embeddings(
 
 def global_embeddings(
     model: Model, task: Task, ids: np.ndarray, batch_size: int, num_workers: int
-) -> np.ndarray:
-    """(n, D) global embeddings."""
+) -> tuple[np.ndarray, list[dict[str, Any]]]:
+    """(n, D) global embeddings, and the targets of each sample."""
     embeddings = []
-    for output, _ in compute_embeddings(model, task, ids, batch_size, num_workers):
+    targets = []
+    for output, sample_targets in compute_embeddings(model, task, ids, batch_size, num_workers):
         embeddings.append(output["global_embedding"].cpu().numpy())
-    return np.stack(embeddings)
+        targets.append(sample_targets)
+    return np.stack(embeddings), targets
 
 
-def segmentation_patches(
+def segmentation_embeddings(
     model: Model, task: Task, ids: np.ndarray, batch_size: int, num_workers: int
-) -> tuple[Tensor, Tensor, np.ndarray]:
-    """Features of the tokens the model kept, their patch voxel labels, and their participants."""
+) -> tuple[Tensor, Tensor, np.ndarray, list[dict[str, Any]]]:
+    """Features of the tokens the model kept, their patch voxel labels and participants, and
+    each sample's targets with its `token_rows`, `dense_mask` and `dense_affine`."""
     all_features = []
     all_labels = []
     all_groups = []
+    samples = []
+    n_rows = 0
     px, py, pz = model.patch_size
     embeddings = compute_embeddings(model, task, ids, batch_size, num_workers, return_dense=True)
     for output, targets in embeddings:
@@ -417,43 +435,45 @@ def segmentation_patches(
             mask, "(x px) (y py) (z pz) -> x y z (px py pz)", px=px, py=py, pz=pz
         )
 
+        n_kept = int(kept.sum())
         all_features.append(dense[kept].half().cpu())  # (n_kept, D)
         all_labels.append(patch_labels[kept].cpu())  # (n_kept, n_patch_voxels)
-        all_groups.extend([targets["participant_id"]] * int(kept.sum()))
-    return torch.cat(all_features), torch.cat(all_labels), np.array(all_groups)
+        all_groups.extend([targets["participant_id"]] * n_kept)
+        # copies out of the loader's shared memory, which these would otherwise hold
+        targets[task.target] = targets[task.target].clone()
+        targets["brain_mask"] = targets["brain_mask"].clone()
+        targets["token_rows"] = slice(n_rows, n_rows + n_kept)
+        targets["dense_mask"] = kept.cpu()
+        targets["dense_affine"] = output["dense_affine"]
+        samples.append(targets)
+        n_rows += n_kept
+    return torch.cat(all_features), torch.cat(all_labels), np.array(all_groups), samples
 
 
-def segmentation_predictions(
-    model: Model,
-    task: Task,
-    ids: np.ndarray,
+def segmentation_probabilities(
     classifier: TorchLogisticRegressionCV,
-    batch_size: int,
-    num_workers: int,
-) -> Iterator[tuple[Tensor, Tensor, Tensor]]:
-    """Yield `(probabilities, target, brain mask)` on the label image grid for each sample."""
-    px, py, pz = model.patch_size
-    embeddings = compute_embeddings(model, task, ids, batch_size, num_workers, return_dense=True)
-    for output, targets in embeddings:
-        dense = output["dense_embedding"]  # (X, Y, Z, D)
-        grid_shape = dense.shape[:3]
-        logits = classifier.decision_function(dense.reshape(-1, dense.shape[-1]))
-        logits = logits.reshape(*grid_shape, -1)  # (X, Y, Z, n_patch_voxels)
-        if output["dense_mask"] is not None:
-            # dropped tokens predict background
-            logits[~output["dense_mask"].to(logits.device)] = BACKGROUND_LOGIT
-        logits = rearrange(logits, "x y z (px py pz) -> (x px) (y py) (z pz)", px=px, py=py, pz=pz)
+    features: Tensor,
+    sample: dict[str, Any],
+    patch_size: tuple[int, int, int],
+) -> Tensor:
+    """Probabilities on the label image grid of one sample, from its kept token features."""
+    px, py, pz = patch_size
+    kept = sample["dense_mask"].to(features.device)
+    n_patch_voxels = px * py * pz
+    # dropped tokens predict background
+    logits = torch.full(
+        (*kept.shape, n_patch_voxels), BACKGROUND_LOGIT, device=features.device
+    )  # (X, Y, Z, n_patch_voxels)
+    logits[kept] = classifier.decision_function(features)
+    logits = rearrange(logits, "x y z (px py pz) -> (x px) (y py) (z pz)", px=px, py=py, pz=pz)
 
-        target = targets[task.target].to(logits.device)
-        label_to_input = np.linalg.inv(output["dense_affine"]) @ targets["affine"]
-        # shifted so that voxels outside the model input grid get BACKGROUND_LOGIT
-        shifted = logits[None] - BACKGROUND_LOGIT
-        logits = resample(shifted, label_to_input, target.shape, "bilinear")[0]
-        logits = logits + BACKGROUND_LOGIT
-        probabilities = torch.sigmoid(logits)
-
-        brain = targets["brain_mask"].to(logits.device)
-        yield probabilities, target, brain
+    label_to_input = np.linalg.inv(sample["dense_affine"]) @ sample["affine"]
+    label_shape = sample["brain_mask"].shape
+    # shifted so that voxels outside the model input grid get BACKGROUND_LOGIT
+    shifted = logits[None] - BACKGROUND_LOGIT
+    logits = resample(shifted, label_to_input, label_shape, "bilinear")[0]
+    logits = logits + BACKGROUND_LOGIT
+    return torch.sigmoid(logits)
 
 
 def resample(volume: Tensor, matrix: np.ndarray, output_shape: tuple, mode: str) -> Tensor:
