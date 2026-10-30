@@ -45,6 +45,10 @@ neurovfm = [
 walnut = [
     "walnut-fomo26 @ https://github.com/MedARC-AI/walnut-fomo26/archive/173de005bf055390056aa609a3c58401ed0bdc11.tar.gz",
 ]
+amaes = ["dynamic-network-architectures==0.4.4"]
+openmind_simclr = ["dynamic-network-architectures==0.4.4"]
+nnfoundation_vit = ["dynamic-network-architectures==0.4.4", "timm"]
+voco = ["monai>=1.5"]  # VoCo needs the `downsample` class argument of SwinTransformer
 braindino = [
     "dinov3 @ git+https://github.com/facebookresearch/dinov3.git@6876159a11b4df116f30f667f8c9888617df0751",
     "gdown",
@@ -65,6 +69,8 @@ dev = [
 
 [tool.uv]
 python-preference = "only-managed"
+# dynamic-network-architectures pins timm<1.0.23 for a 3D RoPE bug; nnfoundation_vit works around it
+override-dependencies = ["timm"]
 
 [tool.ruff]
 line-length = 100
