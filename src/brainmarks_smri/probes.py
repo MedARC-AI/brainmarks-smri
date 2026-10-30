@@ -381,6 +381,9 @@ def compute_embeddings(
         batch_start = time.perf_counter()
         with torch.inference_mode():
             outputs = model.forward_embeddings(image_inputs, return_dense)
+        # GPU work is async; wait for it so that it counts as model time
+        if torch.cuda.is_available():
+            torch.cuda.synchronize()
         model_seconds += time.perf_counter() - batch_start
         n_done += len(batch)
         if (batch_id + 1) % log_every == 0 or batch_id + 1 == len(loader):
