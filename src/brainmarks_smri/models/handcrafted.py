@@ -1,24 +1,10 @@
 """Hand-crafted features: a shallow, untrained baseline.
 
-The recipe follows what coding agents built for our Harbor tasks: align to a template, normalize
-intensity, split the brain into three intensity classes, then measure intensity and tissue amounts
-in blocks at several scales.
-
-`transform` (CPU) resamples the image onto a 2 mm grid in MNI space with the full 12-DOF
-`mni_affine` and masks it with `brain_mask`. Without `mni_affine` the grid is RAS, 2 mm, centred
-on the brain; without `brain_mask` the brain is `data > data.mean()`. Intensity is divided by the
-brain median. A 3-class Gaussian mixture on brain intensities gives soft class maps (CSF, GM, WM on
-a T1w). These are scaled by the affine's volume change, so they measure tissue amount in the
-subject ("modulated", as in VBM).
-
-`forward_embeddings` computes the features on the model's device:
-- global: brain volume, mixture parameters, intensity histogram, and block means of intensity and
-  the class maps at 8, 16 and 32 mm. Only blocks at least half inside the MNI152 brain mask are
-  kept: blocks at the edge of the brain are rare and blow up when the probe standardizes them;
-- dense, per 8 mm patch: means of the four maps, intensity SD, the maps smoothed at 4, 8 and
-  16 mm, left-right differences, brain fraction at three scales, and the patch's position.
-
-The smoothing kernels are frozen parameters, so the model moves to a device like the others.
+Images are affinely aligned to MNI space at 2 mm and normalized by the brain median intensity. A
+3-class Gaussian mixture on brain intensities gives soft tissue maps (CSF, GM, WM on a T1w), scaled
+by the affine's volume change so they measure tissue amount in the subject, as in VBM. Features are
+block means of intensity and tissue amount at a few scales, plus a few whole-brain statistics
+(global), and local statistics per 8 mm patch (dense).
 """
 
 import os
@@ -43,11 +29,12 @@ MNI_MASK_URL = "https://templateflow.s3.amazonaws.com/tpl-MNI152NLin6Asym/tpl-MN
 VOXEL_SIZE = 2.0
 GRID_SIZE = (96, 112, 96)
 PATCH_SIZE = (4, 4, 4)
-GLOBAL_BLOCK_SIZES = (4, 8, 16)  # voxels: 8, 16 and 32 mm
+GLOBAL_BLOCK_SIZES = (8, 16)  # voxels: 16 and 32 mm
 SMOOTHING_SIGMAS = (2.0, 4.0, 8.0)  # voxels: 4, 8 and 16 mm
 HISTOGRAM_BINS = 32
 HISTOGRAM_MAX = 3.0  # in units of the brain median
 NUM_CLASSES = 3
+INITIAL_QUANTILES = (0.1, 0.5, 0.9)
 NUM_MAPS = 1 + NUM_CLASSES  # intensity and the class maps
 
 # Model input voxel -> MNI mm: 2 mm grid centred on (0, -18, 18), which covers the MNI152 brain.
@@ -73,18 +60,14 @@ class Handcrafted(nn.Module):
         """`support`: brain fraction of each voxel of the input grid, e.g. a template brain mask."""
         super().__init__()
         support = torch.as_tensor(support, dtype=torch.float32)[None, None]
-        self.embed_dim = NUM_SCALARS
+        # masks of valid blocks that contain brain data
+        kept_blocks = []
         for block in GLOBAL_BLOCK_SIZES:
             kept = F.avg_pool3d(support, block)[0, 0] >= 0.5
-            self.register_buffer(f"kept_blocks_{block}", kept)
-            self.embed_dim += NUM_MAPS * int(kept.sum())
-        kernels = []
-        for sigma in SMOOTHING_SIGMAS:
-            radius = int(3 * sigma)
-            offsets = torch.arange(-radius, radius + 1, dtype=torch.float32)
-            kernel = torch.exp(-0.5 * (offsets / sigma) ** 2)
-            kernels.append(nn.Parameter(kernel / kernel.sum(), requires_grad=False))
-        self.kernels = nn.ParameterList(kernels)
+            kept_blocks.append(nn.Parameter(kept, requires_grad=False))
+        self.kept_blocks = nn.ParameterList(kept_blocks)
+        self.embed_dim = NUM_SCALARS + NUM_MAPS * sum(int(kept.sum()) for kept in kept_blocks)
+        self.smoothing = nn.ModuleList(GaussianSmoothing(sigma) for sigma in SMOOTHING_SIGMAS)
         self.eval()
 
     @property
@@ -121,15 +104,16 @@ class Handcrafted(nn.Module):
         )
         brain = brain > 0.5
 
+        # intensity relative to the brain median, comparable across scanners
         volume = np.where(brain, volume / np.median(volume[brain]), 0.0)
         values = volume[brain]
 
-        initial_means = np.percentile(values, [10, 50, 90])[:, None]
-        mixture = GaussianMixture(NUM_CLASSES, means_init=initial_means, random_state=0)
-        probabilities = mixture.fit(values[:, None]).predict_proba(values[:, None])
-        order = np.argsort(mixture.means_[:, 0])
+        # tissue amount in the subject per grid voxel
+        probabilities, means, stds, weights = intensity_classes(
+            values, NUM_CLASSES, INITIAL_QUANTILES
+        )
         class_maps = np.zeros((NUM_CLASSES, *GRID_SIZE), dtype=np.float32)
-        class_maps[:, brain] = probabilities[:, order].T * volume_scale
+        class_maps[:, brain] = probabilities.T * volume_scale
 
         voxel_volume_ml = abs(np.linalg.det(image.affine[:3, :3])) / 1000
         brain_volume_ml = mask.sum() * voxel_volume_ml
@@ -139,15 +123,14 @@ class Handcrafted(nn.Module):
         scalars = np.concatenate(
             [
                 [brain_volume_ml / 1000, volume_scale],
-                mixture.means_[order, 0],
-                np.sqrt(mixture.covariances_[order].ravel()),
-                mixture.weights_[order],
-                mixture.weights_[order] * brain_volume_ml / 1000,
+                means,
+                stds,
+                weights,
+                weights * brain_volume_ml / 1000,
                 histogram,
             ]
         )
-        # float16 halves the copy out of the loader workers
-        maps = np.concatenate([volume[None], class_maps]).astype(np.float16)
+        maps = np.concatenate([volume[None], class_maps]).astype(np.float32)
         return {
             "maps": torch.from_numpy(maps),
             "brain": torch.from_numpy(brain),
@@ -160,12 +143,11 @@ class Handcrafted(nn.Module):
         self, samples: list[dict[str, Any]], return_dense: bool = False
     ) -> list[EmbeddingOutput]:
         device = self.device
-        maps = torch.stack([sample["maps"] for sample in samples]).to(device).float()  # (B, 4, ...)
+        maps = torch.stack([sample["maps"] for sample in samples]).to(device)  # (B, 4, X, Y, Z)
         brain = torch.stack([sample["brain"] for sample in samples]).to(device)[:, None].float()
 
         global_features = [torch.stack([sample["scalars"] for sample in samples]).to(device)]
-        for block in GLOBAL_BLOCK_SIZES:
-            kept = getattr(self, f"kept_blocks_{block}")
+        for block, kept in zip(GLOBAL_BLOCK_SIZES, self.kept_blocks):
             global_features.append(F.avg_pool3d(maps, block)[:, :, kept].flatten(1))
         global_features = torch.cat(global_features, dim=1)
 
@@ -195,22 +177,23 @@ class Handcrafted(nn.Module):
     def dense_features(self, maps: Tensor, brain: Tensor) -> tuple[Tensor, Tensor]:
         """(B, DENSE_DIM, X, Y, Z) features per patch, and the patch brain fraction (B, 1, X, Y, Z)."""
         patch = PATCH_SIZE[0]
+        # mean intensity and tissue composition per patch
         mean = F.avg_pool3d(maps, patch)
         intensity_mean = mean[:, :1]
         intensity_square = F.avg_pool3d(maps[:, :1] ** 2, patch)
         intensity_std = (intensity_square - intensity_mean**2).clamp_min(0).sqrt()
 
-        smoothed = [F.avg_pool3d(self.smooth(maps, kernel), patch) for kernel in self.kernels]
-        # left-right: the grid's first axis is MNI x, mirrored about the grid centre
+        # context around the patch at 4, 8 and 16 mm
+        smoothed = [F.avg_pool3d(smoothing(maps), patch) for smoothing in self.smoothing]
+        # difference from the mirror patch, e.g. for lesions
+        # the grid's first axis is MNI x, mirrored about the grid centre
         asymmetry = [mean - mean.flip(2), smoothed[1] - smoothed[1].flip(2)]
 
         brain_fraction = F.avg_pool3d(brain, patch)
-        # depth proxies: brain fraction around the patch
-        brain_smoothed = [
-            F.avg_pool3d(self.smooth(brain, kernel), patch) for kernel in self.kernels[1:]
-        ]
+        # smooth the brain mask as a way to estimate "depth", i.e. distance from boundary
+        brain_smoothed = [F.avg_pool3d(smoothing(brain), patch) for smoothing in self.smoothing[1:]]
 
-        # patch centre in [-1, 1] along each grid axis
+        # position of each patch in [-1, 1] along each grid axis
         axes = [torch.linspace(-1, 1, size // patch, device=maps.device) for size in GRID_SIZE]
         position = torch.stack(torch.meshgrid(*axes, indexing="ij"))
         position = position.expand(maps.shape[0], -1, -1, -1, -1)
@@ -221,18 +204,48 @@ class Handcrafted(nn.Module):
         )
         return features, brain_fraction
 
-    def smooth(self, volumes: Tensor, kernel: Tensor) -> Tensor:
-        """Gaussian smoothing of (B, C, X, Y, Z) volumes, one separable pass per axis."""
+
+class GaussianSmoothing(nn.Module):
+    """Gaussian smoothing of (B, C, X, Y, Z) volumes, one separable pass per axis, zero padded."""
+
+    def __init__(self, sigma: float):
+        super().__init__()
+        radius = int(3 * sigma)
+        offsets = torch.arange(-radius, radius + 1, dtype=torch.float32)
+        kernel = torch.exp(-0.5 * (offsets / sigma) ** 2)
+        self.kernel = nn.Parameter(kernel / kernel.sum(), requires_grad=False)
+
+    def forward(self, volumes: Tensor) -> Tensor:
         channels = volumes.shape[1]
-        radius = kernel.shape[0] // 2
+        size = self.kernel.shape[0]
         for axis in range(3):
             shape = [1, 1, 1]
-            shape[axis] = kernel.shape[0]
-            weight = kernel.reshape(1, 1, *shape).expand(channels, 1, *shape)
+            shape[axis] = size
+            weight = self.kernel.reshape(1, 1, *shape).expand(channels, 1, *shape)
             padding = [0, 0, 0]
-            padding[axis] = radius
+            padding[axis] = size // 2
             volumes = F.conv3d(volumes, weight, padding=padding, groups=channels)
         return volumes
+
+
+def intensity_classes(
+    values: np.ndarray,
+    num_classes: int = 3,
+    initial_quantiles: tuple[float, ...] = (0.1, 0.5, 0.9),
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
+    """Fit a Gaussian mixture to 1D intensities, e.g. the brain voxels of a T1w (CSF, GM, WM).
+
+    Returns the class probabilities of each value (N, K) and the class means, SDs and weights (K,),
+    with classes ordered dark to bright.
+    """
+    initial_means = np.quantile(values, initial_quantiles)[:, None]
+    mixture = GaussianMixture(num_classes, means_init=initial_means, random_state=0)
+    probabilities = mixture.fit(values[:, None]).predict_proba(values[:, None])
+    order = np.argsort(mixture.means_[:, 0])
+    means = mixture.means_[order, 0]
+    stds = np.sqrt(mixture.covariances_[order].ravel())
+    weights = mixture.weights_[order]
+    return probabilities[:, order], means, stds, weights
 
 
 @register_model

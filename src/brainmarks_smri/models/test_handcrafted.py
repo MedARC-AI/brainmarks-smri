@@ -26,9 +26,9 @@ def model() -> Handcrafted:
 
 def test_template_support():
     model = create_model("handcrafted")
-    kept = [int(model.get_buffer(f"kept_blocks_{block}").sum()) for block in (4, 8, 16)]
-    # the MNI152 brain is ~1.8 l: 3600 blocks of 8 mm, 432 of 16 mm and 56 of 32 mm
-    assert kept == [3600, 432, 56]
+    kept = [int(kept.sum()) for kept in model.kept_blocks]
+    # the MNI152 brain is ~1.8 l: 432 blocks of 16 mm and 56 of 32 mm
+    assert kept == [432, 56]
     assert model.embed_dim == NUM_SCALARS + 4 * sum(kept)
 
 
@@ -93,7 +93,7 @@ def test_class_maps(model: Handcrafted, scale: float):
 
     # brain median is 1; the class maps are modulated by the volume change
     assert np.median(intensity[brain]) == pytest.approx(1.0)
-    np.testing.assert_allclose(class_maps.sum(0)[brain], 1 / scale**3, rtol=1e-3)  # float16
+    np.testing.assert_allclose(class_maps.sum(0)[brain], 1 / scale**3, rtol=1e-4)
     assert (class_maps[:, ~brain] == 0).all()
     # classes are ordered dark to bright and follow the shells
     labels = class_maps.argmax(0)[brain]
@@ -118,8 +118,8 @@ def test_forward_embeddings(model: Handcrafted):
         assert output["dense_embedding"][~dense_mask].eq(0).all()
         assert torch.isfinite(output["dense_embedding"]).all()
 
-        # the first block features are 8 mm block means of the intensity map
-        blocks = sample["maps"][0].float().reshape(24, 4, 28, 4, 24, 4).mean((1, 3, 5))
+        # the first block features are 16 mm block means of the intensity map
+        blocks = sample["maps"][0].reshape(12, 8, 14, 8, 12, 8).mean((1, 3, 5))
         torch.testing.assert_close(
             output["global_embedding"][NUM_SCALARS : NUM_SCALARS + blocks.numel()],
             blocks.flatten(),
@@ -136,7 +136,7 @@ def test_forward_embeddings(model: Handcrafted):
 
 def test_smooth_matches_scipy(model: Handcrafted):
     volume = np.random.default_rng(0).normal(size=(40, 44, 36)).astype(np.float32)
-    for kernel, sigma in zip(model.kernels, SMOOTHING_SIGMAS):
-        smoothed = model.smooth(torch.from_numpy(volume)[None, None], kernel)[0, 0].numpy()
+    for smoothing, sigma in zip(model.smoothing, SMOOTHING_SIGMAS):
+        smoothed = smoothing(torch.from_numpy(volume)[None, None])[0, 0].numpy()
         expected = ndimage.gaussian_filter(volume, sigma, mode="constant", truncate=3.0)
         np.testing.assert_allclose(smoothed, expected, atol=1e-3)
