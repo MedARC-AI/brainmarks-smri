@@ -106,6 +106,9 @@ def kfold_ids(
     else:
         splitter = StratifiedKFold(N_FOLDS, shuffle=True, random_state=FOLD_SEED)
         labels = samples.loc[ids, stratify_by].to_numpy()
+        # e.g. bools from a column with NaN, which sklearn can't stratify on
+        if labels.dtype == object:
+            labels = labels.astype(str)
     folds = np.zeros(len(ids), dtype=int)
     for fold, (_, fold_ids) in enumerate(splitter.split(ids, labels)):
         folds[fold_ids] = fold
@@ -150,6 +153,27 @@ def cnp_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) ->
 
 
 @register_task
+def cnp_diagnosis_kfold(max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("cnp", modality="T1w")
+    samples = dataset.samples
+    samples["diagnosis_3way"] = samples["diagnosis"].replace(
+        {"SCHZ": "SCHZ+BIPOLAR", "BIPOLAR": "SCHZ+BIPOLAR"}
+    )
+    samples["split"] = "train"
+    keep = samples["diagnosis_3way"].notna()
+    ids, folds = kfold_ids(samples, keep, "diagnosis_3way", max_per_split)
+    return Task(
+        name="cnp_diagnosis_kfold",
+        type="classification_kfold",
+        dataset=dataset,
+        target="diagnosis_3way",
+        train_ids=ids,
+        folds=folds,
+        classes=["CONTROL", "ADHD", "SCHZ+BIPOLAR"],
+    )
+
+
+@register_task
 def adhd_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("adhd200", modality="T1w")
     samples = dataset.samples
@@ -171,6 +195,31 @@ def adhd_diagnosis(eval_split: str = "val", max_per_split: MaxPerSplit = None) -
         target="adhd",
         train_ids=train_ids,
         eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def adhd_diagnosis_kfold(max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("adhd200", modality="T1w")
+    samples = dataset.samples
+    samples["split"] = "train"
+    # equal numbers of ADHD and TDC per site and sex, as in adhd_diagnosis
+    keep = pd.Series(False, index=samples.index)
+    labeled = samples[samples["adhd"].notna()]
+    for _, stratum in labeled.groupby(["site", "sex"]):
+        class_counts = stratum["adhd"].value_counts()
+        n_per_class = 0 if len(class_counts) < 2 else class_counts.min()
+        for _, rows in stratum.groupby("adhd"):
+            keep[rows.nsmallest(n_per_class, "rank").index] = True
+    ids, folds = kfold_ids(samples, keep, "adhd", max_per_split)
+    return Task(
+        name="adhd_diagnosis_kfold",
+        type="classification_kfold",
+        dataset=dataset,
+        target="adhd",
+        train_ids=ids,
+        folds=folds,
         classes=[False, True],
     )
 
@@ -263,6 +312,25 @@ def ucsf_idh(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task
 
 
 @register_task
+def ucsf_idh_kfold(max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("ucsf_pdgm", modality="FLAIR")
+    samples = dataset.samples
+    samples["split"] = "train"
+    # one scan per person; a few have follow-ups
+    keep = (samples["session_id"] == "baseline") & samples["idh"].notna()
+    ids, folds = kfold_ids(samples, keep, "idh", max_per_split)
+    return Task(
+        name="ucsf_idh_kfold",
+        type="classification_kfold",
+        dataset=dataset,
+        target="idh",
+        train_ids=ids,
+        folds=folds,
+        classes=["wildtype", "mutant"],
+    )
+
+
+@register_task
 def upenn_survival_1y(eval_split: str = "val", max_per_split: MaxPerSplit = None) -> Task:
     dataset = create_dataset("upenn_gbm", modality="FLAIR")
     samples = dataset.samples
@@ -280,6 +348,27 @@ def upenn_survival_1y(eval_split: str = "val", max_per_split: MaxPerSplit = None
         target="death_1y",
         train_ids=train_ids,
         eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def upenn_survival_1y_kfold(max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("upenn_gbm", modality="FLAIR")
+    samples = dataset.samples
+    died_in_1y = (samples["os_event"] == 1) & (samples["os_days"] <= 365)
+    known = died_in_1y | (samples["os_days"] > 365)
+    samples["death_1y"] = died_in_1y.where(known)
+    samples["split"] = "train"
+    keep = (samples["session_id"] == "baseline") & known
+    ids, folds = kfold_ids(samples, keep, "death_1y", max_per_split)
+    return Task(
+        name="upenn_survival_1y_kfold",
+        type="classification_kfold",
+        dataset=dataset,
+        target="death_1y",
+        train_ids=ids,
+        folds=folds,
         classes=[False, True],
     )
 
@@ -350,6 +439,26 @@ def oasis1_dementia(eval_split: str = "val", max_per_split: MaxPerSplit = None) 
         target="dementia",
         train_ids=train_ids,
         eval_ids=eval_ids,
+        classes=[False, True],
+    )
+
+
+@register_task
+def oasis1_dementia_kfold(max_per_split: MaxPerSplit = None) -> Task:
+    dataset = create_dataset("oasis1", modality="T1w")
+    samples = dataset.samples
+    samples["dementia"] = (samples["cdr"] > 0).where(samples["cdr"].notna())
+    # all splits pooled, as in the OASIS-2 tasks
+    samples["split"] = "train"
+    keep = (samples["session_id"] == "MR1") & samples["cdr"].notna()
+    ids, folds = kfold_ids(samples, keep, "dementia", max_per_split)
+    return Task(
+        name="oasis1_dementia_kfold",
+        type="classification_kfold",
+        dataset=dataset,
+        target="dementia",
+        train_ids=ids,
+        folds=folds,
         classes=[False, True],
     )
 
