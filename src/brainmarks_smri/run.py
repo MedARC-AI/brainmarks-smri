@@ -1,6 +1,6 @@
-"""Run one model on benchmark tasks; writes `<output_dir>/<name>/<task>.json` per task.
+"""Run one model on benchmark tasks; writes `<output_dir>/<name>/<task>.json`.
 
-python -m brainmarks_smri neurojepa abide_diagnosis ixi_age --overrides max_per_split=50
+python -m brainmarks_smri neurojepa abide_diagnosis ixi_age --overrides num_workers=8
 """
 
 import argparse
@@ -8,6 +8,7 @@ import datetime
 import importlib
 import json
 import logging
+import os
 import sys
 import time
 from importlib import resources
@@ -28,8 +29,6 @@ PROBES = {
     "classification": probes.probe_classification,
     "regression": probes.probe_regression,
     "segmentation": probes.probe_segmentation,
-    "classification_kfold": probes.probe_classification_kfold,
-    "segmentation_kfold": probes.probe_segmentation_kfold,
 }
 
 logger = logging.getLogger("brainmarks_smri")
@@ -42,7 +41,7 @@ def main():
     parser.add_argument("model")
     parser.add_argument("tasks", nargs="+", choices=list_tasks(), metavar="task")
     parser.add_argument("--config", type=Path, help="yaml merged over the default config")
-    parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. max_per_split=50")
+    parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. num_workers=8")
     args = parser.parse_args()
 
     cfg = OmegaConf.load(DEFAULT_CONFIG)
@@ -54,6 +53,7 @@ def main():
     setup_logging(logging.getLogger())
 
     name = cfg.name or args.model
+    subset = "test" if os.environ.get("BRAINMARKS_SMRI_TEST_SUBSET") == "1" else "dev"
     tasks = []
     for task_name in args.tasks:
         path = Path(cfg.output_dir) / name / f"{task_name}.json"
@@ -63,7 +63,7 @@ def main():
             tasks.append(task_name)
     if not tasks:
         return
-    logger.info(f"evaluating {args.model} on {', '.join(tasks)}")
+    logger.info(f"evaluating {args.model} on {', '.join(tasks)} ({subset})")
     logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
     logger.info(f"cwd: {Path.cwd()}")
     logger.info(f"git: {git_info()}")
@@ -81,7 +81,7 @@ def main():
     failed = []
     for task_name in tasks:
         try:
-            run_task(model, args.model, name, task_name, cfg)
+            run_task(model, args.model, name, task_name, subset, cfg)
         except Exception:
             logger.exception(f"{name} {task_name} failed")
             failed.append(task_name)
@@ -90,10 +90,17 @@ def main():
         sys.exit(1)
 
 
-def run_task(model: Model, model_name: str, name: str, task_name: str, cfg: DictConfig) -> None:
+def run_task(
+    model: Model,
+    model_name: str,
+    name: str,
+    task_name: str,
+    subset: str,
+    cfg: DictConfig,
+) -> None:
     logger.info(f"evaluating {model_name} on {task_name}")
     random_seed(cfg.seed)
-    task = create_task(task_name, max_per_split=cfg.max_per_split)
+    task = create_task(task_name, subset=subset)
     model_transform = getattr(model, "transform", None)
     if task.transform is None:
         task.dataset.transform = model_transform
@@ -107,6 +114,7 @@ def run_task(model: Model, model_name: str, name: str, task_name: str, cfg: Dict
         "model": model_name,
         "name": name,
         "task": task_name,
+        "subset": subset,
         "type": task.type,
         "dataset": task.dataset.name,
         "config": OmegaConf.to_container(cfg),

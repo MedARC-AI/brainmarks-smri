@@ -13,7 +13,7 @@ Each baseline model is an optional extra: `brainiac`, `braindino`, `neurojepa`, 
 
 ## Data
 
-The benchmark uses public datasets. We add standard metadata tables and fixed train/val/test splits to each one. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
+The benchmark uses public datasets. We add standard metadata tables and a fixed 50/50 dev/test subset split. Every image also has a brain mask and an affine to MNI space. The dataset card, [`README_hf.md`](README_hf.md), lists the datasets and their licenses.
 
 - **Hosted**: nine datasets are hosted at [medarc/brainmarks-smri](https://huggingface.co/datasets/medarc/brainmarks-smri). The repo is gated, so accept its terms and log in with `hf auth login` first. Then set `BRAINMARKS_SMRI_DATA=hf://datasets/medarc/brainmarks-smri`, and each dataset is downloaded to a local cache when a run first needs it. You can also download the repo yourself and set `BRAINMARKS_SMRI_DATA` to its folder.
 - **Manual**: you build ADNI, A4/LEARN, ATLAS, OASIS-1, OASIS-2 and FOMO26 Tasks 4 and 5 yourself in your local `BRAINMARKS_SMRI_DATA` folder (default `datasets/`), because their licenses don't allow redistribution. Each one's README explains how to get access.
@@ -35,19 +35,7 @@ The hub also has [FOMO300K](scripts/fomo300k/README.md) for pretraining, without
 uv run --all-extras python -m brainmarks_smri neurojepa ixi_age abide_diagnosis
 ```
 
-Each run evaluates one model on the given tasks. The results go to `output/<model>/<task>.json`, one file per task. Tasks with a results file are skipped. This file has the metrics with bootstrap confidence intervals, and the prediction for each sample. Default settings are in [`config/default.yaml`](src/brainmarks_smri/config/default.yaml). You can change them on the command line, e.g. `--overrides max_per_split=50`.
-
-| Type | Tasks | Probe | Metric |
-|---|---|---|---|
-| classification | ABIDE autism, ADHD-200, CNP diagnosis, UCSF IDH, UPENN 1-year survival, SOOP mRS, OASIS-1 dementia | logistic regression | AUROC |
-| regression | IXI age, OpenBHB age | ridge | R² |
-| segmentation | BraTS tumor regions (3), SOOP stroke lesion, ATLAS stroke lesion | patch-level logistic regression | Dice |
-| classification, k-fold | OASIS-2 dementia, OASIS-2 conversion, FOMO26 polymicrogyria | logistic regression | AUROC |
-| segmentation, k-fold | FOMO26 trigeminal nerve, FOMO26 vessels | patch-level logistic regression | AP |
-
-Probe hyperparameters are tuned by cross-validation on the train split. Scores are reported on the val split. By default, each split is capped at 300 samples.
-
-The small datasets have no val split. Their tasks use 5-fold cross-validation, and the pooled out-of-fold predictions are scored once.
+The results go to `output/<model>/<task>.json`. This file has the metrics with bootstrap confidence intervals, and the prediction for each sample. Default settings are in [`config/default.yaml`](src/brainmarks_smri/config/default.yaml). You can change them on the command line, e.g. `--overrides num_workers=8`.
 
 ## Add a model
 
