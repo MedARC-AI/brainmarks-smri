@@ -32,6 +32,7 @@ REPO_ID = "MIC-DKFZ/nnFoundationViT"
 REVISION = "c691f2115140458ec64017712eb8ebbc8dde6ae4"
 CHECKPOINT = "checkpoint_final.pth"
 IMG_SIZE = (192, 192, 192)
+SPACING = 1.0
 PATCH_SIZE = (8, 8, 8)
 EMBED_DIM = 1056
 DEPTH = 40
@@ -86,54 +87,49 @@ class NNFoundationViT(nn.Module):
         image: nib.Nifti1Image = sample["image"]
         image = nib.funcs.squeeze_image(nib.Nifti1Image(image.dataobj, image.affine, image.header))
         data = np.nan_to_num(image.get_fdata(dtype=np.float32))
+
+        # brain centre in world mm
         mask = sample.get("brain_mask")
         if mask is None:
             mask = data > data.mean()
         else:
             mask = np.asarray(mask.dataobj).reshape(data.shape) > 0
         centre = apply_affine(image.affine, ndimage.center_of_mass(mask))
-        input_affine = self.input_affine(image, centre)
 
         # as nnssl: crop to the nonzero bounding box, z-score over it
         nonzero = data != 0
-        lower = []
-        upper = []
+        nonzero_box = []
         for axis in range(3):
             other_axes = tuple(other for other in range(3) if other != axis)
             present = np.flatnonzero(nonzero.any(other_axes))
-            lower.append(present[0])
-            upper.append(present[-1] + 1)
-        lower = np.array(lower)
-        data = data[tuple(slice(start, stop) for start, stop in zip(lower, upper))]
-        data = (data - data.mean()) / max(data.std(), 1e-8)
+            nonzero_box.append(slice(present[0], present[-1] + 1))
+        nonzero_box = tuple(nonzero_box)
+        box = data[nonzero_box]
+        box = (box - box.mean()) / max(box.std(), 1e-8)
 
-        # model input voxel -> cropped image voxel
+        # RAS axes of the image (keeps any obliquity) at SPACING mm, centred on the brain
+        directions = np.zeros((3, 3))
+        for image_axis, (ras_axis, flip) in enumerate(nib.io_orientation(image.affine)):
+            column = image.affine[:3, image_axis]
+            directions[:, int(ras_axis)] = flip * column / np.linalg.norm(column)
+        input_affine = np.eye(4)
+        input_affine[:3, :3] = directions * SPACING
+        input_affine[:3, 3] = centre - input_affine[:3, :3] @ ((np.array(self.img_size) - 1) / 2)
+        # snap the grid to image voxels, so that 1 mm images are not interpolated
+        start_voxel = np.round(apply_affine(np.linalg.inv(image.affine), input_affine[:3, 3]))
+        input_affine[:3, 3] = apply_affine(image.affine, start_voxel)
+
+        # model input voxel -> image voxel, then -> box voxel
         sampling_affine = np.linalg.inv(image.affine) @ input_affine
-        sampling_affine[:3, 3] -= lower
+        sampling_affine[:3, 3] -= [axis_box.start for axis_box in nonzero_box]
         volume = ndimage.affine_transform(
-            data,
+            box,
             sampling_affine[:3, :3],
             sampling_affine[:3, 3],
             output_shape=self.img_size,
             order=1,
-            cval=0.0,
         )
         return {"volume": torch.from_numpy(volume.astype(np.float32)), "input_affine": input_affine}
-
-    def input_affine(self, image: nib.Nifti1Image, centre: np.ndarray) -> np.ndarray:
-        """Model input voxel -> image world mm: a 1 mm RAS grid centred on `centre`, snapped to the
-        image voxels."""
-        affine = image.affine
-        zooms = np.array(image.header.get_zooms()[:3])
-        directions = np.zeros((3, 3))
-        for image_axis, (ras_axis, flip) in enumerate(nib.io_orientation(affine)):
-            directions[:, int(ras_axis)] = flip * affine[:3, image_axis] / zooms[image_axis]
-        start = centre - directions @ ((np.array(self.img_size) - 1) / 2)
-        start_voxel = np.round(apply_affine(np.linalg.inv(affine), start))
-        input_affine = np.eye(4)
-        input_affine[:3, :3] = directions
-        input_affine[:3, 3] = apply_affine(affine, start_voxel)
-        return input_affine
 
     @torch.inference_mode()
     def forward_embeddings(
@@ -142,8 +138,7 @@ class NNFoundationViT(nn.Module):
         outputs = []
         for chunk_start in range(0, len(samples), self.max_batch_size):
             chunk = samples[chunk_start : chunk_start + self.max_batch_size]
-            volumes = torch.stack([sample["volume"] for sample in chunk])
-            volumes = volumes.to(self.device)[:, None]  # (B, 1, 192, 192, 192)
+            volumes = torch.stack([sample["volume"] for sample in chunk])[:, None].to(self.device)
             with torch.autocast(
                 self.device.type, dtype=torch.bfloat16, enabled=self.device.type == "cuda"
             ):
@@ -167,14 +162,14 @@ class NNFoundationViT(nn.Module):
 
 
 @register_model
-def nnfoundation_vit(revision: str = REVISION, max_batch_size: int = 8) -> NNFoundationViT:
+def nnfoundation_vit(
+    checkpoint: str = CHECKPOINT, revision: str = REVISION, max_batch_size: int = 8
+) -> NNFoundationViT:
     """Load the MAE encoder from the HF hub (public)."""
-    path = hf_hub_download(REPO_ID, CHECKPOINT, revision=revision)
-    checkpoint = torch.load(path, map_location="cpu", weights_only=True, mmap=True)
+    path = hf_hub_download(REPO_ID, checkpoint, revision=revision)
+    state = torch.load(path, map_location="cpu", weights_only=True, mmap=True)["network_weights"]
     state = {
-        key: value
-        for key, value in checkpoint["network_weights"].items()
-        if key.startswith(("down_projection.", "eva."))
+        key: value for key, value in state.items() if key.startswith(("down_projection.", "eva."))
     }
     model = NNFoundationViT(max_batch_size=max_batch_size)
     model.load_state_dict(state)

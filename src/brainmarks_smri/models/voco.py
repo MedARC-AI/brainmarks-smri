@@ -25,6 +25,7 @@ import torch.nn.functional as F
 from huggingface_hub import hf_hub_download
 from monai.networks.blocks import UnetrBasicBlock
 from monai.networks.nets.swin_unetr import PatchMergingV2, SwinTransformer
+from nibabel.affines import apply_affine
 from scipy import ndimage
 from torch import Tensor
 
@@ -132,45 +133,44 @@ class VoCo(nn.Module):
         image = nib.funcs.squeeze_image(nib.Nifti1Image(image.dataobj, image.affine, image.header))
         data = np.nan_to_num(image.get_fdata(dtype=np.float32))
 
+        # brain centre in world mm
         mask = sample.get("brain_mask")
         if mask is None:
             mask = data > data.mean()
         else:
             mask = np.asarray(mask.dataobj).reshape(data.shape) > 0
-        centre_voxel = np.argwhere(mask).mean(0)
-        centre_world = image.affine[:3, :3] @ centre_voxel + image.affine[:3, 3]
+        centre = apply_affine(image.affine, ndimage.center_of_mass(mask))
 
-        # RAS axes as in MONAI's Orientation (keeps any obliquity), at 1.5 mm, centred on the brain
-        canonical_affine = nib.as_closest_canonical(image).affine
-        directions = canonical_affine[:3, :3] / np.linalg.norm(canonical_affine[:3, :3], axis=0)
+        # RAS axes of the image (keeps any obliquity) at SPACING mm, centred on the brain
+        directions = np.zeros((3, 3))
+        for image_axis, (ras_axis, flip) in enumerate(nib.io_orientation(image.affine)):
+            column = image.affine[:3, image_axis]
+            directions[:, int(ras_axis)] = flip * column / np.linalg.norm(column)
         input_affine = np.eye(4)
         input_affine[:3, :3] = directions * SPACING
-        grid_centre = (np.array(IMG_SIZE) - 1) / 2
-        input_affine[:3, 3] = centre_world - input_affine[:3, :3] @ grid_centre
+        input_affine[:3, 3] = centre - input_affine[:3, :3] @ ((np.array(IMG_SIZE) - 1) / 2)
 
-        input_to_image = np.linalg.inv(image.affine) @ input_affine
+        # model input voxel -> image voxel
+        sampling_affine = np.linalg.inv(image.affine) @ input_affine
         volume = ndimage.affine_transform(
-            data, input_to_image, output_shape=IMG_SIZE, order=1, mode="constant", cval=0.0
+            data, sampling_affine[:3, :3], sampling_affine[:3, 3], output_shape=IMG_SIZE, order=1
         )
+
+        # as Neuro-JEPA: percentiles of the image to [0, 1], clipped
         lower, upper = np.percentile(data, INTENSITY_PERCENTILES)
         volume = (np.clip(volume, lower, upper) - lower) / max(upper - lower, 1e-6)
-        return {
-            "volume": torch.from_numpy(volume.astype(np.float32)),
-            "input_affine": input_affine,
-        }
+        return {"volume": torch.from_numpy(volume.astype(np.float32)), "input_affine": input_affine}
 
     @torch.inference_mode()
     def forward_embeddings(
         self, samples: list[dict[str, Any]], return_dense: bool = False
     ) -> list[EmbeddingOutput]:
-        volumes = torch.stack([sample["volume"] for sample in samples])[:, None]
-        volumes = volumes.to(self.device)  # (B, 1, 128, 128, 128)
+        volumes = torch.stack([sample["volume"] for sample in samples])[:, None].to(self.device)
         with torch.autocast(
             self.device.type, dtype=torch.bfloat16, enabled=self.device.type == "cuda"
         ):
-            stages = self.encoder(volumes)
-        stages = [stage.float() for stage in stages]
-        global_embeddings = torch.cat([stage.mean((2, 3, 4)) for stage in stages], dim=1)
+            stages = self.encoder(volumes)  # (B, C, X, Y, Z) per stage
+        global_embeddings = torch.cat([stage.float().mean((2, 3, 4)) for stage in stages], dim=1)
 
         outputs = []
         for index, sample in enumerate(samples):
@@ -181,7 +181,8 @@ class VoCo(nn.Module):
                 dense_mask=None,
             )
             if return_dense:
-                output["dense_embedding"] = stages[self.dense_stage][index].permute(1, 2, 3, 0)
+                dense = stages[self.dense_stage][index].float()
+                output["dense_embedding"] = dense.permute(1, 2, 3, 0)
                 output["dense_affine"] = sample["input_affine"]
             outputs.append(output)
         return outputs

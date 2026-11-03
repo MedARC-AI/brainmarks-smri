@@ -17,6 +17,7 @@ import platformdirs
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from nibabel.affines import apply_affine
 from scipy import ndimage
 from scipy.special import softmax
 from torch import Tensor
@@ -54,7 +55,6 @@ DENSE_DIM = NUM_MAPS + 1 + NUM_MAPS * len(SMOOTHING_SIGMAS) + 2 * NUM_MAPS + 3 +
 
 class Handcrafted(nn.Module):
     name = "handcrafted"
-    dense_dim = DENSE_DIM
     patch_size = PATCH_SIZE
 
     def __init__(self, support: np.ndarray):
@@ -88,7 +88,7 @@ class Handcrafted(nn.Module):
         mni_affine = sample.get("mni_affine")
         if mni_affine is None:
             # RAS, centred on the brain
-            centre = nib.affines.apply_affine(image.affine, np.argwhere(mask).mean(0))
+            centre = apply_affine(image.affine, ndimage.center_of_mass(mask))
             input_affine = np.diag([VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE, 1.0])
             input_affine[:3, 3] = centre - VOXEL_SIZE * (np.array(GRID_SIZE) - 1) / 2
             volume_scale = 1.0

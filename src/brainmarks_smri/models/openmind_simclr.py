@@ -20,6 +20,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from dynamic_network_architectures.building_blocks.residual_encoders import ResidualEncoder
 from huggingface_hub import hf_hub_download
+from nibabel.affines import apply_affine
 from scipy import ndimage
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
@@ -28,8 +29,29 @@ REPO_ID = "MIC-DKFZ/ResEncL-OpenMind-SimCLR"
 REVISION = "f82b7420d77d558ae9a9d44ed8aa63da3d8c69ff"
 CHECKPOINT = "checkpoint_final.pth"
 IMG_SIZE = (160, 160, 160)
+SPACING = 1.0
 STAGE_CHANNELS = (32, 64, 128, 256, 320, 320)
 STAGE_STRIDES = (1, 2, 4, 8, 16, 32)
+
+
+def resenc_l_encoder(n_blocks_per_stage: tuple[int, ...] = (1, 3, 4, 6, 6, 6)) -> ResidualEncoder:
+    """The encoder of nnssl's `get_res_enc_l`, returning all 6 stage outputs."""
+    n_stages = len(STAGE_CHANNELS)
+    return ResidualEncoder(
+        input_channels=1,
+        n_stages=n_stages,
+        features_per_stage=list(STAGE_CHANNELS),
+        conv_op=nn.Conv3d,
+        kernel_sizes=[[3, 3, 3]] * n_stages,
+        strides=[[1, 1, 1]] + [[2, 2, 2]] * (n_stages - 1),
+        n_blocks_per_stage=list(n_blocks_per_stage),
+        conv_bias=True,
+        norm_op=nn.InstanceNorm3d,
+        norm_op_kwargs={"eps": 1e-5, "affine": True},
+        nonlin=nn.LeakyReLU,
+        nonlin_kwargs={"inplace": True},
+        return_skips=True,
+    )
 
 
 class OpenMindSimCLR(nn.Module):
@@ -40,7 +62,6 @@ class OpenMindSimCLR(nn.Module):
         super().__init__()
         self.encoder = encoder
         self.dense_stage = dense_stage
-        self.dense_dim = STAGE_CHANNELS[dense_stage]
         self.patch_size = (STAGE_STRIDES[dense_stage],) * 3
         self.requires_grad_(False)
         self.eval()
@@ -60,7 +81,7 @@ class OpenMindSimCLR(nn.Module):
             mask = data > data.mean()
         else:
             mask = np.asarray(mask.dataobj).reshape(data.shape) > 0
-        centre_world = nib.affines.apply_affine(image.affine, ndimage.center_of_mass(mask))
+        centre = apply_affine(image.affine, ndimage.center_of_mass(mask))
 
         # as nnssl: z-score over the nonzero bounding box, before resampling; zeros outside
         nonzero = data != 0
@@ -73,37 +94,36 @@ class OpenMindSimCLR(nn.Module):
         box = data[nonzero_box]
         data[nonzero_box] = (box - box.mean()) / max(box.std(), 1e-8)
 
-        # RAS, then 1 mm; interpolate maps output voxel i to input (i + 0.5) / scale - 0.5
+        # RAS at SPACING mm; output voxel i samples input voxel (i + 0.5) / scale - 0.5
         canonical = nib.as_closest_canonical(nib.Nifti1Image(data, image.affine))
-        spacing = np.array(canonical.header.get_zooms()[:3], dtype=np.float64)
+        scale = np.array(canonical.header.get_zooms()[:3], dtype=np.float64) / SPACING
         volume = torch.from_numpy(np.ascontiguousarray(canonical.dataobj, dtype=np.float32))
         volume = F.interpolate(
             volume[None, None],
-            scale_factor=tuple(spacing),
+            scale_factor=tuple(scale),
             mode="trilinear",
             align_corners=False,
             recompute_scale_factor=False,
         )[0, 0]
-        step = np.diag([*(1 / spacing), 1.0])
-        step[:3, 3] = 0.5 / spacing - 0.5
-        resampled_affine = canonical.affine @ step
+        resampled_to_canonical = np.diag([*(1 / scale), 1.0])
+        resampled_to_canonical[:3, 3] = 0.5 / scale - 0.5
+        resampled_affine = canonical.affine @ resampled_to_canonical
 
         # crop / zero pad to IMG_SIZE around the brain centre
-        centre_voxel = nib.affines.apply_affine(np.linalg.inv(resampled_affine), centre_world)
+        centre_voxel = apply_affine(np.linalg.inv(resampled_affine), centre)
         start = np.round(centre_voxel - (np.array(IMG_SIZE) - 1) / 2).astype(int)
         crop = torch.zeros(IMG_SIZE)
         source = []
         target = []
         for axis in range(3):
             low = max(start[axis], 0)
-            high = min(start[axis] + IMG_SIZE[axis], volume.shape[axis])
+            high = max(min(start[axis] + IMG_SIZE[axis], volume.shape[axis]), low)
             source.append(slice(low, high))
             target.append(slice(low - start[axis], high - start[axis]))
         crop[tuple(target)] = volume[tuple(source)]
-
-        shift = np.eye(4)
-        shift[:3, 3] = start
-        return {"volume": crop, "input_affine": resampled_affine @ shift}
+        crop_to_resampled = np.eye(4)
+        crop_to_resampled[:3, 3] = start
+        return {"volume": crop, "input_affine": resampled_affine @ crop_to_resampled}
 
     @torch.inference_mode()
     def forward_embeddings(
@@ -113,8 +133,8 @@ class OpenMindSimCLR(nn.Module):
         with torch.autocast(
             self.device.type, dtype=torch.bfloat16, enabled=self.device.type == "cuda"
         ):
-            stage_outputs = self.encoder(volumes)  # list of (B, C, X, Y, Z)
-        global_embeddings = torch.cat([stage.float().mean((2, 3, 4)) for stage in stage_outputs], 1)
+            stages = self.encoder(volumes)  # (B, C, X, Y, Z) per stage
+        global_embeddings = torch.cat([stage.float().mean((2, 3, 4)) for stage in stages], dim=1)
 
         outputs = []
         for index, sample in enumerate(samples):
@@ -125,7 +145,7 @@ class OpenMindSimCLR(nn.Module):
                 dense_mask=None,
             )
             if return_dense:
-                dense = stage_outputs[self.dense_stage][index].float()
+                dense = stages[self.dense_stage][index].float()
                 output["dense_embedding"] = dense.permute(1, 2, 3, 0)
                 output["dense_affine"] = sample["input_affine"]
             outputs.append(output)
@@ -144,26 +164,6 @@ def openmind_simclr(
         for key, value in state.items()
         if key.startswith("encoder.")
     }
-    encoder = res_enc_l()
+    encoder = resenc_l_encoder()
     encoder.load_state_dict(state)
     return OpenMindSimCLR(encoder, dense_stage=dense_stage)
-
-
-def res_enc_l(n_blocks_per_stage: tuple[int, ...] = (1, 3, 4, 6, 6, 6)) -> ResidualEncoder:
-    """The encoder of nnssl's `get_res_enc_l`, returning all 6 stage outputs."""
-    n_stages = len(STAGE_CHANNELS)
-    return ResidualEncoder(
-        input_channels=1,
-        n_stages=n_stages,
-        features_per_stage=list(STAGE_CHANNELS),
-        conv_op=nn.Conv3d,
-        kernel_sizes=[[3, 3, 3]] * n_stages,
-        strides=[[1, 1, 1]] + [[2, 2, 2]] * (n_stages - 1),
-        n_blocks_per_stage=list(n_blocks_per_stage),
-        conv_bias=True,
-        norm_op=nn.InstanceNorm3d,
-        norm_op_kwargs={"eps": 1e-5, "affine": True},
-        nonlin=nn.LeakyReLU,
-        nonlin_kwargs={"inplace": True},
-        return_skips=True,
-    )

@@ -12,7 +12,7 @@ from brainmarks_smri.models.openmind_simclr import (
     REVISION,
     OpenMindSimCLR,
     openmind_simclr,
-    res_enc_l,
+    resenc_l_encoder,
 )
 
 requires_cuda = pytest.mark.skipif(not torch.cuda.is_available(), reason="full size is slow on CPU")
@@ -22,7 +22,7 @@ requires_cuda = pytest.mark.skipif(not torch.cuda.is_available(), reason="full s
 def model() -> OpenMindSimCLR:
     # one block per stage keeps the CPU forward cheap
     torch.manual_seed(0)
-    return OpenMindSimCLR(res_enc_l(n_blocks_per_stage=(1,) * 6))
+    return OpenMindSimCLR(resenc_l_encoder(n_blocks_per_stage=(1,) * 6))
 
 
 def make_head(
@@ -147,7 +147,7 @@ def test_checkpoint_keys():
     state = torch.load(path, map_location="cpu", weights_only=True, mmap=True)["network_weights"]
     encoder_keys = {key.removeprefix("encoder.") for key in state if key.startswith("encoder.")}
     other_keys = {key for key in state if not key.startswith("encoder.")}
-    assert encoder_keys == set(res_enc_l().state_dict())
+    assert encoder_keys == set(resenc_l_encoder().state_dict())
     assert {key.split(".")[0] for key in other_keys} == {"projector"}
     assert state["projector.layer1.0.weight"].shape == (2048, 1120)
 

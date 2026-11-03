@@ -23,6 +23,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from dynamic_network_architectures.building_blocks.residual_encoders import ResidualEncoder
 from huggingface_hub import hf_hub_download
+from nibabel.affines import apply_affine
+from scipy import ndimage
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
 
@@ -30,19 +32,40 @@ REPO_ID = "FOMO-MRI/AMAES_resenc_b_fomo300k"
 REVISION = "75cb10b89a9855377aa29e1da53b66dade7f9229"
 CHECKPOINT = "resenc_unet_b.ckpt"
 IMG_SIZE = (160, 160, 160)
-FEATURES_PER_STAGE = (32, 64, 128, 256, 320, 320)
+SPACING = 1.0
+STAGE_CHANNELS = (32, 64, 128, 256, 320, 320)
+STAGE_STRIDES = (1, 2, 4, 8, 16, 32)
+
+
+def resenc_b_encoder(n_blocks_per_stage: tuple[int, ...] = (1, 3, 4, 6, 6, 6)) -> ResidualEncoder:
+    """The encoder of asparagus `resenc_unet_b`, returning all 6 stage outputs."""
+    n_stages = len(STAGE_CHANNELS)
+    return ResidualEncoder(
+        input_channels=1,
+        n_stages=n_stages,
+        features_per_stage=list(STAGE_CHANNELS),
+        conv_op=nn.Conv3d,
+        kernel_sizes=[[3, 3, 3]] * n_stages,
+        strides=[[1, 1, 1]] + [[2, 2, 2]] * (n_stages - 1),
+        n_blocks_per_stage=list(n_blocks_per_stage),
+        conv_bias=True,
+        norm_op=nn.InstanceNorm3d,
+        norm_op_kwargs={"eps": 1e-5, "affine": True},
+        nonlin=nn.LeakyReLU,
+        nonlin_kwargs={"inplace": True},
+        return_skips=True,
+    )
 
 
 class AMAES(nn.Module):
     name = "amaes"
-    embed_dim = FEATURES_PER_STAGE[-1]
+    embed_dim = STAGE_CHANNELS[-1]
 
     def __init__(self, encoder: ResidualEncoder, dense_stage: int = 3):
         super().__init__()
         self.encoder = encoder
         self.dense_stage = dense_stage
-        stride = 2**dense_stage
-        self.patch_size = (stride, stride, stride)
+        self.patch_size = (STAGE_STRIDES[dense_stage],) * 3
         self.requires_grad_(False)
         self.eval()
 
@@ -53,62 +76,60 @@ class AMAES(nn.Module):
     def transform(self, sample: ImageInput) -> dict[str, Any]:
         image: nib.Nifti1Image = sample["image"]
         image = nib.funcs.squeeze_image(nib.Nifti1Image(image.dataobj, image.affine, image.header))
-        canonical = nib.as_closest_canonical(image)
-        data = np.nan_to_num(canonical.get_fdata(dtype=np.float32))
-        spacing = np.array(canonical.header.get_zooms()[:3], dtype=np.float64)
+        data = np.nan_to_num(image.get_fdata(dtype=np.float32))
 
-        # 1 mm in RAS; with align_corners=False, output voxel i sits at input voxel (i + 0.5) / s - 0.5
+        # brain centre in world mm
+        mask = sample.get("brain_mask")
+        if mask is None:
+            mask = data > data.mean()
+        else:
+            mask = np.asarray(mask.dataobj).reshape(data.shape) > 0
+        centre = apply_affine(image.affine, ndimage.center_of_mass(mask))
+
+        # RAS at SPACING mm; output voxel i samples input voxel (i + 0.5) / scale - 0.5
+        canonical = nib.as_closest_canonical(nib.Nifti1Image(data, image.affine))
+        scale = np.array(canonical.header.get_zooms()[:3], dtype=np.float64) / SPACING
+        volume = torch.from_numpy(np.ascontiguousarray(canonical.dataobj, dtype=np.float32))
         volume = F.interpolate(
-            torch.from_numpy(data)[None, None],
-            scale_factor=tuple(spacing),
+            volume[None, None],
+            scale_factor=tuple(scale),
             mode="trilinear",
             align_corners=False,
             recompute_scale_factor=False,
         )[0, 0]
-        step = np.diag([*(1 / spacing), 1.0])
-        step[:3, 3] = 0.5 / spacing - 0.5
-        resampled_affine = canonical.affine @ step
+        resampled_to_canonical = np.diag([*(1 / scale), 1.0])
+        resampled_to_canonical[:3, 3] = 0.5 / scale - 0.5
+        resampled_affine = canonical.affine @ resampled_to_canonical
 
-        mask = sample.get("brain_mask")
-        if mask is not None:
-            mask_voxels = np.argwhere(np.asarray(mask.dataobj).reshape(image.shape) > 0)
-            world_centre = image.affine[:3, :3] @ mask_voxels.mean(0) + image.affine[:3, 3]
-            inverse = np.linalg.inv(resampled_affine)
-            centre = inverse[:3, :3] @ world_centre + inverse[:3, 3]
-        else:
-            centre = torch.argwhere(volume > volume.mean()).double().mean(0).numpy()
+        # as asparagus: z-score over the whole volume
+        volume = (volume - volume.mean()) / volume.std(correction=0).clamp_min(1e-6)
 
-        mean = volume.mean()
-        std = volume.std(correction=0).clamp_min(1e-6)
-        volume = (volume - mean) / std
-
-        # crop/pad to IMG_SIZE around the centre, zeros outside
-        start = np.round(centre - (np.array(IMG_SIZE) - 1) / 2).astype(int)
+        # crop / zero pad to IMG_SIZE around the brain centre
+        centre_voxel = apply_affine(np.linalg.inv(resampled_affine), centre)
+        start = np.round(centre_voxel - (np.array(IMG_SIZE) - 1) / 2).astype(int)
         crop = torch.zeros(IMG_SIZE)
         source = []
         target = []
-        for axis_start, crop_size, volume_size in zip(start, IMG_SIZE, volume.shape):
-            low = max(axis_start, 0)
-            high = min(axis_start + crop_size, volume_size)
-            source.append(slice(low, max(high, low)))
-            target.append(slice(low - axis_start, max(high, low) - axis_start))
+        for axis in range(3):
+            low = max(start[axis], 0)
+            high = max(min(start[axis] + IMG_SIZE[axis], volume.shape[axis]), low)
+            source.append(slice(low, high))
+            target.append(slice(low - start[axis], high - start[axis]))
         crop[tuple(target)] = volume[tuple(source)]
-
-        shift = np.eye(4)
-        shift[:3, 3] = start
-        return {"volume": crop, "input_affine": resampled_affine @ shift}
+        crop_to_resampled = np.eye(4)
+        crop_to_resampled[:3, 3] = start
+        return {"volume": crop, "input_affine": resampled_affine @ crop_to_resampled}
 
     @torch.inference_mode()
     def forward_embeddings(
         self, samples: list[dict[str, Any]], return_dense: bool = False
     ) -> list[EmbeddingOutput]:
-        volumes = torch.stack([sample["volume"] for sample in samples])[:, None]
-        volumes = volumes.to(self.device)
+        volumes = torch.stack([sample["volume"] for sample in samples])[:, None].to(self.device)
         with torch.autocast(
             self.device.type, dtype=torch.bfloat16, enabled=self.device.type == "cuda"
         ):
-            stages = self.encoder(volumes)
-        global_embeddings = stages[-1].float().mean((2, 3, 4))  # (B, 320)
+            stages = self.encoder(volumes)  # (B, C, X, Y, Z) per stage
+        global_embeddings = stages[-1].float().mean((2, 3, 4))
 
         outputs = []
         for index, sample in enumerate(samples):
@@ -119,8 +140,8 @@ class AMAES(nn.Module):
                 dense_mask=None,
             )
             if return_dense:
-                dense = stages[self.dense_stage][index].float()  # (C, X, Y, Z)
-                output["dense_embedding"] = dense.permute(1, 2, 3, 0).contiguous()
+                dense = stages[self.dense_stage][index].float()
+                output["dense_embedding"] = dense.permute(1, 2, 3, 0)
                 output["dense_affine"] = sample["input_affine"]
             outputs.append(output)
         return outputs
@@ -142,23 +163,3 @@ def amaes(checkpoint: str = CHECKPOINT, revision: str = REVISION, dense_stage: i
     encoder = resenc_b_encoder()
     encoder.load_state_dict(state)
     return AMAES(encoder, dense_stage=dense_stage)
-
-
-def resenc_b_encoder(n_blocks_per_stage: tuple[int, ...] = (1, 3, 4, 6, 6, 6)) -> ResidualEncoder:
-    """The encoder of asparagus `resenc_unet_b`, returning all 6 stage outputs."""
-    n_stages = len(FEATURES_PER_STAGE)
-    return ResidualEncoder(
-        input_channels=1,
-        n_stages=n_stages,
-        features_per_stage=list(FEATURES_PER_STAGE),
-        conv_op=nn.Conv3d,
-        kernel_sizes=[[3, 3, 3]] * n_stages,
-        strides=[[1, 1, 1]] + [[2, 2, 2]] * (n_stages - 1),
-        n_blocks_per_stage=list(n_blocks_per_stage),
-        conv_bias=True,
-        norm_op=nn.InstanceNorm3d,
-        norm_op_kwargs={"eps": 1e-5, "affine": True},
-        nonlin=nn.LeakyReLU,
-        nonlin_kwargs={"inplace": True},
-        return_skips=True,
-    )
