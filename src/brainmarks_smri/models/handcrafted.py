@@ -244,11 +244,12 @@ def intensity_classes(
     outside are clipped into the end bins. Returns the class probabilities of each value (N, K) and the class means, SDs
     and weights (K,), with classes ordered dark to bright.
     """
-    counts, edges = np.histogram(np.clip(values, 0, max_value), num_bins, (0, max_value))
+    clipped = np.clip(values, 0, max_value)
+    counts, edges = np.histogram(clipped, num_bins, (0, max_value))
     centres = (edges[:-1] + edges[1:]) / 2
 
     # start from the partition of the bins by the nearest initial mean
-    means = np.quantile(values, initial_quantiles)
+    means = np.quantile(clipped, initial_quantiles)
     labels = np.abs(centres[:, None] - means).argmin(axis=1)
     weights = np.zeros(num_classes)
     variances = np.zeros(num_classes)
