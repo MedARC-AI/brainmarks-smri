@@ -14,8 +14,7 @@ Table layout: `README_hf.md`.
   field by field. Fields where the rows disagree (IDs 219, 328, 392, 416) are set to n/a and
   listed in `demographics_conflict`. Study dates missing from Table are filled from the
   'Study Date' sheet. 15 participants with images have no Table row.
-- No official split: 60/20/20, stratified by site x age bin.
-- Complete: T1, T2, PD and age.
+- No official split. Dev/test 50/50 by participant, stratified by site x age bin.
 """
 
 import re
@@ -173,11 +172,9 @@ def main() -> None:
     assert len(smp) == 582
 
     participants = smp.set_index("participant_id")
-    core = img.groupby("participant_id").modality.nunique()
-    complete = (core.reindex(participants.index) == 3) & participants.age.notna()
     age_bin = pd.cut(participants.age, AGE_BINS, right=False).astype(str)
     strata = participants.site + "_" + age_bin
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits))
 

@@ -11,8 +11,7 @@ Table layout: `README_hf.md`.
   has an extra run, desc '3906-3'. OAS2_0081_MR2/RAW/353-4-375.ima.gz (Siemens IMA) is left out.
 - Single site (Washington University, 1.5T Siemens Vision).
 - group (Nondemented / Demented / Converted) is per participant; CDR and MMSE per visit.
-- No val/test: the set is small, so every participant is in `train` (evaluate with k-fold CV).
-- Complete: main T1w in every session.
+- No official split. Dev/test 50/50 by participant, stratified by group.
 """
 
 import re
@@ -110,15 +109,8 @@ def main() -> None:
     assert len(smp) == 373 and smp.participant_id.nunique() == 150
     assert smp.groupby("participant_id").group.nunique().eq(1).all()
 
-    main_t1w = img[img.desc.isna()]
-    has_main = smp.set_index(["participant_id", "session_id"]).index.isin(
-        main_t1w.set_index(["participant_id", "session_id"]).index
-    )
-    participants = smp.assign(has_main=has_main).groupby("participant_id")
-    complete = participants.has_main.all()
-    group = participants.group.first()
-    split = pd.Series("train", index=group.index)
-    splits = tables.make_splits(group, complete, split=split)
+    group = smp.groupby("participant_id").group.first()
+    splits = tables.make_splits(group)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["group", "cdr"]))
 

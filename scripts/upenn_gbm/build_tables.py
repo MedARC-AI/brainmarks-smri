@@ -16,8 +16,7 @@ Table layout: `README_hf.md`.
   os_days + os_event. The 3 'Deceased - uncertain date of death' are censored at Survival_Censor
   (a lower bound). Follow-up sessions measure survival from the follow-up scan.
   'Not Available' / 'Indeterminate' / 'NOS/NEC' labels are n/a.
-- No official split: 60/20/20 by patient, stratified by has corrected mask x OS known.
-- Complete: a baseline session with the 8 structural images and the automated mask, and OS.
+- No official split. Dev/test 50/50 by participant, stratified by has corrected mask x OS known.
 """
 
 import re
@@ -156,10 +155,6 @@ def main() -> None:
     participants = smp.groupby("participant_id").first()
     baseline_images = img[img.session_id == "baseline"].fillna({"desc": "n/a"})
     have = baseline_images.groupby("participant_id").apply(lambda g: set(zip(g.modality, g.desc)))
-    core = {(m, d) for m in MODALITIES.values() for d in ("n/a", "unstripped")} | {
-        ("mask", "tumor_automated")
-    }
-    has_core = have.map(lambda h: core <= h).reindex(participants.index, fill_value=False)
     has_corrected = have.map(lambda h: ("mask", "tumor_corrected") in h).reindex(
         participants.index, fill_value=False
     )
@@ -168,9 +163,8 @@ def main() -> None:
         participants.index, fill_value=False
     )
 
-    complete = has_core & os_known
     strata = "corrected-" + has_corrected.astype(str) + "_os-" + os_known.astype(str)
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["idh1", "mgmt", "os_event"]))
 

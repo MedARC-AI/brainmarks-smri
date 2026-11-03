@@ -12,14 +12,13 @@
 
 ## Samples
 
-One sample per scan: 671 scans of 630 patients (session `baseline` = pre-operative `_11`, `followup` = `_21`). Split 60/20/20 by patient, stratified by has an expert-corrected mask × survival known; there is no official split. Complete = a baseline with the 8 structural images, the automated mask and overall survival. The 147 expert-corrected masks split 88 / 30 / 29.
+One sample per scan: 671 scans of 630 patients (session `baseline` = pre-operative `_11`, `followup` = `_21`). Dev/test is 50/50 by patient, stratified by has an expert-corrected mask × survival known; there is no official split.
 
-| split | participants | samples | complete | age | female | idh1 | mgmt | os_event |
-|---|---|---|---|---|---|---|---|---|
-| train | 377 | 398 | 366 | 62.1 ± 12.7 | 40% | mutated 12 / wildtype 324 | methylated 70 / unmethylated 102 | 0 14 / 1 384 |
-| val | 127 | 138 | 123 | 63.3 ± 12.5 | 39% | mutated 4 / wildtype 111 | methylated 24 / unmethylated 30 | 0 5 / 1 133 |
-| test | 126 | 135 | 122 | 62.6 ± 11.3 | 39% | mutated 3 / wildtype 111 | methylated 27 / unmethylated 38 | 0 8 / 1 127 |
-| total | 630 | 671 | 611 | 62.5 ± 12.4 | 40% | mutated 19 / wildtype 546 | methylated 121 / unmethylated 170 | 0 27 / 1 644 |
+| split | participants | samples | age | female | idh1 | mgmt | os_event |
+|---|---|---|---|---|---|---|---|
+| dev | 315 | 332 | 62.3 ± 12.3 | 40% | mutated 10 / wildtype 270 | methylated 55 / unmethylated 86 | 0 11 / 1 321 |
+| test | 315 | 339 | 62.6 ± 12.5 | 40% | mutated 9 / wildtype 276 | methylated 66 / unmethylated 84 | 0 16 / 1 323 |
+| total | 630 | 671 | 62.5 ± 12.4 | 40% | mutated 19 / wildtype 546 | methylated 121 / unmethylated 170 | 0 27 / 1 644 |
 
 ## Contents
 
@@ -54,7 +53,7 @@ Targets: tumor sub-region masks in `automated_segm/` and `images_segm/`, with Br
 
 - `images.tsv`: T1w, T1c (T1GD), T2w, FLAIR (desc n/a = skull-stripped, `unstripped`; the two `old/` versions are desc `old` / `old_unstripped`), and masks `tumor_automated` and `tumor_corrected`.
 - `samples.tsv` + `samples.json`: overall survival as `os_days` + `os_event` (combining the death time and the censoring time, which the source keeps in separate columns), IDH1, MGMT, KPS, resection, the pseudoprogression score, age, sex and days since baseline. Use the baseline session for survival: follow-up rows measure it from the follow-up scan.
-- `splits.tsv`: split, rank and complete per patient.
+- `splits.tsv`: dev or test per patient.
 
 ## Excluded
 

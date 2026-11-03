@@ -12,14 +12,13 @@ Stroke Outcome Optimization Project: clinical MRI of 1715 patients admitted to a
 
 ## Samples
 
-One sample per imaged participant (1715; only 1106 have clinical data). Split 60/20/20, stratified by poor outcome (discharge mRS 3–6) × has a lesion mask; there is no official split. Complete = FLAIR, DWI, ADC, the combined lesion mask and discharge mRS (621).
+One sample per imaged participant (1715; only 1106 have clinical data). Dev/test is 50/50 by participant, stratified by poor outcome (discharge mRS 3–6) × has a lesion mask; there is no official split.
 
-| split | participants | complete | age | female | mrs_poor | nihss |
-|---|---|---|---|---|---|---|
-| train | 1029 | 373 | 64.7 ± 14.1 | 49% | False 231 / True 212 | 8.2 ± 8.0 |
-| val | 345 | 125 | 65.3 ± 14.5 | 46% | False 78 / True 71 | 7.5 ± 7.6 |
-| test | 341 | 123 | 64.5 ± 15.0 | 49% | False 76 / True 70 | 8.0 ± 7.9 |
-| total | 1715 | 621 | 64.8 ± 14.3 | 49% | False 385 / True 353 | 8.0 ± 7.9 |
+| split | participants | age | female | mrs_poor | nihss |
+|---|---|---|---|---|---|
+| dev | 856 | 64.9 ± 13.8 | 49% | False 192 / True 176 | 7.9 ± 7.7 |
+| test | 859 | 64.6 ± 14.9 | 48% | False 193 / True 177 | 8.1 ± 8.1 |
+| total | 1715 | 64.8 ± 14.3 | 49% | False 385 / True 353 | 8.0 ± 7.9 |
 
 ## Contents
 
@@ -34,7 +33,7 @@ One sample per imaged participant (1715; only 1106 have clinical data). Split 60
 
 - `images.tsv`: FLAIR, DWI (`rec-TRACE`) and ADC (`rec-ADC`), and the lesion masks as modality `mask` with desc `lesion` (combined), `lesionAcute` or `lesionChronic`. The masks are on the DWI/ADC grid (6 mm slices); FLAIR is a native high-resolution volume in another space.
 - `samples.tsv` + `samples.json`: discharge mRS (`mrs_discharge`, and `mrs_poor` = 3–6), NIHSS, etiology (TOAST), age (clamped at 89, `age_clamped`), sex, race, prior stroke, BMI, and the scanner model from the FLAIR sidecars. The source names no site, so `site` is n/a.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

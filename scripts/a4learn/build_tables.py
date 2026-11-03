@@ -14,8 +14,8 @@ Table layout: `README_hf.md`.
 - PACC change: from the A4 analysis dataset (ADQS QSCHANGE) at week 240, per participant.
 - Codes (SEX, RACE, ETHNIC) are mapped with the A4 data dictionary (derived_datadic.csv, part of the
   A4 documentation on IDA). Site IDs are not shared.
-- No official split: 60/20/20 by participant, stratified by group (A4 placebo, A4 solanezumab,
-  LEARN, SF). Complete: bl T1w and amyloid PET SUVR.
+- No official split. Dev/test 50/50 by participant, stratified by group (A4 placebo, A4
+  solanezumab, LEARN, SF).
 """
 
 import re
@@ -309,9 +309,8 @@ def main() -> None:
     assert smp.age.dropna().between(60, 95).all()
 
     bl = smp[smp.session_id == "bl"].set_index("participant_id")
-    complete = bl.amyloid_suvr.notna()
     strata = bl.group + " " + bl.treatment.fillna("")
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["session_id", "group", "screening_amyloid_read"]))
 

@@ -14,11 +14,13 @@ A few-shot segmentation task from the FOMO26 challenge: T2w MRIs of 40 patients 
 
 ## Samples
 
-One sample per participant (40), each with a T2w and a mask. The set is tiny, so every participant is in `train`: evaluate with k-fold cross-validation. Complete = T2w and mask (all 40). The source has no age, sex or site.
+One sample per participant (40), each with a T2w and a mask. Dev/test is 50/50 by participant. The source has no age, sex or site.
 
-| split | participants | complete |
-|---|---|---|
-| train | 40 | 40 |
+| split | participants | age | female |
+|---|---|---|---|
+| dev | 20 | n/a | n/a |
+| test | 20 | n/a | n/a |
+| total | 40 | n/a | n/a |
 
 ## Contents
 
@@ -31,4 +33,4 @@ One sample per participant (40), each with a T2w and a mask. The set is tiny, so
 
 - `images.tsv`: T2w and mask (desc `trigeminal`).
 - `samples.tsv` + `samples.json`: identifiers only.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.

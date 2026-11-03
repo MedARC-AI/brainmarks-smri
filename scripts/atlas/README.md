@@ -12,14 +12,13 @@ Anatomical Tracings of Lesions After Stroke: T1w MRIs of chronic stroke patients
 
 ## Samples
 
-One sample per participant (955), each with a T1w and a lesion mask. The official R2.0 split is kept: Testing (300) is our `test`, and Training (655) is split 80/20 into train and val, stratified by site. Complete = T1w and lesion mask (all 955). The release has no age or sex.
+One sample per participant (955), each with a T1w and a lesion mask. Dev/test is 50/50 by participant, stratified by site. `official_split` holds the R2.0 split: Training (655) and Testing (300). The release has no age or sex.
 
-| split | participants | complete | sites | days post stroke |
-|---|---|---|---|---|
-| train | 526 | 526 | 33 | 981.6 ± 1363.0 |
-| val | 129 | 129 | 30 | 847.8 ± 1117.3 |
-| test | 300 | 300 | 24 | 873.8 ± 1204.0 |
-| total | 955 | 955 | 33 | 928.4 ± 1281.6 |
+| split | participants | age | female | sites | days_post_stroke |
+|---|---|---|---|---|---|
+| dev | 478 | n/a | n/a | 33 | 949.2 ± 1373.1 |
+| test | 477 | n/a | n/a | 33 | 907.7 ± 1185.2 |
+| total | 955 | n/a | n/a | 33 | 928.4 ± 1281.6 |
 
 ## Contents
 
@@ -33,7 +32,7 @@ One sample per participant (955), each with a T1w and a lesion mask. The officia
 
 - `images.tsv`: T1w and lesion mask.
 - `samples.tsv` + `samples.json`: site, days post stroke and chronicity.
-- `splits.tsv`: split, official split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

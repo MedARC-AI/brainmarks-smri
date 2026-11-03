@@ -8,9 +8,8 @@ Table layout: `README_hf.md`.
 - Images: the skull-stripped native-space T1w and the manual lesion mask on the same grid.
 - Per-subject metadata csv: R2.0 split (Training/Testing), days post stroke, chronicity, site.
 - No age or sex in the release (n/a).
-- Official split: R2.0 Training (655) / Testing (300; masks released in R2.1). Testing is our
-  `test`. Training is split 80/20 into train and val, stratified by site.
-- Complete: T1w and lesion mask.
+- Official split (`official_split`): R2.0 Training (655) / Testing (300; masks released in R2.1).
+- Dev/test 50/50 by participant, stratified by site.
 """
 
 import pandas as pd
@@ -74,13 +73,14 @@ def main() -> None:
     assert len(smp) == 955 and smp.participant_id.is_unique
     assert official.value_counts().to_dict() == {"train": 655, "test": 300}
 
+    smp["official_split"] = smp.participant_id.map(official)
+    columns["official_split"] = {
+        "Description": "Official R2.0 split.",
+        "Source": "ATLAS2_DATASET",
+        "Levels": {"train": "Training", "test": "Testing"},
+    }
     participants = smp.set_index("participant_id")
-    n_images = img.groupby("participant_id").size().reindex(participants.index, fill_value=0)
-    complete = n_images == len(FILES)
-    in_train = official == "train"
-    train_val = tables.stratified_split(participants.site[in_train], {"train": 0.8, "val": 0.2})
-    split = pd.concat([train_val, official[~in_train]]).reindex(participants.index)
-    splits = tables.make_splits(participants.site, complete, official=official, split=split)
+    splits = tables.make_splits(participants.site)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["days_post_stroke"]))
 

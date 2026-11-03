@@ -8,8 +8,8 @@ Table layout: `README_hf.md`.
   become session `FU007d` of participant `UCSF-PDGM-0433`; every other exam is session `baseline`.
 - IDs: the metadata pads IDs to 3 digits (`UCSF-PDGM-004`), the image folders to 4 (`-0004`);
   participant_id uses 4 digits.
-- No official split: 60/20/20 by patient, stratified by IDH status x WHO grade of the baseline exam.
-- Complete: all 13 images in every session, IDH status and overall survival.
+- No official split. Dev/test 50/50 by participant, stratified by IDH status x WHO grade of the
+  baseline exam.
 """
 
 import re
@@ -165,20 +165,10 @@ def main() -> None:
     keys = ["participant_id", "session_id"]
     assert set(img[keys].itertuples(index=False)) == set(smp[keys].itertuples(index=False))
 
-    n_images = img.groupby(keys).size().rename("n_images")
-    smp_complete = smp.join(n_images, on=keys)
-    smp_complete["complete"] = (
-        (smp_complete.n_images == len(FILES))
-        & smp_complete.idh.notna()
-        & smp_complete.os_days.notna()
-        & smp_complete.os_event.notna()
-    )
-    complete = smp_complete.groupby("participant_id").complete.all()
-
     baseline = smp[smp.session_id == "baseline"].set_index("participant_id")
     strata = baseline.idh + "_" + baseline.who_grade.astype(str)
 
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["idh", "who_grade", "mgmt", "os_event"]))
 

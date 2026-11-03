@@ -17,11 +17,10 @@ Table layout: `README_hf.md`.
   validation cases have no mask.
 - Overlap: `collection` and `tcia_patient_id` link cases to UPENN-GBM / UCSF-PDGM / TCGA. Evals
   are within-dataset, so this is only for reference.
-- Our split: the official Task 1 validation cases have no masks, so all 1470 cases are split
-  60/20/20, stratified by has mask x MGMT label. `official_split` is the Task 1 cohort
-  (train/val); `mgmt_cohort` holds the Task 2 cohort.
+- Dev/test 50/50 by patient, stratified by has mask x MGMT label (the official Task 1 validation
+  cases have no masks). `official_split` is the Task 1 cohort (train/val); `mgmt_cohort` holds
+  the Task 2 cohort.
 - No age or sex in the source (n/a). site = the BraTS institution code.
-- Complete: the 4 images and the tumor mask.
 """
 
 import re
@@ -154,18 +153,18 @@ def main() -> None:
         official.index[official == "train"]
     )
 
-    # per participant: complete if every case has the 4 images + mask; strata/official from the first case
-    n_images = img.groupby("session_id").size().reindex(smp.session_id, fill_value=0)
-    smp_flags = smp.assign(
-        complete=(n_images == len(FILES)).values,
-        has_mask=smp.session_id.isin(masked_cases).values,
-        official=smp.session_id.map(official).values,
-    )
-    participants = smp_flags.sort_values("session_id").groupby("participant_id")
-    first = participants.first()
-    complete = participants.complete.all()
+    smp["official_split"] = smp.session_id.map(official)
+    columns["official_split"] = {
+        "Description": "Official Task 1 (segmentation) cohort; val cases have no mask.",
+        "Source": "Segmentation (Task 1) Cohort",
+        "Levels": {"train": "Training", "val": "Validation"},
+    }
+
+    # strata from each patient's first case
+    first = smp.assign(has_mask=smp.session_id.isin(masked_cases)).sort_values("session_id")
+    first = first.groupby("participant_id").first()
     strata = first.has_mask.map({True: "mask", False: "nomask"}) + "_" + first.mgmt.fillna("n/a")
-    splits = tables.make_splits(strata, complete, official=first.official)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["mgmt"]))
 

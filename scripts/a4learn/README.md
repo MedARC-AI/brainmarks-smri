@@ -12,14 +12,13 @@ The Anti-Amyloid Treatment in Asymptomatic Alzheimer's (A4) study and its compan
 
 ## Samples
 
-One sample per participant and session: bl (the first visit with a T1w: screening visit 004, or 006 for most of LEARN), wk84 (visit 027) and wk240 (visit 066, end of the double-blind phase). There is no official split: 60/20/20 by participant, stratified by group (A4 placebo, A4 solanezumab, LEARN, screen-fail). Complete = bl T1w and amyloid PET SUVR.
+One sample per participant and session: bl (the first visit with a T1w: screening visit 004, or 006 for most of LEARN), wk84 (visit 027) and wk240 (visit 066, end of the double-blind phase). There is no official split. Dev/test is 50/50 by participant, stratified by group (A4 placebo, A4 solanezumab, LEARN, screen-fail).
 
-| split | participants | samples | complete | age | female | session_id | group | screening_amyloid_read |
-|---|---|---|---|---|---|---|---|---|
-| train | 1065 | 2336 | 1065 | 73.6 ± 5.0 | 59% | bl 1065 / wk240 681 / wk84 590 | A4 1783 / LEARN 501 / SF 52 | 0 505 / 1 1831 |
-| val | 354 | 747 | 353 | 73.4 ± 4.9 | 60% | bl 354 / wk240 204 / wk84 189 | A4 567 / LEARN 163 / SF 17 | 0 163 / 1 584 |
-| test | 354 | 753 | 354 | 73.7 ± 5.1 | 59% | bl 354 / wk240 212 / wk84 187 | A4 578 / LEARN 158 / SF 17 | 0 159 / 1 594 |
-| total | 1773 | 3836 | 1772 | 73.5 ± 5.0 | 60% | bl 1773 / wk240 1097 / wk84 966 | A4 2928 / LEARN 822 / SF 86 | 0 827 / 1 3009 |
+| split | participants | samples | age | female | session_id | group | screening_amyloid_read |
+|---|---|---|---|---|---|---|---|
+| dev | 886 | 1945 | 73.8 ± 5.1 | 60% | bl 886 / wk240 564 / wk84 495 | A4 1488 / LEARN 414 / SF 43 | 0 417 / 1 1528 |
+| test | 887 | 1891 | 73.3 ± 4.9 | 59% | bl 887 / wk240 533 / wk84 471 | A4 1440 / LEARN 408 / SF 43 | 0 410 / 1 1481 |
+| total | 1773 | 3836 | 73.5 ± 5.0 | 60% | bl 1773 / wk240 1097 / wk84 966 | A4 2928 / LEARN 822 / SF 86 | 0 827 / 1 3009 |
 
 ## Contents
 
@@ -33,7 +32,7 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 
 - `images.tsv`: one T1w per session.
 - `samples.tsv` + `samples.json`: group and treatment, demographics, APOE, screening amyloid (Centiloid, SUVR, visual read), cognition (PACC, MMSE, CFI, ADL, CDR), PACC change at week 240, amyloid and tau PET SUVR, plasma pTau217, WMH, MRI reads (microhemorrhages, siderosis) and regional volumes. Cognition is matched within 90 days of the MRI, PET and plasma within 1 year; MRI measures come from the same visit.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

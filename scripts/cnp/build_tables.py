@@ -9,8 +9,7 @@ Table layout: `README_hf.md`.
 - Single site (UCLA), two 3T Siemens Trio scanners (`scanner_serial`).
 - The per-task availability flags of participants.tsv (fMRI tasks) are left out. The phenotype/
   instruments (52 tables) stay in source/ and are not merged here.
-- No official split: 60/20/20, stratified by diagnosis.
-- Complete: T1w and diagnosis.
+- No official split. Dev/test 50/50 by participant, stratified by diagnosis.
 """
 
 import pandas as pd
@@ -64,8 +63,7 @@ def main() -> None:
     smp = smp[smp.participant_id.isin(img.participant_id)].reset_index(drop=True)
 
     participants = smp.set_index("participant_id")
-    complete = participants.diagnosis.notna()
-    splits = tables.make_splits(participants.diagnosis, complete)
+    splits = tables.make_splits(participants.diagnosis)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["diagnosis"]))
 

@@ -13,8 +13,7 @@ Table layout: `README_hf.md`.
   same skull-stripped; mask 'fseg' = FSL tissue segmentation of t88_masked.
 - Single site (Washington University, 1.5T Siemens Vision).
 - CDR, MMSE, education and SES are only given for MR1 sessions, mostly participants 60+.
-- No official split: 60/20/20 by participant, stratified by CDR group (0 / 0.5 / >=1 / n/a) of MR1.
-- Complete: main T1w and CDR.
+- No official split. Dev/test 50/50 by participant, stratified by CDR group (0 / 0.5 / >=1 / n/a) of MR1.
 """
 
 import re
@@ -125,9 +124,8 @@ def main() -> None:
     assert len(main_t1w) == 436 and not main_t1w.duplicated(["participant_id", "session_id"]).any()
 
     first = smp[smp.session_id == "MR1"].set_index("participant_id")
-    complete = first.cdr.notna()
     cdr_group = first.cdr.map({0: "0", 0.5: "0.5", 1: ">=1", 2: ">=1"})
-    splits = tables.make_splits(cdr_group, complete)
+    splits = tables.make_splits(cdr_group)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["cdr"]))
 

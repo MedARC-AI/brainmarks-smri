@@ -17,8 +17,7 @@ Table layout: `README_hf.md`.
   (e.g. pMCI vs sMCI at 3 years, stable CN).
 - FreeSurfer 7 (UCSFFSX7): subcortical volumes, cortical volumes and mean cortical thickness.
   Most rows are not yet QC'd (fs_status 'partial').
-- No official split: 60/20/20 by participant, stratified by y0 diagnosis x enrolling protocol.
-- Complete: y0 T1w and y0 diagnosis.
+- No official split. Dev/test 50/50 by participant, stratified by y0 diagnosis x enrolling protocol.
 """
 
 import json
@@ -440,9 +439,8 @@ def main() -> None:
     assert set(smp.dx.dropna()) <= {"CN", "MCI", "Dementia"}
 
     y0 = smp[smp.session_id == "y0"].set_index("participant_id")
-    complete = y0.dx.notna()
     strata = y0.dx.fillna("n/a") + " " + y0.protocol.fillna("n/a")
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["session_id", "dx", "amyloid_status"]))
 

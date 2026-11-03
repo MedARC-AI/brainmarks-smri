@@ -1,49 +1,49 @@
-participant_id	split	official_split	rank	complete
-sub_01	train	n/a	35	True
-sub_02	train	n/a	1	True
-sub_03	train	n/a	21	True
-sub_04	train	n/a	27	True
-sub_05	train	n/a	29	True
-sub_06	train	n/a	31	True
-sub_07	train	n/a	45	True
-sub_08	train	n/a	5	True
-sub_09	train	n/a	33	True
-sub_10	train	n/a	37	True
-sub_11	train	n/a	25	True
-sub_12	train	n/a	19	True
-sub_13	train	n/a	23	True
-sub_14	train	n/a	43	True
-sub_15	train	n/a	39	True
-sub_16	train	n/a	15	True
-sub_17	train	n/a	9	True
-sub_18	train	n/a	7	True
-sub_19	train	n/a	41	True
-sub_20	train	n/a	47	True
-sub_21	train	n/a	17	True
-sub_22	train	n/a	3	True
-sub_23	train	n/a	13	True
-sub_24	train	n/a	11	True
-sub_25	train	n/a	16	True
-sub_26	train	n/a	38	True
-sub_27	train	n/a	30	True
-sub_28	train	n/a	28	True
-sub_29	train	n/a	34	True
-sub_30	train	n/a	36	True
-sub_31	train	n/a	22	True
-sub_32	train	n/a	20	True
-sub_33	train	n/a	46	True
-sub_34	train	n/a	10	True
-sub_35	train	n/a	18	True
-sub_36	train	n/a	40	True
-sub_37	train	n/a	42	True
-sub_38	train	n/a	4	True
-sub_39	train	n/a	44	True
-sub_40	train	n/a	8	True
-sub_41	train	n/a	2	True
-sub_42	train	n/a	14	True
-sub_43	train	n/a	24	True
-sub_44	train	n/a	26	True
-sub_45	train	n/a	12	True
-sub_46	train	n/a	32	True
-sub_47	train	n/a	0	True
-sub_48	train	n/a	6	True
+participant_id	split
+sub_01	test
+sub_02	test
+sub_03	dev
+sub_04	dev
+sub_05	dev
+sub_06	test
+sub_07	dev
+sub_08	test
+sub_09	dev
+sub_10	test
+sub_11	dev
+sub_12	dev
+sub_13	test
+sub_14	test
+sub_15	test
+sub_16	test
+sub_17	test
+sub_18	test
+sub_19	dev
+sub_20	test
+sub_21	dev
+sub_22	dev
+sub_23	dev
+sub_24	dev
+sub_25	test
+sub_26	dev
+sub_27	dev
+sub_28	test
+sub_29	dev
+sub_30	test
+sub_31	test
+sub_32	dev
+sub_33	test
+sub_34	test
+sub_35	test
+sub_36	dev
+sub_37	test
+sub_38	test
+sub_39	dev
+sub_40	dev
+sub_41	test
+sub_42	test
+sub_43	dev
+sub_44	dev
+sub_45	dev
+sub_46	dev
+sub_47	test
+sub_48	dev

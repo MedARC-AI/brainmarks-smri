@@ -12,14 +12,13 @@ Children and adolescents (7–21 y) with ADHD and typically developing controls,
 
 ## Samples
 
-One sample per participant with a T1w (961). The official competition split is kept: the holdout (186 with images) is `test`, and the training release is split 75/25 into train/val, stratified by diagnosis × site (`official_split` holds train/test). Complete = T1w and diagnosis; Brown's 26 test participants never had labels released, so the labeled test set is 160.
+One sample per participant with a T1w (961). Dev/test is 50/50 by participant, stratified by diagnosis × site. `official_split` holds the competition split: the holdout (186 with images) is `test`. Brown's 26 holdout participants never had labels released.
 
-| split | participants | complete | age | female | sites | adhd |
-|---|---|---|---|---|---|---|
-| train | 582 | 582 | 12.1 ± 3.2 | 39% | 9 | False 368 / True 214 |
-| val | 193 | 193 | 11.6 ± 3.2 | 34% | 9 | False 122 / True 71 |
-| test | 186 | 160 | 12.3 ± 3.8 | 44% | 6 | False 86 / True 74 |
-| total | 961 | 935 | 12.1 ± 3.3 | 39% | 10 | False 576 / True 359 |
+| split | participants | age | female | sites | adhd |
+|---|---|---|---|---|---|
+| dev | 482 | 12.0 ± 3.4 | 39% | 10 | False 288 / True 181 |
+| test | 479 | 12.1 ± 3.3 | 38% | 10 | False 288 / True 178 |
+| total | 961 | 12.1 ± 3.3 | 39% | 10 | False 576 / True 359 |
 
 ## Contents
 
@@ -40,7 +39,7 @@ Train/test split: subjects in `allSubs_testSet_phenotypic_dx.csv` are the holdou
 
 - `images.tsv`: one T1w per participant. 9 WashU participants have theirs in `ses-2`/`ses-3`/`ses-4` (session_id follows).
 - `samples.tsv` + `samples.json`: diagnosis (4 levels) and `adhd` (binary target), age, sex, site (the 10 BIDS site folders), ADHD scores, IQ, medication, handedness and anatomical QC, from the per-site `participants.tsv`. Site-specific phenotypes that are only in the `*_phenotypic.csv` files are not merged. participant_id is the BIDS label (`sub-0010001`).
-- `splits.tsv`: split, official split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

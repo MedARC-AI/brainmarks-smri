@@ -21,14 +21,13 @@ Nearly 600 healthy adults (about 20–86 y) scanned at three London hospitals: G
 
 ## Samples
 
-One sample per participant: everyone with at least one image (582; 1 has no T1). Split 60/20/20, stratified by site × age bin (<30, 30–45, 45–60, 60–75, 75+); there is no official split. Complete = T1, T2, PD and age (557); 561 T1 participants have an age.
+One sample per participant: everyone with at least one image (582; 1 has no T1). Dev/test is 50/50 by participant, stratified by site × age bin (<30, 30–45, 45–60, 60–75, 75+); there is no official split. 561 T1 participants have an age.
 
-| split | participants | complete | age | female | sites |
-|---|---|---|---|---|---|
-| train | 350 | 335 | 48.8 ± 16.8 | 54% | 3 |
-| val | 115 | 110 | 48.3 ± 16.3 | 55% | 3 |
-| test | 117 | 112 | 48.3 ± 16.1 | 58% | 3 |
-| total | 582 | 557 | 48.6 ± 16.5 | 55% | 3 |
+| split | participants | age | female | sites |
+|---|---|---|---|---|
+| dev | 292 | 48.9 ± 16.6 | 56% | 3 |
+| test | 290 | 48.3 ± 16.5 | 54% | 3 |
+| total | 582 | 48.6 ± 16.5 | 55% | 3 |
 
 ## Contents
 
@@ -51,7 +50,7 @@ Subject counts:
 
 - `images.tsv`: T1w, T2w and PD.
 - `samples.tsv` + `samples.json`: age (the brain-age target), sex, site (from the file names), study date, height, weight and the decoded demographic codes. The spreadsheet's duplicate and conflicting rows are resolved (see `demographics_conflict`).
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

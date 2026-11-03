@@ -12,14 +12,13 @@ Open Access Series of Imaging Studies, cross-sectional: 416 adults aged 18-96 (W
 
 ## Samples
 
-One sample per session (436): one session for each of the 416 participants, plus a rescan within 90 days for the 20 reliability subjects. The main image is the averaged native-space T1w. CDR and MMSE are given only for the first session, and mostly for those over 60. There is no official split: 60/20/20 by participant, stratified by CDR group (0 / 0.5 / ≥ 1 / n/a). Complete = CDR (235).
+One sample per session (436): one session for each of the 416 participants, plus a rescan within 90 days for the 20 reliability subjects. The main image is the averaged native-space T1w. CDR and MMSE are given only for the first session, and mostly for those over 60. There is no official split. Dev/test is 50/50 by participant, stratified by CDR group (0 / 0.5 / ≥ 1 / n/a).
 
-| split | participants | samples | complete | age | female | cdr |
-|---|---|---|---|---|---|---|
-| train | 250 | 266 | 141 | 51.2 ± 25.7 | 60% | 0.0 81 / 0.5 42 / 1.0 16 / 2.0 2 |
-| val | 83 | 87 | 47 | 52.8 ± 25.7 | 62% | 0.0 27 / 0.5 14 / 1.0 6 |
-| test | 83 | 83 | 47 | 50.4 ± 23.7 | 66% | 0.0 27 / 0.5 14 / 1.0 6 |
-| total | 416 | 436 | 235 | 51.4 ± 25.3 | 61% | 0.0 135 / 0.5 70 / 1.0 28 / 2.0 2 |
+| split | participants | samples | age | female | cdr |
+|---|---|---|---|---|---|
+| dev | 208 | 223 | 50.4 ± 25.9 | 59% | 0.0 67 / 0.5 35 / 1.0 13 / 2.0 2 |
+| test | 208 | 213 | 52.3 ± 24.7 | 64% | 0.0 68 / 0.5 35 / 1.0 15 |
+| total | 416 | 436 | 51.4 ± 25.3 | 61% | 0.0 135 / 0.5 70 / 1.0 28 / 2.0 2 |
 
 ## Contents
 
@@ -35,7 +34,7 @@ One sample per session (436): one session for each of the 416 participants, plus
 
 - `images.tsv`: the main T1w, the raw runs (desc `mpr-<n>`), the atlas images (`t88`, `t88_masked`) and the tissue segmentation (mask `fseg`).
 - `samples.tsv` + `samples.json`: age, sex, CDR, MMSE, education, SES, eTIV, nWBV, ASF and rescan delay.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

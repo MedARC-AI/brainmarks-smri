@@ -16,8 +16,7 @@ Table layout: `README_hf.md`.
 - No site is given (single cohort from South Carolina; site n/a). `scanner_model` comes from the
   FLAIR sidecars (6 Philips/GE/Siemens models).
 - The mRS is at discharge, not 90 days. `mrs_poor` = mRS 3-6, as in Neuro-JEPA.
-- No official split: 60/20/20, stratified by mrs_poor x has combined lesion mask.
-- Complete: FLAIR, DWI, ADC, combined lesion mask and discharge mRS.
+- No official split. Dev/test 50/50 by participant, stratified by mrs_poor x has combined lesion mask.
 """
 
 import json
@@ -30,7 +29,6 @@ NAME = "soop"
 ROOT = tables.dataset_dir(NAME)
 SOURCE = ROOT / "source"
 DIFFUSION = {"rec-TRACE": "DWI", "rec-ADC": "ADC"}
-CORE = {("FLAIR", "n/a"), ("DWI", "n/a"), ("ADC", "n/a"), ("mask", "lesion")}
 
 
 def images() -> pd.DataFrame:
@@ -136,9 +134,8 @@ def main() -> None:
         .apply(lambda g: set(zip(g.modality, g.desc)))
     )
     has_mask = have.map(lambda h: ("mask", "lesion") in h)
-    complete = have.map(lambda h: CORE <= h) & participants.mrs_discharge.notna()
     strata = participants.mrs_poor.astype(str) + "_mask-" + has_mask.astype(str)
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["mrs_poor", "nihss"]))
 

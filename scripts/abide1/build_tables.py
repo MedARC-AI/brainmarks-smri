@@ -12,8 +12,7 @@ Table layout: `README_hf.md`.
 - Phenotypes: a selection of the composite file's 75 columns (diagnosis, DSM-IV subtype, IQ,
   ADOS/SRS totals, handedness, medication). -9999 and the stray '`' are missing values. The full
   file and its legend (ABIDE_LEGEND_V1.02.pdf) stay in source/.
-- No official split: 60/20/20, stratified by diagnosis x site.
-- Complete: diagnosis.
+- No official split. Dev/test 50/50 by participant, stratified by diagnosis x site.
 """
 
 import pandas as pd
@@ -128,9 +127,8 @@ def main() -> None:
     smp = smp[smp.participant_id.isin(img.participant_id)].reset_index(drop=True)
 
     participants = smp.set_index("participant_id")
-    complete = participants.diagnosis.notna()
     strata = participants.diagnosis + "_" + participants.site
-    splits = tables.make_splits(strata, complete)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["diagnosis"]))
 

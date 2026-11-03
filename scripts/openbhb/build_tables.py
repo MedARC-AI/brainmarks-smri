@@ -10,10 +10,9 @@ Table layout: `README_hf.md`.
 - QC metrics from qc.tsv are merged in.
 - Official split (participants.tsv `split`): train / internal_test / external_test (the private
   test set is not public). The external test is defined by site x acquisition setting: 5 of its
-  6 sites are absent from train, but site 36 is also in train with another acquisition setting. Both test
-  sets are our `test` (`official_split` tells them apart). The official train set is split
-  80/20 into train and val, stratified by site, as in Neuro-JEPA.
-- Complete: T1w and age.
+  6 sites are absent from train, but site 36 is also in train with another acquisition setting.
+  Kept as `official_split`.
+- Dev/test 50/50 by participant, stratified by site.
 """
 
 import pandas as pd
@@ -106,14 +105,13 @@ def main() -> None:
     )
     assert set(official) == {"train", "internal_test", "external_test"}
 
+    smp["official_split"] = smp.participant_id.map(official)
+    columns["official_split"] = {
+        "Description": "Official OpenBHB split; the external test is site x acquisition disjoint.",
+        "Source": "participants.tsv split",
+    }
     participants = smp.set_index("participant_id")
-    in_train = official == "train"
-    train_val = tables.stratified_split(participants.site[in_train], {"train": 0.8, "val": 0.2})
-    split = pd.concat([train_val, official[~in_train].map(lambda _: "test")]).reindex(
-        participants.index
-    )
-    complete = participants.age.notna()
-    splits = tables.make_splits(participants.site, complete, official=official, split=split)
+    splits = tables.make_splits(participants.site)
     tables.write(NAME, images, smp, columns, splits)
     print(tables.summary_table(smp, splits))
 

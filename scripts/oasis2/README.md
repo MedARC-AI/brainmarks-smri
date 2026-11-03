@@ -12,11 +12,13 @@ Open Access Series of Imaging Studies, longitudinal: 150 adults aged 60-96 (Wash
 
 ## Samples
 
-One sample per session (373). The main image is the first raw MPRAGE run (`mpr-1`, the one the other runs were registered to). The group (nondemented / demented / converted) is per participant; CDR and MMSE are per visit. The set is small, so every participant is in `train`: evaluate with k-fold cross-validation. Complete = main T1w in every session (all 150).
+One sample per session (373). The main image is the first raw MPRAGE run (`mpr-1`, the one the other runs were registered to). The group (nondemented / demented / converted) is per participant; CDR and MMSE are per visit. Dev/test is 50/50 by participant, stratified by group.
 
-| split | participants | samples | complete | age | female | group | cdr |
-|---|---|---|---|---|---|---|---|
-| train | 150 | 373 | 150 | 77.0 ± 7.6 | 57% | converted 37 / demented 146 / nondemented 190 | 0.0 206 / 0.5 123 / 1.0 41 / 2.0 3 |
+| split | participants | samples | age | female | group | cdr |
+|---|---|---|---|---|---|---|
+| dev | 75 | 187 | 76.6 ± 8.1 | 53% | converted 18 / demented 75 / nondemented 94 | 0.0 104 / 0.5 58 / 1.0 22 / 2.0 3 |
+| test | 75 | 186 | 77.4 ± 7.1 | 61% | converted 19 / demented 71 / nondemented 96 | 0.0 102 / 0.5 65 / 1.0 19 |
+| total | 150 | 373 | 77.0 ± 7.6 | 57% | converted 37 / demented 146 / nondemented 190 | 0.0 206 / 0.5 123 / 1.0 41 / 2.0 3 |
 
 The group and CDR counts are per session.
 
@@ -28,7 +30,7 @@ The group and CDR counts are per session.
 
 - `images.tsv`: the main T1w and the other runs (desc `mpr-<n>`).
 - `samples.tsv` + `samples.json`: group, visit, MR delay, age, sex, CDR, MMSE, education, SES, eTIV, nWBV and ASF.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Notes
 

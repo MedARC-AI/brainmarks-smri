@@ -12,14 +12,13 @@ Autism Brain Imaging Data Exchange I: 1112 subjects (539 ASD, 573 typical contro
 
 ## Samples
 
-One sample per participant with a T1w (1102). The 10 participants with only rs-fMRI are left out. Split 60/20/20, stratified by diagnosis × site; there is no official split. Complete = diagnosis (all 1102).
+One sample per participant with a T1w (1102). The 10 participants with only rs-fMRI are left out. Dev/test is 50/50 by participant, stratified by diagnosis × site; there is no official split.
 
-| split | participants | complete | age | female | sites | diagnosis |
-|---|---|---|---|---|---|---|
-| train | 660 | 660 | 17.0 ± 7.9 | 14% | 20 | ASD 317 / TDC 343 |
-| val | 221 | 221 | 16.7 ± 7.2 | 18% | 20 | ASD 106 / TDC 115 |
-| test | 221 | 221 | 17.8 ± 9.2 | 14% | 20 | ASD 108 / TDC 113 |
-| total | 1102 | 1102 | 17.1 ± 8.1 | 15% | 20 | ASD 531 / TDC 571 |
+| split | participants | age | female | sites | diagnosis |
+|---|---|---|---|---|---|
+| dev | 549 | 16.7 ± 7.6 | 15% | 20 | ASD 265 / TDC 284 |
+| test | 553 | 17.5 ± 8.5 | 14% | 20 | ASD 266 / TDC 287 |
+| total | 1102 | 17.1 ± 8.1 | 15% | 20 | ASD 531 / TDC 571 |
 
 ## Contents
 
@@ -33,7 +32,7 @@ One sample per participant with a T1w (1102). The 10 participants with only rs-f
 
 - `images.tsv`: one T1w per participant, across the 24 BIDS site folders.
 - `samples.tsv` + `samples.json`: diagnosis (ASD/TDC, target), age, sex, site (`SITE_ID`, 20 sites) and BIDS site folder, DSM-IV subtype, IQ, ADOS and SRS totals, handedness, medication status. The other phenotypic columns stay in `Phenotypic_V1_0b.csv`. participant_id is the BIDS label (`sub-0050002`).
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

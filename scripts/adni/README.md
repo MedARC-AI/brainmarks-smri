@@ -12,14 +12,13 @@ Alzheimer's Disease Neuroimaging Initiative: a longitudinal study of older adult
 
 ## Samples
 
-One sample per participant and session: y0 (the first visit with a usable T1w), y2 and y4 (the visits nearest 2 and 4 years later, within 6 months). There is no official split: 60/20/20 by participant, stratified by y0 diagnosis and enrolling phase. Complete = y0 T1w and diagnosis.
+One sample per participant and session: y0 (the first visit with a usable T1w), y2 and y4 (the visits nearest 2 and 4 years later, within 6 months). There is no official split. Dev/test is 50/50 by participant, stratified by y0 diagnosis and enrolling phase.
 
-| split | participants | samples | complete | age | female | sites | session_id | dx | amyloid_status |
-|---|---|---|---|---|---|---|---|---|---|
-| train | 1841 | 3061 | 1811 | 73.6 ± 7.7 | 50% | 71 | y0 1841 / y2 815 / y4 405 | CN 1254 / Dementia 528 / MCI 1198 | 0 987 / 1 834 |
-| val | 615 | 1031 | 604 | 73.8 ± 7.4 | 48% | 68 | y0 615 / y2 276 / y4 140 | CN 408 / Dementia 189 / MCI 403 | 0 289 / 1 300 |
-| test | 614 | 996 | 603 | 73.5 ± 7.2 | 51% | 70 | y0 614 / y2 259 / y4 123 | CN 401 / Dementia 172 / MCI 394 | 0 326 / 1 263 |
-| total | 3070 | 5088 | 3018 | 73.6 ± 7.6 | 50% | 72 | y0 3070 / y2 1350 / y4 668 | CN 2063 / Dementia 889 / MCI 1995 | 0 1602 / 1 1397 |
+| split | participants | samples | age | female | sites | session_id | dx | amyloid_status |
+|---|---|---|---|---|---|---|---|---|
+| dev | 1537 | 2529 | 73.5 ± 7.8 | 50% | 71 | y0 1537 / y2 675 / y4 317 | CN 1024 / Dementia 444 / MCI 1001 | 0 806 / 1 686 |
+| test | 1533 | 2559 | 73.8 ± 7.3 | 50% | 72 | y0 1533 / y2 675 / y4 351 | CN 1039 / Dementia 445 / MCI 994 | 0 796 / 1 711 |
+| total | 3070 | 5088 | 73.6 ± 7.6 | 50% | 72 | y0 3070 / y2 1350 / y4 668 | CN 2063 / Dementia 889 / MCI 1995 | 0 1602 / 1 1397 |
 
 ## Contents
 
@@ -33,7 +32,7 @@ One sample per participant and session: y0 (the first visit with a usable T1w), 
 
 - `images.tsv`: T1w, T1w `acq-3T` and FLAIR per session.
 - `samples.tsv` + `samples.json`: demographics, APOE, diagnosis, years to dementia and to MCI or dementia, diagnostic follow-up, cognitive scores, amyloid PET (status, Centiloid), tau PET, CSF, plasma, WMH and FreeSurfer 7 volumes and thickness. Each is matched to the scan by the nearest record within a window (180 days for diagnosis, 90 days for cognition, 1 year for PET, CSF and plasma, 60 days for MRI measures).
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Image choice
 

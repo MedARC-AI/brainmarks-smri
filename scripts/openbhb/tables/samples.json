@@ -75,5 +75,9 @@
   "qc_quasiraw_corr": {
     "Description": "Correlation of the quasi-raw image with the template (QC).",
     "Source": "qc.tsv quasiraw-corr"
+  },
+  "official_split": {
+    "Description": "Official OpenBHB split; the external test is site x acquisition disjoint.",
+    "Source": "participants.tsv split"
   }
 }

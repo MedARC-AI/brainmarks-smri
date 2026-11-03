@@ -12,14 +12,13 @@ Adult glioma pre-operative mpMRI (T1, T1Gd, T2, FLAIR) from the RSNA-ASNR-MICCAI
 
 ## Samples
 
-One sample per BraTS case with NIfTI images: 1,470 cases of 1,468 patients (two UCSF-PDGM follow-up cases belong to patients who also have a baseline case; they are sessions of one participant). The 9 Task-2-only cases have no NIfTI and are left out. The official Task 1 validation set has no masks, so all cases are split 60/20/20 by patient, stratified by has mask × MGMT label, giving a held-out test set with masks. `official_split` keeps the Task 1 cohort and `mgmt_cohort` the Task 2 cohort. Complete = the 4 images and the tumor mask. The source has no age or sex.
+One sample per BraTS case with NIfTI images: 1,470 cases of 1,468 patients (two UCSF-PDGM follow-up cases belong to patients who also have a baseline case; they are sessions of one participant). The 9 Task-2-only cases have no NIfTI and are left out. Dev/test is 50/50 by patient, stratified by has mask × MGMT label (the official Task 1 validation cases have no masks). `official_split` keeps the Task 1 cohort and `mgmt_cohort` the Task 2 cohort. The source has no age or sex.
 
-| split | participants | samples | complete | age | female | sites | mgmt |
-|---|---|---|---|---|---|---|---|
-| train | 881 | 882 | 749 | n/a | n/a | 25 | methylated 215 / unmethylated 197 |
-| val | 293 | 294 | 249 | n/a | n/a | 23 | methylated 72 / unmethylated 65 |
-| test | 294 | 294 | 251 | n/a | n/a | 22 | methylated 71 / unmethylated 66 |
-| total | 1468 | 1470 | 1249 | n/a | n/a | 26 | methylated 358 / unmethylated 328 |
+| split | participants | samples | age | female | sites | mgmt |
+|---|---|---|---|---|---|---|
+| dev | 733 | 734 | n/a | n/a | 24 | methylated 179 / unmethylated 164 |
+| test | 735 | 736 | n/a | n/a | 26 | methylated 179 / unmethylated 164 |
+| total | 1468 | 1470 | n/a | n/a | 26 | methylated 358 / unmethylated 328 |
 
 ## Contents
 
@@ -62,7 +61,7 @@ Targets: the `_seg` masks (training only; labels 1 = necrotic core, 2 = edema, 4
 
 - `images.tsv`: T1w, T1c (`t1ce`), T2w, FLAIR and the tumor mask (desc `tumor`) per case; session_id is the BraTS case ID.
 - `samples.tsv` + `samples.json`: MGMT (target), Task 2 cohort, site (BraTS institution code), source collection, TCIA PatientID (to link cases to `upenn_gbm` / `ucsf_pdgm`) and study date (de-identified, shifted by TCIA).
-- `splits.tsv`: split, official Task 1 cohort, rank and complete per patient.
+- `splits.tsv`: dev or test per patient.
 
 ## Excluded
 

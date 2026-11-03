@@ -12,14 +12,13 @@ UCLA Consortium for Neuropsychiatric Phenomics LA5c study: 272 adults (21–50 y
 
 ## Samples
 
-One sample per participant with a T1w (265). The 7 participants with only fMRI are left out. Split 60/20/20, stratified by diagnosis; there is no official split. Complete = diagnosis (all 265).
+One sample per participant with a T1w (265). The 7 participants with only fMRI are left out. Dev/test is 50/50 by participant, stratified by diagnosis; there is no official split.
 
-| split | participants | complete | age | female | diagnosis |
-|---|---|---|---|---|---|
-| train | 159 | 159 | 32.9 ± 9.2 | 44% | ADHD 25 / BIPOLAR 29 / CONTROL 75 / SCHZ 30 |
-| val | 53 | 53 | 32.7 ± 9.8 | 40% | ADHD 8 / BIPOLAR 10 / CONTROL 25 / SCHZ 10 |
-| test | 53 | 53 | 35.0 ± 9.2 | 40% | ADHD 8 / BIPOLAR 10 / CONTROL 25 / SCHZ 10 |
-| total | 265 | 265 | 33.3 ± 9.3 | 42% | ADHD 41 / BIPOLAR 49 / CONTROL 125 / SCHZ 50 |
+| split | participants | age | female | diagnosis |
+|---|---|---|---|---|
+| dev | 131 | 33.1 ± 9.4 | 46% | ADHD 20 / BIPOLAR 24 / CONTROL 62 / SCHZ 25 |
+| test | 134 | 33.5 ± 9.3 | 39% | ADHD 21 / BIPOLAR 25 / CONTROL 63 / SCHZ 25 |
+| total | 265 | 33.3 ± 9.3 | 42% | ADHD 41 / BIPOLAR 49 / CONTROL 125 / SCHZ 50 |
 
 ## Contents
 
@@ -34,7 +33,7 @@ One sample per participant with a T1w (265). The 7 participants with only fMRI a
 
 - `images.tsv`: T1w.
 - `samples.tsv` + `samples.json`: diagnosis (target), age, sex, scanner serial and `ghost_artifact`. The fMRI availability flags are left out, and the `phenotype/` instruments are not merged.
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

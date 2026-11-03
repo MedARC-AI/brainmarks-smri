@@ -101,5 +101,12 @@
       "Pass": "",
       "Questionable": ""
     }
+  },
+  "official_split": {
+    "Description": "Official split: the competition holdout is test.",
+    "Levels": {
+      "train": "training release",
+      "test": "competition holdout"
+    }
   }
 }

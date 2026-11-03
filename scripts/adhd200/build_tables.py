@@ -16,11 +16,10 @@ Table layout: `README_hf.md`.
 - Site-specific phenotypes that are only in the per-site *_phenotypic.csv files (e.g. KKI/OHSU
   ADHD scores) are not merged; they stay in source/.
 - Official split: the competition holdout (nitrc/general/allSubs_testSet_phenotypic_dx.csv,
-  197 participants; 186 have images) is `test`. The training release is split 75/25 into train
-  and val, stratified by diagnosis x site. `official_split` is train/test. The participants.tsv
-  diagnoses of the test participants match the released test labels (checked).
-- Brown (26, all test) never had labels released: diagnosis n/a, not complete.
-- Complete: T1w and diagnosis.
+  197 participants; 186 have images) is `official_split` test, the training release train. The
+  participants.tsv diagnoses of the test participants match the released test labels (checked).
+- Dev/test 50/50 by participant, stratified by diagnosis x site.
+- Brown (26, all official test) never had labels released: diagnosis n/a.
 """
 
 import pandas as pd
@@ -179,15 +178,14 @@ def main() -> None:
         "test labels disagree"
     )
     official = pd.Series(["test" if t else "train" for t in in_test], index=participants.index)
+    smp["official_split"] = smp.participant_id.map(official)
+    columns["official_split"] = {
+        "Description": "Official split: the competition holdout is test.",
+        "Levels": {"train": "training release", "test": "competition holdout"},
+    }
 
     strata = participants.diagnosis + "_" + participants.site
-    train_val = tables.stratified_split(strata[~in_test], {"train": 0.75, "val": 0.25})
-    split = pd.concat([train_val, official[in_test]]).reindex(participants.index)
-    complete = pd.Series(
-        participants.index.isin(images.participant_id) & participants.diagnosis.notna().values,
-        index=participants.index,
-    )
-    splits = tables.make_splits(strata, complete, official=official, split=split)
+    splits = tables.make_splits(strata)
     tables.write(NAME, images, smp, columns, splits)
     print(tables.summary_table(smp, splits, ["adhd"]))
 

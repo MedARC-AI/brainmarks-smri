@@ -8,9 +8,7 @@ Table layout: `README_hf.md`.
   (session_id '1'), one T1w (the organizers' conversion of the PPMR slices).
 - Label from labels/<sub>/ses_01/labels.txt.
 - No age, sex or site in the source (n/a).
-- No val/test: the set is tiny and train-only, so every participant is in `train` (evaluate
-  with k-fold CV).
-- Complete: T1w and label.
+- No official split. Dev/test 50/50 by participant, stratified by label.
 """
 
 import pandas as pd
@@ -57,9 +55,7 @@ def main() -> None:
     assert set(img.participant_id) == set(smp.participant_id)
 
     participants = smp.set_index("participant_id")
-    complete = pd.Series(True, index=participants.index)
-    split = pd.Series("train", index=participants.index)
-    splits = tables.make_splits(participants.pmg, complete, split=split)
+    splits = tables.make_splits(participants.pmg)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits, ["pmg"]))
 

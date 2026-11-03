@@ -12,14 +12,13 @@ Preoperative 3T MRI of adult diffuse glioma (WHO grade 2–4), 495 patients / 50
 
 ## Samples
 
-One sample per exam: 501 exams of 495 patients (6 follow-up exams are extra sessions of their patient). Split 60/20/20 by patient, stratified by IDH status × WHO grade; there is no official split. Complete = all 13 images, IDH status and overall survival.
+One sample per exam: 501 exams of 495 patients (6 follow-up exams are extra sessions of their patient). Dev/test is 50/50 by patient, stratified by IDH status × WHO grade; there is no official split.
 
-| split | participants | samples | complete | age | female | idh | who_grade | mgmt | os_event |
-|---|---|---|---|---|---|---|---|---|---|
-| train | 297 | 299 | 296 | 56.5 ± 15.4 | 41% | mutant 62 / wildtype 237 | 2 34 / 3 25 / 4 240 | negative 68 / positive 176 | 0 148 / 1 151 |
-| val | 100 | 103 | 100 | 57.1 ± 15.2 | 42% | mutant 21 / wildtype 82 | 2 11 / 3 9 / 4 83 | negative 22 / positive 65 | 0 51 / 1 52 |
-| test | 98 | 99 | 98 | 57.8 ± 13.9 | 36% | mutant 20 / wildtype 79 | 2 11 / 3 9 / 4 79 | negative 24 / positive 61 | 0 51 / 1 48 |
-| total | 495 | 501 | 494 | 56.9 ± 15.0 | 40% | mutant 103 / wildtype 398 | 2 56 / 3 43 / 4 402 | negative 114 / positive 302 | 0 250 / 1 251 |
+| split | participants | samples | age | female | idh | who_grade | mgmt | os_event |
+|---|---|---|---|---|---|---|---|---|
+| dev | 248 | 252 | 56.6 ± 15.1 | 41% | mutant 52 / wildtype 200 | 2 28 / 3 22 / 4 202 | negative 50 / positive 153 | 0 125 / 1 127 |
+| test | 247 | 249 | 57.1 ± 15.0 | 39% | mutant 51 / wildtype 198 | 2 28 / 3 21 / 4 200 | negative 64 / positive 149 | 0 125 / 1 124 |
+| total | 495 | 501 | 56.9 ± 15.0 | 40% | mutant 103 / wildtype 398 | 2 56 / 3 43 / 4 402 | negative 114 / positive 302 | 0 250 / 1 251 |
 
 ## Contents
 
@@ -45,7 +44,7 @@ Each package folder holds 24 files (25 for the six follow-up exams, which add `A
 
 - `images.tsv`: the 13 images per exam. Modalities T1w, T1c, T2w, FLAIR (desc `bias` for the bias-corrected copies), DWI, ADC, and masks `tumor`, `brain`, `parenchyma`.
 - `samples.tsv` + `samples.json`: one row per exam with cleaned metadata. Targets: `idh` (with `idh_variant`), `mgmt`, `codeletion_1p19q`, `who_grade`, `os_days` + `os_event`. IDs use 4 digits (`UCSF-PDGM-0004`); follow-ups are session `FU007d` etc. of their patient.
-- `splits.tsv`: split, rank and complete per patient.
+- `splits.tsv`: dev or test per patient.
 
 ## Excluded
 

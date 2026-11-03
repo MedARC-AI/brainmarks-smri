@@ -7,9 +7,7 @@ Table layout: `README_hf.md`.
 - 40 trigeminal neuralgia patients (sub-01 .. sub-40), one session each (session_id '1').
 - Images: T2w and the nerve/vessel mask (labels 1, 2) on the same grid.
 - No age, sex or site in the source (n/a).
-- No val/test: the set is tiny and train-only, so every participant is in `train` (evaluate
-  with k-fold CV).
-- Complete: T2w and mask.
+- No official split. Dev/test 50/50 by participant.
 """
 
 import pandas as pd
@@ -50,11 +48,8 @@ def main() -> None:
     assert len(smp) == 40 and set(img.participant_id) == set(smp.participant_id)
 
     participants = smp.set_index("participant_id")
-    n_images = img.groupby("participant_id").size().reindex(participants.index, fill_value=0)
-    complete = n_images == len(FILES)
     strata = pd.Series("all", index=participants.index)
-    split = pd.Series("train", index=participants.index)
-    splits = tables.make_splits(strata, complete, split=split)
+    splits = tables.make_splits(strata)
     tables.write(NAME, img, smp, columns, splits, track_samples=False)
     print(tables.summary_table(smp, splits))
 

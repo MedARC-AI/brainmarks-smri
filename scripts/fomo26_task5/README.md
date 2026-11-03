@@ -14,11 +14,13 @@ A few-shot classification task from the FOMO26 challenge: T1w MRIs of 24 childre
 
 ## Samples
 
-One sample per participant (48): 24 with polymicrogyria and 24 controls. The set is tiny, so every participant is in `train`: evaluate with k-fold cross-validation. Complete = T1w and label (all 48). The source has no age, sex or site.
+One sample per participant (48): 24 with polymicrogyria and 24 controls. Dev/test is 50/50 by participant, stratified by label. The source has no age, sex or site.
 
-| split | participants | complete | pmg |
-|---|---|---|---|
-| train | 48 | 48 | control 24 / polymicrogyria 24 |
+| split | participants | age | female | pmg |
+|---|---|---|---|---|
+| dev | 24 | n/a | n/a | control 12 / polymicrogyria 12 |
+| test | 24 | n/a | n/a | control 12 / polymicrogyria 12 |
+| total | 48 | n/a | n/a | control 24 / polymicrogyria 24 |
 
 ## Contents
 
@@ -32,7 +34,7 @@ One sample per participant (48): 24 with polymicrogyria and 24 controls. The set
 
 - `images.tsv`: T1w.
 - `samples.tsv` + `samples.json`: the label (`pmg`).
-- `splits.tsv`: split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

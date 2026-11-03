@@ -12,14 +12,13 @@ Open Big Healthy Brains: T1w scans of healthy controls from 10 public cohorts (A
 
 ## Samples
 
-One sample per participant (3984 healthy controls, one T1w each). The official split is kept: `internal_test` and `external_test` together are `test`, and the official train set is split 80/20 into train/val, stratified by site, as in Neuro-JEPA (`official_split` holds the original labels). The private test set is not public. Complete = T1w and age (all).
+One sample per participant (3984 healthy controls, one T1w each). Dev/test is 50/50 by participant, stratified by site. `official_split` holds the official split (train, internal_test, external_test); the private test set is not public.
 
-| split | participants | complete | age | female | sites |
-|---|---|---|---|---|---|
-| train | 2583 | 2583 | 25.2 ± 14.6 | 48% | 57 |
-| val | 644 | 644 | 25.1 ± 14.5 | 48% | 57 |
-| test | 757 | 757 | 23.8 ± 12.8 | 45% | 60 |
-| total | 3984 | 3984 | 24.9 ± 14.3 | 48% | 62 |
+| split | participants | age | female | sites |
+|---|---|---|---|---|
+| dev | 1988 | 24.8 ± 14.1 | 47% | 62 |
+| test | 1996 | 25.1 ± 14.4 | 48% | 62 |
+| total | 3984 | 24.9 ± 14.3 | 48% | 62 |
 
 ## Contents
 
@@ -36,7 +35,7 @@ One sample per participant (3984 healthy controls, one T1w each). The official s
 
 - `images.tsv`: one original T1w (`rawdata/`) per participant.
 - `samples.tsv` + `samples.json`: age (target), sex, site and study codes, field strength, acquisition setting, CAT12 tissue volumes, and the `qc.tsv` metrics. participant_id gets the BIDS `sub-` prefix.
-- `splits.tsv`: split, official split, rank and complete per participant.
+- `splits.tsv`: dev or test per participant.
 
 ## Excluded
 

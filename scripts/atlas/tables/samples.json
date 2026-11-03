@@ -23,5 +23,13 @@
   "chronicity": {
     "Description": "Chronicity code as released (only 1 or missing in R2.1; undocumented).",
     "Source": "CHRONICITY"
+  },
+  "official_split": {
+    "Description": "Official R2.0 split.",
+    "Source": "ATLAS2_DATASET",
+    "Levels": {
+      "train": "Training",
+      "test": "Testing"
+    }
   }
 }

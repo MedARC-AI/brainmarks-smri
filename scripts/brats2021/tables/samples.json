@@ -42,5 +42,13 @@
       "train": "Training",
       "val": "Validation"
     }
+  },
+  "official_split": {
+    "Description": "Official Task 1 (segmentation) cohort; val cases have no mask.",
+    "Source": "Segmentation (Task 1) Cohort",
+    "Levels": {
+      "train": "Training",
+      "val": "Validation"
+    }
   }
 }

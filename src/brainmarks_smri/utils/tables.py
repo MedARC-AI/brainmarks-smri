@@ -16,7 +16,7 @@ import pandas as pd
 REPO = Path(__file__).resolve().parents[3]
 DATA_ROOT = Path(os.environ.get("BRAINMARKS_SMRI_DATA", REPO / "datasets"))
 SEED = 0
-FRACTIONS = {"train": 0.6, "val": 0.2, "test": 0.2}
+FRACTIONS = {"dev": 0.5, "test": 0.5}
 IMAGE_COLUMNS = ["participant_id", "session_id", "modality", "desc", "path"]
 COMMON_COLUMNS = {
     "participant_id": {
@@ -88,50 +88,11 @@ def stratified_split(
     return split
 
 
-def interleaved_rank(split: pd.Series, strata: pd.Series, seed: int = SEED) -> pd.Series:
-    """Rank the participants within each split so that every prefix is balanced across strata.
-
-    The n participants of a (split, stratum) group get positions (k + u) / n for k = 0..n-1, in
-    random order, with a random offset u. Sorting a split by position interleaves its strata in
-    proportion to their sizes.
-    """
-    rng = np.random.default_rng(seed + 1)
-    position = pd.Series(np.nan, index=split.index)
-    groups = pd.DataFrame({"split": split, "stratum": stratum_keys(strata)})
-    for _, group in groups.groupby(["split", "stratum"]):
-        ids = rng.permutation(sorted(group.index))
-        position[ids] = (np.arange(len(ids)) + rng.uniform()) / len(ids)
-    rank = pd.Series(0, index=split.index, dtype=int)
-    for name in split.unique():
-        ids = position[split == name].sort_values(kind="stable").index
-        rank[ids] = np.arange(len(ids))
-    return rank
-
-
-def make_splits(
-    strata: pd.Series,
-    complete: pd.Series,
-    official: pd.Series | None = None,
-    split: pd.Series | None = None,
-) -> pd.DataFrame:
-    """splits.tsv rows from per-participant strata and completeness (both indexed by participant_id).
-
-    By default the split is a stratified 60/20/20; pass `split` to use a dataset-specific one.
-    The strata also balance the rank.
-    """
-    if split is None:
-        split = stratified_split(strata)
-    if official is None:
-        official = pd.Series(pd.NA, index=split.index)
-    return pd.DataFrame(
-        {
-            "participant_id": split.index,
-            "split": split.values,
-            "official_split": official.reindex(split.index).values,
-            "rank": interleaved_rank(split, strata).values,
-            "complete": complete.reindex(split.index).values,
-        }
-    )
+def make_splits(strata: pd.Series) -> pd.DataFrame:
+    """splits.tsv rows: a stratified 50/50 dev/test split of the participants (strata indexed by
+    participant_id)."""
+    split = stratified_split(strata)
+    return pd.DataFrame({"participant_id": split.index, "split": split.values})
 
 
 def check_tables(
@@ -150,8 +111,8 @@ def check_tables(
     sample_sessions = set(samples[keys].itertuples(index=False))
     unknown = sorted(image_sessions - sample_sessions)
     assert not unknown, f"{len(unknown)} image sessions without a samples row, e.g. {unknown[:3]}"
+    assert list(splits.columns) == ["participant_id", "split"], "splits columns"
     assert splits.split.isin(list(FRACTIONS)).all(), "unknown split"
-    assert splits.complete.dtype == bool, "complete must be boolean"
     undocumented = set(columns) ^ set(samples.columns)
     assert list(columns) == list(samples.columns), f"undocumented or missing: {undocumented}"
     missing = [path for path in images.path if not (dataset_dir(name) / path).exists()]
@@ -213,7 +174,7 @@ def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: Sequence
     header = ["split", "participants"]
     if multi_session:
         header.append("samples")
-    header += ["complete", "age", "female"]
+    header += ["age", "female"]
     if multi_site:
         header.append("sites")
     header += list(targets)
@@ -226,7 +187,6 @@ def summary_table(samples: pd.DataFrame, splits: pd.DataFrame, targets: Sequence
         row = [name, str(len(people))]
         if multi_session:
             row.append(str(len(part)))
-        row.append(str(int(people.complete.sum())))
         row.append(describe(part.age))
         row.append(f"{(sex == 'F').mean():.0%}" if len(sex) else "n/a")
         if multi_site:

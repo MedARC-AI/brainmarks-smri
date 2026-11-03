@@ -50,7 +50,7 @@ The datasets come in two kinds:
 
 ## Evaluation datasets
 
-Each evaluation dataset has harmonized metadata tables, fixed train/val/test splits, and a brain mask and MNI affine for every image. The images are the original releases, unmodified.
+Each evaluation dataset has harmonized metadata tables, a fixed dev/test split, and a brain mask and MNI affine for every image. The images are the original releases, unmodified.
 
 ### Hosted
 
@@ -90,7 +90,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
     images.tsv         # one row per image: participant_id, session_id, modality, desc, path
     samples.tsv        # one row per scan session: participant_id, session_id, age, sex, site, targets... (hosted only)
     samples.json       # column descriptions, levels and units
-    splits.tsv         # one row per participant: participant_id, split, official_split, rank, complete
+    splits.tsv         # one row per participant: participant_id, split (dev or test)
     derivatives.tsv    # one row per processed image: path, mask method, QC metrics
     shards.tsv         # one row per packed file: path, shard
     source.sha256      # checksums of the original release (source/)
@@ -102,9 +102,7 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 - `<dataset>-NNN.zip` shards hold whole participants: their images, JSON sidecars, brain masks and MNI affines, about 1 GB per shard. `<dataset>-meta.zip` holds the rest of the release: participant tables, phenotypes and docs.
 - Files in the shards keep their original paths under `source/` and `derivatives/`. Unzipping all shards in `<dataset>/` restores the full release, which you can check with `sha256sum -c tables/source.sha256 tables/derivatives.sha256`.
 - For the manual datasets, the checksums let you check your own build against ours.
-- Splits are by participant. Official splits are kept where they exist; otherwise the split is 60/20/20, stratified, with a fixed seed. The smallest datasets have only a train split, for k-fold cross-validation.
-- `complete` marks participants with all core images and the primary targets.
-- `rank` orders participants within each split so that the lowest-ranked N form a balanced subset; subsets are nested as N grows.
+- Splits are by participant: 50/50 dev/test, stratified, with a fixed seed. Benchmark tasks split each half further into train and eval sets. Official splits, where they exist, are the `official_split` column of `samples.tsv`.
 
 ### Usage
 
@@ -125,9 +123,8 @@ samples = pd.read_csv(f"{root}/tables/samples.tsv", sep="\t")
 splits = pd.read_csv(f"{root}/tables/splits.tsv", sep="\t")
 shards = pd.read_csv(f"{root}/tables/shards.tsv", sep="\t").set_index("path")["shard"]
 
-# A balanced 50-participant training subset.
-train = splits[(splits.split == "train") & splits.complete]
-train_50 = train.nsmallest(50, "rank").participant_id
+# The dev participants.
+dev = splits[splits.split == "dev"].participant_id
 
 # Read one image from its shard.
 path = images["path"][0]
