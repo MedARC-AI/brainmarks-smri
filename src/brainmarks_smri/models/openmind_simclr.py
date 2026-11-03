@@ -63,13 +63,15 @@ class OpenMindSimCLR(nn.Module):
         centre_world = nib.affines.apply_affine(image.affine, ndimage.center_of_mass(mask))
 
         # as nnssl: z-score over the nonzero bounding box, before resampling; zeros outside
-        nonzero_box = tuple(
-            slice(indices.min(), indices.max() + 1) for indices in np.nonzero(data != 0)
-        )
+        nonzero = data != 0
+        nonzero_box = []
+        for axis in range(3):
+            other_axes = tuple(other for other in range(3) if other != axis)
+            present = np.flatnonzero(nonzero.any(other_axes))
+            nonzero_box.append(slice(present[0], present[-1] + 1))
+        nonzero_box = tuple(nonzero_box)
         box = data[nonzero_box]
-        normalized = np.zeros_like(data)
-        normalized[nonzero_box] = (box - box.mean()) / max(box.std(), 1e-8)
-        data = normalized
+        data[nonzero_box] = (box - box.mean()) / max(box.std(), 1e-8)
 
         # RAS, then 1 mm; interpolate maps output voxel i to input (i + 0.5) / scale - 0.5
         canonical = nib.as_closest_canonical(nib.Nifti1Image(data, image.affine))
