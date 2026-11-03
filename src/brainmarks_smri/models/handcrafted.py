@@ -18,7 +18,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from scipy import ndimage
-from sklearn.mixture import GaussianMixture
+from scipy.special import softmax
 from torch import Tensor
 
 from brainmarks_smri.models.base import EmbeddingOutput, ImageInput, register_model
@@ -33,6 +33,7 @@ GLOBAL_BLOCK_SIZES = (8, 16)  # voxels: 16 and 32 mm
 SMOOTHING_SIGMAS = (2.0, 4.0, 8.0)  # voxels: 4, 8 and 16 mm
 HISTOGRAM_BINS = 32
 HISTOGRAM_MAX = 3.0  # in units of the brain median
+GMM_BINS = 300
 NUM_CLASSES = 3
 INITIAL_QUANTILES = (0.1, 0.5, 0.9)
 NUM_MAPS = 1 + NUM_CLASSES  # intensity and the class maps
@@ -110,7 +111,7 @@ class Handcrafted(nn.Module):
 
         # tissue amount in the subject per grid voxel
         probabilities, means, stds, weights = intensity_classes(
-            values, NUM_CLASSES, INITIAL_QUANTILES
+            values, NUM_CLASSES, INITIAL_QUANTILES, GMM_BINS, HISTOGRAM_MAX
         )
         class_maps = np.zeros((NUM_CLASSES, *GRID_SIZE), dtype=np.float32)
         class_maps[:, brain] = probabilities.T * volume_scale
@@ -232,20 +233,58 @@ def intensity_classes(
     values: np.ndarray,
     num_classes: int = 3,
     initial_quantiles: tuple[float, ...] = (0.1, 0.5, 0.9),
+    num_bins: int = 300,
+    max_value: float = 3.0,
+    max_iterations: int = 2000,
+    tolerance: float = 1e-7,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Fit a Gaussian mixture to 1D intensities, e.g. the brain voxels of a T1w (CSF, GM, WM).
 
-    Returns the class probabilities of each value (N, K) and the class means, SDs and weights (K,),
-    with classes ordered dark to bright.
+    EM runs on a histogram of the values over [0, max_value], weighted by the bin counts; values
+    outside are clipped into the end bins. Returns the class probabilities of each value (N, K) and the class means, SDs
+    and weights (K,), with classes ordered dark to bright.
     """
-    initial_means = np.quantile(values, initial_quantiles)[:, None]
-    mixture = GaussianMixture(num_classes, means_init=initial_means, random_state=0)
-    probabilities = mixture.fit(values[:, None]).predict_proba(values[:, None])
-    order = np.argsort(mixture.means_[:, 0])
-    means = mixture.means_[order, 0]
-    stds = np.sqrt(mixture.covariances_[order].ravel())
-    weights = mixture.weights_[order]
-    return probabilities[:, order], means, stds, weights
+    counts, edges = np.histogram(np.clip(values, 0, max_value), num_bins, (0, max_value))
+    centres = (edges[:-1] + edges[1:]) / 2
+
+    # start from the partition of the bins by the nearest initial mean
+    means = np.quantile(values, initial_quantiles)
+    labels = np.abs(centres[:, None] - means).argmin(axis=1)
+    weights = np.zeros(num_classes)
+    variances = np.zeros(num_classes)
+    for class_id in range(num_classes):
+        class_counts = counts[labels == class_id]
+        class_centres = centres[labels == class_id]
+        weights[class_id] = class_counts.sum() / counts.sum()
+        variances[class_id] = np.average(
+            (class_centres - means[class_id]) ** 2, weights=class_counts
+        )
+
+    for _ in range(max_iterations):
+        log_density = (
+            -0.5 * (centres[:, None] - means) ** 2 / variances
+            - 0.5 * np.log(variances)
+            + np.log(weights)
+        )
+        responsibilities = softmax(log_density, axis=1) * counts[:, None]
+        totals = responsibilities.sum(axis=0)
+        new_means = (responsibilities * centres[:, None]).sum(axis=0) / totals
+        variances = (responsibilities * (centres[:, None] - new_means) ** 2).sum(axis=0) / totals
+        variances = variances + 1e-6
+        weights = totals / counts.sum()
+        converged = np.abs(new_means - means).max() < tolerance
+        means = new_means
+        if converged:
+            break
+
+    log_density = (
+        -0.5 * (values[:, None] - means) ** 2 / variances
+        - 0.5 * np.log(variances)
+        + np.log(weights)
+    )
+    probabilities = softmax(log_density, axis=1)
+    order = np.argsort(means)
+    return probabilities[:, order], means[order], np.sqrt(variances[order]), weights[order]
 
 
 @register_model
