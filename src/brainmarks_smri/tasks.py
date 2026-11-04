@@ -66,6 +66,40 @@ def list_tasks() -> list[str]:
     return sorted(TASKS)
 
 
+# One task per cohort, the primary target first. The benchmark score is their mean.
+CORE_TASKS = [
+    "abide_diagnosis",
+    "adhd_diagnosis",
+    "cnp_diagnosis",
+    "ucsf_idh",
+    "upenn_survival_1y",
+    "oasis1_dementia",
+    "adni_ad",
+    "a4learn_amyloid",
+    "ixi_age",
+    "openbhb_age",
+    "fomo26_task5_pmg",
+    "brats_enhancing_tumor",
+    "soop_lesion",
+    "atlas_lesion",
+    "fomo26_task4_vessel",
+]
+TASK_GROUPS = ["core", "all"]
+
+
+def expand_tasks(names: list[str]) -> list[str]:
+    """Task names with the groups `core` and `all` expanded, in order, without duplicates."""
+    expanded = []
+    for name in names:
+        if name == "core":
+            expanded += CORE_TASKS
+        elif name == "all":
+            expanded += list_tasks()
+        else:
+            expanded.append(name)
+    return list(dict.fromkeys(expanded))
+
+
 def fold_ids(
     samples: pd.DataFrame,
     keep: pd.Series,

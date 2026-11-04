@@ -1,6 +1,9 @@
 """Run one model on benchmark tasks; writes `<output_dir>/<name>/<task>.json`.
 
 python -m brainmarks_smri neurojepa abide_diagnosis ixi_age --overrides num_workers=8
+python -m brainmarks_smri neurojepa core
+
+Logs the model's core score once all core results exist.
 """
 
 import argparse
@@ -18,11 +21,11 @@ import numpy as np
 import torch
 from omegaconf import DictConfig, OmegaConf
 
-from brainmarks_smri import probes
+from brainmarks_smri import aggregate, probes
 from brainmarks_smri.utils.misc import git_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
 from brainmarks_smri.models.base import Model
-from brainmarks_smri.tasks import create_task, list_tasks
+from brainmarks_smri.tasks import CORE_TASKS, TASK_GROUPS, create_task, expand_tasks, list_tasks
 
 DEFAULT_CONFIG = resources.files("brainmarks_smri") / "config" / "default.yaml"
 PROBES = {
@@ -39,7 +42,7 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("model")
-    parser.add_argument("tasks", nargs="+", choices=list_tasks(), metavar="task")
+    parser.add_argument("tasks", nargs="+", choices=list_tasks() + TASK_GROUPS, metavar="task")
     parser.add_argument("--config", type=Path, help="yaml merged over the default config")
     parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. num_workers=8")
     args = parser.parse_args()
@@ -55,13 +58,14 @@ def main():
     name = cfg.name or args.model
     subset = "test" if os.environ.get("BRAINMARKS_SMRI_TEST_SUBSET") == "1" else "dev"
     tasks = []
-    for task_name in args.tasks:
+    for task_name in expand_tasks(args.tasks):
         path = Path(cfg.output_dir) / name / f"{task_name}.json"
         if path.exists() and not cfg.overwrite:
             logger.info(f"{path} exists, skipping")
         else:
             tasks.append(task_name)
     if not tasks:
+        log_core_score(Path(cfg.output_dir) / name)
         return
     logger.info(f"evaluating {args.model} on {', '.join(tasks)} ({subset})")
     logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
@@ -85,9 +89,25 @@ def main():
         except Exception:
             logger.exception(f"{name} {task_name} failed")
             failed.append(task_name)
+    log_core_score(Path(cfg.output_dir) / name)
     if failed:
         logger.error(f"failed: {', '.join(failed)}")
         sys.exit(1)
+
+
+def log_core_score(folder: Path) -> None:
+    paths = [folder / f"{task}.json" for task in CORE_TASKS]
+    if not all(path.exists() for path in paths):
+        return
+    results = {
+        folder.name: {task: json.loads(path.read_text()) for task, path in zip(CORE_TASKS, paths)}
+    }
+    point, boot = aggregate.bootstrap_scores(results, [folder.name], CORE_TASKS)
+    row = aggregate.summary_table(point, boot).iloc[0]
+    logger.info(
+        f"{folder.name} core score ({len(CORE_TASKS)} tasks): "
+        f"{row.score:.3f} [{row.low:.3f}, {row.high:.3f}]"
+    )
 
 
 def run_task(

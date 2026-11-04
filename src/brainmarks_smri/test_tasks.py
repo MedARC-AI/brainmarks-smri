@@ -59,3 +59,11 @@ def test_fold_ids_test_subset_needs_key(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("BRAINMARKS_SMRI_TEST_KEY", "right")
     ids, _ = fold_ids(samples, keep, "test", "label")
     assert set(samples.loc[ids, "split"]) == {"test"}
+
+
+def test_expand_tasks():
+    assert set(tasks.CORE_TASKS) <= set(tasks.list_tasks())
+    expanded = tasks.expand_tasks(["ixi_age", "core", "all"])
+    assert expanded[0] == "ixi_age"
+    assert expanded[1 : len(tasks.CORE_TASKS)] == [t for t in tasks.CORE_TASKS if t != "ixi_age"]
+    assert sorted(expanded) == tasks.list_tasks()

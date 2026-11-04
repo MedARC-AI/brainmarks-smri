@@ -32,10 +32,17 @@ The hub also has [FOMO300K](scripts/fomo300k/README.md) for pretraining, without
 ## Run
 
 ```sh
+uv run --all-extras python -m brainmarks_smri neurojepa core
 uv run --all-extras python -m brainmarks_smri neurojepa ixi_age abide_diagnosis
 ```
 
 The results go to `output/<model>/<task>.json`. This file has the metrics with bootstrap confidence intervals, and the prediction for each sample. Default settings are in [`config/default.yaml`](src/brainmarks_smri/config/default.yaml). You can change them on the command line, e.g. `--overrides num_workers=8`.
+
+The benchmark score is the mean score over the core tasks (`core`, one per cohort). Each task score is 0 at chance and at most 1: 2 AUROC - 1 for classification, R² for regression, Dice for segmentation. A run prints the model's score once all core results exist. To compare all models in a results folder:
+
+```sh
+uv run python -m brainmarks_smri.aggregate output
+```
 
 ## Add a model
 

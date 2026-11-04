@@ -4,7 +4,7 @@ from collections.abc import Callable
 
 import numpy as np
 import torch
-from sklearn.metrics import roc_auc_score
+from scipy.stats import rankdata
 from torch import Tensor
 
 
@@ -14,9 +14,18 @@ def auroc(labels: np.ndarray, probabilities: np.ndarray) -> float:
     n_classes = probabilities.shape[1]
     if len(np.unique(labels)) < n_classes:
         return np.nan
-    if n_classes == 2:
-        return float(roc_auc_score(labels, probabilities[:, 1]))
-    return float(roc_auc_score(labels, probabilities, multi_class="ovr", average="macro"))
+    # from ranks (ties averaged), as sklearn's roc_auc_score but faster for the bootstrap
+    values = []
+    for class_index in [1] if n_classes == 2 else range(n_classes):
+        positive = labels == class_index
+        n_positive = positive.sum()
+        n_negative = len(labels) - n_positive
+        ranks = rankdata(probabilities[:, class_index])
+        positive_rank_sum = ranks[positive].sum()
+        values.append(
+            (positive_rank_sum - n_positive * (n_positive + 1) / 2) / (n_positive * n_negative)
+        )
+    return float(np.mean(values))
 
 
 def pearson_r(targets: np.ndarray, predictions: np.ndarray) -> float:
