@@ -175,6 +175,8 @@ def probe_segmentation(
         "voxel_auroc": np.full(len(samples), np.nan),
         "average_precision": np.full(len(samples), np.nan),
     }
+    # label share within the brain: the chance level of average precision
+    prevalence = np.full(len(samples), np.nan)
     fold_hyperparameters = {"alpha": [], "threshold": [], "cv_dice": []}
     for fold in range(n_folds):
         in_fold = task.folds == fold
@@ -227,6 +229,7 @@ def probe_segmentation(
             subject_metrics["average_precision"][position] = average_precision(
                 brain_probabilities, brain_target
             )
+            prevalence[position] = float(brain_target.float().mean())
     scored = task.folds >= 0
     metrics = {}
     for name, values in subject_metrics.items():
@@ -241,6 +244,7 @@ def probe_segmentation(
         record["fold"] = int(task.folds[position])
         for name, values in subject_metrics.items():
             record[name] = float(values[position])
+        record["prevalence"] = float(prevalence[position])
         eval_samples.append(record)
     return {
         "label_values": task.label_values,
