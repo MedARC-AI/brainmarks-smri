@@ -14,22 +14,33 @@ def auroc(labels: np.ndarray, probabilities: np.ndarray) -> float:
     n_classes = probabilities.shape[1]
     if len(np.unique(labels)) < n_classes:
         return np.nan
+    # binary: the positive class only; multiclass: each class against the rest
+    if n_classes == 2:
+        positive_classes = [1]
+    else:
+        positive_classes = list(range(n_classes))
     # from ranks (ties averaged), as sklearn's roc_auc_score but faster for the bootstrap
     values = []
-    for class_index in [1] if n_classes == 2 else range(n_classes):
+    for class_index in positive_classes:
         positive = labels == class_index
         n_positive = positive.sum()
         n_negative = len(labels) - n_positive
         ranks = rankdata(probabilities[:, class_index])
-        positive_rank_sum = ranks[positive].sum()
-        values.append(
-            (positive_rank_sum - n_positive * (n_positive + 1) / 2) / (n_positive * n_negative)
-        )
+        # Mann-Whitney U of the positives, as a share of all positive-negative pairs
+        u_statistic = ranks[positive].sum() - n_positive * (n_positive + 1) / 2
+        values.append(u_statistic / (n_positive * n_negative))
     return float(np.mean(values))
 
 
 def pearson_r(targets: np.ndarray, predictions: np.ndarray) -> float:
     return float(np.corrcoef(targets, predictions)[0, 1])
+
+
+def r2_score(targets: np.ndarray, predictions: np.ndarray) -> float:
+    """Coefficient of determination, as sklearn's r2_score."""
+    residual = ((predictions - targets) ** 2).sum()
+    total = ((targets - targets.mean()) ** 2).sum()
+    return float(1 - residual / total)
 
 
 def dice(predicted: Tensor, target: Tensor) -> float:
@@ -68,6 +79,27 @@ def average_precision(probabilities: Tensor, target: Tensor) -> float:
     return float((precision * sorted_target).sum()) / n_positive
 
 
+def bootstrap_score(
+    metric: Callable[..., float],
+    *arrays: np.ndarray,
+    strata: np.ndarray | None = None,
+    n_bootstrap: int = 1000,
+    seed: int = 0,
+) -> tuple[float, np.ndarray]:
+    """`metric(*arrays)`, and its values over resamples of the rows, drawn within each stratum
+    if `strata` is given."""
+    rng = np.random.default_rng(seed)
+    n = len(arrays[0])
+    if strata is None:
+        strata = np.zeros(n)
+    members = [np.flatnonzero(strata == stratum) for stratum in np.unique(strata)]
+    values = []
+    for _ in range(n_bootstrap):
+        ids = np.concatenate([rng.choice(indices, len(indices)) for indices in members])
+        values.append(metric(*[array[ids] for array in arrays]))
+    return metric(*arrays), np.array(values)
+
+
 def bootstrap_ci(
     metric: Callable[..., float],
     *arrays: np.ndarray,
@@ -76,11 +108,6 @@ def bootstrap_ci(
     seed: int = 0,
 ) -> list[float]:
     """Percentile interval of `metric(*arrays)` over resamples of the rows, ignoring NaNs."""
-    rng = np.random.default_rng(seed)
-    n = len(arrays[0])
-    values = []
-    for _ in range(n_bootstrap):
-        ids = rng.integers(0, n, n)
-        values.append(metric(*[array[ids] for array in arrays]))
+    _, values = bootstrap_score(metric, *arrays, n_bootstrap=n_bootstrap, seed=seed)
     tail = 100 * (1 - confidence) / 2
     return np.nanpercentile(values, [tail, 100 - tail]).tolist()

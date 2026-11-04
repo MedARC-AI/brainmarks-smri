@@ -3,7 +3,8 @@
 python -m brainmarks_smri neurojepa abide_diagnosis ixi_age --overrides num_workers=8
 python -m brainmarks_smri neurojepa core
 
-Logs the model's core score once all core results exist.
+Saves the model's task and group scores (`core` once all core results exist) to
+`<output_dir>/<name>/aggregate.json`.
 """
 
 import argparse
@@ -25,7 +26,7 @@ from brainmarks_smri import aggregate, probes
 from brainmarks_smri.utils.misc import git_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
 from brainmarks_smri.models.base import Model
-from brainmarks_smri.tasks import CORE_TASKS, TASK_GROUPS, create_task, expand_tasks, list_tasks
+from brainmarks_smri.tasks import TASK_GROUPS, create_task, expand_tasks, list_tasks
 
 DEFAULT_CONFIG = resources.files("brainmarks_smri") / "config" / "default.yaml"
 PROBES = {
@@ -65,7 +66,7 @@ def main():
         else:
             tasks.append(task_name)
     if not tasks:
-        log_core_score(Path(cfg.output_dir) / name)
+        save_aggregate(Path(cfg.output_dir) / name)
         return
     logger.info(f"evaluating {args.model} on {', '.join(tasks)} ({subset})")
     logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
@@ -89,23 +90,28 @@ def main():
         except Exception:
             logger.exception(f"{name} {task_name} failed")
             failed.append(task_name)
-    log_core_score(Path(cfg.output_dir) / name)
+    save_aggregate(Path(cfg.output_dir) / name)
     if failed:
         logger.error(f"failed: {', '.join(failed)}")
         sys.exit(1)
 
 
-def log_core_score(folder: Path) -> None:
-    paths = [folder / f"{task}.json" for task in CORE_TASKS]
-    if not all(path.exists() for path in paths):
+def save_aggregate(folder: Path) -> None:
+    """Task and group scores with bootstrap resamples, from all results in `folder`, in
+    `<folder>/aggregate.json`."""
+    paths = [path for path in sorted(folder.glob("*.json")) if path.name != "aggregate.json"]
+    if not paths:
         return
-    results = {
-        folder.name: {task: json.loads(path.read_text()) for task, path in zip(CORE_TASKS, paths)}
-    }
-    point, boot = aggregate.bootstrap_scores(results, [folder.name], CORE_TASKS)
-    row = aggregate.summary_table(point, boot).iloc[0]
+    results = [json.loads(path.read_text()) for path in paths]
+    summary, boot = aggregate.aggregate_scores(results)
+    scores = {"summary": summary.to_dict(orient="index"), "bootstrap": boot.to_dict(orient="list")}
+    (folder / "aggregate.json").write_text(json.dumps(scores, indent=1))
+    logger.info(f"{folder.name} scores\n{summary.round(3).to_markdown()}")
+    # last, so it is easy to find
+    group = "core" if "core" in summary.index else "all"
+    row = summary.loc[group]
     logger.info(
-        f"{folder.name} core score ({len(CORE_TASKS)} tasks): "
+        f"{folder.name} {group} score ({row.n_tasks} tasks): "
         f"{row.score:.3f} [{row.low:.3f}, {row.high:.3f}]"
     )
 
@@ -136,6 +142,7 @@ def run_task(
         "task": task_name,
         "subset": subset,
         "type": task.type,
+        "target": task.target,
         "dataset": task.dataset.name,
         "config": OmegaConf.to_container(cfg),
         "git": git_info(),

@@ -1,22 +1,7 @@
 import numpy as np
 import pytest
-from sklearn.metrics import roc_auc_score
 
 from brainmarks_smri import aggregate
-from brainmarks_smri.metrics import auroc
-
-
-def test_auroc_matches_sklearn():
-    rng = np.random.default_rng(0)
-    labels = rng.integers(0, 3, 200)
-    probabilities = rng.dirichlet(np.ones(3), 200)
-    probabilities[:20] = probabilities[20:40]  # ties
-    expected = roc_auc_score(labels, probabilities, multi_class="ovr", average="macro")
-    assert auroc(labels, probabilities) == pytest.approx(expected)
-    binary = (labels > 0).astype(int)
-    assert auroc(binary, probabilities[:, :2]) == pytest.approx(
-        roc_auc_score(binary, probabilities[:, 1])
-    )
 
 
 def make_results(n: int = 60) -> dict[str, dict[str, dict]]:
@@ -54,18 +39,28 @@ def make_results(n: int = 60) -> dict[str, dict[str, dict]]:
         results[name] = {
             "adni_ad": {
                 "task": "adni_ad",
+                "subset": "dev",
                 "type": "classification",
+                "target": "dementia",
                 "classes": [False, True],
                 "eval_samples": classification,
             },
-            "ixi_age": {"task": "ixi_age", "type": "regression", "eval_samples": regression},
+            "ixi_age": {
+                "task": "ixi_age",
+                "subset": "dev",
+                "type": "regression",
+                "target": "age",
+                "eval_samples": regression,
+            },
             "atlas_lesion": {
                 "task": "atlas_lesion",
+                "subset": "dev",
                 "type": "segmentation",
                 "eval_samples": segmentation,
             },
             "fomo26_task4_vessel": {
                 "task": "fomo26_task4_vessel",
+                "subset": "dev",
                 "type": "segmentation",
                 "eval_samples": segmentation,
             },
@@ -73,17 +68,32 @@ def make_results(n: int = 60) -> dict[str, dict[str, dict]]:
     return results
 
 
-def test_bootstrap_scores():
+def test_aggregate_scores():
     results = make_results()
-    tasks = ["adni_ad", "ixi_age", "atlas_lesion", "fomo26_task4_vessel"]
-    point, boot = aggregate.bootstrap_scores(results, ["good", "bad"], tasks)
-    assert point.loc["good"].tolist() == pytest.approx([1, 1, 0.8, 1])
-    assert point.loc["bad", "ixi_age"] == pytest.approx(0)
-    assert point.loc["bad", "atlas_lesion"] == pytest.approx(0.2)
-    assert point.loc["bad", "fomo26_task4_vessel"] == pytest.approx(0)
-    assert boot.shape == (aggregate.N_BOOTSTRAP, 2, len(tasks))
-    # paired: the same resample for both models, so their Dice gap never changes
-    assert np.allclose(boot[:, 0, 2] - boot[:, 1, 2], 0.6)
-    table = aggregate.summary_table(point, boot)
-    assert table.index.tolist() == ["good", "bad"]
-    assert table.loc["good", "low"] <= table.loc["good", "score"] <= table.loc["good", "high"]
+    good, good_boot = aggregate.aggregate_scores(list(results["good"].values()))
+    bad, bad_boot = aggregate.aggregate_scores(list(results["bad"].values()))
+    tasks = ["adni_ad", "atlas_lesion", "fomo26_task4_vessel", "ixi_age"]
+    groups = ["global", "segmentation", "all"]  # no core: the core tasks are incomplete
+    assert good.index.tolist() == tasks + groups
+    assert good.score.tolist() == pytest.approx([1, 0.8, 1, 1, 1, 0.9, 0.95])
+    assert good.n_tasks.tolist() == [1, 1, 1, 1, 2, 2, 4]
+    assert good.loc["all", "n_samples"] == 4 * 60
+    assert bad.loc["ixi_age", "score"] == pytest.approx(0)
+    assert bad.loc["atlas_lesion", "score"] == pytest.approx(0.2)
+    assert bad.loc["fomo26_task4_vessel", "score"] == pytest.approx(0)
+    assert good_boot.shape == (aggregate.N_BOOTSTRAP, len(tasks) + len(groups))
+    # same samples, same resamples: paired across models, so the Dice gap never changes
+    assert good.sample_hash.tolist() == bad.sample_hash.tolist()
+    assert np.allclose(good_boot["atlas_lesion"] - bad_boot["atlas_lesion"], 0.6)
+    for row in tasks + groups:
+        assert good.loc[row, "low"] <= good.loc[row, "score"] <= good.loc[row, "high"]
+
+
+def test_sample_hash_changes_with_samples():
+    results = list(make_results()["good"].values())
+    summary, _ = aggregate.aggregate_scores(results)
+    results[0] = {**results[0], "eval_samples": results[0]["eval_samples"][1:]}
+    fewer, _ = aggregate.aggregate_scores(results)
+    assert fewer.loc["adni_ad", "sample_hash"] != summary.loc["adni_ad", "sample_hash"]
+    assert fewer.loc["ixi_age", "sample_hash"] == summary.loc["ixi_age", "sample_hash"]
+    assert fewer.loc["global", "sample_hash"] != summary.loc["global", "sample_hash"]
