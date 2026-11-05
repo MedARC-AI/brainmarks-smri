@@ -43,7 +43,9 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument("model")
-    parser.add_argument("tasks", nargs="+", choices=list_tasks() + TASK_GROUPS, metavar="task")
+    parser.add_argument(
+        "tasks", nargs="+", choices=list_tasks() + list(TASK_GROUPS), metavar="task"
+    )
     parser.add_argument("--config", type=Path, help="yaml merged over the default config")
     parser.add_argument("--overrides", nargs="*", help="config overrides, e.g. num_workers=8")
     args = parser.parse_args()
@@ -107,13 +109,11 @@ def save_aggregate(folder: Path) -> None:
     scores = {"summary": summary.to_dict(orient="index"), "bootstrap": boot.to_dict(orient="list")}
     (folder / "aggregate.json").write_text(json.dumps(scores, indent=1))
     logger.info(f"{folder.name} scores\n{summary.round(3).to_markdown()}")
-    # last, so it is easy to find
-    group = "core" if "core" in summary.index else "all"
-    row = summary.loc[group]
-    logger.info(
-        f"{folder.name} {group} score ({row.n_tasks} tasks): "
-        f"{row.score:.3f} [{row.low:.3f}, {row.high:.3f}]"
-    )
+    # last, so they are easy to find
+    groups = [group for group in ["core", "open"] if group in summary.index] or ["all"]
+    for group in groups:
+        row = summary.loc[group]
+        logger.info(f"{folder.name} {group} score: {row.score:.3f} [{row.low:.3f}, {row.high:.3f}]")
 
 
 def run_task(

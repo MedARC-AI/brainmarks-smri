@@ -66,40 +66,6 @@ def list_tasks() -> list[str]:
     return sorted(TASKS)
 
 
-# One task per cohort, the primary target first. The benchmark score is their mean.
-CORE_TASKS = [
-    "abide_diagnosis",
-    "adhd_diagnosis",
-    "cnp_diagnosis",
-    "ucsf_idh",
-    "upenn_survival_1y",
-    "oasis1_dementia",
-    "adni_ad",
-    "a4learn_amyloid",
-    "ixi_age",
-    "openbhb_age",
-    "fomo26_task5_pmg",
-    "brats_enhancing_tumor",
-    "soop_lesion",
-    "atlas_lesion",
-    "fomo26_task4_vessel",
-]
-TASK_GROUPS = ["core", "all"]
-
-
-def expand_tasks(names: list[str]) -> list[str]:
-    """Task names with the groups `core` and `all` expanded, in order, without duplicates."""
-    expanded = []
-    for name in names:
-        if name == "core":
-            expanded += CORE_TASKS
-        elif name == "all":
-            expanded += list_tasks()
-        else:
-            expanded.append(name)
-    return list(dict.fromkeys(expanded))
-
-
 def fold_ids(
     samples: pd.DataFrame,
     keep: pd.Series,
@@ -805,3 +771,53 @@ def a4learn_pacc_decline(subset: Subset = "dev") -> Task:
         folds=folds,
         classes=[False, True],
     )
+
+
+# Groups of tasks, usable in place of task names; after the tasks, so that `all` has them.
+TASK_GROUPS: dict[str, list[str]] = {
+    # The benchmark score is their mean: the primary target of each cohort, plus a few more tasks
+    # with distinct, reliable signal.
+    "core": [
+        "abide_diagnosis",
+        "adhd_diagnosis",
+        "cnp_diagnosis",
+        "ucsf_idh",
+        "upenn_survival_1y",
+        "oasis1_dementia",
+        "adni_ad",
+        "a4learn_amyloid",
+        "ixi_age",
+        "openbhb_age",
+        "fomo26_task5_pmg",
+        "brats_enhancing_tumor",
+        "soop_lesion",
+        "atlas_lesion",
+        "fomo26_task4_vessel",
+        "adni_pmci",
+        "soop_mrs_poor",
+        "brats_whole_tumor",
+    ],
+    # The core tasks on hosted datasets: no data access application needed.
+    "open": [
+        "abide_diagnosis",
+        "adhd_diagnosis",
+        "cnp_diagnosis",
+        "ucsf_idh",
+        "upenn_survival_1y",
+        "ixi_age",
+        "openbhb_age",
+        "brats_enhancing_tumor",
+        "soop_lesion",
+        "soop_mrs_poor",
+        "brats_whole_tumor",
+    ],
+    "all": list_tasks(),
+}
+
+
+def expand_tasks(names: list[str]) -> list[str]:
+    """Task names with the groups expanded, in order, without duplicates."""
+    expanded = []
+    for name in names:
+        expanded += TASK_GROUPS.get(name, [name])
+    return list(dict.fromkeys(expanded))

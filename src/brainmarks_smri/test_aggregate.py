@@ -73,27 +73,15 @@ def test_aggregate_scores():
     good, good_boot = aggregate.aggregate_scores(list(results["good"].values()))
     bad, bad_boot = aggregate.aggregate_scores(list(results["bad"].values()))
     tasks = ["adni_ad", "atlas_lesion", "fomo26_task4_vessel", "ixi_age"]
-    groups = ["global", "segmentation", "all"]  # no core: the core tasks are incomplete
+    groups = ["global", "segmentation", "all"]  # no core or open: incomplete
     assert good.index.tolist() == tasks + groups
     assert good.score.tolist() == pytest.approx([1, 0.8, 1, 1, 1, 0.9, 0.95])
-    assert good.n_tasks.tolist() == [1, 1, 1, 1, 2, 2, 4]
     assert good.loc["all", "n_samples"] == 4 * 60
     assert bad.loc["ixi_age", "score"] == pytest.approx(0)
     assert bad.loc["atlas_lesion", "score"] == pytest.approx(0.2)
     assert bad.loc["fomo26_task4_vessel", "score"] == pytest.approx(0)
     assert good_boot.shape == (aggregate.N_BOOTSTRAP, len(tasks) + len(groups))
     # same samples, same resamples: paired across models, so the Dice gap never changes
-    assert good.sample_hash.tolist() == bad.sample_hash.tolist()
     assert np.allclose(good_boot["atlas_lesion"] - bad_boot["atlas_lesion"], 0.6)
     for row in tasks + groups:
         assert good.loc[row, "low"] <= good.loc[row, "score"] <= good.loc[row, "high"]
-
-
-def test_sample_hash_changes_with_samples():
-    results = list(make_results()["good"].values())
-    summary, _ = aggregate.aggregate_scores(results)
-    results[0] = {**results[0], "eval_samples": results[0]["eval_samples"][1:]}
-    fewer, _ = aggregate.aggregate_scores(results)
-    assert fewer.loc["adni_ad", "sample_hash"] != summary.loc["adni_ad", "sample_hash"]
-    assert fewer.loc["ixi_age", "sample_hash"] == summary.loc["ixi_age", "sample_hash"]
-    assert fewer.loc["global", "sample_hash"] != summary.loc["global", "sample_hash"]

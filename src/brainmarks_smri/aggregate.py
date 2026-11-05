@@ -2,16 +2,15 @@
 groups of tasks.
 
 Task scores are 0 at chance and at most 1. The resamples have a fixed seed and are drawn over the
-samples sorted by participant and session, so they are paired across models.
+samples sorted by participant and session, so they are paired across models. This assumes every
+model is scored on the same samples per task, which holds while the task definitions are frozen.
 """
-
-import hashlib
 
 import numpy as np
 import pandas as pd
 
 from brainmarks_smri.metrics import auroc, bootstrap_score, r2_score
-from brainmarks_smri.tasks import CORE_TASKS
+from brainmarks_smri.tasks import TASK_GROUPS
 
 N_BOOTSTRAP = 1000
 SEED = 0
@@ -66,9 +65,8 @@ SCORE_BY_TASK = {"fomo26_task4_nerve": score_ap_log_lift, "fomo26_task4_vessel":
 
 
 def aggregate_scores(results: list[dict]) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Score, 95% CI, sample and task counts, and a hash of the sample ids, per task and per
-    group of tasks (rows); and the bootstrap resamples (columns: tasks and groups). Resamples of
-    two models are paired where their hashes match."""
+    """Score, 95% CI and sample count per task and per group of tasks (rows), and the bootstrap
+    resamples (columns: tasks and groups)."""
     subsets = {result["subset"] for result in results}
     assert len(subsets) == 1, f"results from more than one subset: {subsets}"
     rows = {}
@@ -78,15 +76,8 @@ def aggregate_scores(results: list[dict]) -> tuple[pd.DataFrame, pd.DataFrame]:
         score = SCORE_BY_TASK.get(task, SCORE_BY_TYPE[result["type"]])
         point, task_boot = score(result)
         low, high = np.percentile(task_boot, [2.5, 97.5])
-        sample_ids = [f"{s['participant_id']}/{s['session_id']}" for s in sorted_samples(result)]
-        rows[task] = {
-            "score": float(point),
-            "low": low,
-            "high": high,
-            "n_samples": len(sample_ids),
-            "n_tasks": 1,
-            "sample_hash": hashlib.sha256("\n".join(sample_ids).encode()).hexdigest()[:12],
-        }
+        n_samples = len(result["eval_samples"])
+        rows[task] = {"score": float(point), "low": low, "high": high, "n_samples": n_samples}
         boot[task] = task_boot
 
     types = {result["task"]: result["type"] for result in results}
@@ -94,22 +85,21 @@ def aggregate_scores(results: list[dict]) -> tuple[pd.DataFrame, pd.DataFrame]:
     groups = {
         "global": [task for task in tasks if types[task] in ("classification", "regression")],
         "segmentation": [task for task in tasks if types[task] == "segmentation"],
-        # only complete: a mean over part of the core tasks is not the core score
-        "core": CORE_TASKS if set(CORE_TASKS) <= set(tasks) else [],
-        "all": tasks,
     }
+    # only complete: a mean over part of the core tasks is not the core score
+    for group in ["core", "open"]:
+        if set(TASK_GROUPS[group]) <= set(tasks):
+            groups[group] = TASK_GROUPS[group]
+    groups["all"] = tasks
     for group, members in groups.items():
         if not members:
             continue
         boot[group] = boot[members].mean(axis=1)
         low, high = np.percentile(boot[group], [2.5, 97.5])
-        member_hashes = "".join(rows[task]["sample_hash"] for task in members)
         rows[group] = {
             "score": float(np.mean([rows[task]["score"] for task in members])),
             "low": low,
             "high": high,
             "n_samples": sum(rows[task]["n_samples"] for task in members),
-            "n_tasks": len(members),
-            "sample_hash": hashlib.sha256(member_hashes.encode()).hexdigest()[:12],
         }
     return pd.DataFrame.from_dict(rows, orient="index"), boot

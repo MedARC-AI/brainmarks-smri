@@ -62,8 +62,11 @@ def test_fold_ids_test_subset_needs_key(monkeypatch: pytest.MonkeyPatch):
 
 
 def test_expand_tasks():
-    assert set(tasks.CORE_TASKS) <= set(tasks.list_tasks())
+    core, open_tasks = tasks.TASK_GROUPS["core"], tasks.TASK_GROUPS["open"]
+    assert set(core) <= set(tasks.list_tasks())
+    assert set(open_tasks) <= set(core)
+    assert tasks.expand_tasks(["open"]) == open_tasks
     expanded = tasks.expand_tasks(["ixi_age", "core", "all"])
     assert expanded[0] == "ixi_age"
-    assert expanded[1 : len(tasks.CORE_TASKS)] == [t for t in tasks.CORE_TASKS if t != "ixi_age"]
+    assert expanded[1 : len(core)] == [t for t in core if t != "ixi_age"]
     assert sorted(expanded) == tasks.list_tasks()
