@@ -4,7 +4,7 @@ Alzheimer's Disease Neuroimaging Initiative: a longitudinal study of older adult
 
 - **Homepage:** <https://adni.loni.usc.edu/>
 - **Source:** LONI Image and Data Archive (IDA, <https://ida.loni.usc.edu/>), after an approved ADNI data access application. Images are downloaded as DICOM zips of "Original" series and converted to NIfTI with `dcm2niix` v1.0.20260724 (`-z y -b y -ba y`). Study data is the ADNIMERGE2 R package (Study Data, ADNIMERGE2).
-- **Version:** ADNIMERGE2 0.1.1 (data pulled 2025-11-12). The images are pinned by their LONI image IDs, listed in `source/selected_images.tsv` (IDA download 2026-06).
+- **Version:** ADNIMERGE2 0.1.1 (data pulled 2025-11-12). The images are pinned by their LONI image IDs, listed in `tables/selected_images.tsv` (IDA download 2026-06).
 - **DOI:** none.
 - **License:** ADNI Data Use Agreement: research use only, no redistribution, and the ADNI acknowledgement and publication policy apply.
 - **Citation:** Petersen, R. C., Aisen, P. S., Beckett, L. A., et al. (2010). Alzheimer's Disease Neuroimaging Initiative (ADNI): clinical characterization. *Neurology*, 74(3), 201-209. Publications must also include the ADNI acknowledgement from the data use agreement.
@@ -25,11 +25,12 @@ One sample per participant and session: y0 (the first visit with a usable T1w), 
 `source/` (65 GB):
 
 - `sub-<PTID>/ses-<y0|y2|y4>/anat/`: per session one T1w, an `acq-3T` T1w at ADNI1 visits that also have a 3 T scan (240), and FLAIR (ADNIGO onward), each with its `dcm2niix` JSON sidecar. 8,578 images.
-- `selected_images.tsv`: the LONI image ID, series description and field strength of every image. `image_dates.tsv`: the acquisition date of each image.
+- `image_dates.tsv`: the acquisition date of each image.
 - `ADNIMERGE2/`: the extracted R package; the tables are `data/*.rda` (readable with `pyreadr`).
 
 `tables/` (derived from `source/`):
 
+- `selected_images.tsv`: the LONI image ID, series description and field strength of every image (input to the download, not derived).
 - `images.tsv`: T1w, T1w `acq-3T` and FLAIR per session.
 - `samples.tsv` + `samples.json`: demographics, APOE, diagnosis, years to dementia and to MCI or dementia, diagnostic follow-up, cognitive scores, amyloid PET (status, Centiloid), tau PET, CSF, plasma, WMH and FreeSurfer 7 volumes and thickness. Each is matched to the scan by the nearest record within a window (180 days for diagnosis, 90 days for cognition, 1 year for PET, CSF and plasma, 60 days for MRI measures).
 - `splits.tsv`: dev or test per participant.

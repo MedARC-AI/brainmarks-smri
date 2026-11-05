@@ -10,17 +10,17 @@ NAME=a4learn
 OUT=$DATA_ROOT/$NAME
 
 [[ -d "${A4_ZIPS:-}" ]] || die "set A4_ZIPS to the folder of IDA zips"
-mkdir -p "$OUT/source"
+mkdir -p "$OUT/source" "$OUT/tables"
 # The T1w images (NIfTI + JSON) of the sessions in selected_images.tsv (bl, wk84, wk240).
-cp "$(dirname "$0")/selected_images.tsv" "$OUT/source/"
+cp "$(dirname "$0")/tables/selected_images.tsv" "$OUT/tables/"
 WANTED=$(mktemp)
-tail -n +2 "$OUT/source/selected_images.tsv" | cut -f5 | sed 'p; s/\.nii\.gz$/.json/' > "$WANTED"
+tail -n +2 "$OUT/tables/selected_images.tsv" | cut -f5 | sed 'p; s/\.nii\.gz$/.json/' > "$WANTED"
 for zip in "$A4_ZIPS"/ImageData\ -\ T1\ -\ *.zip; do
     unzip -Z1 "$zip" | grep -F -x -f "$WANTED" | xargs -r -d '\n' unzip -n -q "$zip" -d "$OUT/source"
 done
 rm "$WANTED"
 n_images=$(find "$OUT/source/ImageData" -name '*.nii.gz' | wc -l)
-(( n_images == $(tail -n +2 "$OUT/source/selected_images.tsv" | wc -l) )) || die "found $n_images images"
+(( n_images == $(tail -n +2 "$OUT/tables/selected_images.tsv" | wc -l) )) || die "found $n_images images"
 # Clinical data, without the safety ECG and lab tables (clrm_ecg.csv, clrm_lab.csv; 270 MB).
 unzip -n -q "$A4_ZIPS/Clinical.zip" -d "$OUT/source" -x 'Clinical/External Data/clrm_*'
 write_manifest "$NAME"

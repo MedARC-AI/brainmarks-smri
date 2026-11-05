@@ -88,7 +88,7 @@ def snake(name: str) -> str:
 
 
 def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
-    selected = pd.read_csv(SOURCE / "selected_images.tsv", sep="\t", dtype=str)
+    selected = pd.read_csv(ROOT / "tables" / "selected_images.tsv", sep="\t", dtype=str)
     s = selected[["participant_id", "session_id", "bid", "viscode"]].copy()
 
     # Scan day: the MRI study date from the MRI reads, else the visit date.
@@ -296,7 +296,7 @@ def images(selected: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
-    selected = pd.read_csv(SOURCE / "selected_images.tsv", sep="\t", dtype=str)
+    selected = pd.read_csv(ROOT / "tables" / "selected_images.tsv", sep="\t", dtype=str)
     img = images(selected)
     smp, columns = samples()
     info = read_csv(DERIVED / "SUBJINFO.csv")

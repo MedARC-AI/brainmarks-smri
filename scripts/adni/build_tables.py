@@ -255,7 +255,7 @@ def manufacturers(sessions: pd.DataFrame) -> pd.Series:
 
 
 def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
-    selected = pd.read_csv(SOURCE / "selected_images.tsv", sep="\t", na_values="n/a")
+    selected = pd.read_csv(ROOT / "tables" / "selected_images.tsv", sep="\t", na_values="n/a")
     dates = pd.read_csv(SOURCE / "image_dates.tsv", sep="\t")
     selected = selected.merge(dates, on="image_id", validate="one_to_one")
     main_t1w = selected[(selected.modality == "T1w") & selected.desc.isna()]
@@ -432,7 +432,7 @@ def samples() -> tuple[pd.DataFrame, dict[str, dict]]:
 def main() -> None:
     img = tables.bids_images(SOURCE, ROOT)
     smp, columns = samples()
-    selected = pd.read_csv(SOURCE / "selected_images.tsv", sep="\t", na_values="n/a")
+    selected = pd.read_csv(ROOT / "tables" / "selected_images.tsv", sep="\t", na_values="n/a")
     assert len(img) == len(selected), f"{len(img)} images, {len(selected)} selected"
     assert not smp.duplicated(["participant_id", "session_id"]).any()
     assert smp.sex.notna().all() and smp.age.between(40, 100).all()

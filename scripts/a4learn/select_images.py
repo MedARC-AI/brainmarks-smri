@@ -2,7 +2,7 @@
 
     A4_ZIPS=<dir of IDA zips> uv run python scripts/a4learn/select_images.py
 
-Writes scripts/a4learn/selected_images.tsv: one row per image, named as in the IDA zips
+Writes scripts/a4learn/tables/selected_images.tsv: one row per image, named as in the IDA zips
 (`ImageData/<A4|LEARN|SF>_MR_T1_<BID>_<VISCODE>.nii.gz`).
 
 - There is one T1w per participant and visit. Sessions: bl = the first usable T1w at visit 004
@@ -17,7 +17,7 @@ from pathlib import Path
 
 import pandas as pd
 
-OUT = Path(__file__).parent / "selected_images.tsv"
+OUT = Path(__file__).parent / "tables" / "selected_images.tsv"
 T1W = re.compile(r"ImageData/(?:A4|LEARN|SF)_MR_T1_(B\d+)_(\d{3})\.nii\.gz")
 SESSIONS = {"027": "wk84", "066": "wk240"}
 # Visits that count as baseline: screening (004), LEARN baseline (006), week 12 (009).

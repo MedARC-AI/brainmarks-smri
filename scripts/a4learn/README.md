@@ -25,11 +25,11 @@ One sample per participant and session: bl (the first visit with a T1w: screenin
 `source/` (43 GB):
 
 - `ImageData/<A4|LEARN|SF>_MR_T1_<BID>_<VISCODE>.nii.gz` + `.json`: the T1w of each session (3,836), as distributed (3 T sagittal accelerated MPRAGE, 1.2 mm).
-- `selected_images.tsv`: participant, session, BID, visit code and file of every image.
 - `Clinical/Derived Data/`: participant info, visits, PACC, cognitive scores (ADQS), disposition. `Clinical/External Data/`: amyloid and tau PET SUVRs, PET visual reads, plasma biomarkers, MRI reads, WMH and regional volumes.
 
 `tables/` (derived from `source/`):
 
+- `selected_images.tsv`: participant, session, BID, visit code and file of every image (input to the download, not derived).
 - `images.tsv`: one T1w per session.
 - `samples.tsv` + `samples.json`: group and treatment, demographics, APOE, screening amyloid (Centiloid, SUVR, visual read), cognition (PACC, MMSE, CFI, ADL, CDR), PACC change at week 240, amyloid and tau PET SUVR, plasma pTau217, WMH, MRI reads (microhemorrhages, siderosis) and regional volumes. Cognition is matched within 90 days of the MRI, PET and plasma within 1 year; MRI measures come from the same visit.
 - `splits.tsv`: dev or test per participant.

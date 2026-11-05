@@ -3,7 +3,7 @@
     ADNI_ZIPS=<dir of IDA image zips> ADNIMERGE2=<ADNIMERGE2 tarball> \
         uv run python scripts/adni/select_images.py
 
-Writes scripts/adni/selected_images.tsv: the LONI image IDs to download from IDA and convert.
+Writes scripts/adni/tables/selected_images.tsv: the LONI image IDs to download from IDA and convert.
 Scan dates are left out (they are DUA data); convert.py reads them from the zips.
 
 - Inputs: the series in the IDA zips (`ADNI/<PTID>/<description>/<datetime>/I<image id>/*.dcm`),
@@ -35,7 +35,7 @@ import pandas as pd
 import pydicom
 import pyreadr
 
-OUT = Path(__file__).parent / "selected_images.tsv"
+OUT = Path(__file__).parent / "tables" / "selected_images.tsv"
 SERIES_PATH = re.compile(r"ADNI/(\d{3}_S_\d{4,5})/([^/]+)/([\d-]+)_[\d_.]+/I(\d+)/([^/]+\.dcm)")
 T1W = re.compile(r"MP-?RAGE|SPGR", re.IGNORECASE)
 FLAIR = re.compile(r"FLAIR", re.IGNORECASE)
