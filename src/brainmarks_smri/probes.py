@@ -177,7 +177,13 @@ def probe_segmentation(
     }
     # label share within the brain: the chance level of average precision
     prevalence = np.full(len(samples), np.nan)
-    fold_hyperparameters = {"alpha": [], "threshold": [], "cv_dice": []}
+    fold_hyperparameters = {
+        "alpha": [],
+        "threshold": [],
+        "cv_dice": [],
+        "n_iter": [],
+        "cv_n_iter": [],
+    }
     for fold in range(n_folds):
         in_fold = task.folds == fold
         train_rows = ~np.isin(groups, participants[in_fold])
@@ -209,6 +215,9 @@ def probe_segmentation(
         fold_hyperparameters["threshold"].append(classifier.threshold_)
         # best CV Dice over thresholds, per alpha
         fold_hyperparameters["cv_dice"].append(classifier.cv_dice_.max(dim=1).values.tolist())
+        # l-bfgs iterations of the refit, and per alpha the most over inner splits
+        fold_hyperparameters["n_iter"].append(classifier.n_iter_)
+        fold_hyperparameters["cv_n_iter"].append(classifier.cv_n_iter_.max(axis=0).tolist())
 
         for position in np.flatnonzero(in_fold):
             sample = samples[position]

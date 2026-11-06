@@ -23,7 +23,7 @@ import torch
 from omegaconf import DictConfig, OmegaConf
 
 from brainmarks_smri import aggregate, probes
-from brainmarks_smri.utils.misc import git_info, random_seed, setup_logging
+from brainmarks_smri.utils.misc import git_info, package_info, random_seed, setup_logging
 from brainmarks_smri.models import create_model
 from brainmarks_smri.models.base import Model
 from brainmarks_smri.tasks import TASK_GROUPS, create_task, expand_tasks, list_tasks
@@ -34,6 +34,7 @@ PROBES = {
     "regression": probes.probe_regression,
     "segmentation": probes.probe_segmentation,
 }
+SEED = 0
 
 logger = logging.getLogger("brainmarks_smri")
 
@@ -72,8 +73,8 @@ def main():
         return
     logger.info(f"evaluating {args.model} on {', '.join(tasks)} ({subset})")
     logger.info(f"start: {datetime.datetime.now().isoformat(timespec='seconds')}")
+    logger.info(f"version: {package_info('brainmarks-smri')}")
     logger.info(f"cwd: {Path.cwd()}")
-    logger.info(f"git: {git_info()}")
     logger.info(f"cwd git: {git_info(Path.cwd())}")
     logger.info(f"config:\n{OmegaConf.to_yaml(cfg)}")
 
@@ -81,7 +82,7 @@ def main():
     for module in cfg.imports:
         importlib.import_module(module)
 
-    random_seed(cfg.seed)
+    random_seed(SEED)
     device = cfg.device or ("cuda" if torch.cuda.is_available() else "cpu")
     model = create_model(args.model, **cfg.model_kwargs).to(device).eval()
 
@@ -125,7 +126,7 @@ def run_task(
     cfg: DictConfig,
 ) -> None:
     logger.info(f"evaluating {model_name} on {task_name}")
-    random_seed(cfg.seed)
+    random_seed(SEED)
     task = create_task(task_name, subset=subset)
     model_transform = getattr(model, "transform", None)
     if task.transform is None:
@@ -145,7 +146,7 @@ def run_task(
         "target": task.target,
         "dataset": task.dataset.name,
         "config": OmegaConf.to_container(cfg),
-        "git": git_info(),
+        "version": package_info("brainmarks-smri"),
         # the calling repo, e.g. a model's research code
         "cwd": str(Path.cwd()),
         "cwd_git": git_info(Path.cwd()),

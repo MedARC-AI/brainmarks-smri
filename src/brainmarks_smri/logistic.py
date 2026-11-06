@@ -1,10 +1,14 @@
 """Multi-output L2 logistic regression in torch, fit with full-batch L-BFGS."""
 
+import logging
+
 import numpy as np
 import torch
 import torch.nn.functional as F
 from sklearn.model_selection import BaseCrossValidator, BaseShuffleSplit, GroupShuffleSplit
 from torch import Tensor
+
+logger = logging.getLogger(__name__)
 
 
 class TorchLogisticRegressionCV:
@@ -48,6 +52,7 @@ class TorchLogisticRegressionCV:
         group_ids = torch.as_tensor(group_ids, device=features.device)
         # Dice per (split, alpha, threshold), averaged over the split's validation groups
         cv_dice = torch.zeros(len(splits), len(self.alphas), len(self.thresholds))
+        cv_n_iter = np.zeros((len(splits), len(self.alphas)), dtype=int)
         for split_id, (train_ids, val_ids) in enumerate(splits):
             train_ids = torch.as_tensor(train_ids, device=features.device)
             val_ids = torch.as_tensor(val_ids, device=features.device)
@@ -56,9 +61,10 @@ class TorchLogisticRegressionCV:
             _, val_groups = torch.unique(group_ids[val_ids], return_inverse=True)
             n_val_groups = int(val_groups.max()) + 1
             for alpha_id, alpha in enumerate(self.alphas):
-                coef, intercept = fit_logistic(
+                coef, intercept, n_iter = fit_logistic(
                     features[train_ids], targets[train_ids], alpha, **fit_kwargs
                 )
+                cv_n_iter[split_id, alpha_id] = n_iter
                 val_logits = features[val_ids].float() @ coef + intercept
                 val_probabilities = torch.sigmoid(val_logits)
                 for threshold_id, threshold in enumerate(self.thresholds):
@@ -72,12 +78,15 @@ class TorchLogisticRegressionCV:
                     group_dice = torch.where(total > 0, 2 * overlap / total.clamp(min=1), 1.0)
                     cv_dice[split_id, alpha_id, threshold_id] = group_dice.mean()
         self.cv_dice_ = cv_dice.mean(dim=0)  # (alphas, thresholds)
+        self.cv_n_iter_ = cv_n_iter
 
         best = np.unravel_index(int(self.cv_dice_.argmax()), self.cv_dice_.shape)
         alpha_id, threshold_id = int(best[0]), int(best[1])
         self.alpha_ = self.alphas[alpha_id]
         self.threshold_ = float(self.thresholds[threshold_id])
-        self.coef_, self.intercept_ = fit_logistic(features, targets, self.alpha_, **fit_kwargs)
+        self.coef_, self.intercept_, self.n_iter_ = fit_logistic(
+            features, targets, self.alpha_, **fit_kwargs
+        )
         return self
 
     def decision_function(self, features: Tensor) -> Tensor:
@@ -97,10 +106,10 @@ def fit_logistic(
     max_negative_ratio: float | None = None,
     max_iter: int = 1000,
     seed: int = 0,
-) -> tuple[Tensor, Tensor]:
+) -> tuple[Tensor, Tensor, int]:
     """L2 logistic regression on standardized features, one binary problem per target column.
 
-    Returns weights and intercepts that apply to the raw features.
+    Returns weights and intercepts that apply to the raw features, and the l-bfgs iterations.
     """
     if max_negative_ratio is not None:
         # keep every row with a positive target, and about max_negative_ratio negatives per positive
@@ -140,11 +149,13 @@ def fit_logistic(
 
     optimizer.step(closure)
     # l-bfgs stops on its own gradient and step tolerances; exhausting the budget means neither met
-    n_iter = optimizer.state[coef]["n_iter"]
-    assert n_iter < max_iter, f"l-bfgs used all {max_iter} iterations without converging"
+    state = optimizer.state[coef]
+    n_iter = state["n_iter"]
+    if n_iter >= max_iter or state["func_evals"] >= optimizer.defaults["max_eval"]:
+        logger.warning(f"l-bfgs did not converge in {n_iter} iterations (alpha {alpha:g})")
 
     # fold the standardization into the weights: (x - mean) / std @ w + b = x @ w' + b'
     coef = coef.detach()
     raw_coef = coef / std[:, None]
     raw_intercept = intercept.detach() - (mean / std) @ coef
-    return raw_coef, raw_intercept
+    return raw_coef, raw_intercept, n_iter
