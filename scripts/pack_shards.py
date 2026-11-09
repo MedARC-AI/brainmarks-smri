@@ -33,7 +33,7 @@ def sidecar_path(path: str) -> str:
 
 
 def list_participant_files(dataset_dir: Path) -> pd.DataFrame:
-    """One row per file of a participant: participant_id, path, size."""
+    """One row per file of a participant: participant_id, split, path, size."""
     tables_dir = dataset_dir / "tables"
     images = pd.read_csv(tables_dir / "images.tsv", sep="\t", dtype=str)
     images = images[["participant_id", "path"]]
@@ -48,16 +48,19 @@ def list_participant_files(dataset_dir: Path) -> pd.DataFrame:
     files = files[files["path"].map(lambda path: (dataset_dir / path).exists())]
     files = files.drop_duplicates("path")
     files["size"] = files["path"].map(lambda path: (dataset_dir / path).stat().st_size)
+    splits = pd.read_csv(tables_dir / "splits.tsv", sep="\t", dtype=str)
+    files = files.merge(splits, on="participant_id", how="left", validate="many_to_one")
+    assert files["split"].notna().all(), "participants missing from splits.tsv"
     return files.sort_values(["participant_id", "path"], ignore_index=True)
 
 
-def assign_shards(files: pd.DataFrame, name: str, shard_size: int) -> pd.Series:
+def assign_shards(files: pd.DataFrame, prefix: str, shard_size: int) -> pd.Series:
     """Shard file name per row: whole participants, cut into equal parts of about `shard_size`."""
     participant_sizes = files.groupby("participant_id", sort=True)["size"].sum()
     num_shards = max(1, round(participant_sizes.sum() / shard_size))
     bytes_before = participant_sizes.cumsum() - participant_sizes
     shard_index = (bytes_before * num_shards // participant_sizes.sum()).astype(int)
-    shard_names = shard_index.map(lambda index: f"shards/{name}-{index:03d}.zip")
+    shard_names = shard_index.map(lambda index: f"shards/{prefix}-{index:03d}.zip")
     return files["participant_id"].map(shard_names)
 
 
@@ -101,7 +104,12 @@ def main() -> None:
     files = list_participant_files(dataset_dir)
     missing = set(files["path"]) - set(expected)
     assert not missing, f"{len(missing)} files not in the manifests, e.g. {sorted(missing)[:3]}"
-    files["shard"] = assign_shards(files, name, int(args.shard_size_gb * 1e9))
+    shard_size = int(args.shard_size_gb * 1e9)
+    files["shard"] = ""
+    for split, split_files in files.groupby("split"):
+        files.loc[split_files.index, "shard"] = assign_shards(
+            split_files, f"{name}-{split}", shard_size
+        )
     metadata_paths = sorted(set(expected) - set(files["path"]))
     metadata = pd.DataFrame({"path": metadata_paths, "shard": f"shards/{name}-meta.zip"})
     files = pd.concat([files, metadata], ignore_index=True)
@@ -114,20 +122,22 @@ def main() -> None:
         files["shard"].nunique(),
     )
 
-    tmp_dir = dataset_dir / ".tmp-shards"
-    shutil.rmtree(tmp_dir, ignore_errors=True)
-    tmp_dir.mkdir()
+    # each shard and the index are swapped in whole, so running jobs never see partial files
+    shards_dir = dataset_dir / "shards"
+    shards_dir.mkdir(exist_ok=True)
     for shard, shard_files in files.groupby("shard", sort=True):
-        shard_path = tmp_dir / Path(shard).name
-        write_shard(shard_path, dataset_dir, shard_files["path"].tolist())
-        check_shard(shard_path, expected)
+        shard_path = dataset_dir / shard
+        tmp_path = shard_path.with_suffix(".zip.tmp")
+        write_shard(tmp_path, dataset_dir, shard_files["path"].tolist())
+        check_shard(tmp_path, expected)
+        os.replace(tmp_path, shard_path)
         logger.info(
             "%s: %d files, %.2f GB", shard, len(shard_files), shard_path.stat().st_size / 1e9
         )
-    shutil.rmtree(dataset_dir / "shards", ignore_errors=True)
-    os.replace(tmp_dir, dataset_dir / "shards")
     index_path = dataset_dir / "tables" / "shards.tsv"
-    files[["path", "shard"]].to_csv(index_path, sep="\t", index=False, lineterminator="\n")
+    tmp_index_path = index_path.with_suffix(".tsv.tmp")
+    files[["path", "shard"]].to_csv(tmp_index_path, sep="\t", index=False, lineterminator="\n")
+    os.replace(tmp_index_path, index_path)
     shutil.copy(index_path, REPO / "scripts" / name / "tables" / "shards.tsv")
     logger.info("done: %d files packed, %d of them metadata", len(files), len(metadata))
 

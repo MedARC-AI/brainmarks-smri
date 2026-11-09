@@ -99,8 +99,8 @@ Each dataset folder's `README.md` has its source, version, license, citation, an
 
 - All paths in the tables are relative to `<dataset>/`.
 - Derivatives: a brain mask on the image grid (`<image>_mask.nii.gz`) and a 4×4 nibabel-style affine matrix from the image to MNI152NLin6Asym (`<image>_mni.txt`). `derivatives.tsv` lists the images that have them.
-- `<dataset>-NNN.zip` shards hold whole participants: their images, JSON sidecars, brain masks and MNI affines, about 1 GB per shard. `<dataset>-meta.zip` holds the rest of the release: participant tables, phenotypes and docs.
-- Files in the shards keep their original paths under `source/` and `derivatives/`. Unzipping all shards in `<dataset>/` restores the full release, which you can check with `sha256sum -c tables/source.sha256 tables/derivatives.sha256`.
+- `<dataset>-dev-NNN.zip` shards hold whole dev participants: their images, JSON sidecars, brain masks and MNI affines, about 1 GB per shard. `<dataset>-meta.zip` holds the rest of the release: participant tables, phenotypes and docs. The test participants' shards are not hosted.
+- Files in the shards keep their original paths under `source/` and `derivatives/`. Unzipping the shards in `<dataset>/` restores the dev part of the release, which you can check with `sha256sum -c --ignore-missing tables/source.sha256 tables/derivatives.sha256`.
 - For the manual datasets, the checksums let you check your own build against ours.
 - Splits are by participant: 50/50 dev/test, stratified, with a fixed seed. Benchmark tasks split each half further into train and eval sets. Official splits, where they exist, are the `official_split` column of `samples.tsv`.
 

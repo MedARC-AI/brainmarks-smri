@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Upload the datasets to the Hugging Face mirror, with README_hf.md as the dataset card.
 # Usage: bash scripts/upload.sh
-# Hosted datasets: README.md, tables/ and shards/. Manual datasets: README.md and the tables
+# Hosted datasets: README.md, tables/ and the dev and meta shards (test shards stay local).
+# Manual datasets: README.md and the tables
 # tracked in scripts/<name>/tables/ (no samples.tsv). FOMO300K: README.md, tables/ and shards/.
 # Resumable: re-run the same command after an interruption.
 set -euo pipefail
@@ -16,6 +17,8 @@ for name in "${HOSTED[@]}"; do
     diff <(tail -n +2 "$DATA_ROOT/$name/tables/shards.tsv" | cut -f2 | sort -u) \
         <(cd "$DATA_ROOT/$name" && ls shards/*.zip) > /dev/null ||
         die "$name: shards/ does not match tables/shards.tsv"
+    ls "$DATA_ROOT/$name/shards" | grep -qv -e '-dev-[0-9]*\.zip$' -e '-test-[0-9]*\.zip$' -e '-meta\.zip$' &&
+        die "$name: shards/ has files outside the dev/test/meta layout"
 done
 
 # Public repo, gated (automatic approval) before any data goes up.
@@ -27,7 +30,9 @@ for name in "${HOSTED[@]}" "${MANUAL[@]}" fomo300k; do
     "${HF[@]}" upload "$REPO_ID" "$REPO/scripts/$name" "$name" --repo-type dataset \
         --include README.md --include summary.png --include "tables/*"
 done
-for name in "${HOSTED[@]}" fomo300k; do
-    "${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/$name/shards" "$name/shards" --repo-type dataset
+for name in "${HOSTED[@]}"; do
+    "${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/$name/shards" "$name/shards" --repo-type dataset \
+        --include "*-dev-*.zip" --include "*-meta.zip"
 done
+"${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/fomo300k/shards" fomo300k/shards --repo-type dataset
 "${HF[@]}" upload "$REPO_ID" "$DATA_ROOT/fomo300k/tables" fomo300k/tables --repo-type dataset
